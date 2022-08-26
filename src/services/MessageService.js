@@ -1,15 +1,21 @@
 var data = {
 
-    //COMMON
+    /* COMMON */
 
     'common.name'       : 'olATCG',
     
-    //APPBAR
+    /* APPBAR */
 
     'appBar.navItems.home'          : 'Home',
     'appBar.navItems.tools'         : 'Tools',
     'appBar.navItems.learn'         : 'Learn',
-    'appBar.navItems.analysis'      : 'Analysis'
+    'appBar.navItems.analysis'      : 'Analysis',
+
+    /* HOME */
+
+    'home.jumbotron.title'          : 'Welcome to ',
+    'home.jumbotron.description'    : 'An easy-to-use bioinformatic\'s interface for students from all over the world 🌎'
+
 };
 
 function getMessage (key, ...args) {

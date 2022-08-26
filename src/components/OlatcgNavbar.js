@@ -26,7 +26,6 @@ const OlatcgNavbar = () => {
     ];
 
     return <>
-        
             <AppBar position="static" color='primary'>
                 <Toolbar>
                     <Box variant="h5" component="div"
