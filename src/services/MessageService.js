@@ -4,6 +4,7 @@ var data = {
 
     'common.name'               : 'OLATCG',
     'common.label.clickHere'    : 'Click Here',
+    'common.developedBy'        : 'Developed by Luiz Miguel',
     
     /* APPBAR */
 
@@ -40,6 +41,9 @@ var data = {
                                                     'tools and start to use models like: local alignment, phylogenitc ' +
                                                     'search, tree visualization and much more. Recomended if you already ' +
                                                     'have notions in Bioinformatics',
+
+    'home.collaboration.title'                  : 'Collaboration',
+    'home.collaboration.description'            : 'OLATCG is a collaborative project between'
 };
 
 function getMessage (key, ...args) {

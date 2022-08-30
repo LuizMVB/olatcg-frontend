@@ -16,11 +16,11 @@ const OlatcgImageCard = ({
             elevation={3}
         >
             <img src={imageSrc} alt={imageAlt} with={imageWidth} height={imageHeight}></img>
-            <Typography variant="h4">
+            <br /><br />
+            <Typography variant="h4" color="#9c27b0">
                 {title}
             </Typography>
-            <br />
-            <Typography variant="p" fontWeight={600}>
+            <Typography variant="p" fontWeight={600} color="#1d2b29c9">
                 {description}
             </Typography>
             <br /><br />

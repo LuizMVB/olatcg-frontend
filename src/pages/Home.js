@@ -6,6 +6,9 @@ import Logo from '../static/images/logo.png';
 import Book from '../static/images/book.png';
 import Settings from '../static/images/settings.png';
 import OlatcgImageCard from "../components/OlatcgImageCard";
+import CefetLogo from '../static/images/cefet_logo.png';
+import FioCruzLogo from '../static/images/fiocruz_logo.png';
+import UfzLogo from '../static/images/ufz_logo.png';
 
 const Home = () => {
     const jumbotronStyle = {
@@ -103,6 +106,20 @@ const Home = () => {
                         )
                     }
                 </Stack>
+            </Box>
+            <Box>
+                <Typography variant="h3">
+                    {getMessage('home.collaboration.title')}
+                </Typography>
+                <Typography variant="h5">
+                    {getMessage('home.collaboration.description')}
+                </Typography>
+                <Box sx={{pt: 4, '& img': { px: 6 }}}>
+                    <img src={UfzLogo} alt="UFZ's logo" height={200} width={300}></img>
+                    <img src={FioCruzLogo} alt="FioCruz's logo" height={200} width={300}></img>
+                    <br/>
+                    <img src={CefetLogo} alt="CEFET's logo" height={270} width={300}></img>
+                </Box>
             </Box>
         </Stack>    
     </>
