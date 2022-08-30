@@ -4,17 +4,20 @@ import { Provider } from 'react-redux/es/exports';
 import { ThemeProvider } from '@emotion/react';
 
 import './index.css';
-import App from './components/App';
+import App from './pages/App';
 import reportWebVitals from './reportWebVitals';
 import store from './redux/store';
 import olatcgTheme from './OlatcgTheme';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={olatcgTheme}>
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </ThemeProvider>
     </Provider>
   </React.StrictMode>
