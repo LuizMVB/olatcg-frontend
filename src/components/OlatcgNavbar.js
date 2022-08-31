@@ -33,7 +33,7 @@ const OlatcgNavbar = () => {
                         <img height={50} width={50} src={Logo} alt="Logo olATCG" />
                     </Box>
                     {navItems.map((navItem, index) => 
-                        <Button key={index} color="inherit" onClick={() => navigateTo(navItem.link)}>
+                        <Button key={index} color="inherit" onClick={() => navigateTo(navItem.path)}>
                             <Typography variant="h6" component="div">
                                 {getMessage(navItem.nameRef)}
                             </Typography>

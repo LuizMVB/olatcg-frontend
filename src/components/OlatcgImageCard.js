@@ -8,14 +8,15 @@ const OlatcgImageCard = ({
     imageHeight,
     title,
     description,
-    buttonLabel
+    buttonLabel,
+    href 
 }) => {
     return <>
         <Paper
-            sx={{ p: 4, maxWidth: 400, my: 0, backgroundColor: 'secondary.light' }}
+            sx={{ p: 4, maxWidth: 350, backgroundColor: 'secondary.light', textAlign: 'center' }}
             elevation={3}
         >
-            <img src={imageSrc} alt={imageAlt} with={imageWidth} height={imageHeight}></img>
+            <img src={imageSrc} alt={imageAlt} with={imageWidth ? imageWidth : 200} height={imageHeight ? imageHeight : 200}></img>
             <br /><br />
             <Typography variant="h4" color="#9c27b0">
                 {title}
@@ -24,7 +25,7 @@ const OlatcgImageCard = ({
                 {description}
             </Typography>
             <br /><br />
-            <Button variant="contained" href="/learn">
+            <Button variant="contained" href={href}>
                 {buttonLabel ? buttonLabel : getMessage('common.label.clickHere')}
             </Button>
         </Paper>
