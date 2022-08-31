@@ -31,13 +31,15 @@ const Home = () => {
             imageSrc: Book,
             imageAlt: 'learn path',
             title: getMessage('home.chooseYourPath.card.learn.title'),
-            description: getMessage('home.chooseYourPath.card.learn.desc')
+            description: getMessage('home.chooseYourPath.card.learn.desc'),
+            href: '/learn'
         },
         {
             imageSrc: Settings,
             imageAlt: 'tools path',
             title: getMessage('home.chooseYourPath.card.tools.title'),
-            description: getMessage('home.chooseYourPath.card.tools.desc')
+            description: getMessage('home.chooseYourPath.card.tools.desc'),
+            href: '/tools'
         }
     ];
 
@@ -98,8 +100,6 @@ const Home = () => {
                                     key={index}
                                     imageSrc={content.imageSrc}
                                     imageAlt={content.imageAlt}
-                                    imageWidth={200}
-                                    imageHeight={200}
                                     title={content.title}
                                     description={content.description}
                                 />
@@ -114,13 +114,13 @@ const Home = () => {
                 <Typography variant="h5">
                     {getMessage('home.collaboration.description')}
                 </Typography>
-                <Box sx={{pt: 4, '& img': { px: 6 }}}>
+                <Box sx={{'& img': { px: 6 }}}>
                     <img src={UfzLogo} alt="UFZ's logo" height={200} width={300}></img>
-                    <img src={FioCruzLogo} alt="FioCruz's logo" height={200} width={300}></img>
-                    <br/>
                     <img src={CefetLogo} alt="CEFET's logo" height={270} width={300}></img>
+                    <img src={FioCruzLogo} alt="FioCruz's logo" height={200} width={300}></img>                    
                 </Box>
             </Box>
+            <br/>
         </Stack>    
     </>
 }

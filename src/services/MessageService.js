@@ -43,7 +43,20 @@ var data = {
                                                     'have notions in Bioinformatics',
 
     'home.collaboration.title'                  : 'Collaboration',
-    'home.collaboration.description'            : 'OLATCG is a collaborative project between'
+    'home.collaboration.description'            : 'OLATCG is a collaborative project between',
+
+    /** TOOLS */
+    'tools.title'                               : 'Tools',
+    'tools.card.alignment.title'                : 'Alignment',
+    'tools.card.alignment.desc'                 : 'Align two sequences based on local or global alignment. ' +
+                                                    'Both alinments are showed in an interactive table where you can ' +
+                                                    'compare the matches between them. This is a important path ' +
+                                                    'to understand the base of other tools and how it works in detail.',
+    'tools.card.homologySearch.title'           : 'Homology Search',
+    'tools.card.homologySearch.desc'            : 'Submit a list of sequences against a phylogenetically ' + 
+                                                    'annotated database and receive a comparative analysis ' + 
+                                                    'of the combinations with the highest similarity ' + 
+                                                    'regarding the alignment of these sequences',
 };
 
 function getMessage (key, ...args) {

@@ -11,17 +11,17 @@ const App = () => {
   const nPedingRequests = useSelector(state => state.pedingRequests);
 
   return <>
-    <OlatcgLoader show={nPedingRequests} />
+    <OlatcgLoader show={nPedingRequests > 0} />
     <OlatcgNavbar />
     <AppRoutes />
     <Stack
       direction="row"
       alignItems="center"
       justifyContent="flex-end"
-      sx={{backgroundColor: 'primary.main', color: "#ffffff", padding: 0.3, pr: 2}}
+      sx={{position: 'fixed', width: '100%', bottom: 0, backgroundColor: 'primary.main', color: "#ffffff", padding: 0.3}}
     > 
       <GitHub />
-      <Link href="https://github.com/LuizMVB" underline="hover" sx={{color: "#ffffff"}}><span style={{paddingLeft: 8}}>{getMessage('common.developedBy')}</span></Link>
+      <Link href="https://github.com/LuizMVB" underline="hover" sx={{color: "#ffffff", pr: 2}}><span style={{paddingLeft: 8}}>{getMessage('common.developedBy')}</span></Link>
     </Stack>
   </>;
 }
