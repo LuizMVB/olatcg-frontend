@@ -1,9 +1,11 @@
 import { combineReducers, createStore } from "redux";
 
-import pedingRequests from "./reducer/pendingRequests.reducer.js";
+import PedingRequests from "./reducer/PendingRequests.reducer.js";
+import SelectedItemInContentList from "./reducer/SelectedItemInContentList.reducer.js";
 
 const rootReducer = combineReducers({
-    pedingRequests: pedingRequests,
+    PedingRequests: PedingRequests,
+    SelectedItemInContentList: SelectedItemInContentList
 });
 
 const store = createStore(rootReducer);

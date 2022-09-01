@@ -5,6 +5,7 @@ import { getMessage } from "../services/MessageService";
 import Logo from '../static/images/logo.png';
 import Book from '../static/images/book.png';
 import Settings from '../static/images/settings.png';
+import PC from '../static/images/pc.png';
 import OlatcgImageCard from "../components/OlatcgImageCard";
 import CefetLogo from '../static/images/cefet_logo.png';
 import FioCruzLogo from '../static/images/fiocruz_logo.png';
@@ -35,11 +36,18 @@ const Home = () => {
             href: '/learn'
         },
         {
-            imageSrc: Settings,
+            imageSrc: PC,
             imageAlt: 'tools path',
             title: getMessage('home.chooseYourPath.card.tools.title'),
             description: getMessage('home.chooseYourPath.card.tools.desc'),
             href: '/tools'
+        },
+        {
+            imageSrc: Settings,
+            imageAlt: 'tutorials path',
+            title: getMessage('home.chooseYourPath.card.tutorials.title'),
+            description: getMessage('home.chooseYourPath.card.tutorials.desc'),
+            href: '/tutorials'
         }
     ];
 
@@ -102,6 +110,7 @@ const Home = () => {
                                     imageAlt={content.imageAlt}
                                     title={content.title}
                                     description={content.description}
+                                    href={content.href}
                                 />
                         )
                     }

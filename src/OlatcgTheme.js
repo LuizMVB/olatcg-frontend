@@ -9,6 +9,7 @@ const mainTheme = createTheme({
         },
         secondary: {
             main: purple[100],
+            light: purple[50],
             contrastText: '#1d2b29c9'
         },
         error: {
