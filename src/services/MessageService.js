@@ -10,8 +10,10 @@ var data = {
 
     'appBar.navItems.home'          : 'Home',
     'appBar.navItems.tools'         : 'Tools',
-    'appBar.navItems.learn'         : 'Learn',
     'appBar.navItems.analysis'      : 'Analysis',
+    'appBar.navItems.learn'         : 'Learn',
+    'appBar.navItems.tutorials'     : 'Tutorials',
+    
 
     /* HOME */
 
@@ -29,18 +31,22 @@ var data = {
                                         'the main concepts that you\'ll learn ',
     
     'home.chooseYourPath'                       : 'Choose Your Path Wisely 🧙🏽‍♂️',
-    'home.chooseYourPath.card.learn.title'      : 'Tutorials and Definitions',
-    'home.chooseYourPath.card.learn.desc'       : 'Here you can read more about what features are implemented ' +
-                                                    'by OLATCG and discover more about Bioinformatics itself. ' +
-                                                    'This path is recomended if you have no previous experience ' +
-                                                    'with this field or if you want to know deeper about the ' +
-                                                    'platform and how analysis are made',
+    'home.chooseYourPath.card.learn.title'      : 'Learn Bioinformatis',
+    'home.chooseYourPath.card.learn.desc'       : 'Here you can discover more about Bioinformatics itself. ' +
+                                                    'Want to know the main definitions and perspectives of ' +
+                                                    'Bioinformatics nowadays? This path is for you. Recomended ' + 
+                                                    'if you have no previous experience with this field',
     'home.chooseYourPath.card.tools.title'      : 'Use OLATCG\'s Tools',
     'home.chooseYourPath.card.tools.desc'       : 'Do you want to make some analysis and generate a clear ' + 
                                                     'visualization of it? Here is your place. Access the OLATCG\'s ' +
                                                     'tools and start to use models like: local alignment, phylogenitc ' +
                                                     'search, tree visualization and much more. Recomended if you already ' +
                                                     'have notions in Bioinformatics',
+    'home.chooseYourPath.card.tutorials.title'  : 'Tutorials',
+    'home.chooseYourPath.card.tutorials.desc'   : 'Here you can read more about what features are implemented ' +
+                                                    'by OLATCG and discover more about how it works. This path ' + 
+                                                    'is recomended if you want to know deeper about the platform ' + 
+                                                    'and how the analysis are made',
 
     'home.collaboration.title'                  : 'Collaboration',
     'home.collaboration.description'            : 'OLATCG is a collaborative project between',
@@ -57,6 +63,18 @@ var data = {
                                                     'annotated database and receive a comparative analysis ' + 
                                                     'of the combinations with the highest similarity ' + 
                                                     'regarding the alignment of these sequences',
+
+    /** LEARN */
+    'learn.contentList.label.title'                             : 'Topics',
+    'learn.contentList.listItem.label.whatIsOlatcg'             : 'What Is OLATCG?',
+    'learn.contentList.listItem.label.whatIsBioinformatics'     : 'What Is Bioinformatic?',
+    'learn.contentList.listItem.label.theHumanGenomeProject'    : 'The Human Genome Project',
+    'learn.contentList.listItem.label.nowadays'                 : 'Nowadays',
+    'learn.contentList.listItem.label.keyConcepts'              : 'Key Concepts',
+
+    /** TUTORIALS */
+    'tutorials.contentList.label.title'                         : 'Tutorials',
+    'tutorials.contentList.listItem.label.tutorials'            : 'How to Use OLATCG',
 };
 
 function getMessage (key, ...args) {

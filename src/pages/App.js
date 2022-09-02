@@ -8,7 +8,7 @@ import AppRoutes from "../routes/AppRoutes";
 import { getMessage } from "../services/MessageService";
 
 const App = () => {
-  const nPedingRequests = useSelector(state => state.pedingRequests);
+  const nPedingRequests = useSelector(state => state.PedingRequests);
 
   return <>
     <OlatcgLoader show={nPedingRequests > 0} />

@@ -1,6 +1,6 @@
 const initialState = 0;
 
-export default function pendingRequestsReducer(state = initialState, action){
+export default function PendingRequestsReducer(state = initialState, action){
     switch(action.type){
         case 'ADD_PEDING_REQUEST':
             return action.payload + 1;
