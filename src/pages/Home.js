@@ -65,9 +65,9 @@ const Home = () => {
                 <Typography variant="h2" color="#9c27b0">
                     {getMessage('home.jumbotron.title')}
                     OL
-                    {baseColorsInOLATCGsName.map((base => 
-                        <span style={{color: base.color}}>{base.letter}</span>
-                    ))}
+                    {baseColorsInOLATCGsName.map((base, index) => 
+                        <span key={index} style={{color: base.color}}>{base.letter}</span>
+                    )}
                 </Typography>
                 <Typography variant="h4" component="div" sx={{pt: 3}} color="#1d2b29c9">
                     {getMessage('home.jumbotron.description')}

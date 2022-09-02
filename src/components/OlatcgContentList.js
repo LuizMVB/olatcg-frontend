@@ -1,5 +1,5 @@
 import { Remove, Add } from "@mui/icons-material";
-import { Collapse, List, ListItemButton, ListItemText, ListSubheader, Typography } from "@mui/material";
+import { Collapse, Divider, List, ListItemButton, ListItemText, ListSubheader, Typography } from "@mui/material";
 import React from "react";
 import { useDispatch } from "react-redux";
 
@@ -31,11 +31,12 @@ const OlatcgContentList = ({
                 <ListSubheader
                     component="div"
                     id="nested-list-subheader"
-                    sx={{ backgroundColor: 'secondary.light', py: 3 }}
+                    sx={{ backgroundColor: 'secondary.light', pt: 3, pb: 2 }}
                 >
                     <Typography variant="h4">
                         {title}
                     </Typography>
+                    <Divider sx={{pt: 2}}></Divider>
                 </ListSubheader>
             }
         >

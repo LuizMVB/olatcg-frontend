@@ -70,7 +70,11 @@ var data = {
     'learn.contentList.listItem.label.whatIsBioinformatics'     : 'What Is Bioinformatic?',
     'learn.contentList.listItem.label.theHumanGenomeProject'    : 'The Human Genome Project',
     'learn.contentList.listItem.label.nowadays'                 : 'Nowadays',
-    'learn.contentList.listItem.label.keyConcepts'              : 'Key Concepts'
+    'learn.contentList.listItem.label.keyConcepts'              : 'Key Concepts',
+
+    /** TUTORIALS */
+    'tutorials.contentList.label.title'                         : 'Tutorials',
+    'tutorials.contentList.listItem.label.tutorials'            : 'How to Use OLATCG',
 };
 
 function getMessage (key, ...args) {

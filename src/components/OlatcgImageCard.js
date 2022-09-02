@@ -13,7 +13,7 @@ const OlatcgImageCard = ({
     href 
 }) => {
     const imageCardStyle = { 
-        p: 4, maxWidth: 350, backgroundColor: 'secondary.light', 
+        p: 4, maxWidth: 300, backgroundColor: 'secondary.light', 
         textAlign: 'center', '&:hover': {background: purple[100]}
     }
 
@@ -22,7 +22,7 @@ const OlatcgImageCard = ({
             sx={imageCardStyle}
             elevation={3}
         >
-            <img src={imageSrc} alt={imageAlt} with={imageWidth ? imageWidth : 200} height={imageHeight ? imageHeight : 200}></img>
+            <img src={imageSrc} alt={imageAlt} with={imageWidth ? imageWidth : 150} height={imageHeight ? imageHeight : 150}></img>
             <br /><br />
             <Typography variant="h4" color="#9c27b0">
                 {title}

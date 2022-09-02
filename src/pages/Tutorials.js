@@ -3,22 +3,18 @@ import OlatcgContentList from "../components/OlatcgContentList";
 import { getMessage } from "../services/MessageService";
 import { useSelector } from "react-redux";
 
-const Learn = () => {
+const Tutorials = () => {
     const selectedItem = useSelector(state => state.SelectedItemInContentList);
 
     const contentListItems = [
-        { label: getMessage('learn.contentList.listItem.label.whatIsOlatcg')},
-        { label: getMessage('learn.contentList.listItem.label.whatIsBioinformatics')},
-        { label: getMessage('learn.contentList.listItem.label.theHumanGenomeProject')},
-        { label: getMessage('learn.contentList.listItem.label.nowadays')},
-        { label: getMessage('learn.contentList.listItem.label.keyConcepts')}
+        { label: getMessage('tutorials.contentList.listItem.label.tutorials')}
     ]
 
     return <>
         <Grid sx={{height: '85vh'}} container spacing={0}>
             <Grid item xs={3} sx={{backgroundColor: 'secondary.light', pb: 4}}>
                 <OlatcgContentList 
-                    title={getMessage('learn.contentList.label.title')} 
+                    title={getMessage('tutorials.contentList.label.title')} 
                     items={contentListItems}
                 />
             </Grid>
@@ -36,4 +32,4 @@ const Learn = () => {
     </>
 }
 
-export default Learn;
+export default Tutorials;
