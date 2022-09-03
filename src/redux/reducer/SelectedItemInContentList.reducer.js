@@ -4,6 +4,8 @@ export default function SelectedItemInContentListReducer(state = initialState, a
     switch(action.type){
         case 'SELECT_ITEM':
             return action.payload;
+        case 'RETURN_TO_INITIAL_STATE':
+            return initialState;
         default:
             return state;
     }

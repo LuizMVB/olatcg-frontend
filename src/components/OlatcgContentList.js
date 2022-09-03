@@ -1,15 +1,27 @@
 import { Remove, Add } from "@mui/icons-material";
 import { Collapse, Divider, List, ListItemButton, ListItemText, ListSubheader, Typography } from "@mui/material";
-import React from "react";
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const OlatcgContentList = ({
     title,
     items,
     paddingLeftItem
 }) => {
+    const selectedItem = useSelector(state => state.SelectedItemInContentList);
     const dispatch = useDispatch();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
+
+    useEffect(() => {
+        return () => {
+            if(selectedItem !== 0){
+                dispatch({
+                    type: 'RETURN_TO_INITIAL_STATE'
+                });
+            }
+        }
+    });
 
     const handleClick = (hasSubItem, indexItem) => {
         if(hasSubItem){
