@@ -75,6 +75,11 @@ var data = {
     /** TUTORIALS */
     'tutorials.contentList.label.title'                         : 'Tutorials',
     'tutorials.contentList.listItem.label.tutorials'            : 'How to Use OLATCG',
+
+    /** ALIGNMENT */
+    'alignment.input.label.firstSequence'           : 'First Sequence',
+    'alignment.input.label.secondSequence'          : 'Second Sequence',
+    'alignment.button.tooltip.text.align'           : 'Align',
 };
 
 function getMessage (key, ...args) {
