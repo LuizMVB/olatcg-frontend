@@ -80,6 +80,20 @@ var data = {
     'alignment.input.label.firstSequence'           : 'First Sequence',
     'alignment.input.label.secondSequence'          : 'Second Sequence',
     'alignment.button.tooltip.text.align'           : 'Align',
+    'alignment.step0.label'                         : 'Adjusting configurations',
+    'alignment.step1.label'                         : 'Choose your sequences',
+    'alignment.step2.label'                         : 'Follow your results in Analysis section',
+    'alignment.input.label.matchScore'              : 'Match Score',
+    'alignment.input.label.mismatchScore'           : 'Mismatch Score',
+    'alignment.input.label.sequenceType'            : 'Sequence Type',
+
+    /** STEPER */
+    'steper.button.label'                           : 'Next Step',
+
+    /** ENUM VALUES */
+    'enum.SequenceTypeEnum.DNA'                     : 'DNA',
+    'enum.SequenceTypeEnum.RNA'                     : 'RNA',
+    'enum.SequenceTypeEnum.PROTEIN'                 : 'Prontein',
 };
 
 function getMessage (key, ...args) {
