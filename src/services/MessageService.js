@@ -88,7 +88,8 @@ var data = {
     'alignment.input.label.sequenceType'            : 'Sequence Type',
 
     /** STEPER */
-    'steper.button.label'                           : 'Next Step',
+    'steper.button.label.next'                      : 'Next Step',
+    'steper.button.label.previous'                  : 'Previous Step',
 
     /** ENUM VALUES */
     'enum.SequenceTypeEnum.DNA'                     : 'DNA',
