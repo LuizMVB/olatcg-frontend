@@ -5,6 +5,7 @@ var data = {
     'common.name'               : 'OLATCG',
     'common.label.clickHere'    : 'Click Here',
     'common.developedBy'        : 'Developed by Luiz Miguel',
+    'common.label.success'      : 'Operation performed successfully',
     
     /* APPBAR */
 
@@ -86,15 +87,34 @@ var data = {
     'alignment.input.label.matchScore'              : 'Match Score',
     'alignment.input.label.mismatchScore'           : 'Mismatch Score',
     'alignment.input.label.sequenceType'            : 'Sequence Type',
+    'alignment.input.label.alignmentType'           : 'Alignment Type',
+    'alignment.followAnalysis.title'                : 'Follow Your Results in Analysis Section',
+    'alignment.followAnalysis.desc'                 : 'You can use the analysis section to consult your ' + 
+                                                        'results at any time. Record your identifier and ' + 
+                                                        'consult the table',
 
     /** STEPER */
     'steper.button.label.next'                      : 'Next Step',
     'steper.button.label.previous'                  : 'Previous Step',
 
     /** ENUM VALUES */
+
+    // SequenceTypeEnum
     'enum.SequenceTypeEnum.DNA'                     : 'DNA',
     'enum.SequenceTypeEnum.RNA'                     : 'RNA',
     'enum.SequenceTypeEnum.PROTEIN'                 : 'Prontein',
+
+    // AlignmentTypeEnum
+    'enum.AlignmentTypeEnum.GLOBAL'                 : 'Global',
+    'enum.AlignmentTypeEnum.LOCAL'                  : 'Local',
+
+    // ERRORS
+
+    'error.general'                     : 'An error occurred while trying to establish the connection', 
+    'error.valitation.sequences.format' : 'An error occurred while validating the sequences, ' + 
+                                            'check if they match the chosen type', 
+    'error.validation.fillingFields'    : 'There cannot be blank fields. Check that all fields ' + 
+                                            'are filled in and try again.',       
 };
 
 function getMessage (key, ...args) {

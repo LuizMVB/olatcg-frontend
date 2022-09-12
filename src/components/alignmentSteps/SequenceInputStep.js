@@ -1,10 +1,79 @@
 import { Science } from "@mui/icons-material";
 import { Grid, IconButton, TextField, Tooltip, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import useRequest from "../../hooks/useRequest";
+import useStepForm from "../../hooks/useStepForm";
 import { getMessage } from "../../services/MessageService";
+import { API_ROUTES } from "../../routes/Routes";
+import ValidationService from "../../services/ValidationService";
+import OlatcgSnackbar from "../OlatcgSnackbar";
+import useStepConditions from "../../hooks/useStepConditions";
+import useStepRequest from "../../hooks/useStepRequest";
 
-const SequenceInputStep = ({ handleInputChange, seqInputA, seqInputB }) => {
+const SequenceInputStep = () => {
+    const [handleInputChange] = useStepForm();
+    const [makeRequest] = useRequest();
+    const stepForm = useSelector(state => state.stepForm);
+    const dispatch = useDispatch();
+    const [setNextCondition] = useStepConditions();
+    const [setStepRequest] = useStepRequest();
     const [colorAlignIcon, setColorAlignIcon] = useState('');
+    const [isSnackbarOpened, openSnackbar] = useState(false);
+    const [statusSnackbar, setStatusSanckbar] = useState('error');
+    const [msgSnackbar, setMsgSnackbar] = useState('');
+
+    useEffect(() => {
+        dispatch({
+            type: 'SET_NEXT_CONDITION',
+            payload: false,
+        });
+        
+        return () => {
+            dispatch({
+                type: 'RETURN_TO_STEP_CHANGE_CONDITIONS_INITIAL_STATE',
+            }); 
+        }
+    }, [dispatch]);
+
+    useEffect(() => {
+        if(!stepForm.sequenceA || stepForm.sequenceB){
+            dispatch({
+                type: 'UPDATE_STEP_FORM',
+                payload: {
+                    sequenceA: !stepForm.sequenceA ? '' : stepForm.sequenceA,
+                    sequenceB: !stepForm.sequenceB ? '' : stepForm.sequenceB,
+                },
+            });
+        }
+    }, [stepForm, dispatch])
+
+    const showSnackbar = (msg, status) => {
+        setMsgSnackbar(msg);
+        setStatusSanckbar(status);
+        openSnackbar(true);
+    }
+
+    const onSuccessAlignment = (data) => {
+        console.log(data);
+        setStepRequest(data);
+        setNextCondition(true);
+        showSnackbar(getMessage('common.label.success'), 'success');
+    }
+
+    const onFailureAlignment = (error) => {
+        setNextCondition(false);
+        showSnackbar(error.errorDescription, 'error');
+    }
+
+    const makeAlignRequest = () => {
+        try{
+            ValidationService.validateAlignmentForm(stepForm);
+            makeRequest(API_ROUTES.ALIGN, 'POST', stepForm, onSuccessAlignment, onFailureAlignment);
+        }catch (errorMessage){
+            showSnackbar(errorMessage, 'error');
+        }
+    }
 
     return <>
         <Grid container
@@ -22,7 +91,7 @@ const SequenceInputStep = ({ handleInputChange, seqInputA, seqInputB }) => {
                 </Typography>
                 <TextField
                     name="sequenceA"
-                    defaultValue={seqInputA ? seqInputA : ''}
+                    defaultValue={stepForm.sequenceA ? stepForm.sequenceA : ''}
                     rows={10}
                     sx={{width: '100%'}}
                     onChange={handleInputChange}
@@ -35,9 +104,9 @@ const SequenceInputStep = ({ handleInputChange, seqInputA, seqInputB }) => {
                     title={getMessage('alignment.button.tooltip.text.align')}
                     sx={{mt: 16, bgcolor: 'primary.main'}}   
                     onMouseMove={() => setColorAlignIcon("primary")}
-                    onMouseLeave={() => setColorAlignIcon()} 
+                    onMouseLeave={() => setColorAlignIcon()}
                 >
-                    <IconButton>
+                    <IconButton onClick={() => makeAlignRequest()}>
                         <Science sx={{ fontSize: 50 }} color={colorAlignIcon} />
                     </IconButton>
                 </Tooltip>
@@ -51,7 +120,7 @@ const SequenceInputStep = ({ handleInputChange, seqInputA, seqInputB }) => {
                 </Typography>
                 <TextField
                     name="sequenceB"
-                    defaultValue={seqInputB ? seqInputB : ''}
+                    defaultValue={stepForm.sequenceB ? stepForm.sequenceB : ''}
                     rows={10}
                     sx={{width: '100%'}}
                     onChange={handleInputChange}
@@ -60,6 +129,12 @@ const SequenceInputStep = ({ handleInputChange, seqInputA, seqInputB }) => {
                 />
             </Grid>
         </Grid>
+        <OlatcgSnackbar
+            isOpened={isSnackbarOpened} 
+            onClose={() => openSnackbar(false)}
+            status={statusSnackbar}
+            msg={msgSnackbar} 
+        />
     </>
 }
 

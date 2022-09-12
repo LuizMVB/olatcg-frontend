@@ -15,10 +15,10 @@ const mainTheme = createTheme({
         },
         error: {
             light: '#feefef',
-            main: '#c90000c0',
+            main: '#c90000',
         },
         warning: { 
-            main: '#d7d11af0'
+            main: '#d7d11a'
         },
         info: {
             main: '#4fc3f7'

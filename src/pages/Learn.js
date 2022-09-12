@@ -4,7 +4,7 @@ import { getMessage } from "../services/MessageService";
 import { useSelector } from "react-redux";
 
 const Learn = () => {
-    const selectedItem = useSelector(state => state.SelectedItemInContentList);
+    const selectedItem = useSelector(state => state.selectedItemInContentList);
 
     const contentListItems = [
         { label: getMessage('learn.contentList.listItem.label.whatIsOlatcg')},
@@ -17,7 +17,7 @@ const Learn = () => {
     return <>
         <Grid sx={{height: '85vh'}} container spacing={0}>
             <Grid item xs={3} sx={{backgroundColor: 'secondary.light', pb: 4}}>
-                <OlatcgContentList 
+                <OlatcgContentList
                     title={getMessage('learn.contentList.label.title')} 
                     items={contentListItems}
                 />

@@ -1,12 +1,29 @@
 import { Box, MenuItem, Select, Slider, Stack, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import useStepForm from "../../hooks/useStepForm";
+import AlignmentTypeEnum from "../../infra/enums/AlignmentTypeEnum";
 import SequenceTypeEnum from "../../infra/enums/SequenceTypeEnum";
 import { getMessage } from "../../services/MessageService";
 
-const ConfigurationStep = ({ handleInputChange, matchScore, mismatchScore, selectedSequenceType }) => {
+const ConfigurationStep = () => {
+    const [handleInputChange] = useStepForm();
+    const stepForm = useSelector(state => state.stepForm)
+    const dispatch = useDispatch();
     const sequenceTypes = SequenceTypeEnum.getSelectStructure();
-    console.log(sequenceTypes);
-    const [sequenceTypeValue, setSequenceTypeValue] = useState(selectedSequenceType ? selectedSequenceType : "DNA");
+    const alignmentTypes = AlignmentTypeEnum.getSelectStructure();
+
+    useEffect(() => {
+        dispatch({
+            type: 'SET_STEP_FORM',
+            payload: {
+                matchScore: 10,
+                mismatchScore: 10,
+                sequenceType: 'DNA',
+                alignmentType: 'GLOBAL'
+            },
+        });
+    }, [dispatch]);
 
     return <>
         <Stack
@@ -22,7 +39,7 @@ const ConfigurationStep = ({ handleInputChange, matchScore, mismatchScore, selec
                 <Slider 
                     id="matchScore"
                     name="matchScore"
-                    defaultValue={matchScore ? matchScore : 10}
+                    value={stepForm.matchScore ? stepForm.matchScore : 10}
                     max={20}
                     aria-label="Default" 
                     valueLabelDisplay="auto"
@@ -36,38 +53,59 @@ const ConfigurationStep = ({ handleInputChange, matchScore, mismatchScore, selec
                 <Slider 
                     id="mismatchScore"
                     name="mismatchScore"
-                    defaultValue={mismatchScore ? mismatchScore : 10} 
+                    value={stepForm.mismatchScore ? stepForm.mismatchScore : 10} 
                     max={20}
                     aria-label="Default" 
                     valueLabelDisplay="auto" 
                     onChange={handleInputChange}
                 />
             </Box>
-            <Box sx={{width: 400, textAlign: 'center'}}>
-                <Typography gutterBottom>
-                    {getMessage('alignment.input.label.sequenceType')}
-                </Typography>
-                <Select
-                    id="sequenceType"
-                    name="sequenceType"
-                    value={sequenceTypeValue}
-                    onChange={(event) => {
-                        setSequenceTypeValue(event.target.value); 
-                        handleInputChange(event);
-                    }}
-                >
-                    {
-                        sequenceTypes.map((type, index) =>
-                            <MenuItem 
-                                key={index} 
-                                value={type.value}
-                            >
-                                {type.label}
-                            </MenuItem>
-                        )
-                    }
-                </Select>
-            </Box>
+            <Stack direction="row" spacing={3}>
+                <Box sx={{width: 200, textAlign: 'center'}}>
+                    <Typography gutterBottom>
+                        {getMessage('alignment.input.label.sequenceType')}
+                    </Typography>
+                    <Select
+                        id="sequenceType"
+                        name="sequenceType"
+                        value={stepForm.sequenceType ? stepForm.sequenceType : 'DNA'}
+                        onChange={handleInputChange}
+                    >
+                        {
+                            sequenceTypes.map((type, index) =>
+                                <MenuItem 
+                                    key={index} 
+                                    value={type.value}
+                                >
+                                    {type.label}
+                                </MenuItem>
+                            )
+                        }
+                    </Select>
+                </Box>
+                <Box sx={{width: 200, textAlign: 'center'}}>
+                    <Typography gutterBottom>
+                        {getMessage('alignment.input.label.alignmentType')}
+                    </Typography>
+                    <Select
+                        id="alignmentType"
+                        name="alignmentType"
+                        value={stepForm.alignmentType ? stepForm.alignmentType : 'GLOBAL'}
+                        onChange={handleInputChange}
+                    >
+                        {
+                            alignmentTypes.map((type, index) =>
+                                <MenuItem 
+                                    key={index} 
+                                    value={type.value}
+                                >
+                                    {type.label}
+                                </MenuItem>
+                            )
+                        }
+                    </Select>
+                </Box>
+            </Stack>
         </Stack>
     </>
 }

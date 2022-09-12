@@ -1,37 +1,32 @@
 import { Remove, Add } from "@mui/icons-material";
 import { Collapse, Divider, List, ListItemButton, ListItemText, ListSubheader, Typography } from "@mui/material";
-import { useEffect } from "react";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import useContentList from "../hooks/useContentList";
 
 const OlatcgContentList = ({
     title,
     items,
     paddingLeftItem
 }) => {
-    const selectedItem = useSelector(state => state.SelectedItemInContentList);
     const dispatch = useDispatch();
+    const [selectItem] = useContentList();
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
         return () => {
-            if(selectedItem !== 0){
-                dispatch({
-                    type: 'RETURN_TO_INITIAL_STATE'
-                });
-            }
+            dispatch({
+                type: 'RETURN_TO_INITIAL_STATE'
+            });
         }
-    });
+    }, [dispatch]);
 
-    const handleClick = (hasSubItem, indexItem) => {
+    const handleClick = (hasSubItem, itemIndex) => {
         if(hasSubItem){
             setOpen(!open);
         }
 
-        dispatch({
-            type: 'SELECT_ITEM',
-            payload: indexItem,
-        });
+        selectItem(itemIndex);
     };
 
     return <>
@@ -54,21 +49,21 @@ const OlatcgContentList = ({
         >
             {
                 items.map((item, index) => {
-                    if (!item.subItems || item.subItems.length === 0) {
-                        return <ListItemButton key={index} sx={!title ? { pl: paddingLeftItem } : null} onClick={() => handleClick(false, index)}>
-                            <ListItemText primary={item.label} />
-                        </ListItemButton>
+                        if (!item.subItems || item.subItems.length === 0) {
+                            return <ListItemButton key={index} sx={!title ? { pl: paddingLeftItem } : null} onClick={() => handleClick(false, index)}>
+                                <ListItemText primary={item.label} />
+                            </ListItemButton>
+                        }
+                        return <div key={index}>
+                            <ListItemButton onClick={() => handleClick(true, index)} sx={!title ? { pl: paddingLeftItem } : null}>
+                                <ListItemText primary={item.label} />
+                                {open ? <Remove /> : <Add />}
+                            </ListItemButton>
+                            <Collapse in={open} timeout="auto" unmountOnExit>
+                                <OlatcgContentList items={item.subItems} paddingLeftItem={!paddingLeftItem ? 4 : paddingLeftItem + 4} />
+                            </Collapse>
+                        </div>
                     }
-                    return <div key={index}>
-                        <ListItemButton onClick={() => handleClick(true, index)} sx={!title ? { pl: paddingLeftItem } : null}>
-                            <ListItemText primary={item.label} />
-                            {open ? <Remove /> : <Add />}
-                        </ListItemButton>
-                        <Collapse in={open} timeout="auto" unmountOnExit>
-                            <OlatcgContentList items={item.subItems} paddingLeftItem={!paddingLeftItem ? 4 : paddingLeftItem + 4} />
-                        </Collapse>
-                    </div>
-                }
                 )
             }
         </List>
