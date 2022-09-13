@@ -16,7 +16,7 @@ const SequenceInputStep = () => {
     const [makeRequest] = useRequest();
     const stepForm = useSelector(state => state.stepForm);
     const dispatch = useDispatch();
-    const [setNextCondition] = useStepConditions();
+    const [_, setNextCondition] = useStepConditions();
     const [setStepRequest] = useStepRequest();
     const [colorAlignIcon, setColorAlignIcon] = useState('');
     const [isSnackbarOpened, openSnackbar] = useState(false);
@@ -37,12 +37,12 @@ const SequenceInputStep = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        if(!stepForm.sequenceA || stepForm.sequenceB){
+        if(!(stepForm.sequenceA && stepForm.sequenceB)){
             dispatch({
                 type: 'UPDATE_STEP_FORM',
                 payload: {
-                    sequenceA: !stepForm.sequenceA ? '' : stepForm.sequenceA,
-                    sequenceB: !stepForm.sequenceB ? '' : stepForm.sequenceB,
+                    sequenceA: stepForm.sequenceA ? stepForm.sequenceA : '',
+                    sequenceB: stepForm.sequenceB ? stepForm.sequenceB : '',
                 },
             });
         }
@@ -55,7 +55,6 @@ const SequenceInputStep = () => {
     }
 
     const onSuccessAlignment = (data) => {
-        console.log(data);
         setStepRequest(data);
         setNextCondition(true);
         showSnackbar(getMessage('common.label.success'), 'success');

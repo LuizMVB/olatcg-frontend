@@ -78,20 +78,31 @@ var data = {
     'tutorials.contentList.listItem.label.tutorials'            : 'How to Use OLATCG',
 
     /** ALIGNMENT */
-    'alignment.input.label.firstSequence'           : 'First Sequence',
-    'alignment.input.label.secondSequence'          : 'Second Sequence',
-    'alignment.button.tooltip.text.align'           : 'Align',
-    'alignment.step0.label'                         : 'Adjusting configurations',
-    'alignment.step1.label'                         : 'Choose your sequences',
-    'alignment.step2.label'                         : 'Follow your results in Analysis section',
-    'alignment.input.label.matchScore'              : 'Match Score',
-    'alignment.input.label.mismatchScore'           : 'Mismatch Score',
-    'alignment.input.label.sequenceType'            : 'Sequence Type',
-    'alignment.input.label.alignmentType'           : 'Alignment Type',
-    'alignment.followAnalysis.title'                : 'Follow Your Results in Analysis Section',
-    'alignment.followAnalysis.desc'                 : 'You can use the analysis section to consult your ' + 
-                                                        'results at any time. Record your identifier and ' + 
-                                                        'consult the table',
+    'alignment.input.label.firstSequence'                        : 'First Sequence',
+    'alignment.input.label.secondSequence'                       : 'Second Sequence',
+    'alignment.button.tooltip.text.align'                        : 'Align',
+    'alignment.step0.label'                                      : 'Adjusting configurations',
+    'alignment.step1.label'                                      : 'Choose your sequences',
+    'alignment.step2.label'                                      : 'Follow your results in Analysis section',
+    'alignment.input.label.matchScore'                           : 'Match Score',
+    'alignment.input.label.mismatchScore'                        : 'Mismatch Score',
+    'alignment.input.label.sequenceType'                         : 'Sequence Type',
+    'alignment.input.label.alignmentType'                        : 'Alignment Type',
+    'alignment.followAnalysis.title'                             : 'Follow Your Results in Analysis Section',
+    'alignment.followAnalysis.desc'                              : 'You can use the analysis section to consult your ' + 
+                                                                    'results at any time. Record your identifier and ' + 
+                                                                    'consult the table',
+    'alignment.followAnalysis.preview'                           : 'Preview - ID {0}',
+    'alignment.followAnalysis.button.label.goToAnalysis'         : 'Go to Analysis',
+    'alignment.followAnalysis.button.label.makeAnotherAnalysis'  : 'Make another analysis',
+
+    /** ALIGNMENT TABLE */
+    'olatcgAlignmentTable.label.alignmentA'             : 'Alignment A',
+    'olatcgAlignmentTable.label.alignmentB'             : 'Alignment B',
+    'olatcgAlignmentTable.label.score'                  : 'Score',
+    'olatcgAlignmentTable.label.similarity'             : 'Similarity',
+    'olatcgAlignmentTable.label.status'                 : 'Status',
+    'olatcgAlignmentTable.label.type'                   : 'Type',
 
     /** STEPER */
     'steper.button.label.next'                      : 'Next Step',

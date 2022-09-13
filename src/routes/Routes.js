@@ -8,6 +8,7 @@ const API_ROUTES = {
     //ALIGNMENT
     ALIGN: API_BASE_PATH + '/sequenceAlignment/align',
     SEARCH_ALIGNMENTS: API_BASE_PATH + '/sequenceAlignment/search',
+    GET_ALIGNMENT_BY_ID_ANALYSIS: API_BASE_PATH + '/sequenceAlignment/getAlignmentByIdAnalysis',
 
     //TAXONOMY SEARCH
     GET_TAXONOMY_FROM_SEQUENCES: API_BASE_PATH + '/taxonomySearch/getTaxonomyFromSequences',

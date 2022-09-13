@@ -47,7 +47,7 @@ const StepByStep = ({
                     </IconButton>
                 </Tooltip>
             </Grid>
-            <Grid item xs={8} sx={{bgcolor: '#f0f0f0', border: '1px outset #d6d6d6', p: 4}}>
+            <Grid item xs={8} sx={{bgcolor: '#f0f0f0', border: '1px outset #d6d6d6', p: 4, mb: 6}}>
                 {steps[actualStep].content}
             </Grid>
             <Grid item xs={2}>

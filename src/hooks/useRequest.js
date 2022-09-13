@@ -35,12 +35,6 @@ const useRequest = () => {
         fetch(action, config)
             .then(res => res.json())
             .then(data => {
-                if(withLoading){
-                    dispatch({
-                        type: 'REMOVE_PENDING_REQUEST',
-                        payload: pendingRequestsCount + 1, //async correction
-                    });
-                }
                 if(data.error){
                     onFailure?.(data);
                     return;
@@ -52,6 +46,13 @@ const useRequest = () => {
                     errorCode: 0,
                     errorDescription: getMessage('error.general'),
                 });
+            }).finally(() => {
+                if(withLoading){
+                    dispatch({
+                        type: 'REMOVE_PENDING_REQUEST',
+                        payload: pendingRequestsCount + 1, //async correction
+                    });
+                }
             });
     };
 

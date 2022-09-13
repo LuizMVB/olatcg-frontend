@@ -1,14 +1,21 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import useStepConditions from "../../hooks/useStepConditions";
 import { getMessage } from "../../services/MessageService";
 import OlatcgAlignmentTable from "../OlatcgAlignmentTable";
 
 const FollowYourAlignmentAnalysisStep = () => {
     const stepRequest = useSelector(state => state.stepRequest);
-    console.log(stepRequest);
+    const [setPreviousCondition] = useStepConditions();
+    
+    useEffect(() => {
+        setPreviousCondition(false);
+    }, [setPreviousCondition]);
+
     return <>
         <Box sx={{textAlign: 'center'}}>
-            <Typography variant="h3">
+            <Typography variant="h4">
                 {getMessage('alignment.followAnalysis.title')}
             </Typography>
             <br/>
@@ -16,10 +23,21 @@ const FollowYourAlignmentAnalysisStep = () => {
                 {getMessage('alignment.followAnalysis.desc')}
             </Typography>
             <br/>
-            <Typography variant="h4">
-                {getMessage('alignment.followAnalysis.preview')}
+            <Typography component="div" variant="h4" sx={{backgroundColor: 'primary.dark', p: 1}}>
+                {getMessage('alignment.followAnalysis.preview', stepRequest.idAnalysis)}
             </Typography>
+            <br/>
             <OlatcgAlignmentTable idAnalysis={stepRequest.idAnalysis}/>
+            <br/>
+            <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="center"
+                spacing={4}
+            >
+                <Button variant="contained">{getMessage('alignment.followAnalysis.button.label.goToAnalysis')}</Button>
+                <Button variant="contained" href="/alignment">{getMessage('alignment.followAnalysis.button.label.makeAnotherAnalysis')}</Button>
+            </Stack>
         </Box>
     </>
 }

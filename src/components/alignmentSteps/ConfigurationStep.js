@@ -15,15 +15,15 @@ const ConfigurationStep = () => {
 
     useEffect(() => {
         dispatch({
-            type: 'SET_STEP_FORM',
+            type: 'UPDATE_STEP_FORM',
             payload: {
-                matchScore: 10,
-                mismatchScore: 10,
-                sequenceType: 'DNA',
-                alignmentType: 'GLOBAL'
+                matchScore: stepForm.matchScore ? stepForm.matchScore : 10,
+                mismatchScore: stepForm.mismatchScore ? stepForm.mismatchScore : 10,
+                sequenceType: stepForm.sequenceType ? stepForm.sequenceType : 'DNA',
+                alignmentType: stepForm.alignmentType ? stepForm.alignmentType : 'GLOBAL',
             },
         });
-    }, [dispatch]);
+    }, [dispatch, stepForm]);
 
     return <>
         <Stack
