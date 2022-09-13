@@ -32,7 +32,7 @@ const Tools = () => {
                 alignItems="center"
                 justifyContent="center"
                 spacing={4}
-                py={4}
+                py={2}
             >
                 {
                     toolCards.map((toolCard, index) => 

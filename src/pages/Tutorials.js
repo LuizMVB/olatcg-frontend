@@ -4,7 +4,7 @@ import { getMessage } from "../services/MessageService";
 import { useSelector } from "react-redux";
 
 const Tutorials = () => {
-    const selectedItem = useSelector(state => state.SelectedItemInContentList);
+    const selectedItem = useSelector(state => state.selectedItemInContentList);
 
     const contentListItems = [
         { label: getMessage('tutorials.contentList.listItem.label.tutorials')}
