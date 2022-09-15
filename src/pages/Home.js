@@ -5,6 +5,7 @@ import { getMessage } from "../services/MessageService";
 import Logo from '../static/images/logo.png';
 import Book from '../static/images/book.png';
 import Settings from '../static/images/settings.png';
+import PC from '../static/images/pc.png';
 import OlatcgImageCard from "../components/OlatcgImageCard";
 import CefetLogo from '../static/images/cefet_logo.png';
 import FioCruzLogo from '../static/images/fiocruz_logo.png';
@@ -35,11 +36,18 @@ const Home = () => {
             href: '/learn'
         },
         {
-            imageSrc: Settings,
+            imageSrc: PC,
             imageAlt: 'tools path',
             title: getMessage('home.chooseYourPath.card.tools.title'),
             description: getMessage('home.chooseYourPath.card.tools.desc'),
             href: '/tools'
+        },
+        {
+            imageSrc: Settings,
+            imageAlt: 'tutorials path',
+            title: getMessage('home.chooseYourPath.card.tutorials.title'),
+            description: getMessage('home.chooseYourPath.card.tutorials.desc'),
+            href: '/tutorials'
         }
     ];
 
@@ -57,9 +65,9 @@ const Home = () => {
                 <Typography variant="h2" color="#9c27b0">
                     {getMessage('home.jumbotron.title')}
                     OL
-                    {baseColorsInOLATCGsName.map((base => 
-                        <span style={{color: base.color}}>{base.letter}</span>
-                    ))}
+                    {baseColorsInOLATCGsName.map((base, index) => 
+                        <span key={index} style={{color: base.color}}>{base.letter}</span>
+                    )}
                 </Typography>
                 <Typography variant="h4" component="div" sx={{pt: 3}} color="#1d2b29c9">
                     {getMessage('home.jumbotron.description')}
@@ -102,6 +110,7 @@ const Home = () => {
                                     imageAlt={content.imageAlt}
                                     title={content.title}
                                     description={content.description}
+                                    href={content.href}
                                 />
                         )
                     }

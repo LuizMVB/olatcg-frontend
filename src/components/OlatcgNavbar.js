@@ -16,12 +16,16 @@ const OlatcgNavbar = () => {
             nameRef: 'appBar.navItems.tools'
         },
         {
+            path: '/analysis',
+            nameRef: 'appBar.navItems.analysis'
+        },
+        {
             path: '/learn',
             nameRef: 'appBar.navItems.learn'
         },
         {
-            path: '/analysis',
-            nameRef: 'appBar.navItems.analysis'
+            path: '/tutorials',
+            nameRef: 'appBar.navItems.tutorials'
         }
     ];
 

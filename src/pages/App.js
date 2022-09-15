@@ -8,10 +8,10 @@ import AppRoutes from "../routes/AppRoutes";
 import { getMessage } from "../services/MessageService";
 
 const App = () => {
-  const nPedingRequests = useSelector(state => state.pedingRequests);
+  const nPendingRequests = useSelector(state => state.pendingRequests);
 
   return <>
-    <OlatcgLoader show={nPedingRequests > 0} />
+    <OlatcgLoader show={nPendingRequests > 0} />
     <OlatcgNavbar />
     <AppRoutes />
     <Stack
