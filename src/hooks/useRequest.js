@@ -50,7 +50,7 @@ const useRequest = () => {
                 if(withLoading){
                     dispatch({
                         type: 'REMOVE_PENDING_REQUEST',
-                        payload: pendingRequestsCount + 1, //async correction
+                        payload: pendingRequestsCount,
                     });
                 }
             });
