@@ -2,15 +2,15 @@ import { Science } from "@mui/icons-material";
 import { Grid, IconButton, TextField, Tooltip, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import useRequest from "../../hooks/useRequest";
-import useStepForm from "../../hooks/useStepForm";
-import { getMessage } from "../../services/MessageService";
-import { API_ROUTES } from "../../routes/Routes";
-import ValidationService from "../../services/ValidationService";
-import OlatcgSnackbar from "../OlatcgSnackbar";
-import useStepConditions from "../../hooks/useStepConditions";
-import useStepResponse from "../../hooks/useStepResponse";
-import useStepActualPosition from "../../hooks/useStepActualPosition";
+import useRequest from "../hooks/useRequest";
+import useStepForm from "../hooks/useStepForm";
+import { getMessage } from "../services/MessageService";
+import { API_ROUTES } from "../routes/Routes";
+import ValidationService from "../services/ValidationService";
+import OlatcgSnackbar from "./OlatcgSnackbar";
+import useStepConditions from "../hooks/useStepConditions";
+import useStepResponse from "../hooks/useStepResponse";
+import useStepActualPosition from "../hooks/useStepActualPosition";
 
 const SequenceInputStep = () => {
     const [handleInputChange] = useStepForm();

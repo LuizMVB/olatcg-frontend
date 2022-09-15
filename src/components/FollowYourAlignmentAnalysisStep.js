@@ -1,9 +1,9 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import useStepConditions from "../../hooks/useStepConditions";
-import { getMessage } from "../../services/MessageService";
-import OlatcgAlignmentTable from "../OlatcgAlignmentTable";
+import useStepConditions from "../hooks/useStepConditions";
+import { getMessage } from "../services/MessageService";
+import OlatcgAlignmentTable from "./OlatcgAlignmentTable";
 
 const FollowYourAlignmentAnalysisStep = () => {
     const stepResponse = useSelector(state => state.stepResponse);
@@ -21,10 +21,6 @@ const FollowYourAlignmentAnalysisStep = () => {
             <br/>
             <Typography variant="h6">
                 {getMessage('alignment.followAnalysis.desc')}
-            </Typography>
-            <br/>
-            <Typography component="div" variant="h4" sx={{backgroundColor: 'primary.dark', p: 1}}>
-                {getMessage('alignment.followAnalysis.preview', stepResponse.idAnalysis)}
             </Typography>
             <br/>
             <OlatcgAlignmentTable idAnalysis={stepResponse.idAnalysis}/>

@@ -77,6 +77,9 @@ var data = {
     'tutorials.contentList.label.title'                         : 'Tutorials',
     'tutorials.contentList.listItem.label.tutorials'            : 'How to Use OLATCG',
 
+    /** HOMOLOGY */
+    'homology.input.label.sequenceFile'                 : 'Sequence File',
+
     /** ALIGNMENT */
     'alignment.input.label.firstSequence'                        : 'First Sequence',
     'alignment.input.label.secondSequence'                       : 'Second Sequence',

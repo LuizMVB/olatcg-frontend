@@ -1,4 +1,4 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import useRequest from "../hooks/useRequest";
 import { API_ROUTES } from "../routes/Routes";
@@ -49,10 +49,14 @@ const OlatcgAlignmentTable = ({idAnalysis}) => {
 
     useEffect(() => {
         makeRequest(API_ROUTES.GET_ALIGNMENT_BY_ID_ANALYSIS + '?idAnalysis=' + idAnalysis, 'GET', null, onSuccessGetAlignmentByIdAnalysis);
+        // eslint-disable-next-line
     }, [idAnalysis]);
 
     return <>
         <Paper sx={{ width: '100%', overflow: 'hidden', bgcolor: 'primary.light' }}>
+            <Typography component="div" variant="h4" sx={{backgroundColor: 'primary.dark', p: 1}}>
+                {getMessage('alignment.followAnalysis.preview', idAnalysis)}
+            </Typography>
             <TableContainer sx={{ maxHeight: 240 }}>
                 <Table stickyHeader aria-label="sticky table" >
                     <TableHead>

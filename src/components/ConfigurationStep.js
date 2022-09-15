@@ -1,12 +1,12 @@
 import { Box, MenuItem, Select, Slider, Stack, Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import useStepForm from "../../hooks/useStepForm";
-import AlignmentTypeEnum from "../../infra/enums/AlignmentTypeEnum";
-import SequenceTypeEnum from "../../infra/enums/SequenceTypeEnum";
-import { getMessage } from "../../services/MessageService";
+import useStepForm from "../hooks/useStepForm";
+import AlignmentTypeEnum from "../infra/enums/AlignmentTypeEnum";
+import SequenceTypeEnum from "../infra/enums/SequenceTypeEnum"
+import { getMessage } from "../services/MessageService";
 
-const ConfigurationStep = () => {
+const ConfigurationStep = ({hasSequenceType}) => {
     const [handleInputChange] = useStepForm();
     const stepForm = useSelector(state => state.stepForm)
     const dispatch = useDispatch();
@@ -14,16 +14,21 @@ const ConfigurationStep = () => {
     const alignmentTypes = AlignmentTypeEnum.getSelectStructure();
 
     useEffect(() => {
+        const payload = {
+            matchScore: stepForm.matchScore ? stepForm.matchScore : 10,
+            mismatchScore: stepForm.mismatchScore ? stepForm.mismatchScore : 10,
+            sequenceType: stepForm.sequenceType ? stepForm.sequenceType : 'DNA',
+        };
+
+        if(hasSequenceType){
+            payload.sequenceType = stepForm.alignmentType ? stepForm.alignmentType : 'GLOBAL';
+        }
+
         dispatch({
             type: 'UPDATE_STEP_FORM',
-            payload: {
-                matchScore: stepForm.matchScore ? stepForm.matchScore : 10,
-                mismatchScore: stepForm.mismatchScore ? stepForm.mismatchScore : 10,
-                sequenceType: stepForm.sequenceType ? stepForm.sequenceType : 'DNA',
-                alignmentType: stepForm.alignmentType ? stepForm.alignmentType : 'GLOBAL',
-            },
+            payload: payload,
         });
-    }, [dispatch, stepForm]);
+    }, [dispatch, stepForm, hasSequenceType]);
 
     return <>
         <Stack
@@ -83,28 +88,30 @@ const ConfigurationStep = () => {
                         }
                     </Select>
                 </Box>
-                <Box sx={{width: 200, textAlign: 'center'}}>
-                    <Typography gutterBottom>
-                        {getMessage('alignment.input.label.alignmentType')}
-                    </Typography>
-                    <Select
-                        id="alignmentType"
-                        name="alignmentType"
-                        value={stepForm.alignmentType ? stepForm.alignmentType : 'GLOBAL'}
-                        onChange={handleInputChange}
-                    >
-                        {
-                            alignmentTypes.map((type, index) =>
-                                <MenuItem 
-                                    key={index} 
-                                    value={type.value}
-                                >
-                                    {type.label}
-                                </MenuItem>
-                            )
-                        }
-                    </Select>
-                </Box>
+                {hasSequenceType && 
+                    <Box sx={{width: 200, textAlign: 'center'}}>
+                        <Typography gutterBottom>
+                            {getMessage('alignment.input.label.alignmentType')}
+                        </Typography>
+                        <Select
+                            id="alignmentType"
+                            name="alignmentType"
+                            value={stepForm.alignmentType ? stepForm.alignmentType : 'GLOBAL'}
+                            onChange={handleInputChange}
+                        >
+                            {
+                                alignmentTypes.map((type, index) =>
+                                    <MenuItem 
+                                        key={index} 
+                                        value={type.value}
+                                    >
+                                        {type.label}
+                                    </MenuItem>
+                                )
+                            }
+                        </Select>
+                    </Box>
+                }
             </Stack>
         </Stack>
     </>
