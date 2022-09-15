@@ -25,7 +25,7 @@ Actually, besides the tutorials and explanations present in learn section, we ha
 
 - Use BLASTN (in progress)
 
-## Actual Deploy
+## Actual Deploy ☁
 
 Actually, we are passing through a repository update process. So, our deploy still based on our legacy initial project (https://github.com/LuizMVB/olatcg). Ropefully, we'll going to change it as sooner as possible.
 
