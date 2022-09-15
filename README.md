@@ -24,3 +24,27 @@ Actually, besides the tutorials and explanations present in learn section, we ha
 - Generate a simple phylogenetic tree to your homology study
 
 - Use BLASTN (in progress)
+
+## Actual Deploy
+
+Actually, we are passing through a repository update process. So, our deploy still based on our legacy initial project (https://github.com/LuizMVB/olatcg). Ropefully, we'll going to change it as sooner as possible.
+
+But, this is a good way to know more about olatcg's world and purpose.
+
+> https://olatcg.herokuapp.com/
+
+## Running Locally 🏃🏽‍♀️
+
+- Clone the repository
+
+- Install dependencies
+
+```shell
+npm install
+```
+
+- Start the development server
+
+```shell
+npm start
+```
