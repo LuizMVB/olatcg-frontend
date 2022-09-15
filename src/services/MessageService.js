@@ -93,7 +93,7 @@ var data = {
                                                                     'results at any time. Record your identifier and ' + 
                                                                     'consult the table',
     'alignment.followAnalysis.preview'                           : 'Preview - ID {0}',
-    'alignment.followAnalysis.button.label.goToAnalysis'         : 'Go to Analysis',
+    'alignment.followAnalysis.button.label.goToAnalysis'         : 'Go to this Analysis',
     'alignment.followAnalysis.button.label.makeAnotherAnalysis'  : 'Make another analysis',
 
     /** ALIGNMENT TABLE */
@@ -121,7 +121,8 @@ var data = {
 
     // ERRORS
 
-    'error.general'                     : 'An error occurred while trying to establish the connection', 
+    'error.general'                     : 'An error occurred while trying to establish the connection. ' +
+                                            'Try again leater, please.', 
     'error.valitation.sequences.format' : 'An error occurred while validating the sequences, ' + 
                                             'check if they match the chosen type', 
     'error.validation.fillingFields'    : 'There cannot be blank fields. Check that all fields ' + 

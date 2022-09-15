@@ -6,7 +6,7 @@ import { getMessage } from "../../services/MessageService";
 import OlatcgAlignmentTable from "../OlatcgAlignmentTable";
 
 const FollowYourAlignmentAnalysisStep = () => {
-    const stepRequest = useSelector(state => state.stepRequest);
+    const stepResponse = useSelector(state => state.stepResponse);
     const [setPreviousCondition] = useStepConditions();
     
     useEffect(() => {
@@ -24,10 +24,10 @@ const FollowYourAlignmentAnalysisStep = () => {
             </Typography>
             <br/>
             <Typography component="div" variant="h4" sx={{backgroundColor: 'primary.dark', p: 1}}>
-                {getMessage('alignment.followAnalysis.preview', stepRequest.idAnalysis)}
+                {getMessage('alignment.followAnalysis.preview', stepResponse.idAnalysis)}
             </Typography>
             <br/>
-            <OlatcgAlignmentTable idAnalysis={stepRequest.idAnalysis}/>
+            <OlatcgAlignmentTable idAnalysis={stepResponse.idAnalysis}/>
             <br/>
             <Stack
                 direction="row"

@@ -9,15 +9,17 @@ import { API_ROUTES } from "../../routes/Routes";
 import ValidationService from "../../services/ValidationService";
 import OlatcgSnackbar from "../OlatcgSnackbar";
 import useStepConditions from "../../hooks/useStepConditions";
-import useStepRequest from "../../hooks/useStepRequest";
+import useStepResponse from "../../hooks/useStepResponse";
+import useStepActualPosition from "../../hooks/useStepActualPosition";
 
 const SequenceInputStep = () => {
     const [handleInputChange] = useStepForm();
     const [makeRequest] = useRequest();
+    const [getStepActualPosition, setStepActualPosition] = useStepActualPosition();
     const stepForm = useSelector(state => state.stepForm);
     const dispatch = useDispatch();
     const [_, setNextCondition] = useStepConditions();
-    const [setStepRequest] = useStepRequest();
+    const [setStepResponse] = useStepResponse();
     const [colorAlignIcon, setColorAlignIcon] = useState('');
     const [isSnackbarOpened, openSnackbar] = useState(false);
     const [statusSnackbar, setStatusSanckbar] = useState('error');
@@ -55,9 +57,10 @@ const SequenceInputStep = () => {
     }
 
     const onSuccessAlignment = (data) => {
-        setStepRequest(data);
+        setStepResponse(data);
         setNextCondition(true);
         showSnackbar(getMessage('common.label.success'), 'success');
+        setStepActualPosition(2);
     }
 
     const onFailureAlignment = (error) => {
