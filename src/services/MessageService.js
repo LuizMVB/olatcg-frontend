@@ -79,6 +79,8 @@ var data = {
 
     /** HOMOLOGY */
     'homology.input.label.sequenceFile'                 : 'Sequence File',
+    'homology.button.label.makeAnalysis'                : 'Make Analysis',
+    'homology.input.label.databaseType'                 : 'Database Type',
 
     /** ALIGNMENT */
     'alignment.input.label.firstSequence'                        : 'First Sequence',
@@ -107,6 +109,9 @@ var data = {
     'olatcgAlignmentTable.label.status'                 : 'Status',
     'olatcgAlignmentTable.label.type'                   : 'Type',
 
+    /** OLATCG INPUT FILE */
+    'oltcgInputFile.label.upload'                 : 'Click here and upload your file',
+
     /** STEPER */
     'steper.button.label.next'                      : 'Next Step',
     'steper.button.label.previous'                  : 'Previous Step',
@@ -122,14 +127,20 @@ var data = {
     'enum.AlignmentTypeEnum.GLOBAL'                 : 'Global',
     'enum.AlignmentTypeEnum.LOCAL'                  : 'Local',
 
+    // DatabaseTypeEnum
+    'enum.DatabaseTypeEnum.OLATCGDB'                : 'OLATCGDB',
+
     // ERRORS
 
-    'error.general'                     : 'An error occurred while trying to establish the connection. ' +
-                                            'Try again leater, please.', 
-    'error.valitation.sequences.format' : 'An error occurred while validating the sequences, ' + 
-                                            'check if they match the chosen type', 
-    'error.validation.fillingFields'    : 'There cannot be blank fields. Check that all fields ' + 
-                                            'are filled in and try again.',       
+    'error.general'                             : 'An error occurred while trying to establish the connection. ' +
+                                                    'Try again leater, please.', 
+    'error.valitation.sequences.format'         : 'An error occurred while validating the sequences, ' + 
+                                                    'check if they match the chosen type', 
+    'error.validation.fillingFields'            : 'There cannot be blank fields. Check that all fields ' + 
+                                                    'are filled in and try again.',      
+    'error.validation.sequenceFile.format'      : 'Error while validating the content of sequence file. Please, check ' +
+                                                    'if they match the choosen type and try again',
+    'error.validation.sequenceFile.type'        : 'The sequence file must be of type .txt',
 };
 
 function getMessage (key, ...args) {

@@ -1,34 +1,42 @@
 import { Box, MenuItem, Select, Slider, Stack, Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import useStepForm from "../hooks/useStepForm";
 import AlignmentTypeEnum from "../infra/enums/AlignmentTypeEnum";
 import SequenceTypeEnum from "../infra/enums/SequenceTypeEnum"
+import { stepFormActions } from "../redux/actions/stepFormActions";
 import { getMessage } from "../services/MessageService";
+import { selectors } from "../redux/constants/selectors";
+import DatabaseTypeEnum from "../infra/enums/DatabaseTypesEnum";
 
-const ConfigurationStep = ({hasSequenceType}) => {
-    const [handleInputChange] = useStepForm();
-    const stepForm = useSelector(state => state.stepForm)
+const ConfigurationStep = ({hasAlignmentType, hasSequenceType, hasDabaseType}) => {
     const dispatch = useDispatch();
+    const stepForm = useSelector(selectors.getSetpForm);
+    const handleInputChange = event => dispatch(stepFormActions.addField(event));
+
     const sequenceTypes = SequenceTypeEnum.getSelectStructure();
     const alignmentTypes = AlignmentTypeEnum.getSelectStructure();
+    const databaseTypes = DatabaseTypeEnum.getSelectStructure();
 
     useEffect(() => {
         const payload = {
             matchScore: stepForm.matchScore ? stepForm.matchScore : 10,
             mismatchScore: stepForm.mismatchScore ? stepForm.mismatchScore : 10,
-            sequenceType: stepForm.sequenceType ? stepForm.sequenceType : 'DNA',
         };
 
-        if(hasSequenceType){
-            payload.sequenceType = stepForm.alignmentType ? stepForm.alignmentType : 'GLOBAL';
+        if(hasAlignmentType){
+            payload.alignmentType = stepForm.alignmentType ? stepForm.alignmentType : 'GLOBAL';
         }
 
-        dispatch({
-            type: 'UPDATE_STEP_FORM',
-            payload: payload,
-        });
-    }, [dispatch, stepForm, hasSequenceType]);
+        if(hasSequenceType){
+            payload.sequenceType = stepForm.sequenceType ? stepForm.sequenceType : 'DNA';
+        }
+
+        if(hasDabaseType){
+            payload.databaseType = stepForm.databaseType ? stepForm.databaseType : 'OLATCGDB';
+        }
+
+        dispatch(stepFormActions.update(payload));
+    }, [dispatch, stepForm, hasAlignmentType, hasSequenceType, hasDabaseType]);
 
     return <>
         <Stack
@@ -66,6 +74,7 @@ const ConfigurationStep = ({hasSequenceType}) => {
                 />
             </Box>
             <Stack direction="row" spacing={3}>
+                {hasSequenceType &&
                 <Box sx={{width: 200, textAlign: 'center'}}>
                     <Typography gutterBottom>
                         {getMessage('alignment.input.label.sequenceType')}
@@ -87,8 +96,8 @@ const ConfigurationStep = ({hasSequenceType}) => {
                             )
                         }
                     </Select>
-                </Box>
-                {hasSequenceType && 
+                </Box>}
+                {hasAlignmentType && 
                     <Box sx={{width: 200, textAlign: 'center'}}>
                         <Typography gutterBottom>
                             {getMessage('alignment.input.label.alignmentType')}
@@ -101,6 +110,30 @@ const ConfigurationStep = ({hasSequenceType}) => {
                         >
                             {
                                 alignmentTypes.map((type, index) =>
+                                    <MenuItem 
+                                        key={index} 
+                                        value={type.value}
+                                    >
+                                        {type.label}
+                                    </MenuItem>
+                                )
+                            }
+                        </Select>
+                    </Box>
+                }
+                {hasDabaseType && 
+                    <Box sx={{width: 200, textAlign: 'center'}}>
+                        <Typography gutterBottom>
+                            {getMessage('homology.input.label.databaseType')}
+                        </Typography>
+                        <Select
+                            id="databaseType"
+                            name="databaseType"
+                            value={stepForm.databaseType ? stepForm.databaseType : 'OLATCGDB'}
+                            onChange={handleInputChange}
+                        >
+                            {
+                                databaseTypes.map((type, index) =>
                                     <MenuItem 
                                         key={index} 
                                         value={type.value}

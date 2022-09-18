@@ -6,7 +6,7 @@ import { ThemeProvider } from '@emotion/react';
 import './index.css';
 import App from './pages/App';
 import reportWebVitals from './reportWebVitals';
-import store from './redux/store';
+import { store } from './redux/store';
 import olatcgTheme from './OlatcgTheme';
 import { BrowserRouter } from 'react-router-dom';
 

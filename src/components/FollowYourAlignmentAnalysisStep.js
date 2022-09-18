@@ -1,17 +1,18 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import useStepConditions from "../hooks/useStepConditions";
+import { useDispatch, useSelector } from "react-redux";
+import { stepChangeConditionsActions } from "../redux/actions/stepChangeConditions";
+import { selectors } from "../redux/constants/selectors";
 import { getMessage } from "../services/MessageService";
 import OlatcgAlignmentTable from "./OlatcgAlignmentTable";
 
 const FollowYourAlignmentAnalysisStep = () => {
-    const stepResponse = useSelector(state => state.stepResponse);
-    const [setPreviousCondition] = useStepConditions();
+    const dispatch = useDispatch();
+    const stepResponse = useSelector(selectors.getStepResponse);
     
     useEffect(() => {
-        setPreviousCondition(false);
-    }, [setPreviousCondition]);
+        dispatch(stepChangeConditionsActions.setPrevious(false));
+    }, [dispatch]);
 
     return <>
         <Box sx={{textAlign: 'center'}}>

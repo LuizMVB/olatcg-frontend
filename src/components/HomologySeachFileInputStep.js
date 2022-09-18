@@ -1,52 +1,45 @@
-import { FilePresent, Science } from "@mui/icons-material";
-import { Button, Grid, IconButton, Stack, TextField, Tooltip, Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useRequest from "../hooks/useRequest";
-import useStepForm from "../hooks/useStepForm";
 import { getMessage } from "../services/MessageService";
 import { API_ROUTES } from "../routes/Routes";
 import ValidationService from "../services/ValidationService";
 import OlatcgSnackbar from "./OlatcgSnackbar";
-import useStepConditions from "../hooks/useStepConditions";
-import useStepResponse from "../hooks/useStepResponse";
-import useStepActualPosition from "../hooks/useStepActualPosition";
+import { stepChangeConditionsActions } from "../redux/actions/stepChangeConditions";
+import { stepFormActions } from "../redux/actions/stepFormActions";
+import { selectors } from "../redux/constants/selectors";
+import { OlatcgInputFile } from "./OlatcgInputFile";
+import { stepResponseActions } from "../redux/actions/stepResponseActions";
+import { Science } from "@mui/icons-material";
+import StepActualPosition from "../redux/reducer/StepActualPosition";
 
 const HomologySearchFileInputStep = () => {
-    const [handleInputChange] = useStepForm();
-    const [makeRequest] = useRequest();
-    const [getStepActualPosition, setStepActualPosition] = useStepActualPosition();
-    const stepForm = useSelector(state => state.stepForm);
+
     const dispatch = useDispatch();
-    const [_, setNextCondition] = useStepConditions();
-    const [setStepResponse] = useStepResponse();
-    const [colorAlignIcon, setColorAlignIcon] = useState('');
+    const stepForm = useSelector(selectors.getSetpForm);
+    const handleInputChange = event => dispatch(stepFormActions.addField(event));
+    const handleSetNextStepCondition = condition => dispatch(stepChangeConditionsActions.setNext(condition));
+    const handleSetStepResponse = response => dispatch(stepResponseActions.set(response))
+    const handleSetStepActualPosition = position => dispatch(StepActualPosition.set(position));
+
+    const [makeRequest] = useRequest();
     const [isSnackbarOpened, openSnackbar] = useState(false);
     const [statusSnackbar, setStatusSanckbar] = useState('error');
     const [msgSnackbar, setMsgSnackbar] = useState('');
 
     useEffect(() => {
-        dispatch({
-            type: 'SET_NEXT_CONDITION',
-            payload: false,
-        });
-        
+        dispatch(stepChangeConditionsActions.setNext(false));
         return () => {
-            dispatch({
-                type: 'RETURN_TO_STEP_CHANGE_CONDITIONS_INITIAL_STATE',
-            }); 
+            dispatch(stepChangeConditionsActions.returnToInitialState());
         }
     }, [dispatch]);
 
     useEffect(() => {
-        if(!(stepForm.sequenceA && stepForm.sequenceB)){
-            dispatch({
-                type: 'UPDATE_STEP_FORM',
-                payload: {
-                    sequenceA: stepForm.sequenceA ? stepForm.sequenceA : '',
-                    sequenceB: stepForm.sequenceB ? stepForm.sequenceB : '',
-                },
-            });
+        if(!stepForm.sequenceFile){
+            dispatch(stepFormActions.update(
+                { 'sequenceFile': stepForm.sequenceFile ? stepForm.sequenceFile : undefined }
+            ));
         }
     }, [stepForm, dispatch])
 
@@ -56,46 +49,54 @@ const HomologySearchFileInputStep = () => {
         openSnackbar(true);
     }
 
-    const onSuccessAlignment = (data) => {
-        setStepResponse(data);
-        setNextCondition(true);
+    const onSuccessHS = (response) => {
+        handleSetStepResponse(response);
+        handleSetNextStepCondition(true);
         showSnackbar(getMessage('common.label.success'), 'success');
-        setStepActualPosition(2);
+        handleSetStepActualPosition(2);
     }
 
-    const onFailureAlignment = (error) => {
-        setNextCondition(false);
+    const onFailureHS = (error) => {
+        handleSetNextStepCondition(false);
         showSnackbar(error.errorDescription, 'error');
     }
 
-    const makeAlignRequest = () => {
-        try{
-            ValidationService.validateAlignmentForm(stepForm);
-            makeRequest(API_ROUTES.ALIGN, 'POST', stepForm, onSuccessAlignment, onFailureAlignment);
-        }catch (errorMessage){
-            showSnackbar(errorMessage, 'error');
+    const makeHSRequest = () => {
+        let reader = new FileReader();
+        reader.readAsBinaryString(stepForm.sequenceFile);
+        reader.onloadend = () => {
+            let fileContent = reader.result;
+            try{
+                ValidationService.validateIfFieldsAreFilled(stepForm);
+                ValidationService.validateTextFileType(stepForm.sequenceFile);
+                ValidationService.validateSequenceFileContent(fileContent);
+                makeRequest(API_ROUTES.GET_TAXONOMY_FROM_SEQUENCES, 'POST', stepForm, onSuccessHS, onFailureHS);
+            }catch (errorMessage){
+                showSnackbar(errorMessage, 'error');
+            }
         }
     }
 
     return <>
         <Stack
-            spacing={0}
+            spacing={2}
             sx={{textAlign: 'center', px: 'auto'}}
         >   
             <Typography variant="h4">
                 {getMessage('homology.input.label.sequenceFile')}
             </Typography>
             <br/>
-            <Button
-                variant="outlined"
-                component="label"
-                sx={{p: 2, border: '2px inset', borderColor: 'primary.light'}}
-            >
-            <FilePresent sx={{fontSize: 80}} />
-            <input
-                type="file"
-                hidden
+            <OlatcgInputFile 
+                name="sequenceFile" 
+                fileName={stepForm.sequenceFile ? stepForm.sequenceFile.name : ''}
+                handleInputChange={handleInputChange}
             />
+            <Button 
+                variant="contained" 
+                startIcon={<Science/>}
+                onClick={() => makeHSRequest()}
+            >
+                {getMessage('homology.button.label.makeAnalysis')}
             </Button>
         </Stack>
         <OlatcgSnackbar

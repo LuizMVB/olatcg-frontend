@@ -10,7 +10,7 @@ const Alignment = () => {
     const steps = [
         {
             label: getMessage('alignment.step0.label'),
-            content: <ConfigurationStep  hasSequenceType={true}/>
+            content: <ConfigurationStep  hasAlignmentType={true} hasSequenceType={true}/>
         },
         {
             label: getMessage('alignment.step1.label'),

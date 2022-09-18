@@ -10,7 +10,7 @@ const Homology = () => {
     const steps = [
         {
             label: getMessage('alignment.step0.label'),
-            content: <ConfigurationStep />
+            content: <ConfigurationStep hasDabaseType={true} />
         },
         {
             label: getMessage('alignment.step1.label'),

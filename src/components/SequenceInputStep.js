@@ -3,50 +3,46 @@ import { Grid, IconButton, TextField, Tooltip, Typography } from "@mui/material"
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useRequest from "../hooks/useRequest";
-import useStepForm from "../hooks/useStepForm";
 import { getMessage } from "../services/MessageService";
 import { API_ROUTES } from "../routes/Routes";
 import ValidationService from "../services/ValidationService";
 import OlatcgSnackbar from "./OlatcgSnackbar";
-import useStepConditions from "../hooks/useStepConditions";
-import useStepResponse from "../hooks/useStepResponse";
-import useStepActualPosition from "../hooks/useStepActualPosition";
+import { stepChangeConditionsActions } from "../redux/actions/stepChangeConditions";
+import { stepFormActions } from "../redux/actions/stepFormActions";
+import { selectors } from "../redux/constants/selectors";
+import { stepResponseActions } from "../redux/actions/stepResponseActions";
+import { stepActualPositionActions } from "../redux/actions/stepActualPositionActions";
 
 const SequenceInputStep = () => {
-    const [handleInputChange] = useStepForm();
-    const [makeRequest] = useRequest();
-    const [getStepActualPosition, setStepActualPosition] = useStepActualPosition();
-    const stepForm = useSelector(state => state.stepForm);
+
     const dispatch = useDispatch();
-    const [_, setNextCondition] = useStepConditions();
-    const [setStepResponse] = useStepResponse();
+    const stepForm = useSelector(selectors.getSetpForm);
+    const handleInputChange = (event) => dispatch(stepFormActions.addField(event));
+    const handleSetNextStepCondition = (condition) => dispatch(stepChangeConditionsActions.setNext(condition));
+    const handleSetStepResponse = (response) => dispatch(stepResponseActions.set(response));
+    const handleSetStepActualPosition = position => dispatch(stepActualPositionActions.set(position));
+
+
+    const [makeRequest] = useRequest();
     const [colorAlignIcon, setColorAlignIcon] = useState('');
     const [isSnackbarOpened, openSnackbar] = useState(false);
     const [statusSnackbar, setStatusSanckbar] = useState('error');
     const [msgSnackbar, setMsgSnackbar] = useState('');
 
     useEffect(() => {
-        dispatch({
-            type: 'SET_NEXT_CONDITION',
-            payload: false,
-        });
-        
+        dispatch(stepChangeConditionsActions.setNext(false));
         return () => {
-            dispatch({
-                type: 'RETURN_TO_STEP_CHANGE_CONDITIONS_INITIAL_STATE',
-            }); 
+            dispatch(stepChangeConditionsActions.returnToInitialState());
         }
     }, [dispatch]);
 
     useEffect(() => {
         if(!(stepForm.sequenceA && stepForm.sequenceB)){
-            dispatch({
-                type: 'UPDATE_STEP_FORM',
-                payload: {
-                    sequenceA: stepForm.sequenceA ? stepForm.sequenceA : '',
-                    sequenceB: stepForm.sequenceB ? stepForm.sequenceB : '',
-                },
-            });
+            let payload = {
+                sequenceA: stepForm.sequenceA ? stepForm.sequenceA : '',
+                sequenceB: stepForm.sequenceB ? stepForm.sequenceB : '',
+            };
+            dispatch(stepFormActions.update(payload));
         }
     }, [stepForm, dispatch])
 
@@ -57,14 +53,14 @@ const SequenceInputStep = () => {
     }
 
     const onSuccessAlignment = (data) => {
-        setStepResponse(data);
-        setNextCondition(true);
+        handleSetStepResponse(data);
+        handleSetNextStepCondition(true);
         showSnackbar(getMessage('common.label.success'), 'success');
-        setStepActualPosition(2);
+        handleSetStepActualPosition(2);
     }
 
     const onFailureAlignment = (error) => {
-        setNextCondition(false);
+        handleSetNextStepCondition(false);
         showSnackbar(error.errorDescription, 'error');
     }
 
