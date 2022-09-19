@@ -1,24 +1,13 @@
-import { useDispatch, useSelector } from "react-redux";
 import { getMessage } from "../services/MessageService";
 
 const useRequest = () => {
-    const dispatch = useDispatch();
-    const pendingRequestsCount = useSelector(state => state.pendingRequests);
     const makeRequest = (
         action, 
         method, 
         body,
         onSuccess, 
-        onFailure, 
-        withLoading=true
+        onFailure
     ) => {
-        if(withLoading){
-            dispatch({
-                type: 'ADD_PENDING_REQUEST',
-                payload: pendingRequestsCount,
-            });
-        }
-
         let headers = {
             "Content-Type": "application/json"        
         };
@@ -46,13 +35,6 @@ const useRequest = () => {
                     errorCode: 0,
                     errorDescription: getMessage('error.general'),
                 });
-            }).finally(() => {
-                if(withLoading){
-                    dispatch({
-                        type: 'REMOVE_PENDING_REQUEST',
-                        payload: pendingRequestsCount,
-                    });
-                }
             });
     };
 

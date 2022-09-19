@@ -12,6 +12,7 @@ import { stepFormActions } from "../redux/actions/stepFormActions";
 import { selectors } from "../redux/constants/selectors";
 import { stepResponseActions } from "../redux/actions/stepResponseActions";
 import { stepActualPositionActions } from "../redux/actions/stepActualPositionActions";
+import OlatcgLoader from "./OlatcgLoader";
 
 const SequenceInputStep = () => {
 
@@ -28,6 +29,7 @@ const SequenceInputStep = () => {
     const [isSnackbarOpened, openSnackbar] = useState(false);
     const [statusSnackbar, setStatusSanckbar] = useState('error');
     const [msgSnackbar, setMsgSnackbar] = useState('');
+    const [isLoading, showLoader] = useState(false);
 
     useEffect(() => {
         dispatch(stepChangeConditionsActions.setNext(false));
@@ -57,18 +59,22 @@ const SequenceInputStep = () => {
         handleSetNextStepCondition(true);
         showSnackbar(getMessage('common.label.success'), 'success');
         handleSetStepActualPosition(2);
+        showLoader(false);
     }
 
     const onFailureAlignment = (error) => {
         handleSetNextStepCondition(false);
         showSnackbar(error.errorDescription, 'error');
+        showLoader(false);
     }
 
     const makeAlignRequest = () => {
         try{
             ValidationService.validateAlignmentForm(stepForm);
+            showLoader(true);
             makeRequest(API_ROUTES.ALIGN, 'POST', stepForm, onSuccessAlignment, onFailureAlignment);
         }catch (errorMessage){
+            console.log(errorMessage);
             showSnackbar(errorMessage, 'error');
         }
     }
@@ -133,6 +139,7 @@ const SequenceInputStep = () => {
             status={statusSnackbar}
             msg={msgSnackbar} 
         />
+        <OlatcgLoader show={isLoading}/>
     </>
 }
 

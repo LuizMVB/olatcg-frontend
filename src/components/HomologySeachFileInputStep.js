@@ -13,6 +13,7 @@ import { OlatcgInputFile } from "./OlatcgInputFile";
 import { stepResponseActions } from "../redux/actions/stepResponseActions";
 import { Science } from "@mui/icons-material";
 import StepActualPosition from "../redux/reducer/StepActualPosition";
+import OlatcgLoader from "./OlatcgLoader";
 
 const HomologySearchFileInputStep = () => {
 
@@ -27,6 +28,7 @@ const HomologySearchFileInputStep = () => {
     const [isSnackbarOpened, openSnackbar] = useState(false);
     const [statusSnackbar, setStatusSanckbar] = useState('error');
     const [msgSnackbar, setMsgSnackbar] = useState('');
+    const [isLoading, showLoader] = useState(false);
 
     useEffect(() => {
         dispatch(stepChangeConditionsActions.setNext(false));
@@ -54,23 +56,39 @@ const HomologySearchFileInputStep = () => {
         handleSetNextStepCondition(true);
         showSnackbar(getMessage('common.label.success'), 'success');
         handleSetStepActualPosition(2);
+        showLoader(false);
     }
 
     const onFailureHS = (error) => {
+        console.log(error);
         handleSetNextStepCondition(false);
         showSnackbar(error.errorDescription, 'error');
+        showLoader(false);
     }
 
     const makeHSRequest = () => {
-        let reader = new FileReader();
-        reader.readAsBinaryString(stepForm.sequenceFile);
-        reader.onloadend = () => {
-            let fileContent = reader.result;
+        let readerBinaryStr = new FileReader();
+        readerBinaryStr.readAsBinaryString(stepForm.sequenceFile);
+        readerBinaryStr.onloadend = () => {
+            let fileContent = readerBinaryStr.result;
             try{
                 ValidationService.validateIfFieldsAreFilled(stepForm);
                 ValidationService.validateTextFileType(stepForm.sequenceFile);
                 ValidationService.validateSequenceFileContent(fileContent);
-                makeRequest(API_ROUTES.GET_TAXONOMY_FROM_SEQUENCES, 'POST', stepForm, onSuccessHS, onFailureHS);
+
+                let readerDataUrl = new FileReader();
+                readerDataUrl.readAsDataURL(stepForm.sequenceFile);
+                readerDataUrl.onloadend = () => {
+                    let hsRequest = Object.assign({}, stepForm);
+                    hsRequest.sequenceFile = {
+                        name: stepForm.sequenceFile.name,
+                        description: 'sequence file',
+                        encodedFile: readerDataUrl.result
+                    }
+                    showLoader(true);
+                    console.log(stepForm);
+                    makeRequest(API_ROUTES.GET_TAXONOMY_FROM_SEQUENCES, 'POST', hsRequest, onSuccessHS, onFailureHS);
+                }
             }catch (errorMessage){
                 showSnackbar(errorMessage, 'error');
             }
@@ -105,6 +123,7 @@ const HomologySearchFileInputStep = () => {
             status={statusSnackbar}
             msg={msgSnackbar} 
         />
+        <OlatcgLoader show={isLoading}/>
     </>
 }
 

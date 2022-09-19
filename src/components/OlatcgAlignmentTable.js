@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import useRequest from "../hooks/useRequest";
 import { API_ROUTES } from "../routes/Routes";
 import { getMessage } from "../services/MessageService";
+import OlatcgLoader from "./OlatcgLoader";
 
 const OlatcgAlignmentTable = ({idAnalysis}) => {
     const [makeRequest] = useRequest();
     const [rows, setRows] = useState([]);
     const [columns, setColumns] = useState([]);
+    const [isLoading, showLoader] = useState(false);
 
     const onSuccessGetAlignmentByIdAnalysis = (response) => {
         setColumns([{
@@ -45,9 +47,11 @@ const OlatcgAlignmentTable = ({idAnalysis}) => {
                 type: alnAnalysis.type,
             };
         }));
+        showLoader(false);
     }
 
     useEffect(() => {
+        showLoader(true);
         makeRequest(API_ROUTES.GET_ALIGNMENT_BY_ID_ANALYSIS + '?idAnalysis=' + idAnalysis, 'GET', null, onSuccessGetAlignmentByIdAnalysis);
         // eslint-disable-next-line
     }, [idAnalysis]);
@@ -91,6 +95,7 @@ const OlatcgAlignmentTable = ({idAnalysis}) => {
                 </Table>
             </TableContainer>
         </Paper>
+        <OlatcgLoader show={isLoading}/>
     </>
 }
 
