@@ -25,6 +25,7 @@ const useRequest = () => {
             .then(res => res.json())
             .then(data => {
                 if(data.error){
+                    data.errorDescription = !data.errorDescription ? getMessage('error.general') : data.errorDescription;
                     onFailure?.(data);
                     return;
                 }

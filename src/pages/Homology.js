@@ -1,9 +1,9 @@
 import { getMessage } from "../services/MessageService";
 
 import ConfigurationStep from "../components/ConfigurationStep";
-import FollowYourAlignmentAnalysisStep from "../components/FollowYourAlignmentAnalysisStep";
 import StepByStep from "../components/StepByStep";
 import HomologySearchFileInputStep from "../components/HomologySeachFileInputStep";
+import FollowYourHomologyAnalysisStep from "../components/FollowYourHomologyAnalysisStep";
 
 const Homology = () => {
 
@@ -18,7 +18,7 @@ const Homology = () => {
         },
         {
             label: getMessage('alignment.step2.label'),
-            content: <FollowYourAlignmentAnalysisStep />
+            content: <FollowYourHomologyAnalysisStep />
         }
     ]
 

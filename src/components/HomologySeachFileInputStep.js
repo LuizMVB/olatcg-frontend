@@ -12,8 +12,8 @@ import { selectors } from "../redux/constants/selectors";
 import { OlatcgInputFile } from "./OlatcgInputFile";
 import { stepResponseActions } from "../redux/actions/stepResponseActions";
 import { Science } from "@mui/icons-material";
-import StepActualPosition from "../redux/reducer/StepActualPosition";
 import OlatcgLoader from "./OlatcgLoader";
+import { stepActualPositionActions } from "../redux/actions/stepActualPositionActions";
 
 const HomologySearchFileInputStep = () => {
 
@@ -22,7 +22,7 @@ const HomologySearchFileInputStep = () => {
     const handleInputChange = event => dispatch(stepFormActions.addField(event));
     const handleSetNextStepCondition = condition => dispatch(stepChangeConditionsActions.setNext(condition));
     const handleSetStepResponse = response => dispatch(stepResponseActions.set(response))
-    const handleSetStepActualPosition = position => dispatch(StepActualPosition.set(position));
+    const handleSetStepActualPosition = position => dispatch(stepActualPositionActions.set(position));
 
     const [makeRequest] = useRequest();
     const [isSnackbarOpened, openSnackbar] = useState(false);
@@ -60,7 +60,6 @@ const HomologySearchFileInputStep = () => {
     }
 
     const onFailureHS = (error) => {
-        console.log(error);
         handleSetNextStepCondition(false);
         showSnackbar(error.errorDescription, 'error');
         showLoader(false);
@@ -86,7 +85,6 @@ const HomologySearchFileInputStep = () => {
                         encodedFile: readerDataUrl.result
                     }
                     showLoader(true);
-                    console.log(stepForm);
                     makeRequest(API_ROUTES.GET_TAXONOMY_FROM_SEQUENCES, 'POST', hsRequest, onSuccessHS, onFailureHS);
                 }
             }catch (errorMessage){

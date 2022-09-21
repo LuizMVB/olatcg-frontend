@@ -74,7 +74,6 @@ const SequenceInputStep = () => {
             showLoader(true);
             makeRequest(API_ROUTES.ALIGN, 'POST', stepForm, onSuccessAlignment, onFailureAlignment);
         }catch (errorMessage){
-            console.log(errorMessage);
             showSnackbar(errorMessage, 'error');
         }
     }
