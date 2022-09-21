@@ -44,7 +44,7 @@ const FollowYourHomologyAnalysisStep = () => {
                 justifyContent="center"
                 spacing={4}
             >
-                <Button variant="contained" href={"/analysis/homology/" + idAnalysis}>{getMessage('alignment.followAnalysis.button.label.goToAnalysis')}</Button>
+                <Button variant="contained" href={"/analysis/homology/" + stepResponse.idAnalysis}>{getMessage('alignment.followAnalysis.button.label.goToAnalysis')}</Button>
                 <Button variant="contained" href="/homology">{getMessage('alignment.followAnalysis.button.label.makeAnotherAnalysis')}</Button>
             </Stack>
         </Box>

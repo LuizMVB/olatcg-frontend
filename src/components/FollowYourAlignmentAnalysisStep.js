@@ -32,7 +32,7 @@ const FollowYourAlignmentAnalysisStep = () => {
                 justifyContent="center"
                 spacing={4}
             >
-                <Button variant="contained" href={"/analysis/alignment/" + idAnalysis}>{getMessage('alignment.followAnalysis.button.label.goToAnalysis')}</Button>
+                <Button variant="contained" href={"/analysis/alignment/" + stepResponse.idAnalysis}>{getMessage('alignment.followAnalysis.button.label.goToAnalysis')}</Button>
                 <Button variant="contained" href="/alignment">{getMessage('alignment.followAnalysis.button.label.makeAnotherAnalysis')}</Button>
             </Stack>
         </Box>
