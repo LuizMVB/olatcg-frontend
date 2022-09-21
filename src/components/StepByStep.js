@@ -2,32 +2,33 @@ import { NavigateBefore, NavigateNext } from "@mui/icons-material";
 import { Grid, IconButton, Step, StepLabel, Stepper, Tooltip } from "@mui/material";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import useStepActualPosition from "../hooks/useStepActualPosition";
+import { stepActualPositionActions } from "../redux/actions/stepActualPositionActions";
+import { stepChangeConditionsActions } from "../redux/actions/stepChangeConditions";
+import { stepFormActions } from "../redux/actions/stepFormActions";
+import { stepResponseActions } from "../redux/actions/stepResponseActions";
+import { selectors } from "../redux/constants/selectors";
 import { getMessage } from "../services/MessageService";
 
 const StepByStep = ({ 
     steps
-}) => {
-    const [getStepActualPosition, setStepActualPosition] = useStepActualPosition();
-    const stepChangeConditions = useSelector(state => state.stepChangeConditions);
+}) => {    
+    const stepChangeConditions = useSelector(selectors.getStepChangeConditions);
+    const stepActualPosition = useSelector(selectors.getStepActualPosition);
+
     const dispatch = useDispatch();
+    const handleSetStepActualPosition = position => dispatch(stepActualPositionActions.set(position));
 
     useEffect(() => {
         return () => {
-            dispatch({
-                type: 'RETURN_TO_STEP_FORM_INITIAL_STATE'
-            });
-            dispatch({
-                type: 'RETURN_TO_STEP_CHANGE_CONDITIONS_INITIAL_STATE'
-            });
-            dispatch({
-                type: 'RETURN_STEP_RESPONSE_TO_INITIAL_STATE'
-            })
+            dispatch(stepFormActions.returnToInitialState());
+            dispatch(stepChangeConditionsActions.returnToInitialState());
+            dispatch(stepResponseActions.returnToInitialState());
         }
+        
     }, [dispatch]);
 
     return <>
-        <Stepper sx={{py: 4}} activeStep={getStepActualPosition()} alternativeLabel>
+        <Stepper sx={{py: 4}} activeStep={stepActualPosition} alternativeLabel>
             {steps.map((step, stepKey) => 
                 <Step key={stepKey}>
                     <StepLabel>{step.label}</StepLabel>
@@ -41,15 +42,15 @@ const StepByStep = ({
                     sx={{position: 'fixed', bgcolor: 'primary.main', bottom: '40vh', left: '10vh'}}
                 >
                     <IconButton 
-                        onClick={() => setStepActualPosition(getStepActualPosition() > 0 && stepChangeConditions.previous ? getStepActualPosition() - 1 : 0)} 
-                        disabled={getStepActualPosition() === 0 || !stepChangeConditions.previous}
+                        onClick={() => handleSetStepActualPosition(stepActualPosition > 0 && stepChangeConditions.previous ? stepActualPosition - 1 : 0)} 
+                        disabled={stepActualPosition === 0 || !stepChangeConditions.previous}
                     >
                         <NavigateBefore sx={{ fontSize: 50 }} />
                     </IconButton>
                 </Tooltip>
             </Grid>
             <Grid item xs={8} sx={{bgcolor: '#f0f0f0', border: '1px outset #d6d6d6', p: 4, mb: 6}}>
-                {steps[getStepActualPosition()].content}
+                {steps[stepActualPosition].content}
             </Grid>
             <Grid item xs={2}>
                 <Tooltip 
@@ -57,8 +58,8 @@ const StepByStep = ({
                     sx={{position: 'fixed', bgcolor: 'primary.main', bottom: '40vh', right: '10vh'}}
                 >
                     <IconButton 
-                        onClick={() => setStepActualPosition(getStepActualPosition() < steps.length && stepChangeConditions.next ? getStepActualPosition() + 1 : getStepActualPosition())} 
-                        disabled={getStepActualPosition() === steps.length - 1 || !stepChangeConditions.next}
+                        onClick={() => handleSetStepActualPosition(stepActualPosition < steps.length && stepChangeConditions.next ? stepActualPosition + 1 : stepActualPosition)} 
+                        disabled={stepActualPosition === steps.length - 1 || !stepChangeConditions.next}
                     >
                         <NavigateNext sx={{ fontSize: 50 }} />
                     </IconButton>

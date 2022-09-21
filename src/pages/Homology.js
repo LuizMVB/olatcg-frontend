@@ -1,24 +1,24 @@
 import { getMessage } from "../services/MessageService";
 
 import ConfigurationStep from "../components/ConfigurationStep";
-import SequenceInputStep from "../components/SequenceInputStep";
-import FollowYourAlignmentAnalysisStep from "../components/FollowYourAlignmentAnalysisStep";
 import StepByStep from "../components/StepByStep";
+import HomologySearchFileInputStep from "../components/HomologySeachFileInputStep";
+import FollowYourHomologyAnalysisStep from "../components/FollowYourHomologyAnalysisStep";
 
-const Alignment = () => {
+const Homology = () => {
 
     const steps = [
         {
             label: getMessage('alignment.step0.label'),
-            content: <ConfigurationStep  hasAlignmentType={true} hasSequenceType={true}/>
+            content: <ConfigurationStep hasDabaseType={true} />
         },
         {
             label: getMessage('alignment.step1.label'),
-            content: <SequenceInputStep />
+            content: <HomologySearchFileInputStep />
         },
         {
             label: getMessage('alignment.step2.label'),
-            content: <FollowYourAlignmentAnalysisStep />
+            content: <FollowYourHomologyAnalysisStep />
         }
     ]
 
@@ -27,4 +27,4 @@ const Alignment = () => {
     </>
 }
 
-export default Alignment;
+export default Homology;

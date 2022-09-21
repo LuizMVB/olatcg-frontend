@@ -1,14 +1,16 @@
+import { actionTypes } from "../constants/actionTypes";
+
 const initialState = {};
 
 export default function StepFormReducer(state = initialState, action){
     switch(action.type){
-        case 'ADD_PAIR_NAME_VALUE':
+        case actionTypes.ADD_STEP_FORM_FIELD:
             return {...state, ...action.payload};
-        case 'SET_STEP_FORM':
+        case actionTypes.SET_STEP_FORM:
             return action.payload;
-        case 'UPDATE_STEP_FORM':
+        case actionTypes.UPDATE_STEP_FORM:
             return Object.assign(state, action.payload);
-        case 'RETURN_TO_STEP_FORM_INITIAL_STATE':
+        case actionTypes.RETURN_TO_STEP_FORM_INITIAL_STATE:
             return initialState;
         default:
             return state;
