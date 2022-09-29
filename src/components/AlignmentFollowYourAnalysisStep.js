@@ -38,7 +38,6 @@ const AlignmentFollowYourAnalysisStep = ({idAnalysis}) => {
                 </Stack>
             </Box>
         </OlatcgStep>
-        
     </>
 }
 

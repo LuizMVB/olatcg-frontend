@@ -81,7 +81,7 @@ var data = {
     'homology.input.label.sequenceFile'                 : 'Sequence File',
     'homology.button.label.makeAnalysis'                : 'Make Analysis',
     'homology.input.label.databaseType'                 : 'Database Type',
-    'homology.followYourResults.label.title'            : 'Follow your result in Analysis Sections',
+    'homology.followYourResults.label.title'            : 'Follow your result in Analysis Section',
     'homology.followYourResults.label.desc'             : 'This can take a few minutes. Follow the ' +  
                                                            'update status of your analysis in the analysis section.',
     'homology.followYourResults.analysisId'             : 'Analysis ID: {0}',
