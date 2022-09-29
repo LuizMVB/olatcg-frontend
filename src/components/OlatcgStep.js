@@ -1,9 +1,19 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { stepActualPositionActions } from "../redux/actions/stepActualPositionActions";
+import { selectors } from "../redux/constants/selectors";
 import { getMessage } from "../services/MessageService";
 
 const { NavigateNext } = require("@mui/icons-material")
 const { Grid, Tooltip, IconButton } = require("@mui/material")
 
-const OlatcgStep = ({children, onClickNext}) => {
+const OlatcgStep = ({children, onClickNext, isNextDisabled, isNextHidden, stepPosition}) => {
+    const dispatch = useDispatch();
+
+    useState(() => 
+        dispatch(stepActualPositionActions.set(stepPosition)), 
+    [dispatch]);
+
     return <>
         <Grid container>
             <Grid item xs={2} sx={{align: 'center'}}>
@@ -18,6 +28,7 @@ const OlatcgStep = ({children, onClickNext}) => {
                 >
                     <IconButton 
                         onClick={() => onClickNext?.()}
+                        disabled={isNextDisabled}
                     >
                         <NavigateNext sx={{ fontSize: 50 }} />
                     </IconButton>
