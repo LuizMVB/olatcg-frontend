@@ -1,29 +1,33 @@
+import { AlignmentSequenceInputStep } from "../components/AlignmentSequenceInputStep";
+import { AlignmentConfigurationStep } from "../components/AlignmentConfigurationStep";
+import { AlignmentFollowYourAnalysisStep } from "../components/AlignmentFollowYourAnalysisStep";
+import { Step, StepLabel, Stepper } from "@mui/material";
 import { getMessage } from "../services/MessageService";
-
-import ConfigurationStep from "../components/ConfigurationStep";
-import SequenceInputStep from "../components/SequenceInputStep";
-import FollowYourAlignmentAnalysisStep from "../components/FollowYourAlignmentAnalysisStep";
-import StepByStep from "../components/StepByStep";
+import { useSelector } from "react-redux";
+import { selectors } from "../redux/constants/selectors";
 
 const Alignment = () => {
 
-    const steps = [
-        {
-            label: getMessage('alignment.step0.label'),
-            content: <ConfigurationStep  hasAlignmentType={true} hasSequenceType={true}/>
-        },
-        {
-            label: getMessage('alignment.step1.label'),
-            content: <SequenceInputStep />
-        },
-        {
-            label: getMessage('alignment.step2.label'),
-            content: <FollowYourAlignmentAnalysisStep />
-        }
-    ]
+    const labels = [
+        getMessage('alignment.step0.label'), 
+        getMessage('alignment.step1.label'), 
+        getMessage('alignment.step2.label')
+    ];
+    
+    const stepActualPosition = useSelector(selectors.getStepActualPosition);
 
     return <>
-        <StepByStep steps={steps} />
+        <Stepper sx={{py: 4}} activeStep={stepActualPosition} alternativeLabel>
+            {labels.map((label, stepKey) => 
+                <Step key={stepKey}>
+                    <StepLabel>{label}</StepLabel>
+                </Step>
+            )}
+        </Stepper>
+
+        <AlignmentConfigurationStep next={form =>
+            <AlignmentSequenceInputStep form={form} next={idAnalysis =>
+                <AlignmentFollowYourAnalysisStep idAnalysis={idAnalysis} />}/>}/>
     </>
 }
 
