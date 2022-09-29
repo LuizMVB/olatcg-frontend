@@ -1,17 +1,18 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import useStepConditions from "../../hooks/useStepConditions";
-import { getMessage } from "../../services/MessageService";
-import OlatcgAlignmentTable from "../OlatcgAlignmentTable";
+import { useDispatch, useSelector } from "react-redux";
+import { stepChangeConditionsActions } from "../redux/actions/stepChangeConditions";
+import { selectors } from "../redux/constants/selectors";
+import { getMessage } from "../services/MessageService";
+import OlatcgAlignmentTable from "./OlatcgAlignmentTable";
 
 const FollowYourAlignmentAnalysisStep = () => {
-    const stepResponse = useSelector(state => state.stepResponse);
-    const [setPreviousCondition] = useStepConditions();
+    const dispatch = useDispatch();
+    const stepResponse = useSelector(selectors.getStepResponse);
     
     useEffect(() => {
-        setPreviousCondition(false);
-    }, [setPreviousCondition]);
+        dispatch(stepChangeConditionsActions.setPrevious(false));
+    }, [dispatch]);
 
     return <>
         <Box sx={{textAlign: 'center'}}>
@@ -23,10 +24,6 @@ const FollowYourAlignmentAnalysisStep = () => {
                 {getMessage('alignment.followAnalysis.desc')}
             </Typography>
             <br/>
-            <Typography component="div" variant="h4" sx={{backgroundColor: 'primary.dark', p: 1}}>
-                {getMessage('alignment.followAnalysis.preview', stepResponse.idAnalysis)}
-            </Typography>
-            <br/>
             <OlatcgAlignmentTable idAnalysis={stepResponse.idAnalysis}/>
             <br/>
             <Stack
@@ -35,7 +32,7 @@ const FollowYourAlignmentAnalysisStep = () => {
                 justifyContent="center"
                 spacing={4}
             >
-                <Button variant="contained">{getMessage('alignment.followAnalysis.button.label.goToAnalysis')}</Button>
+                <Button variant="contained" href={"/analysis/alignment/" + stepResponse.idAnalysis}>{getMessage('alignment.followAnalysis.button.label.goToAnalysis')}</Button>
                 <Button variant="contained" href="/alignment">{getMessage('alignment.followAnalysis.button.label.makeAnotherAnalysis')}</Button>
             </Stack>
         </Box>

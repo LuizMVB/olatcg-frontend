@@ -23,7 +23,7 @@ const Tools = () => {
     ]
 
     return <>
-        <Box sx={{textAlign: 'center', py: 4}}>
+        <Box sx={{textAlign: 'center', pt: 2, pb: 4}}>
             <Typography variant="h3">
                 {getMessage('tools.title')}
             </Typography>
