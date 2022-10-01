@@ -6,7 +6,11 @@ var data = {
     'common.label.clickHere'    : 'Click Here',
     'common.developedBy'        : 'Developed by Luiz Miguel',
     'common.label.success'      : 'Operation performed successfully',
-    
+    'common.label.homology'     : 'Homology',
+    'common.label.alignment'    : 'Alignment',
+    'common.label.details'      : 'Details',
+    'common.asterisk'           : '*',
+
     /* APPBAR */
 
     'appBar.navItems.home'          : 'Home',
@@ -113,12 +117,22 @@ var data = {
     'olatcgAlignmentTable.label.status'                 : 'Status',
     'olatcgAlignmentTable.label.type'                   : 'Type',
 
+    /** ALIGNMENT ANALYSIS DETAILS */
+
+    'alignmentAnalsysisDetails.label.sequenceA'         : 'Sequence A',
+    'alignmentAnalsysisDetails.label.sequenceB'         : 'Sequence B',
+
     /** OLATCG INPUT FILE */
     'oltcgInputFile.label.upload'                 : 'Click here and upload your file',
 
     /** STEPER */
     'steper.button.label.next'                      : 'Next Step',
     'steper.button.label.previous'                  : 'Previous Step',
+
+    /** ALIGNMENT ANALYSIS */
+    'alignmentAnalysis.label.id'                : 'ID',
+    'alignmentAnalysis.label.status'            : 'Status',
+    'alignmentAnalysis.label.action'            : 'Action',
 
     /** ENUM VALUES */
 

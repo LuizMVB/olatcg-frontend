@@ -18,6 +18,9 @@ const API_ROUTES = {
 
     //PHYLOGENY
     GET_NEWICK_FROM_TAXONOMY: API_BASE_PATH + '/phylogeny/getNewickFromTaxonomy',
+
+    //ANALYSIS
+    SEARCH_ANALYSIS_BY_TYPE: API_BASE_PATH + '/analysis/searchByType',
 };
 
 

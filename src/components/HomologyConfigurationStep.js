@@ -7,11 +7,9 @@ import DatabaseTypeEnum from "../infra/enums/DatabaseTypesEnum";
 const HomologyConfigurationStep = ({next}) => {
 
     const [isNextShowed, showNext] = useState(false);
-    const [form, setForm] = useState({
-        matchScore: 10, 
-        mismatchScore: 10, 
-        databaseType: 'OLATCGDB', 
-    });
+    const [matchScore, setMatchScore] = useState(10);
+    const [mismatchScore, setMismatchScore] = useState(10);
+    const [databaseType, setDatabaseType] = useState('OLATCGDB');
 
     const databaseTypes = DatabaseTypeEnum.getSelectStructure();
 
@@ -34,11 +32,11 @@ const HomologyConfigurationStep = ({next}) => {
                         <Slider 
                             id="matchScore"
                             name="matchScore"
-                            defaultValue={form.matchScore}
+                            defaultValue={matchScore}
                             max={20}
                             aria-label="Default" 
                             valueLabelDisplay="auto"
-                            onChange={event => form.matchScore = event.target.value}
+                            onChange={event => setMatchScore(event.target.value)}
                         />
                     </Box>
                     <Box sx={{width: 400, textAlign: 'center'}}>
@@ -48,11 +46,11 @@ const HomologyConfigurationStep = ({next}) => {
                         <Slider 
                             id="mismatchScore"
                             name="mismatchScore"
-                            defaultValue={form.mismatchScore} 
+                            defaultValue={mismatchScore} 
                             max={20}
                             aria-label="Default" 
                             valueLabelDisplay="auto" 
-                            onChange={event => form.mismatchScore = event.target.value}
+                            onChange={event => setMismatchScore(event.target.value)}
                         />
                     </Box>
                     <Box sx={{width: 200, textAlign: 'center'}}>
@@ -62,8 +60,8 @@ const HomologyConfigurationStep = ({next}) => {
                         <Select
                             id="databaseType"
                             name="databaseType"
-                            value={form.databaseType ? form.databaseType : 'OLATCGDB'}
-                            onChange={event => form.databaseType = event.target.value}
+                            value={databaseType}
+                            onChange={event => setDatabaseType(event.target.value)}
                         >
                             {
                                 databaseTypes.map((type, index) =>
@@ -79,7 +77,11 @@ const HomologyConfigurationStep = ({next}) => {
                     </Box>
                 </Stack>
             </OlatcgStep> 
-        : next(form)}
+        : next({
+            matchScore: matchScore,
+            mismatchScore: mismatchScore,
+            databaseType: databaseType
+        })}
     </>
 }
 
