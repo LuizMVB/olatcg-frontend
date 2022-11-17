@@ -46,6 +46,10 @@ const AlignmentSequenceInputStep = ({form, next}) => {
         try{
             ValidationService.validateAlignmentForm(form);
             showLoader(true);
+            const response = fetch('http://localhost:3000/usuario');
+            const names = response.json();
+            console.log(names);
+            console.log("foi")
             makeRequest(API_ROUTES.ALIGN, 'POST', form, onSuccessAlignment, onFailureAlignment);
         }catch (errorMessage){
             showSnackbar(errorMessage, 'error');

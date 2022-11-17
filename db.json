@@ -1,0 +1,21 @@
+{
+    "usuario":[
+        {
+            "id": "1",
+            "firstname" : "John",
+            "lastname" : "Doe"
+        }
+
+    ],
+
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
