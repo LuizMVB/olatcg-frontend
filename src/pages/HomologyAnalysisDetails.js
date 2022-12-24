@@ -12,7 +12,11 @@ import { getMessage } from "../services/MessageService";
 const HomologyAnalysisDetails = () => {
     let { idAnalysis } = useParams();
     const [makeRequest] = useRequest();
+    const [taxonomy, setTaxonomy] = useState([]);
+    const [rows, setRows] = useState([]);
+    const [columns, setColumns] = useState([]);
     const [isLoading, showLoader] = useState(false);
+
     const [isSnackbarOpened, openSnackbar] = useState(false);
     const [statusSnackbar, setStatusSanckbar] = useState('error');
     const [msgSnackbar, setMsgSnackbar] = useState('');
@@ -22,82 +26,133 @@ const HomologyAnalysisDetails = () => {
         setStatusSanckbar(status);
         openSnackbar(true);
     }
-
-
-    function getData( status, type, alignments, inputAlignment, inputSequence, inputSequenceId, score, similarity, taxonomy) {
-        return { status, type, alignments, inputAlignment, inputSequence, inputSequenceId, score, similarity, taxonomy};
-    }
-
-    const rows = [
-        
-
-    ];
-
-    const onSuccessGetAlignmentByIdAnalysis = (response) => {
-        console.log("sucesso")
-        getData(fetch(API_ROUTES.GET_TAXONOMY_BY_ID_ANALYSIS + '?idAnalysis=' + idAnalysis)
-        .then(response => response.json())
-        .then(data => console.log(data)))
-    }
-
     const onFailureGetAlignmentByIdAnalysis = (error) => {
         showSnackbar(getMessage(error.errorDescription), 'error');
         showLoader(false);
     }
 
     useEffect(() => {
-        console.log(`/something/${idAnalysis}`);
-        makeRequest(API_ROUTES.GET_TAXONOMY_BY_ID_ANALYSIS + '?idAnalysis=' + idAnalysis, 'GET', null, onSuccessGetAlignmentByIdAnalysis, onFailureGetAlignmentByIdAnalysis);
+        
+        // /fetch(API_ROUTES.GET_TAXONOMY_BY_ID_ANALYSIS + '?idAnalysis=' + idAnalysis)
+        // .then((taxonomy) => taxonomy.json())
+        // .then((taxonomy) => {     
+        //     setTaxonomy(taxonomy.alignments)
+        // })
+        // console.log(taxonomy)
+        // //tablemaker()
+        makeRequest(API_ROUTES.GET_TAXONOMY_BY_ID_ANALYSIS + '?idAnalysis=' + idAnalysis, 'GET', null, tablemaker, onFailureGetAlignmentByIdAnalysis);
     }, [idAnalysis]);
 
+const tablemaker = (response)=> {
+    console.log(response.alignments)
+    setColumns([{
+        id: 'inputSequenceId',
+        label: getMessage('olatcgHomologyTable.label.inputSequenceId' )
+    },
+    {
+        id: 'inputSequence',
+        label: getMessage('olatcgHomologyTable.label.inputSequence')
+    },
+    {
+        id: 'externalDatabaseId',
+        label: getMessage('olatcgHomologyTable.label.externalDatabaseId'  )
+    },
+    {
+        id: 'countryOrigin',
+        label: getMessage('olatcgHomologyTable.label.countryOrigin' )
+    },
+    // {
+    //     id: 'bases',
+    //     label: getMessage('olatcgHomologyTable.label.bases' )
+    // },
+    // {
+    //     id: 'matchAlignment',
+    //     label: getMessage('olatcgHomologyTable.label.matchAlignment'  )
+    // },
+    {
+        id: 'taxonomy',
+        label: getMessage('olatcgHomologyTable.label.taxonomy' )
+    },
+    {
+        id: 'taxonomyDescription',
+        label: getMessage('olatcgHomologyTable.label.taxonomyDescription' )
+    },
+    {
+        id: 'similarity',
+        label: getMessage('olatcgHomologyTable.label.similarity' )
+    },
+    {
+        id: 'score',
+        label: getMessage('olatcgHomologyTable.label.score' )
+    }]);
+
+
+
+
+    setRows(response.alignments.map((homoAnalysis, index) => {
+        return {
+            code: index,
+            inputSequenceId: homoAnalysis.inputSequenceId,
+            inputSequence: homoAnalysis.inputSequence,
+            externalDatabaseId: homoAnalysis.matchSequence.externalDatabaseId,
+            countryOrigin: homoAnalysis.matchSequence.countryOrigin,
+           // bases: homoAnalysis.matchSequence.bases,
+            inputAlignment: homoAnalysis.inputAlignment,
+            //matchAlignment: homoAnalysis.matchAlignment,
+            taxonomy: homoAnalysis.taxonomy,
+            taxonomyDescription: homoAnalysis.taxonomyDescription,
+            similarity: homoAnalysis.similarity,
+            score: homoAnalysis.score,
+        };
+    }));
+
+
+}
+    
+    
     return <>
-         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                {/*<OlatcgHomologyTable idAnalysis={idAnalysis}/>*/}
-                    <TableRow>
-                        <TableCell TableCell align="center">
-                            Alignments
-                        </TableCell>
-                        <TableCell align="center">
-                            Score
-                        </TableCell>
-                        <TableCell align="center">
-                            Similarity
-                        </TableCell>
-                        <TableCell align="center">
-                            Status
-                        </TableCell>
-                        <TableCell align="center">
-                            Type
-                        </TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                        <TableRow
-                            sx={{ '&:last-child td, &:last-child th':
-                                { border: 0 } }}
-                        >
-                            <TableCell component="th" scope="row" TableCell align="center">
-                            {idAnalysis}
-                            </TableCell>
-                            <TableCell align="center">
-                            {idAnalysis}
-                            </TableCell>
-                            <TableCell align="center">
-                            {idAnalysis}
-                            </TableCell>
-                            <TableCell align="center">
-                            {idAnalysis}
-                            </TableCell>
-                            <TableCell align="center">
-                            {idAnalysis}
-                            </TableCell>
+        <Paper sx={{ width: '100%', overflow: 'hidden', bgcolor: 'primary.light' }}>
+            <TableContainer sx={{ maxHeight: 1000 }}>
+                <Table stickyHeader aria-label="sticky table" >
+                    <TableHead>
+                        <TableRow>
+                            {columns.map((column) => (
+                                <TableCell
+                                    key={column.id}
+                                    align={'center'}
+                                    sx={{bgcolor: 'primary.main'}}
+                                >
+                                {column.label}
+                                </TableCell>
+                            ))}
                         </TableRow>
-                    
-                </TableBody>
-            </Table>
-                    </TableContainer>
+                    </TableHead>
+                    <TableBody>
+                        {rows.map((row) => {
+                            return (
+                            <TableRow hover role="checkbox" key={row.code}>
+                                {columns.map((column) => {
+                                const value = row[column.id];
+                                return (
+                                    <TableCell key={column.id} align="center" sx={{wordWrap: 'break-word', maxWidth: 150, verticalAlign: 'top'}}>
+                                        {value}
+                                    </TableCell>
+                                );
+                                })}
+                            </TableRow>
+                            );
+                        })}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </Paper>
+        <OlatcgSnackbar
+            isOpened={isSnackbarOpened} 
+            onClose={() => openSnackbar(false)}
+            status={statusSnackbar}
+            msg={msgSnackbar} 
+        />
+        <OlatcgLoader show={isLoading}/>
     </>
 }
 

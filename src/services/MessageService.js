@@ -90,6 +90,23 @@ var data = {
                                                            'update status of your analysis in the analysis section.',
     'homology.followYourResults.analysisId'             : 'Analysis ID: {0}',
 
+    /** HOMOLOGY TABLE */
+    'olatcgHomologyTable.label.IdAnalysis'             : 'ID Analysis',
+    'olatcgHomologyTable.label.status'                 : 'Status',
+    'olatcgHomologyTable.label.type'                   : 'Type',
+    'olatcgHomologyTable.label.inputSequenceId'        : 'Input Sequence ID',
+    'olatcgHomologyTable.label.inputSequence'           : 'Input Sequence',
+    'olatcgHomologyTable.label.externalDatabaseId'      : 'External Database ID',
+    'olatcgHomologyTable.label.countryOrigin'           : 'Country Origin',
+    'olatcgHomologyTable.label.bases'                 : 'Bases',
+    'olatcgHomologyTable.label.matchAlignment'          : 'Match Alignment',
+    'olatcgHomologyTable.label.taxonomy'             : 'taxonomy',
+    'olatcgHomologyTable.label.taxonomyDescription'      : 'Taxonomy Description',
+    'olatcgHomologyTable.label.similarity'                   : 'Similarity',
+    'olatcgHomologyTable.label.score'                   : 'Score',
+
+
+
     /** ALIGNMENT */
     'alignment.input.label.firstSequence'                        : 'First Sequence',
     'alignment.input.label.secondSequence'                       : 'Second Sequence',
@@ -113,7 +130,7 @@ var data = {
     'olatcgAlignmentTable.label.alignmentA'             : 'Alignment A',
     'olatcgAlignmentTable.label.alignmentB'             : 'Alignment B',
     'olatcgAlignmentTable.label.score'                  : 'Score',
-    'olatcgAlignmentTable.label.similarity'             : 'Similarity',
+    'olatcgAlignmentTable.label.similarity'             : 'similarity',
     'olatcgAlignmentTable.label.status'                 : 'Status',
     'olatcgAlignmentTable.label.type'                   : 'Type',
 
@@ -121,6 +138,7 @@ var data = {
 
     'alignmentAnalsysisDetails.label.sequenceA'         : 'Sequence A',
     'alignmentAnalsysisDetails.label.sequenceB'         : 'Sequence B',
+    
 
     /** OLATCG INPUT FILE */
     'oltcgInputFile.label.upload'                 : 'Click here and upload your file',
