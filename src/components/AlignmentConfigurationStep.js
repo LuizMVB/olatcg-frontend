@@ -8,12 +8,11 @@ import AlignmentTypeEnum from "../infra/enums/AlignmentTypeEnum";
 const AlignmentConfigurationStep = ({next}) => {
 
     const [isNextShowed, showNext] = useState(false);
-    const [form, setForm] = useState({
-        matchScore: 10, 
-        mismatchScore: 10, 
-        sequenceType: 'DNA', 
-        alignmentType: 'GLOBAL'
-    });
+    const [matchScore, setMatchScore] = useState(10);
+    const [mismatchScore, setMismatchScore] = useState(10);
+    const [sequenceType, setSequenceType] = useState('DNA');
+    const [alignmentType, setAlignmentType] = useState('GLOBAL');
+    
     const sequenceTypes = SequenceTypeEnum.getSelectStructure();
     const alignmentTypes = AlignmentTypeEnum.getSelectStructure();
 
@@ -36,11 +35,11 @@ const AlignmentConfigurationStep = ({next}) => {
                         <Slider 
                             id="matchScore"
                             name="matchScore"
-                            defaultValue={form.matchScore}
+                            value={matchScore}
                             max={20}
                             aria-label="Default" 
                             valueLabelDisplay="auto"
-                            onChange={event => form.matchScore = event.target.value}
+                            onChange={event => setMatchScore(event.target.value)}
                         />
                     </Box>
                     <Box sx={{width: 400, textAlign: 'center'}}>
@@ -50,11 +49,11 @@ const AlignmentConfigurationStep = ({next}) => {
                         <Slider 
                             id="mismatchScore"
                             name="mismatchScore"
-                            defaultValue={form.mismatchScore} 
+                            value={mismatchScore} 
                             max={20}
                             aria-label="Default" 
                             valueLabelDisplay="auto" 
-                            onChange={event => form.mismatchScore = event.target.value}
+                            onChange={event => setMismatchScore(event.target.value)}
                         />
                     </Box>
                     <Stack direction="row" spacing={3}>
@@ -65,8 +64,8 @@ const AlignmentConfigurationStep = ({next}) => {
                             <Select
                                 id="sequenceType"
                                 name="sequenceType"
-                                value={form.sequenceType ? form.sequenceType : 'DNA'}
-                                onChange={event => form.sequenceType = event.target.value}
+                                value={sequenceType}
+                                onChange={event => setSequenceType(event.target.value)}
                             >
                                 {
                                     sequenceTypes.map((type, index) =>
@@ -87,8 +86,8 @@ const AlignmentConfigurationStep = ({next}) => {
                             <Select
                                 id="alignmentType"
                                 name="alignmentType"
-                                value={form.alignmentType ? form.alignmentType : 'GLOBAL'}
-                                onChange={event => form.alignmentType = event.target.value}
+                                value={alignmentType}
+                                onChange={event => setAlignmentType(event.target.value)}
                             >
                                 {
                                     alignmentTypes.map((type, index) =>
@@ -105,7 +104,12 @@ const AlignmentConfigurationStep = ({next}) => {
                     </Stack>
                 </Stack>
             </OlatcgStep> 
-        : next(form)}
+        : next({
+            matchScore: matchScore,
+            mismatchScore: mismatchScore,
+            sequenceType: sequenceType,
+            alignmentType: alignmentType
+        })}
     </>
 }
 

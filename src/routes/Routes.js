@@ -15,9 +15,13 @@ const API_ROUTES = {
     GET_TAXONOMY_SEARCH_RECORDS: API_BASE_PATH + '/taxonomySearch/search',
     GET_TAXONOMY_FROM_SEQUENCE: API_BASE_PATH + '/taxonomySearch/getTaxonomyNameFromSequenceId',
     BLASTN: API_BASE_PATH + '/taxonomySearch/getTaxonomyFromSequence',
+    GET_TAXONOMY_BY_ID_ANALYSIS: API_BASE_PATH + '/taxonomySearch/getTaxonomyByIdAnalysis',
 
     //PHYLOGENY
     GET_NEWICK_FROM_TAXONOMY: API_BASE_PATH + '/phylogeny/getNewickFromTaxonomy',
+
+    //ANALYSIS
+    SEARCH_ANALYSIS_BY_TYPE: API_BASE_PATH + '/analysis/searchByType',
 };
 
 

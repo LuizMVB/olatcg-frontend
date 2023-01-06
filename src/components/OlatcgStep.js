@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { stepActualPositionActions } from "../redux/actions/stepActualPositionActions";
-import { selectors } from "../redux/constants/selectors";
 import { getMessage } from "../services/MessageService";
 
 const { NavigateNext } = require("@mui/icons-material")
 const { Grid, Tooltip, IconButton } = require("@mui/material")
 
-const OlatcgStep = ({children, onClickNext, isNextDisabled, isNextHidden, stepPosition}) => {
+const OlatcgStep = ({children, onClickNext, isNextDisabled, stepPosition}) => {
     const dispatch = useDispatch();
 
     useState(() => 
