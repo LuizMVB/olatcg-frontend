@@ -12,11 +12,9 @@ import { getMessage } from "../services/MessageService";
 const HomologyAnalysisDetails = () => {
     let { idAnalysis } = useParams();
     const [makeRequest] = useRequest();
-    const [taxonomy, setTaxonomy] = useState([]);
     const [rows, setRows] = useState([]);
     const [columns, setColumns] = useState([]);
     const [isLoading, showLoader] = useState(false);
-
     const [isSnackbarOpened, openSnackbar] = useState(false);
     const [statusSnackbar, setStatusSanckbar] = useState('error');
     const [msgSnackbar, setMsgSnackbar] = useState('');
@@ -32,14 +30,6 @@ const HomologyAnalysisDetails = () => {
     }
 
     useEffect(() => {
-        
-        // /fetch(API_ROUTES.GET_TAXONOMY_BY_ID_ANALYSIS + '?idAnalysis=' + idAnalysis)
-        // .then((taxonomy) => taxonomy.json())
-        // .then((taxonomy) => {     
-        //     setTaxonomy(taxonomy.alignments)
-        // })
-        // console.log(taxonomy)
-        // //tablemaker()
         makeRequest(API_ROUTES.GET_TAXONOMY_BY_ID_ANALYSIS + '?idAnalysis=' + idAnalysis, 'GET', null, tablemaker, onFailureGetAlignmentByIdAnalysis);
     }, [idAnalysis]);
 
@@ -55,27 +45,15 @@ const tablemaker = (response)=> {
     },
     {
         id: 'externalDatabaseId',
-        label: getMessage('olatcgHomologyTable.label.externalDatabaseId'  )
+        label: getMessage('olatcgHomologyTable.label.externalDatabaseId'  ),
     },
     {
         id: 'countryOrigin',
         label: getMessage('olatcgHomologyTable.label.countryOrigin' )
     },
-    // {
-    //     id: 'bases',
-    //     label: getMessage('olatcgHomologyTable.label.bases' )
-    // },
-    // {
-    //     id: 'matchAlignment',
-    //     label: getMessage('olatcgHomologyTable.label.matchAlignment'  )
-    // },
     {
         id: 'taxonomy',
         label: getMessage('olatcgHomologyTable.label.taxonomy' )
-    },
-    {
-        id: 'taxonomyDescription',
-        label: getMessage('olatcgHomologyTable.label.taxonomyDescription' )
     },
     {
         id: 'similarity',
@@ -87,23 +65,25 @@ const tablemaker = (response)=> {
     }]);
 
 
-
+   
 
     setRows(response.alignments.map((homoAnalysis, index) => {
+        const dblink = "https://www.ncbi.nlm.nih.gov/search/all/?term=" + homoAnalysis.matchSequence.externalDatabaseId
+        
         return {
             code: index,
             inputSequenceId: homoAnalysis.inputSequenceId,
             inputSequence: homoAnalysis.inputSequence,
-            externalDatabaseId: homoAnalysis.matchSequence.externalDatabaseId,
+            externalDatabaseId: <a href={dblink} target="__blank">{homoAnalysis.matchSequence.externalDatabaseId}</a>,
             countryOrigin: homoAnalysis.matchSequence.countryOrigin,
-           // bases: homoAnalysis.matchSequence.bases,
             inputAlignment: homoAnalysis.inputAlignment,
-            //matchAlignment: homoAnalysis.matchAlignment,
             taxonomy: homoAnalysis.taxonomy,
             taxonomyDescription: homoAnalysis.taxonomyDescription,
-            similarity: homoAnalysis.similarity,
+            similarity: homoAnalysis.similarity + "%",
             score: homoAnalysis.score,
+
         };
+
     }));
 
 
@@ -111,7 +91,7 @@ const tablemaker = (response)=> {
     
     
     return <>
-        <Paper sx={{ width: '100%', overflow: 'hidden', bgcolor: 'primary.light' }}>
+        <Paper sx={{ width: '96%', overflow: 'hidden', bgcolor: 'primary.light', margin: 'auto'}}>
             <TableContainer sx={{ maxHeight: 1000 }}>
                 <Table stickyHeader aria-label="sticky table" >
                     <TableHead>

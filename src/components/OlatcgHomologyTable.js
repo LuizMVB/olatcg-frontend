@@ -6,7 +6,7 @@ import { getMessage } from "../services/MessageService";
 import OlatcgLoader from "./OlatcgLoader";
 import OlatcgSnackbar from "./OlatcgSnackbar";
 
-const OlatcgAlignmentTable = ({idAnalysis}) => {
+const OlatcgHomologyTable = ({idAnalysis}) => {
     const [makeRequest] = useRequest();
     const [rows, setRows] = useState([]);
     const [columns, setColumns] = useState([]);
@@ -16,42 +16,25 @@ const OlatcgAlignmentTable = ({idAnalysis}) => {
     const [msgSnackbar, setMsgSnackbar] = useState('');
 
     const onSuccessGetAlignmentByIdAnalysis = (response) => {
+        let valores = Object.values(response)
+        console.log(valores[1])
         setColumns([{
-            id: 'alignmentA',
-            label: getMessage('olatcgAlignmentTable.label.alignmentA')
-        },
-        {
-            id: 'alignmentB',
-            label: getMessage('olatcgAlignmentTable.label.alignmentB')
-        },
-        {
-            id: 'score',
-            label: getMessage('olatcgAlignmentTable.label.score')
-        },
-        {
-            id: 'similarity',
-            label: getMessage('olatcgAlignmentTable.label.similarity')
-        },
-        {
             id: 'status',
-            label: getMessage('olatcgAlignmentTable.label.status')
+            label: getMessage('olatcgHomologyTable.label.status')
         },
         {
             id: 'type',
-            label: getMessage('olatcgAlignmentTable.label.type')
-        }]);
-        setRows(response.sequenceAlignmentAnalyses.map((alnAnalysis, index) => {
+            label: getMessage('olatcgHomologyTable.label.type')
+        }]); 
+        setRows(valores.map((index) => {
             return { 
                 code: index,
-                alignmentA: alnAnalysis.alignmentA,
-                alignmentB: alnAnalysis.alignmentB,
-                score: alnAnalysis.score,
-                similarity: alnAnalysis.similarity,
-                status: alnAnalysis.status,
-                type: alnAnalysis.type,
+                status: valores[1],
+                type: valores[2],
             };
         }));
         showLoader(false);
+        
     }
 
     const showSnackbar = (msg, status) => {
@@ -72,7 +55,7 @@ const OlatcgAlignmentTable = ({idAnalysis}) => {
 
     useEffect(() => {
         showLoader(true);
-        makeRequest(API_ROUTES.GET_ALIGNMENT_BY_ID_ANALYSIS + '?idAnalysis=' + idAnalysis, 'GET', null, onSuccessGetAlignmentByIdAnalysis, onFailureGetAlignmentByIdAnalysis);
+        makeRequest(API_ROUTES.GET_TAXONOMY_BY_ID_ANALYSIS + '?idAnalysis=' + idAnalysis, 'GET', null, onSuccessGetAlignmentByIdAnalysis, onFailureGetAlignmentByIdAnalysis);
         // eslint-disable-next-line
     }, [idAnalysis]);
 
@@ -81,7 +64,7 @@ const OlatcgAlignmentTable = ({idAnalysis}) => {
             <Typography component="div" variant="h4" sx={{backgroundColor: 'primary.dark', p: 1}}>
                 {getMessage('alignment.followAnalysis.preview', idAnalysis)}
             </Typography>
-            <TableContainer sx={{ maxHeight: 240 }}>
+            <TableContainer sx={{ maxHeight: 120 }}>
                 <Table stickyHeader aria-label="sticky table" >
                     <TableHead>
                         <TableRow>
@@ -97,13 +80,15 @@ const OlatcgAlignmentTable = ({idAnalysis}) => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => {
+                        
+                        {rows.slice(0,1).map((row) => {
                             return (
-                            <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                            <TableRow hover role="checkbox" tabIndex={-2} key={row.index}>
                                 {columns.map((column) => {
                                 const value = row[column.id];
                                 return (
-                                    <TableCell key={column.id} align="center" sx={{wordWrap: 'break-word', maxWidth: 150, verticalAlign: 'top'}}>
+                                    
+                                    <TableCell key={column.id} align="center" sx={{wordWrap: 'break-word', maxWidth: 70, verticalAlign: 'top'}}>
                                         {value}
                                     </TableCell>
                                 );
@@ -125,4 +110,4 @@ const OlatcgAlignmentTable = ({idAnalysis}) => {
     </>
 }
 
-export default OlatcgAlignmentTable;
+export default OlatcgHomologyTable;

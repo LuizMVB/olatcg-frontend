@@ -157,7 +157,7 @@ var data = {
     // SequenceTypeEnum
     'enum.SequenceTypeEnum.DNA'                     : 'DNA',
     'enum.SequenceTypeEnum.RNA'                     : 'RNA',
-    'enum.SequenceTypeEnum.PROTEIN'                 : 'Prontein',
+    'enum.SequenceTypeEnum.PROTEIN'                 : 'Protein',
 
     // AlignmentTypeEnum
     'enum.AlignmentTypeEnum.GLOBAL'                 : 'Global',

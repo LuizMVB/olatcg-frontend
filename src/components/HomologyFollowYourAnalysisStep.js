@@ -1,21 +1,11 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
-import { teal } from "@mui/material/colors";
-import { useNavigate } from "react-router-dom";
 import { getMessage } from "../services/MessageService";
 import { OlatcgStep } from "./OlatcgStep";
+import OlatcgHomologyTable from "../components/OlatcgHomologyTable";
 
 const HomologyFollowYourAnalysisStep = ({idAnalysis}) => {
-    const navigateTo = useNavigate();
-
-    const gotoAnalysisButtonStyle = {textAlign: 'center', backgroundColor: teal[400], p: 2, borderRadius: 2, 
-                                        cursor: 'pointer', '&:hover': 
-                                            { bgcolor: teal[500], 
-                                                border: '1px inset green' }, 
-                                            '&:active': { bgcolor: teal[400] }
-                                    };
-
     return <>
-        <OlatcgStep stepPosition={2} isNextDisabled={true}>
+       <OlatcgStep stepPosition={2} isNextDisabled={true}>
             <Box sx={{textAlign: 'center'}}>
                 <Typography variant="h4">
                     {getMessage('homology.followYourResults.label.title')}
@@ -25,10 +15,7 @@ const HomologyFollowYourAnalysisStep = ({idAnalysis}) => {
                     {getMessage('homology.followYourResults.label.desc')}
                 </Typography>
                 <br/>
-                <Box sx={ gotoAnalysisButtonStyle } onClick={() => navigateTo('/analysis/homology/' + idAnalysis)}>
-                    <Typography variant="h5">{getMessage('homology.followYourResults.analysisId', idAnalysis)}</Typography>
-                </Box>
-                <br/>
+                <OlatcgHomologyTable idAnalysis={idAnalysis}/>
                 <br/>
                 <Stack
                     direction="row"
@@ -36,8 +23,18 @@ const HomologyFollowYourAnalysisStep = ({idAnalysis}) => {
                     justifyContent="center"
                     spacing={4}
                 >
-                    <Button variant="contained" href={"/analysis/homology/" + idAnalysis}>{getMessage('alignment.followAnalysis.button.label.goToAnalysis')}</Button>
-                    <Button variant="contained" href="/homology">{getMessage('alignment.followAnalysis.button.label.makeAnotherAnalysis')}</Button>
+                    <Button 
+                        variant="contained" 
+                        href={"/analysis/homology/" + idAnalysis}
+                    >
+                        {getMessage('alignment.followAnalysis.button.label.goToAnalysis')}
+                    </Button>
+                    <Button 
+                        variant="contained" 
+                        href="/homology"
+                    >
+                        {getMessage('alignment.followAnalysis.button.label.makeAnotherAnalysis')}
+                    </Button>
                 </Stack>
             </Box>
         </OlatcgStep>
