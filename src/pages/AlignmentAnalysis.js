@@ -1,3 +1,4 @@
+import { LocalMallSharp } from "@mui/icons-material";
 import { Box, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
@@ -6,6 +7,7 @@ import OlatcgSnackbar from "../components/OlatcgSnackbar";
 import useRequest from "../hooks/useRequest";
 import { API_ROUTES } from "../routes/Routes";
 import { getMessage } from "../services/MessageService";
+import Nodata from "../components/nodata";
 
 const AlignmentAnalysis = () => {
 
@@ -18,6 +20,8 @@ const AlignmentAnalysis = () => {
     const [isSnackbarOpened, openSnackbar] = useState(false);
     const [statusSnackbar, setStatusSanckbar] = useState('error');
     const [msgSnackbar, setMsgSnackbar] = useState('');
+    const [info, setInfo] = useState(false)
+    
 
     const showSnackbar = (msg, status) => {
         setMsgSnackbar(msg);
@@ -26,10 +30,11 @@ const AlignmentAnalysis = () => {
     }
 
     const onSuccessGetAlignmentAnalysis = (response) => {
+        if (response.length === 0){
+            setInfo(true)} 
         setColumns([{id: 'id', label: getMessage('alignmentAnalysis.label.id')},
                     {id: 'status', label: getMessage('alignmentAnalysis.label.status')},
                     {id: 'action', label: getMessage('alignmentAnalysis.label.action')}]);
-
         setRows(response.map((alnAnalysis, index) => {
             return {
                 code: index,
@@ -38,11 +43,14 @@ const AlignmentAnalysis = () => {
                 action: <Button onClick={() => navigateTo(location.pathname + '/' + alnAnalysis.id)}>
                     {getMessage('common.label.details')}
                 </Button>
+                
             };
         }));
-        showLoader(false);
-    }
 
+        
+  }
+  
+  
     const onFailureGetAlignmentAnalysis = (error) => {
         showSnackbar(getMessage(error.errorDescription), 'error');
         showLoader(false);
@@ -55,15 +63,22 @@ const AlignmentAnalysis = () => {
     }, []);
 
     if(location.pathname === '/analysis/alignment'){
-        return <>
-            <Box sx={{px: 4, pb: 8}}>
+    
+        return <> 
+         
+            <Box sx={{px: 4, pb: 8}}>{info ? <Nodata />: 
                 <Paper sx={{ width: '100%', overflow: 'hidden', bgcolor: 'primary.light' }}>
                     <TableContainer sx={{ maxHeight: '60vh' }}>
                         <Table stickyHeader aria-label="sticky table" >
+                        
                             <TableHead>
                                 <TableRow>
+                                    
                                     {columns.map((column) => (
+                                        
+                                        
                                         <TableCell
+                                        
                                             key={column.id}
                                             align={'center'}
                                             sx={{bgcolor: 'primary.main'}}
@@ -74,10 +89,16 @@ const AlignmentAnalysis = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {rows.map((row) => {
+                    
+    
+                                {rows.map((row) => {  
+                            
                                     return (
                                     <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                                        
                                         {columns.map((column) => {
+                                            
+                                    
                                         const value = row[column.id];
                                         return (
                                             <TableCell 
@@ -88,6 +109,7 @@ const AlignmentAnalysis = () => {
                                                         verticalAlign: 'center'
                                                     }}
                                             >
+                                                
                                                 {value}
                                             </TableCell>
                                         );})}
@@ -97,7 +119,7 @@ const AlignmentAnalysis = () => {
                             </TableBody>
                         </Table>
                     </TableContainer>
-                </Paper>
+                </Paper>}
             </Box>
             <OlatcgSnackbar
                 isOpened={isSnackbarOpened} 
@@ -105,7 +127,6 @@ const AlignmentAnalysis = () => {
                 status={statusSnackbar}
                 msg={msgSnackbar} 
             />
-            <OlatcgLoader show={isLoading}/>
         </>
     }
 
