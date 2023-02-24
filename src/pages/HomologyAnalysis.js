@@ -6,6 +6,7 @@ import OlatcgSnackbar from "../components/OlatcgSnackbar";
 import useRequest from "../hooks/useRequest";
 import { API_ROUTES } from "../routes/Routes";
 import { getMessage } from "../services/MessageService";
+import OlatcgNodata from "../components/OlatcgOlatcgNodata";
 
 const HomologyAnalysis = () => {
 
@@ -18,6 +19,7 @@ const HomologyAnalysis = () => {
     const [isSnackbarOpened, openSnackbar] = useState(false);
     const [statusSnackbar, setStatusSanckbar] = useState('error');
     const [msgSnackbar, setMsgSnackbar] = useState('');
+    const [info, setInfo] = useState(false)
 
     const showSnackbar = (msg, status) => {
         setMsgSnackbar(msg);
@@ -26,6 +28,8 @@ const HomologyAnalysis = () => {
     }
 
     const onSuccessGetAlignmentAnalysis = (response) => {
+        if (response.length === 0){
+            setInfo(true)} 
         setColumns([{id: 'id', label: getMessage('alignmentAnalysis.label.id')},
                     {id: 'status', label: getMessage('alignmentAnalysis.label.status')},
                     {id: 'action', label: getMessage('alignmentAnalysis.label.action')}]);
@@ -56,8 +60,9 @@ const HomologyAnalysis = () => {
     }, []);
 
     if(location.pathname === '/analysis/homology'){
+        
         return <>
-            <Box sx={{px: 4, pb: 8}}>
+            <Box sx={{px: 4, pb: 8}}>{info ? <OlatcgNodata />: 
                 <Paper sx={{ width: '100%', overflow: 'hidden', bgcolor: 'primary.light' }}>
                     <TableContainer sx={{ maxHeight: '60vh' }}>
                         <Table stickyHeader aria-label="sticky table" >
@@ -98,7 +103,7 @@ const HomologyAnalysis = () => {
                             </TableBody>
                         </Table>
                     </TableContainer>
-                </Paper>
+                </Paper>}
             </Box>
             <OlatcgSnackbar
                 isOpened={isSnackbarOpened} 

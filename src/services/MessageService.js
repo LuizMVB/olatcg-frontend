@@ -98,7 +98,7 @@ var data = {
     'olatcgHomologyTable.label.inputSequence'           : 'Input Sequence',
     'olatcgHomologyTable.label.externalDatabaseId'      : 'External Database ID',
     'olatcgHomologyTable.label.countryOrigin'           : 'Country Origin',
-    'olatcgHomologyTable.label.bases'                 : 'Bases',
+    'olatcgHomologyTable.label.bases'                 : 'Matching Sequences',
     'olatcgHomologyTable.label.matchAlignment'          : 'Match Alignment',
     'olatcgHomologyTable.label.taxonomy'             : 'taxonomy',
     'olatcgHomologyTable.label.taxonomyDescription'      : 'Taxonomy Description',
