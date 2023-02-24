@@ -7,7 +7,7 @@ import OlatcgSnackbar from "../components/OlatcgSnackbar";
 import useRequest from "../hooks/useRequest";
 import { API_ROUTES } from "../routes/Routes";
 import { getMessage } from "../services/MessageService";
-import OlatcgNodata from "../components/OlatcgOlatcgNodata";
+import OlatcgNodata from "../components/OlatcgNoData";
 
 const AlignmentAnalysis = () => {
 
