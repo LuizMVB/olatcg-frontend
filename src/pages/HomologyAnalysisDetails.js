@@ -1,4 +1,4 @@
-import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Box, Paper, Slide, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { blue, green, orange, red } from "@mui/material/colors";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -7,6 +7,7 @@ import OlatcgSnackbar from "../components/OlatcgSnackbar";
 import useRequest from "../hooks/useRequest";
 import { API_ROUTES } from "../routes/Routes";
 import { getMessage } from "../services/MessageService";
+import AlertDialogSlide from "../components/OlatcgAlertDialogSlide";
 
 
 const HomologyAnalysisDetails = () => {
@@ -34,7 +35,6 @@ const HomologyAnalysisDetails = () => {
     }, [idAnalysis]);
 
 const tablemaker = (response)=> {
-    console.log(response.alignments)
     setColumns([{
         id: 'inputSequenceId',
         label: getMessage('olatcgHomologyTable.label.inputSequenceId' )
@@ -62,20 +62,25 @@ const tablemaker = (response)=> {
     {
         id: 'score',
         label: getMessage('olatcgHomologyTable.label.score' )
-    }]);
+    },
+    {
+        id: 'bases',
+        label: getMessage('olatcgHomologyTable.label.bases' )
+    },
+]);
 
 
    
 
     setRows(response.alignments.map((homoAnalysis, index) => {
         const dblink = "https://www.ncbi.nlm.nih.gov/search/all/?term=" + homoAnalysis.matchSequence.externalDatabaseId
-        
         return {
             code: index,
             inputSequenceId: homoAnalysis.inputSequenceId,
-            inputSequence: homoAnalysis.inputSequence,
+            inputSequence: <AlertDialogSlide base = {homoAnalysis.inputSequence}/>,
             externalDatabaseId: <a href={dblink} target="__blank">{homoAnalysis.matchSequence.externalDatabaseId}</a>,
             countryOrigin: homoAnalysis.matchSequence.countryOrigin,
+            bases: <AlertDialogSlide base = {homoAnalysis.matchSequence.bases}/>,
             inputAlignment: homoAnalysis.inputAlignment,
             taxonomy: homoAnalysis.taxonomy,
             taxonomyDescription: homoAnalysis.taxonomyDescription,
@@ -92,7 +97,7 @@ const tablemaker = (response)=> {
     
     return <>
         <Paper sx={{ width: '96%', overflow: 'hidden', bgcolor: 'primary.light', margin: 'auto'}}>
-            <TableContainer sx={{ maxHeight: 1000 }}>
+            <TableContainer sx={{ maxHeight: 800 }}>
                 <Table stickyHeader aria-label="sticky table" >
                     <TableHead>
                         <TableRow>

@@ -16,8 +16,7 @@ const OlatcgHomologyTable = ({idAnalysis}) => {
     const [msgSnackbar, setMsgSnackbar] = useState('');
 
     const onSuccessGetAlignmentByIdAnalysis = (response) => {
-        let valores = Object.values(response)
-        console.log(valores[1])
+        let values = Object.values(response)
         setColumns([{
             id: 'status',
             label: getMessage('olatcgHomologyTable.label.status')
@@ -26,11 +25,11 @@ const OlatcgHomologyTable = ({idAnalysis}) => {
             id: 'type',
             label: getMessage('olatcgHomologyTable.label.type')
         }]); 
-        setRows(valores.map((index) => {
+        setRows(values.map((index) => {
             return { 
                 code: index,
-                status: valores[1],
-                type: valores[2],
+                status: values[1],
+                type: values[2],
             };
         }));
         showLoader(false);
