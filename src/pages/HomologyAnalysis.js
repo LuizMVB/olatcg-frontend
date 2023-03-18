@@ -58,8 +58,12 @@ const HomologyAnalysis = () => {
 
         // eslint-disable-next-line
     }, []);
+    
+   
 
     if(location.pathname === '/analysis/homology'){
+        
+    
         
         return <>
             <Box sx={{px: 4, pb: 8}}>{info ? <OlatcgNodata />: 

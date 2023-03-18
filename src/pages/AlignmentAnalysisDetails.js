@@ -7,7 +7,7 @@ import OlatcgSnackbar from "../components/OlatcgSnackbar";
 import useRequest from "../hooks/useRequest";
 import { API_ROUTES } from "../routes/Routes";
 import { getMessage } from "../services/MessageService";
-
+debugger;
 const TableHeadCell = ({ index, color }) => (<TableCell
     key={index}
     align={'center'}
