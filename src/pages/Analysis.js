@@ -7,12 +7,16 @@ import { getMessage } from "../services/MessageService";
 const Analysis = () => {
     const navigateTo = useNavigate();
     const location = useLocation();
-    const [value, setValue] = useState(location.pathname === '/analysis/homology' ? 'HOMOLOGY' : 'ALIGNMENT');
+    const [value, setValue] = useState(location.pathname.includes('/analysis/homology') ? 'HOMOLOGY' : 'ALIGNMENT');
 
-    useEffect(() => {
+    const onComponentMount = () => {
         if(location.pathname === '/analysis'){
             navigateTo('/analysis/alignment');
         }
+    }
+
+    useEffect(() => {
+        onComponentMount();
     }, [location, navigateTo])
 
     return <>
