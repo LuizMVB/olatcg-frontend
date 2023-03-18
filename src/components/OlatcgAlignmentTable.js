@@ -1,6 +1,5 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import useRequest from "../hooks/useRequest";
 import { API_ROUTES } from "../routes/Routes";
 import { getMessage } from "../services/MessageService";
@@ -42,7 +41,7 @@ const OlatcgAlignmentTable = ({idAnalysis}) => {
             label: getMessage('olatcgAlignmentTable.label.type')
         }]);
         setRows(response.sequenceAlignmentAnalyses.map((alnAnalysis, index) => {
-            return {
+            return { 
                 code: index,
                 alignmentA: alnAnalysis.alignmentA,
                 alignmentB: alnAnalysis.alignmentB,
