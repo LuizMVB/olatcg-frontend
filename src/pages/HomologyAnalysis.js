@@ -62,9 +62,6 @@ const HomologyAnalysis = () => {
    
 
     if(location.pathname === '/analysis/homology'){
-        
-    
-        
         return <>
             <Box sx={{px: 4, pb: 8}}>{info ? <OlatcgNodata />: 
                 <Paper sx={{ width: '100%', overflow: 'hidden', bgcolor: 'primary.light' }}>

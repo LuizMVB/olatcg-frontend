@@ -2,7 +2,6 @@ import { LocalMallSharp } from "@mui/icons-material";
 import { Box, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import OlatcgLoader from "../components/OlatcgLoader";
 import OlatcgSnackbar from "../components/OlatcgSnackbar";
 import useRequest from "../hooks/useRequest";
 import { API_ROUTES } from "../routes/Routes";
@@ -40,30 +39,30 @@ const AlignmentAnalysis = () => {
                 code: index,
                 id: alnAnalysis.id,
                 status: alnAnalysis.status,
-                action: <Button onClick={() => navigateTo(location.pathname + '/' + alnAnalysis.id)}>
+                action: <Button onClick={() => navigateTo("/analysis/alignment/" + alnAnalysis.id)}>
                     {getMessage('common.label.details')}
                 </Button>
                 
             };
         }));
-
-        
-  }
-  
+    }
   
     const onFailureGetAlignmentAnalysis = (error) => {
         showSnackbar(getMessage(error.errorDescription), 'error');
         showLoader(false);
     }
 
-    useEffect(() => {
+    const onComponentMount = () => {
         showLoader(true);
         makeRequest(API_ROUTES.SEARCH_ANALYSIS_BY_TYPE + '?type=ALIGNMENT', 'GET', null, onSuccessGetAlignmentAnalysis, onFailureGetAlignmentAnalysis);
-        // eslint-disable-next-line
+    }
+
+    useEffect(() => {
+        onComponentMount();
     }, []);
 
     if(location.pathname === '/analysis/alignment'){
-    
+        
         return <> 
          
             <Box sx={{px: 4, pb: 8}}>{info ? <OlatcgNodata />: 
@@ -75,8 +74,6 @@ const AlignmentAnalysis = () => {
                                 <TableRow>
                                     
                                     {columns.map((column) => (
-                                        
-                                        
                                         <TableCell
                                         
                                             key={column.id}

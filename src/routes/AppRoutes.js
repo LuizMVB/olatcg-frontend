@@ -28,7 +28,6 @@ export default function AppRoutes(){
                     <Route path=":idAnalysis" element={<HomologyAnalysisDetails />} />
                 </Route>
             </Route>
-            <Route path="*" element={<Navigate to="home" />} />
         </Routes>
     );
 }
