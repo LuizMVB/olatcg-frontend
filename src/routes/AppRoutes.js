@@ -10,6 +10,7 @@ import { HomologyAnalysis } from '../pages/HomologyAnalysis';
 import { AlignmentAnalysis } from '../pages/AlignmentAnalysis';
 import { AlignmentAnalysisDetails } from '../pages/AlignmentAnalysisDetails';
 import { HomologyAnalysisDetails } from '../pages/HomologyAnalysisDetails';
+import { HomologyAnalysisTree } from '../pages/HomologyAnalysisTree';
 
 export default function AppRoutes(){
     return (
@@ -25,7 +26,9 @@ export default function AppRoutes(){
                     <Route path=":idAnalysis" element={<AlignmentAnalysisDetails/>} />
                 </Route>
                 <Route path="homology" element={<HomologyAnalysis />} >
-                    <Route path=":idAnalysis" element={<HomologyAnalysisDetails />} />
+                    <Route path=":idAnalysis" element={<HomologyAnalysisDetails />}>
+                        <Route path="tree" element={<HomologyAnalysisTree />}/>
+                    </Route>
                 </Route>
             </Route>
             <Route path="*" element={<Navigate to="home" />} />
