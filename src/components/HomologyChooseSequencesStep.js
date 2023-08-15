@@ -1,11 +1,11 @@
-import { Science } from "@mui/icons-material";
-import { Button, Stack, Typography } from "@mui/material";
-import { useState } from "react";
+import { Science, Add } from "@mui/icons-material";
+import { Button, Stack, TextField, IconButton } from "@mui/material";
+import { useState, useEffect } from "react";
 import useRequest from "../hooks/useRequest";
+import DatabaseTypeEnum from "../infra/enums/DatabaseTypesEnum";
 import { API_ROUTES } from "../routes/Routes";
 import { getMessage } from "../services/MessageService";
 import ValidationService from "../services/ValidationService";
-import { OlatcgInputFile } from "./OlatcgInputFile";
 import OlatcgLoader from "./OlatcgLoader";
 import OlatcgSnackbar from "./OlatcgSnackbar";
 import { OlatcgStep } from "./OlatcgStep";
@@ -19,6 +19,10 @@ const HomologyChooseSequencesStep = ({form, next}) => {
     const [statusSnackbar, setStatusSanckbar] = useState('error');
     const [msgSnackbar, setMsgSnackbar] = useState('');
     const [isLoading, showLoader] = useState(false);
+    const [sequenceIdPairList, setSequenceIdPairList] = useState([{queryId: 1, sequence: ''}]);
+    const [sequenceFormList, setSequenceFormList] = useState(<></>);
+
+    useEffect(() => updateSequenceFormList(), []);
 
     const showSnackbar = (msg, status) => {
         setMsgSnackbar(msg);
@@ -26,8 +30,8 @@ const HomologyChooseSequencesStep = ({form, next}) => {
         openSnackbar(true);
     }
 
-    const onSuccessHS = (response) => {
-        setIdAnalysis(response.idAnalysis);
+    const onSuccessHS = (data) => {
+        setIdAnalysis(data.id);
         showSnackbar(getMessage('common.label.success'), 'success');
         showLoader(false);
     }
@@ -38,31 +42,41 @@ const HomologyChooseSequencesStep = ({form, next}) => {
     }
 
     const makeHSRequest = () => {
-        let readerBinaryStr = new FileReader();
-        readerBinaryStr.readAsBinaryString(form.sequenceFile);
-        readerBinaryStr.onloadend = () => {
-            let fileContent = readerBinaryStr.result;
-            try{
-                ValidationService.validateIfFieldsAreFilled(form);
-                ValidationService.validateTextFileType(form.sequenceFile);
-                ValidationService.validateSequenceFileContent(fileContent);
+        try{
+            form.sequences = sequenceIdPairList;
+            ValidationService.validateIfFieldsAreFilled(form);
+            ValidationService.validateDNASequences(form.sequences);
 
-                let readerDataUrl = new FileReader();
-                readerDataUrl.readAsDataURL(form.sequenceFile);
-                readerDataUrl.onloadend = () => {
-                    let hsRequest = Object.assign({}, form);
-                    hsRequest.sequenceFile = {
-                        name: form.sequenceFile.name,
-                        description: 'sequence file',
-                        encodedFile: readerDataUrl.result
-                    }
-                    showLoader(true);
-                    makeRequest(API_ROUTES.GET_TAXONOMY_FROM_SEQUENCES, 'POST', hsRequest, onSuccessHS, onFailureHS);
-                }
-            }catch (errorMessage){
-                showSnackbar(errorMessage, 'error');
-            }
+            let url = API_ROUTES.GET_TAXONOMY_FROM_SEQUENCES;
+            url = url.replace('{value}', 'OLATCG');
+            
+            showLoader(true);
+            makeRequest(url, 'POST', form, onSuccessHS, onFailureHS);
+        }catch (errorMessage){
+            showSnackbar(errorMessage, 'error');
         }
+    }
+
+    const addSequence = () => {
+        sequenceIdPairList.push({queryId: sequenceIdPairList.length + 1, sequence: ''});
+        setSequenceIdPairList(sequenceIdPairList);
+        updateSequenceFormList();
+    }
+
+    const updateSequenceFormList = () => {
+        setSequenceFormList(sequenceIdPairList.map(seq => {
+            return <>
+                <TextField
+                            name={'sequence' + seq.queryId}
+                            key={seq.queryId}
+                            variant="outlined"
+                            label={getMessage('homology.input.label.sequence')}
+                            fullWidth={true}
+                            onChange={(event) => seq.sequence = event.target.value}
+                            focused
+                        />
+            </>
+        }));
     }
 
     return <>
@@ -74,17 +88,13 @@ const HomologyChooseSequencesStep = ({form, next}) => {
             >
                 <Stack
                     spacing={2}
-                    sx={{textAlign: 'center', px: 'auto'}}
+                    
                 >   
-                    <Typography variant="h4">
-                        {getMessage('homology.input.label.sequenceFile')}
-                    </Typography>
-                    <br/>
-                    <OlatcgInputFile 
-                        name="sequenceFile" 
-                        fileName={form.sequenceFile ? form.sequenceFile.name : ''}
-                        handleInputChange={event => form.sequenceFile = event.target.files[0]}
-                    />
+                    {sequenceFormList}
+                    <IconButton aria-label="add"
+                            onClick={() => addSequence()}>
+                        <Add />
+                </IconButton>
                     <Button 
                         variant="contained" 
                         startIcon={<Science/>}

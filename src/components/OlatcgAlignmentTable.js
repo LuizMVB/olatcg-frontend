@@ -15,8 +15,16 @@ const OlatcgAlignmentTable = ({idAnalysis}) => {
     const [statusSnackbar, setStatusSanckbar] = useState('error');
     const [msgSnackbar, setMsgSnackbar] = useState('');
 
-    const onSuccessGetAlignmentByIdAnalysis = (response) => {
+    const onSuccessGetAlignmentByIdAnalysis = (data) => {
         setColumns([{
+            id: 'sequenceA',
+            label: getMessage('olatcgAlignmentTable.label.sequenceA')
+        },
+        {
+            id: 'sequenceB',
+            label: getMessage('olatcgAlignmentTable.label.sequenceB')
+        },
+        {
             id: 'alignmentA',
             label: getMessage('olatcgAlignmentTable.label.alignmentA')
         },
@@ -25,12 +33,8 @@ const OlatcgAlignmentTable = ({idAnalysis}) => {
             label: getMessage('olatcgAlignmentTable.label.alignmentB')
         },
         {
-            id: 'score',
-            label: getMessage('olatcgAlignmentTable.label.score')
-        },
-        {
-            id: 'similarity',
-            label: getMessage('olatcgAlignmentTable.label.similarity')
+            id: 'identityPercentage',
+            label: getMessage('olatcgAlignmentTable.label.identityPercentage')
         },
         {
             id: 'status',
@@ -40,15 +44,17 @@ const OlatcgAlignmentTable = ({idAnalysis}) => {
             id: 'type',
             label: getMessage('olatcgAlignmentTable.label.type')
         }]);
-        setRows(response.sequenceAlignmentAnalyses.map((alnAnalysis, index) => {
+
+        setRows(data.alignments.map((aln, index) => {
             return { 
                 code: index,
-                alignmentA: alnAnalysis.alignmentA,
-                alignmentB: alnAnalysis.alignmentB,
-                score: alnAnalysis.score,
-                similarity: alnAnalysis.similarity,
-                status: alnAnalysis.status,
-                type: alnAnalysis.type,
+                sequenceA: aln.sequenceA,
+                sequenceB: aln.sequenceB,
+                alignmentA: aln.alignmentA,
+                alignmentB: aln.alignmentB,
+                identityPercentage: aln.identityPercentage,
+                status: data.status,
+                type: data.type,
             };
         }));
         showLoader(false);
@@ -72,8 +78,10 @@ const OlatcgAlignmentTable = ({idAnalysis}) => {
 
     useEffect(() => {
         showLoader(true);
-        makeRequest(API_ROUTES.GET_ALIGNMENT_BY_ID_ANALYSIS + '?idAnalysis=' + idAnalysis, 'GET', null, onSuccessGetAlignmentByIdAnalysis, onFailureGetAlignmentByIdAnalysis);
-        // eslint-disable-next-line
+
+        let url = API_ROUTES.GET_ANALYSIS_BY_ID;
+        url = url.replace('{id}', idAnalysis);
+        makeRequest(url, 'GET', null, onSuccessGetAlignmentByIdAnalysis, onFailureGetAlignmentByIdAnalysis);
     }, [idAnalysis]);
 
     return <>

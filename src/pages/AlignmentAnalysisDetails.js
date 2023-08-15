@@ -62,8 +62,8 @@ const AlignmentAnalysisDetails = () => {
         }
     }
 
-    const onSuccessGetAlignmentByIdAnalysis = (response) => {
-        let seqAln = response.sequenceAlignmentAnalyses[0];
+    const onSuccessGetAlignmentByIdAnalysis = (data) => {
+        let seqAln = data.alignments[0];
 
         let alnA = seqAln.alignmentA;
         let alnB = seqAln.alignmentB;
@@ -114,7 +114,12 @@ const AlignmentAnalysisDetails = () => {
 
     useEffect(() => {
         showLoader(true);
-        makeRequest(API_ROUTES.GET_ALIGNMENT_BY_ID_ANALYSIS + '?idAnalysis=' + idAnalysis, 'GET', null, onSuccessGetAlignmentByIdAnalysis, onFailureGetAlignmentByIdAnalysis);
+
+        let url = API_ROUTES.GET_ANALYSIS_BY_ID;
+
+        url = url.replace('{id}', idAnalysis);
+
+        makeRequest(url, 'GET', null, onSuccessGetAlignmentByIdAnalysis, onFailureGetAlignmentByIdAnalysis);
         // eslint-disable-next-line
     }, []);
 

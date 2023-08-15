@@ -1,6 +1,14 @@
-FROM node:18-alpine3.16
-WORKDIR /olatcg-frontend
-EXPOSE 3000
-COPY . .
+FROM node:18-slim
+
+WORKDIR /usr/src/app
+
+COPY ./package.json .
+COPY ./package-lock.json .
+
 RUN npm install
-ENTRYPOINT npm start
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "run", "start_watch"]

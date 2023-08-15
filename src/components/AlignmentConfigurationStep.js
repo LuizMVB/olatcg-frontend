@@ -8,8 +8,8 @@ import AlignmentTypeEnum from "../infra/enums/AlignmentTypeEnum";
 const AlignmentConfigurationStep = ({next}) => {
 
     const [isNextShowed, showNext] = useState(false);
-    const [matchScore, setMatchScore] = useState(10);
-    const [mismatchScore, setMismatchScore] = useState(10);
+    const [openPenalty, setOpenPenalty] = useState(10);
+    const [extensionPenalty, setExtensionPenalty] = useState(10);
     const [sequenceType, setSequenceType] = useState('DNA');
     const [alignmentType, setAlignmentType] = useState('GLOBAL');
     
@@ -30,30 +30,30 @@ const AlignmentConfigurationStep = ({next}) => {
                 >
                     <Box sx={{width: 400, textAlign: 'center'}}>
                         <Typography gutterBottom>
-                            {getMessage('alignment.input.label.matchScore')}
+                            {getMessage('alignment.input.label.openPenalty')}
                         </Typography>
                         <Slider 
-                            id="matchScore"
-                            name="matchScore"
-                            value={matchScore}
+                            id="openPenalty"
+                            name="openPenalty"
+                            value={openPenalty}
                             max={20}
                             aria-label="Default" 
                             valueLabelDisplay="auto"
-                            onChange={event => setMatchScore(event.target.value)}
+                            onChange={event => setOpenPenalty(event.target.value)}
                         />
                     </Box>
                     <Box sx={{width: 400, textAlign: 'center'}}>
                         <Typography gutterBottom>
-                            {getMessage('alignment.input.label.mismatchScore')}
+                            {getMessage('alignment.input.label.extensionPenalty')}
                         </Typography>
                         <Slider 
-                            id="mismatchScore"
-                            name="mismatchScore"
-                            value={mismatchScore} 
+                            id="extensionPenalty"
+                            name="extensionPenalty"
+                            value={extensionPenalty} 
                             max={20}
                             aria-label="Default" 
                             valueLabelDisplay="auto" 
-                            onChange={event => setMismatchScore(event.target.value)}
+                            onChange={event => setExtensionPenalty(event.target.value)}
                         />
                     </Box>
                     <Stack direction="row" spacing={3}>
@@ -84,7 +84,7 @@ const AlignmentConfigurationStep = ({next}) => {
                                 {getMessage('alignment.input.label.alignmentType')}
                             </Typography>
                             <Select
-                                id="alignmentType"
+                                id="PI_ROUTES.ALIGN"
                                 name="alignmentType"
                                 value={alignmentType}
                                 onChange={event => setAlignmentType(event.target.value)}
@@ -105,8 +105,8 @@ const AlignmentConfigurationStep = ({next}) => {
                 </Stack>
             </OlatcgStep> 
         : next({
-            matchScore: matchScore,
-            mismatchScore: mismatchScore,
+            openPenalty: openPenalty,
+            extensionPenalty: extensionPenalty,
             sequenceType: sequenceType,
             alignmentType: alignmentType
         })}

@@ -23,13 +23,13 @@ const useRequest = () => {
 
         fetch(action, config)
             .then(res => res.json())
-            .then(data => {
-                if(data.error){
-                    data.errorDescription = !data.errorDescription ? getMessage('error.general') : data.errorDescription;
-                    onFailure?.(data);
+            .then(resJson => {
+                if(resJson.error){
+                    resJson.errorDescription = !resJson.errorDescription ? getMessage('error.general') : resJson.errorDescription;
+                    onFailure?.(resJson);
                     return;
                 }
-                onSuccess?.(data);
+                onSuccess?.(resJson.data, resJson.paginationAndSort);
             }).catch(() => {
                 onFailure?.({
                     error: 'CANT_CONNECT_TO_API',

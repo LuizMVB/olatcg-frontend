@@ -1,7 +1,7 @@
-import { Box, Paper, Slide, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { blue, green, orange, red } from "@mui/material/colors";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import OlatcgLoader from "../components/OlatcgLoader";
 import OlatcgSnackbar from "../components/OlatcgSnackbar";
 import useRequest from "../hooks/useRequest";
@@ -19,6 +19,7 @@ const HomologyAnalysisDetails = () => {
     const [isSnackbarOpened, openSnackbar] = useState(false);
     const [statusSnackbar, setStatusSanckbar] = useState('error');
     const [msgSnackbar, setMsgSnackbar] = useState('');
+    const navigateTo = useNavigate();
 
     const showSnackbar = (msg, status) => {
         setMsgSnackbar(msg);
@@ -31,73 +32,78 @@ const HomologyAnalysisDetails = () => {
     }
 
     useEffect(() => {
-        makeRequest(API_ROUTES.GET_TAXONOMY_BY_ID_ANALYSIS + '?idAnalysis=' + idAnalysis, 'GET', null, tablemaker, onFailureGetAlignmentByIdAnalysis);
+        showLoader(true);
+
+        let url = API_ROUTES.GET_ANALYSIS_BY_ID;
+        url = url.replace('{id}', idAnalysis);
+
+        makeRequest(url, 'GET', null, tablemaker, onFailureGetAlignmentByIdAnalysis);
     }, [idAnalysis]);
 
 const tablemaker = (response)=> {
+    if(response.status == 'STARTED') {
+        showSnackbar(getMessage('info.analysis.isnt.finished'), 'info');
+        setTimeout(() => {
+            showLoader(false);
+            navigateTo('/analysis/homology');
+        }, 5000);
+        return;
+    }
+
     setColumns([{
-        id: 'inputSequenceId',
-        label: getMessage('olatcgHomologyTable.label.inputSequenceId' )
-    },
-    {
-        id: 'inputSequence',
-        label: getMessage('olatcgHomologyTable.label.inputSequence')
-    },
-    {
-        id: 'externalDatabaseId',
-        label: getMessage('olatcgHomologyTable.label.externalDatabaseId'  ),
-    },
-    {
-        id: 'countryOrigin',
-        label: getMessage('olatcgHomologyTable.label.countryOrigin' )
-    },
-    {
-        id: 'taxonomy',
-        label: getMessage('olatcgHomologyTable.label.taxonomy' )
-    },
-    {
-        id: 'similarity',
-        label: getMessage('olatcgHomologyTable.label.similarity' )
-    },
-    {
-        id: 'score',
-        label: getMessage('olatcgHomologyTable.label.score' )
-    },
-    {
-        id: 'bases',
-        label: getMessage('olatcgHomologyTable.label.bases' )
-    },
-]);
-
-
-   
+            id: 'alignmentA',
+            label: getMessage('olatcgHomologyTable.label.alignmentA' )
+        },
+        {
+            id: 'alignmentB',
+            label: getMessage('olatcgHomologyTable.label.alignmentB')
+        },
+        {
+            id: 'identityPercentage',
+            label: getMessage('olatcgHomologyTable.label.identityPercentage'  ),
+        },
+        {
+            id: 'sequenceA',
+            label: getMessage('olatcgHomologyTable.label.sequenceA' )
+        },
+        {
+            id: 'sequenceB',
+            label: getMessage('olatcgHomologyTable.label.sequenceB' )
+        },
+        {
+            id: 'taxonomy',
+            label: getMessage('olatcgHomologyTable.label.taxonomy' )
+        },
+        {
+            id: 'action',
+            label: getMessage('olatcgHomologyTable.label.action')
+        }
+    ]);
 
     setRows(response.alignments.map((homoAnalysis, index) => {
-        const dblink = "https://www.ncbi.nlm.nih.gov/search/all/?term=" + homoAnalysis.matchSequence.externalDatabaseId
         return {
-            code: index,
-            inputSequenceId: homoAnalysis.inputSequenceId,
-            inputSequence: <AlertDialogSlide base = {homoAnalysis.inputSequence}/>,
-            externalDatabaseId: <a href={dblink} target="__blank">{homoAnalysis.matchSequence.externalDatabaseId}</a>,
-            countryOrigin: homoAnalysis.matchSequence.countryOrigin,
-            bases: <AlertDialogSlide base = {homoAnalysis.matchSequence.bases}/>,
-            inputAlignment: homoAnalysis.inputAlignment,
-            taxonomy: homoAnalysis.taxonomy,
-            taxonomyDescription: homoAnalysis.taxonomyDescription,
-            similarity: homoAnalysis.similarity + "%",
-            score: homoAnalysis.score,
-
+            code: index + homoAnalysis.taxonomy.id,
+            alignmentA: <AlertDialogSlide base = {homoAnalysis.alignmentA}/>,
+            alignmentB: <AlertDialogSlide base = {homoAnalysis.alignmentB}/>,
+            identityPercentage: homoAnalysis.identityPercentage,
+            sequenceA: <AlertDialogSlide base = {homoAnalysis.sequenceA}/>,
+            sequenceB: <AlertDialogSlide base = {homoAnalysis.sequenceB}/>,
+            taxonomy: homoAnalysis.taxonomy.name,
+            action: <Button onClick={() => navigateTo("/analysis/homology/tree/" + homoAnalysis.id)}>
+                        {getMessage('common.label.show.tree')}
+                    </Button>
         };
 
     }));
 
+    showLoader(false);
 
 }
     
     
     return <>
         <Paper sx={{ width: '96%', overflow: 'hidden', bgcolor: 'primary.light', margin: 'auto'}}>
-            <TableContainer sx={{ maxHeight: 800 }}>
+            <TableContainer sx={{ maxHeight: 550 }}>
                 <Table stickyHeader aria-label="sticky table" >
                     <TableHead>
                         <TableRow>

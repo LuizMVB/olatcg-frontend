@@ -7,9 +7,9 @@ import DatabaseTypeEnum from "../infra/enums/DatabaseTypesEnum";
 const HomologyConfigurationStep = ({next}) => {
 
     const [isNextShowed, showNext] = useState(false);
-    const [matchScore, setMatchScore] = useState(10);
-    const [mismatchScore, setMismatchScore] = useState(10);
-    const [databaseType, setDatabaseType] = useState('OLATCGDB');
+    const [openPenalty, setOpenPenalty] = useState(10);
+    const [extensionPenalty, setExtensionPenalty] = useState(10);
+    const [databaseType, setDatabaseType] = useState('OLATCG');
 
     const databaseTypes = DatabaseTypeEnum.getSelectStructure();
 
@@ -27,30 +27,30 @@ const HomologyConfigurationStep = ({next}) => {
                 >
                     <Box sx={{width: 400, textAlign: 'center'}}>
                         <Typography gutterBottom>
-                            {getMessage('alignment.input.label.matchScore')}
+                            {getMessage('alignment.input.label.openPenalty')}
                         </Typography>
                         <Slider 
-                            id="matchScore"
-                            name="matchScore"
-                            defaultValue={matchScore}
+                            id="openPenalty"
+                            name="openPenalty"
+                            defaultValue={openPenalty}
                             max={20}
                             aria-label="Default" 
                             valueLabelDisplay="auto"
-                            onChange={event => setMatchScore(event.target.value)}
+                            onChange={event => setOpenPenalty(event.target.value)}
                         />
                     </Box>
                     <Box sx={{width: 400, textAlign: 'center'}}>
                         <Typography gutterBottom>
-                            {getMessage('alignment.input.label.mismatchScore')}
+                            {getMessage('alignment.input.label.extensionPenalty')}
                         </Typography>
                         <Slider 
-                            id="mismatchScore"
-                            name="mismatchScore"
-                            defaultValue={mismatchScore} 
+                            id="extensionPenalty"
+                            name="extensionPenalty"
+                            defaultValue={extensionPenalty} 
                             max={20}
                             aria-label="Default" 
                             valueLabelDisplay="auto" 
-                            onChange={event => setMismatchScore(event.target.value)}
+                            onChange={event => setExtensionPenalty(event.target.value)}
                         />
                     </Box>
                     <Box sx={{width: 200, textAlign: 'center'}}>
@@ -78,8 +78,8 @@ const HomologyConfigurationStep = ({next}) => {
                 </Stack>
             </OlatcgStep> 
         : next({
-            matchScore: matchScore,
-            mismatchScore: mismatchScore,
+            openPenalty: openPenalty,
+            extensionPenalty: extensionPenalty,
             databaseType: databaseType
         })}
     </>

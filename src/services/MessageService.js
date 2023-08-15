@@ -9,6 +9,7 @@ var data = {
     'common.label.homology'     : 'Homology',
     'common.label.alignment'    : 'Alignment',
     'common.label.details'      : 'Details',
+    'common.label.show.tree'    : 'Show Tree',
     'common.asterisk'           : '*',
 
     /* APPBAR */
@@ -82,7 +83,7 @@ var data = {
     'tutorials.contentList.listItem.label.tutorials'            : 'How to Use OLATCG',
 
     /** HOMOLOGY */
-    'homology.input.label.sequenceFile'                 : 'Sequence File',
+    'homology.input.label.sequence'                     : 'Sequence',
     'homology.button.label.makeAnalysis'                : 'Make Analysis',
     'homology.input.label.databaseType'                 : 'Database Type',
     'homology.followYourResults.label.title'            : 'Follow your result in Analysis Section',
@@ -91,20 +92,16 @@ var data = {
     'homology.followYourResults.analysisId'             : 'Analysis ID: {0}',
 
     /** HOMOLOGY TABLE */
-    'olatcgHomologyTable.label.IdAnalysis'             : 'ID Analysis',
-    'olatcgHomologyTable.label.status'                 : 'Status',
-    'olatcgHomologyTable.label.type'                   : 'Type',
-    'olatcgHomologyTable.label.inputSequenceId'        : 'Input Sequence ID',
-    'olatcgHomologyTable.label.inputSequence'           : 'Input Sequence',
-    'olatcgHomologyTable.label.externalDatabaseId'      : 'External Database ID',
-    'olatcgHomologyTable.label.countryOrigin'           : 'Country Origin',
-    'olatcgHomologyTable.label.bases'                 : 'Matching Sequences',
-    'olatcgHomologyTable.label.matchAlignment'          : 'Match Alignment',
-    'olatcgHomologyTable.label.taxonomy'             : 'taxonomy',
-    'olatcgHomologyTable.label.taxonomyDescription'      : 'Taxonomy Description',
-    'olatcgHomologyTable.label.similarity'                   : 'Similarity',
-    'olatcgHomologyTable.label.score'                   : 'Score',
-
+    'olatcgHomologyTable.label.IdAnalysis'              : 'ID Analysis',
+    'olatcgHomologyTable.label.status'                  : 'Status',
+    'olatcgHomologyTable.label.type'                    : 'Type',
+    'olatcgHomologyTable.label.alignmentA'              : 'Alignment A',
+    'olatcgHomologyTable.label.alignmentB'              : 'Alignment B',
+    'olatcgHomologyTable.label.identityPercentage'      : 'Identity Percentage',
+    'olatcgHomologyTable.label.sequenceA'               : 'Sequence A',
+    'olatcgHomologyTable.label.sequenceB'               : 'Sequence B',
+    'olatcgHomologyTable.label.taxonomy'                : 'Taxonomy',
+    'olatcgHomologyTable.label.action'                  : 'Action',
 
 
     /** ALIGNMENT */
@@ -114,8 +111,8 @@ var data = {
     'alignment.step0.label'                                      : 'Adjusting configurations',
     'alignment.step1.label'                                      : 'Choose your sequences',
     'alignment.step2.label'                                      : 'Follow your results in Analysis section',
-    'alignment.input.label.matchScore'                           : 'Match Score',
-    'alignment.input.label.mismatchScore'                        : 'Mismatch Score',
+    'alignment.input.label.openPenalty'                          : 'Open Penalty',
+    'alignment.input.label.extensionPenalty'                     : 'Extension Penalty',
     'alignment.input.label.sequenceType'                         : 'Sequence Type',
     'alignment.input.label.alignmentType'                        : 'Alignment Type',
     'alignment.followAnalysis.title'                             : 'Follow Your Results in Analysis Section',
@@ -127,10 +124,11 @@ var data = {
     'alignment.followAnalysis.button.label.makeAnotherAnalysis'  : 'Make another analysis',
 
     /** ALIGNMENT TABLE */
+    'olatcgAlignmentTable.label.sequenceA'              : 'Sequence A',
+    'olatcgAlignmentTable.label.sequenceB'              : 'Sequence B',
     'olatcgAlignmentTable.label.alignmentA'             : 'Alignment A',
     'olatcgAlignmentTable.label.alignmentB'             : 'Alignment B',
-    'olatcgAlignmentTable.label.score'                  : 'Score',
-    'olatcgAlignmentTable.label.similarity'             : 'similarity',
+    'olatcgAlignmentTable.label.identityPercentage'     : 'Identity Percentage',
     'olatcgAlignmentTable.label.status'                 : 'Status',
     'olatcgAlignmentTable.label.type'                   : 'Type',
 
@@ -164,7 +162,12 @@ var data = {
     'enum.AlignmentTypeEnum.LOCAL'                  : 'Local',
 
     // DatabaseTypeEnum
-    'enum.DatabaseTypeEnum.OLATCGDB'                : 'OLATCGDB',
+    'enum.DatabaseTypeEnum.OLATCG'                : 'OLATCG',
+
+    // INFOS
+
+    'info.analysis.isnt.finished'            : 'The proccess still running. Try again when the status of this ' +
+                                                    'analysis changes to \'FINSHED\'',
 
     // ERRORS
 

@@ -2,7 +2,7 @@ import BaseEnumerator from "./BaseEnumerator";
 
 export default class DatabaseTypeEnum extends BaseEnumerator {
 
-    static OLATCGDB = new DatabaseTypeEnum(0)
+    static OLATCG = new DatabaseTypeEnum(0)
 
     constructor(code) {
         super();

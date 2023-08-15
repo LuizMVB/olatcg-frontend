@@ -54,7 +54,11 @@ const OlatcgHomologyTable = ({idAnalysis}) => {
 
     useEffect(() => {
         showLoader(true);
-        makeRequest(API_ROUTES.GET_TAXONOMY_BY_ID_ANALYSIS + '?idAnalysis=' + idAnalysis, 'GET', null, onSuccessGetAlignmentByIdAnalysis, onFailureGetAlignmentByIdAnalysis);
+
+        let url = API_ROUTES.GET_ANALYSIS_BY_ID;
+        url = url.replace('{id}', idAnalysis);
+
+        makeRequest(url, 'GET', null, onSuccessGetAlignmentByIdAnalysis, onFailureGetAlignmentByIdAnalysis);
         // eslint-disable-next-line
     }, [idAnalysis]);
 

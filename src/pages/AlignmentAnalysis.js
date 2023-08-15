@@ -1,5 +1,4 @@
-import { LocalMallSharp } from "@mui/icons-material";
-import { Box, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { Box, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Pagination } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import OlatcgSnackbar from "../components/OlatcgSnackbar";
@@ -7,6 +6,7 @@ import useRequest from "../hooks/useRequest";
 import { API_ROUTES } from "../routes/Routes";
 import { getMessage } from "../services/MessageService";
 import OlatcgNodata from "../components/OlatcgNoData";
+import OlatcgLoader from "../components/OlatcgLoader";
 
 const AlignmentAnalysis = () => {
 
@@ -19,7 +19,9 @@ const AlignmentAnalysis = () => {
     const [isSnackbarOpened, openSnackbar] = useState(false);
     const [statusSnackbar, setStatusSanckbar] = useState('error');
     const [msgSnackbar, setMsgSnackbar] = useState('');
-    const [info, setInfo] = useState(false)
+    const [info, setInfo] = useState(false);
+    const [selectedPage, setSelectedPage] = useState(0);
+    const [totalPages, setTotalPages] = useState();
     
 
     const showSnackbar = (msg, status) => {
@@ -28,13 +30,14 @@ const AlignmentAnalysis = () => {
         openSnackbar(true);
     }
 
-    const onSuccessGetAlignmentAnalysis = (response) => {
-        if (response.length === 0){
-            setInfo(true)} 
+    const onSuccessGetAlignmentAnalysis = (data, paginationAndSort) => {
+        if (data.length === 0){
+            setInfo(true)
+        } 
         setColumns([{id: 'id', label: getMessage('alignmentAnalysis.label.id')},
                     {id: 'status', label: getMessage('alignmentAnalysis.label.status')},
                     {id: 'action', label: getMessage('alignmentAnalysis.label.action')}]);
-        setRows(response.map((alnAnalysis, index) => {
+        setRows(data.map((alnAnalysis, index) => {
             return {
                 code: index,
                 id: alnAnalysis.id,
@@ -45,6 +48,10 @@ const AlignmentAnalysis = () => {
                 
             };
         }));
+
+        setSelectedPage(paginationAndSort.pageNumber);
+        setTotalPages(paginationAndSort.totalPages);
+        showLoader(false);
     }
   
     const onFailureGetAlignmentAnalysis = (error) => {
@@ -54,7 +61,20 @@ const AlignmentAnalysis = () => {
 
     const onComponentMount = () => {
         showLoader(true);
-        makeRequest(API_ROUTES.SEARCH_ANALYSIS_BY_TYPE + '?type=ALIGNMENT', 'GET', null, onSuccessGetAlignmentAnalysis, onFailureGetAlignmentAnalysis);
+
+        let url = API_ROUTES.SEARCH_ANALYSIS_BY_TYPE;
+        url = url.replace('{value}', 'ALIGNMENT');
+
+        makeRequest(url, 'GET', null, onSuccessGetAlignmentAnalysis, onFailureGetAlignmentAnalysis);
+    }
+
+    const handlePaginationChange = (e, page) => {
+        showLoader(true);
+        setSelectedPage(page);
+        let url = API_ROUTES.SEARCH_ANALYSIS_BY_TYPE;
+        url = url.replace('{value}', 'ALIGNMENT') + '?pageNumber=' + (page - 1) + '&pageSize=15&sort=DESC';
+
+        makeRequest(url, 'GET', null, onSuccessGetAlignmentAnalysis, onFailureGetAlignmentAnalysis);
     }
 
     useEffect(() => {
@@ -117,6 +137,13 @@ const AlignmentAnalysis = () => {
                         </Table>
                     </TableContainer>
                 </Paper>}
+                <Box display="flex" justifyContent="center" mt={2}>
+                    <Pagination 
+                        count={totalPages} 
+                        color="primary" 
+                        onChange={handlePaginationChange}
+                    />
+                </Box>
             </Box>
             <OlatcgSnackbar
                 isOpened={isSnackbarOpened} 
@@ -124,6 +151,7 @@ const AlignmentAnalysis = () => {
                 status={statusSnackbar}
                 msg={msgSnackbar} 
             />
+            <OlatcgLoader show={isLoading}/>
         </>
     }
 

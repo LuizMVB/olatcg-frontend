@@ -33,7 +33,7 @@ const AlignmentSequenceInputStep = ({form, next}) => {
 
     const onSuccessAlignment = (data) => {
         showSnackbar(getMessage('common.label.success'), 'success');
-        setIdAnalysis(data.idAnalysis);
+        setIdAnalysis(data.id);
         showLoader(false);
     }
 
@@ -46,7 +46,11 @@ const AlignmentSequenceInputStep = ({form, next}) => {
         try{
             ValidationService.validateAlignmentForm(form);
             showLoader(true);
-            makeRequest(API_ROUTES.ALIGN, 'POST', form, onSuccessAlignment, onFailureAlignment);
+
+            let url = API_ROUTES.ALIGN;
+            url = url.replace('{type}', form.alignmentType);
+
+            makeRequest(url, 'POST', form, onSuccessAlignment, onFailureAlignment);
         }catch (errorMessage){
             showSnackbar(errorMessage, 'error');
         }

@@ -3,6 +3,11 @@ import { getMessage } from "./MessageService";
 
 const validateIfFieldsAreFilled = (form) => {
     Object.keys(form).forEach(key => {
+        if(Array.isArray(form[key])) {
+            form[key].forEach(element => {
+                validateIfFieldsAreFilled(element);
+            });
+        }
         if(!form[key]){
             throw getMessage('error.validation.fillingFields');
         }
@@ -32,7 +37,7 @@ const validateAlignmentForm = (alignmentForm) => {
     validateSequences(alignmentForm.sequenceType, alignmentForm.sequenceA, alignmentForm.sequenceB);
 }
 
-const validateSequenceFileContent = content => {
+const validateSequenceContent = content => {
     let re1 = new RegExp('\\n', 'g');
     let re2 = new RegExp('[atcgATCG]', 'g');
     if(content.replaceAll(re1, '').replaceAll(re2, '').trim().length !== 0){
@@ -46,11 +51,17 @@ const validateTextFileType = file => {
     }
 }
 
+const validateDNASequences = sequences => {
+    sequences.forEach(seq => {
+        validateSequenceContent(seq.sequence);
+    });
+}
+
 const ValidationService = {
     validateAlignmentForm: validateAlignmentForm,
     validateIfFieldsAreFilled: validateIfFieldsAreFilled,
     validateTextFileType: validateTextFileType,
-    validateSequenceFileContent: validateSequenceFileContent
+    validateDNASequences: validateDNASequences
 };
 
 export default ValidationService;

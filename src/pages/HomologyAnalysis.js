@@ -1,4 +1,4 @@
-import { Box, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { Box, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Pagination } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import OlatcgLoader from "../components/OlatcgLoader";
@@ -19,7 +19,9 @@ const HomologyAnalysis = () => {
     const [isSnackbarOpened, openSnackbar] = useState(false);
     const [statusSnackbar, setStatusSanckbar] = useState('error');
     const [msgSnackbar, setMsgSnackbar] = useState('');
-    const [info, setInfo] = useState(false)
+    const [info, setInfo] = useState(false);
+    const [selectedPage, setSelectedPage] = useState(0);
+    const [totalPages, setTotalPages] = useState();
 
     const showSnackbar = (msg, status) => {
         setMsgSnackbar(msg);
@@ -27,9 +29,10 @@ const HomologyAnalysis = () => {
         openSnackbar(true);
     }
 
-    const onSuccessGetAlignmentAnalysis = (response) => {
+    const onSuccessGetAnalysis = (response, paginationAndSort) => {
         if (response.length === 0){
-            setInfo(true)} 
+            setInfo(true);
+        } 
         setColumns([{id: 'id', label: getMessage('alignmentAnalysis.label.id')},
                     {id: 'status', label: getMessage('alignmentAnalysis.label.status')},
                     {id: 'action', label: getMessage('alignmentAnalysis.label.action')}]);
@@ -44,6 +47,8 @@ const HomologyAnalysis = () => {
                 </Button>
             };
         }));
+        setSelectedPage(paginationAndSort.pageNumber);
+        setTotalPages(paginationAndSort.totalPages);
         showLoader(false);
     }
 
@@ -52,9 +57,23 @@ const HomologyAnalysis = () => {
         showLoader(false);
     }
 
+    const handlePaginationChange = (e, page) => {
+        showLoader(true);
+
+        setSelectedPage(page);
+        let url = API_ROUTES.SEARCH_ANALYSIS_BY_TYPE;
+        url = url.replace('{value}', 'HOMOLOGY') + '?pageNumber=' + (page - 1) + '&pageSize=15&sort=DESC';
+
+        makeRequest(url, 'GET', null, onSuccessGetAnalysis, onFailureGetAlignmentAnalysis);
+    }
+
     useEffect(() => {
         showLoader(true);
-        makeRequest(API_ROUTES.SEARCH_ANALYSIS_BY_TYPE + '?type=TAXONOMY', 'GET', null, onSuccessGetAlignmentAnalysis, onFailureGetAlignmentAnalysis);
+
+        let url = API_ROUTES.SEARCH_ANALYSIS_BY_TYPE;
+        url = url.replace('{value}', 'HOMOLOGY');
+
+        makeRequest(url, 'GET', null, onSuccessGetAnalysis, onFailureGetAlignmentAnalysis);
 
         // eslint-disable-next-line
     }, []);
@@ -105,6 +124,13 @@ const HomologyAnalysis = () => {
                         </Table>
                     </TableContainer>
                 </Paper>}
+                <Box display="flex" justifyContent="center" mt={2}>
+                    <Pagination 
+                        count={totalPages} 
+                        color="primary" 
+                        onChange={handlePaginationChange}
+                    />
+                </Box>
             </Box>
             <OlatcgSnackbar
                 isOpened={isSnackbarOpened} 
