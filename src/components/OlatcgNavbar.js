@@ -12,7 +12,7 @@ const OlatcgNavbar = () => {
             nameRef: 'appBar.navItems.home'
         },
         {
-            path: '/tools',
+            path: '/tool',
             nameRef: 'appBar.navItems.tools'
         },
         {

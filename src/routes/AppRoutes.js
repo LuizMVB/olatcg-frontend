@@ -15,11 +15,12 @@ export default function AppRoutes(){
     return (
         <Routes>
             <Route path="home" element={<Home />} />
-            <Route path="tools" element={<Tools />} />
             <Route path="learn" element={<Learn />} />
             <Route path="tutorials" element={<Tutorials />} />
-            <Route path="alignment" element={<Alignment />} />
-            <Route path="homology" element={<Homology />} />
+            <Route path="tool" element={<Tools />}>
+                <Route path="alignment" element={<Alignment />} />
+                <Route path="homology" element={<Homology />} />
+            </Route>
             <Route path="analysis" element={<Analysis />}>
                 <Route path="alignment" element={<AlignmentAnalysis />}>
                     <Route path=":idAnalysis" element={<AlignmentAnalysisDetails/>} />

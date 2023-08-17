@@ -1,6 +1,7 @@
 import { Button, Paper, Typography } from "@mui/material";
 import { purple } from "@mui/material/colors";
 import { getMessage } from "../services/MessageService";
+import { useNavigate } from "react-router";
 
 const OlatcgImageCard = ({
     imageSrc,
@@ -17,6 +18,12 @@ const OlatcgImageCard = ({
         textAlign: 'center', '&:hover': {background: purple[100]}
     }
 
+    const navigateTo = useNavigate();
+
+    const goTo = () => {
+        navigateTo(href);
+    }
+
     return <>
         <Paper
             sx={imageCardStyle}
@@ -31,7 +38,7 @@ const OlatcgImageCard = ({
                 {description}
             </Typography>
             <br /><br />
-            <Button variant="contained" href={href}>
+            <Button variant="contained" onClick={() => navigateTo(href)}>
                 {buttonLabel ? buttonLabel : getMessage('common.label.clickHere')}
             </Button>
         </Paper>

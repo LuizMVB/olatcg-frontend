@@ -3,6 +3,7 @@ import OlatcgImageCard from "../components/OlatcgImageCard";
 import { getMessage } from "../services/MessageService";
 import Alignment from '../static/images/alignment.png';
 import HomologySearch from '../static/images/homologySearch.png';
+import { Outlet, useLocation } from 'react-router-dom';
 
 const Tools = () => {
     const toolCards = [
@@ -11,16 +12,22 @@ const Tools = () => {
             imageAlt: 'Alignment\'s image',
             title: getMessage('tools.card.alignment.title'),
             description: getMessage('tools.card.alignment.desc'),
-            href: '/alignment'
+            href: '/tool/alignment'
         },
         {
             imageSrc: HomologySearch,
             imageAlt: 'Homology Search image',
             title: getMessage('tools.card.homologySearch.title'),
             description: getMessage('tools.card.homologySearch.desc'),
-            href: '/homology'
+            href: '/tool/homology'
         }
     ]
+
+    const location = useLocation();
+  
+    if (location.pathname === "/tool/alignment" || location.pathname === "/tool/homology") {
+        return <Outlet />;
+    }
 
     return <>
         <Box sx={{textAlign: 'center', pt: 2, pb: 4}}>
