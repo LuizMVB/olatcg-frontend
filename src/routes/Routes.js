@@ -1,4 +1,4 @@
-var BASE_URL = process.env.REACT_APP_BACKEND_URL || 'https://olatcg-backend.herokuapp.com';
+var BASE_URL = process.env.REACT_APP_BACKEND_URL || 'http://spica.eic.cefet-rj.br/olatcg-backend';
 
 var API_BASE_PATH = BASE_URL + '/v1/api';
 
