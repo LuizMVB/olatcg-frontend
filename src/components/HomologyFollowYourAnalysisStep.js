@@ -2,8 +2,11 @@ import { Box, Button, Stack, Typography } from "@mui/material";
 import { getMessage } from "../services/MessageService";
 import { OlatcgStep } from "./OlatcgStep";
 import OlatcgHomologyTable from "../components/OlatcgHomologyTable";
+import { useNavigate } from "react-router";
 
 const HomologyFollowYourAnalysisStep = ({idAnalysis}) => {
+    const navigateTo = useNavigate();
+
     return <>
        <OlatcgStep stepPosition={2} isNextDisabled={true}>
             <Box sx={{textAlign: 'center'}}>
@@ -25,13 +28,13 @@ const HomologyFollowYourAnalysisStep = ({idAnalysis}) => {
                 >
                     <Button 
                         variant="contained" 
-                        href={"/analysis/homology/" + idAnalysis}
+                        onClick={() => navigateTo("/analysis/homology/" + idAnalysis)}
                     >
                         {getMessage('alignment.followAnalysis.button.label.goToAnalysis')}
                     </Button>
                     <Button 
                         variant="contained" 
-                        href="/homology"
+                        onClick={() => navigateTo("/tool/homology")}
                     >
                         {getMessage('alignment.followAnalysis.button.label.makeAnotherAnalysis')}
                     </Button>

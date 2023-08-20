@@ -2,8 +2,12 @@ import { Box, Button, Stack, Typography } from "@mui/material";
 import { getMessage } from "../services/MessageService";
 import OlatcgAlignmentTable from "./OlatcgAlignmentTable";
 import { OlatcgStep } from "./OlatcgStep";
+import { useNavigate } from "react-router";
 
 const AlignmentFollowYourAnalysisStep = ({idAnalysis}) => {
+
+    const navigateTo = useNavigate();
+
     return <>
         <OlatcgStep stepPosition={2} isNextDisabled={true}>
             <Box sx={{textAlign: 'center'}}>
@@ -25,13 +29,13 @@ const AlignmentFollowYourAnalysisStep = ({idAnalysis}) => {
                 >
                     <Button 
                         variant="contained" 
-                        href={"/analysis/alignment/" + idAnalysis}
+                        onClick={() => navigateTo("/analysis/alignment/" + idAnalysis)}
                     >
                         {getMessage('alignment.followAnalysis.button.label.goToAnalysis')}
                     </Button>
                     <Button 
                         variant="contained" 
-                        href="/alignment"
+                        onClick={() => navigateTo("/tool/alignment")}
                     >
                         {getMessage('alignment.followAnalysis.button.label.makeAnotherAnalysis')}
                     </Button>

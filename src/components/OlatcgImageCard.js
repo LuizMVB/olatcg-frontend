@@ -20,10 +20,6 @@ const OlatcgImageCard = ({
 
     const navigateTo = useNavigate();
 
-    const goTo = () => {
-        navigateTo(href);
-    }
-
     return <>
         <Paper
             sx={imageCardStyle}
