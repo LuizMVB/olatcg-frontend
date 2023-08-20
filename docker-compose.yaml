@@ -2,10 +2,11 @@ version: '3.8'
 
 services:
   olatcg-frontend:
-    image: luizmiguelvb/olatcg-frontend
-    stdin_open: true
+    build:
+      context: .
+    container_name: olatcg-frontend
     ports:
-      - "3000:3000"
+      - "3030:3000"
     volumes:
       - "./:/usr/src/app:delegated"
       - "/usr/src/app/node_modules/"
