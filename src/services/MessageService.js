@@ -1,4 +1,4 @@
-var data = {
+var data_en = {
 
     /* COMMON */
 
@@ -180,6 +180,187 @@ var data = {
     'error.validation.sequenceFile.format'      : 'Error while validating the content of sequence file. Please, check ' +
                                                     'if they match the choosen type and try again',
     'error.validation.sequenceFile.type'        : 'The sequence file must be of type .txt',
+};
+
+var data = {
+
+    /* COMMON */
+
+    'common.name'               : 'OLATCG',
+    'common.label.clickHere'    : 'Clique aqui',
+    'common.developedBy'        : 'Desenvolvido por Luiz Miguel',
+    'common.label.success'      : 'Operação realizada com sucesso!',
+    'common.label.homology'     : 'Homologia',
+    'common.label.alignment'    : 'Alinhamento',
+    'common.label.details'      : 'Detalhes',
+    'common.label.show.tree'    : 'Mostrar árvore',
+    'common.asterisk'           : '*',
+
+    /* APPBAR */
+
+    'appBar.navItems.home'          : 'Home',
+    'appBar.navItems.tools'         : 'Ferramentas',
+    'appBar.navItems.analysis'      : 'Análises',
+    'appBar.navItems.learn'         : 'Aprender',
+    'appBar.navItems.tutorials'     : 'Tutoriais',
+    
+
+    /* HOME */
+
+    'home.jumbotron.title'          : 'Bem vindo ao ',
+    'home.jumbotron.description'    : 'Uma ferramenta interativa de Bioinformática para estudantes ' + 
+                                        'de todos os lugares do mundo 🌎',
+    
+    'home.about.title'              : 'Um pouco mais sobre...',
+    'home.about.desc'               : 'OLATCG é uma plataforma didática que tem como propósito ' +
+                                        'introduzir a Bioinformática através do uso dos principais modelos ' +
+                                        'computacionais existentes na academia científica. ' +
+                                        'Nós desenvolvemos algumas ferramentas para tornar esta tarefa mais fácil, ' +
+                                        'a partir de uma interface WEB você pode realizar e entender as principais noções ' +
+                                        'envolvidas. Paralelamente a isso, em "sobre" você pode pesquisar sobre ' + 
+                                        'os pontos que você está aprendendo',
+    
+    'home.chooseYourPath'                       : 'Escolha o seu caminho com sabedoria 🧙🏽‍♂️',
+    'home.chooseYourPath.card.learn.title'      : 'Aprender bioinformática',
+    'home.chooseYourPath.card.learn.desc'       : 'Aqui você pode descobrir mais sobre bioinformática. ' +
+                                                    'Quer saber as principais definições e perspectivas das ' +
+                                                    'ferramentas que estão sendo utilizadas? Este caminho é para você. '+ 
+                                                    'Recomendado se você não possui experiência prévia com o campo.',
+    'home.chooseYourPath.card.tools.title'      : 'Utilizar as ferramentas do OLATCG',
+    'home.chooseYourPath.card.tools.desc'       : 'Você quer realizar análises e gerar uma visualização clara do que está fazendo? ' + 
+                                                    'Aqui é o seu lugar. Acesse as ferramentas do OLATCG e comece ' +
+                                                    'a utilizar modelo como: alinhamento de sequências, busca homóloga, ' +
+                                                    'visualização de árvore filogenética e muito mais. Recomendado ' +
+                                                    'se você já possui alguma noção em Bioinformática',
+    'home.chooseYourPath.card.tutorials.title'  : 'Tutoriais',
+    'home.chooseYourPath.card.tutorials.desc'   : 'Aqui você pode ler mais sobre quais funcionalidades são implementadas pelo OLATCG ' +
+                                                    'e descobrir mais sobre como isso funciona. Este caminho é recomendado se ' + 
+                                                    'você quer ter um conhecimento mais aprofundado sobre a plataforma ' + 
+                                                    'e como as análises são realizadas',
+
+    'home.collaboration.title'                  : 'Colaboração',
+    'home.collaboration.description'            : 'OLATCG é uma colaboração entre',
+
+    /** TOOLS */
+    'tools.title'                               : 'Ferramentas',
+    'tools.card.alignment.title'                : 'Alinhamento',
+    'tools.card.alignment.desc'                 : 'Alinhe duas sequências local ou globalmente. Ambos alinhamentos ' +
+                                                    'são mostrados em uma tabela interativa onde você pode comparar ' +
+                                                    'as correspondências entre ele. Este é um caminho importante para ' +
+                                                    'compreender a base das outras ferramentas e como elas funcionam em detalhes.',
+    'tools.card.homologySearch.title'           : 'Busca Homóloga',
+    'tools.card.homologySearch.desc'            : 'Subimeta uma lista de sequências contra um banco de dados filogeneticamente anotado ' +
+                                                    'e receba uma análise comparativa das combinações com maior percentual de identidade.',
+
+    /** LEARN */
+    'learn.contentList.label.title'                             : 'Tópicos',
+    'learn.contentList.listItem.label.whatIsOlatcg'             : 'O que é OLATCG?',
+    'learn.contentList.listItem.label.whatIsBioinformatics'     : 'O que é Bioinformática',
+    'learn.contentList.listItem.label.theHumanGenomeProject'    : 'O Projeto Genoma Humano',
+    'learn.contentList.listItem.label.nowadays'                 : 'Atualmente',
+    'learn.contentList.listItem.label.keyConcepts'              : 'Conceitos-chave',
+
+    /** TUTORIALS */
+    'tutorials.contentList.label.title'                         : 'Tutoriais',
+    'tutorials.contentList.listItem.label.tutorials'            : 'Como usar o OLATCG',
+
+    /** HOMOLOGY */
+    'homology.input.label.sequence'                     : 'Sequência',
+    'homology.button.label.makeAnalysis'                : 'Fazer análise',
+    'homology.input.label.databaseType'                 : 'Banco de Dados',
+    'homology.followYourResults.label.title'            : 'Veja seus resultados em "Análises"',
+    'homology.followYourResults.label.desc'             : 'Isso pode demorar alguns minutos. Acompanhe o status ' +  
+                                                           'acompanhe o staut em "Análises".',
+    'homology.followYourResults.analysisId'             : 'ID da Análise: {0}',
+
+    /** HOMOLOGY TABLE */
+    'olatcgHomologyTable.label.IdAnalysis'              : 'ID da Análise',
+    'olatcgHomologyTable.label.status'                  : 'Status',
+    'olatcgHomologyTable.label.type'                    : 'Tipo',
+    'olatcgHomologyTable.label.alignmentA'              : 'Alinhamento A',
+    'olatcgHomologyTable.label.alignmentB'              : 'Alinhamento B',
+    'olatcgHomologyTable.label.identityPercentage'      : 'Percentual de Identidade',
+    'olatcgHomologyTable.label.sequenceA'               : 'Sequência A',
+    'olatcgHomologyTable.label.sequenceB'               : 'Sequência B',
+    'olatcgHomologyTable.label.taxonomy'                : 'Taxonomia',
+    'olatcgHomologyTable.label.action'                  : 'Ação',
+
+
+    /** ALIGNMENT */
+    'alignment.input.label.firstSequence'                        : 'Primeira sequência',
+    'alignment.input.label.secondSequence'                       : 'Segunda seuência',
+    'alignment.button.tooltip.text.align'                        : 'Alinhar',
+    'alignment.step0.label'                                      : 'Ajustando configuração',
+    'alignment.step1.label'                                      : 'Escolha suas sequências',
+    'alignment.step2.label'                                      : 'Veja seus resultados e "Análises"',
+    'alignment.input.label.openPenalty'                          : 'Penalidade de abertura',
+    'alignment.input.label.extensionPenalty'                     : 'Penalidade de extensão',
+    'alignment.input.label.sequenceType'                         : 'Tipo de sequência',
+    'alignment.input.label.alignmentType'                        : 'Tipo de alinhamento',
+    'alignment.followAnalysis.title'                             : 'Acompanhe seus resultados em "Análises"',
+    'alignment.followAnalysis.desc'                              : 'Você pode consultar suas análises a qualquer momento. ' + 
+                                                                    'Lembre-se do seu identificador e consulte a tabela',
+    'alignment.followAnalysis.preview'                           : 'Pré-visualização - ID {0}',
+    'alignment.followAnalysis.button.label.goToAnalysis'         : 'Ir para esta análise',
+    'alignment.followAnalysis.button.label.makeAnotherAnalysis'  : 'Realizar outra análise',
+
+    /** ALIGNMENT TABLE */
+    'olatcgAlignmentTable.label.sequenceA'              : 'Sequência A',
+    'olatcgAlignmentTable.label.sequenceB'              : 'Sequência B',
+    'olatcgAlignmentTable.label.alignmentA'             : 'Alinhamento A',
+    'olatcgAlignmentTable.label.alignmentB'             : 'Alinhamento B',
+    'olatcgAlignmentTable.label.identityPercentage'     : 'Percentual de identidade',
+    'olatcgAlignmentTable.label.status'                 : 'Status',
+    'olatcgAlignmentTable.label.type'                   : 'Tipo',
+
+    /** ALIGNMENT ANALYSIS DETAILS */
+
+    'alignmentAnalsysisDetails.label.sequenceA'         : 'Sequência A',
+    'alignmentAnalsysisDetails.label.sequenceB'         : 'Sequência B',
+    
+
+    /** OLATCG INPUT FILE */
+    'oltcgInputFile.label.upload'                 : 'Clique aqui e atualize seu arquivo',
+
+    /** STEPER */
+    'steper.button.label.next'                      : 'Próximo passo',
+    'steper.button.label.previous'                  : 'Passo anterior',
+
+    /** ALIGNMENT ANALYSIS */
+    'alignmentAnalysis.label.id'                : 'ID',
+    'alignmentAnalysis.label.status'            : 'Status',
+    'alignmentAnalysis.label.action'            : 'Ação',
+
+    /** ENUM VALUES */
+
+    // SequenceTypeEnum
+    'enum.SequenceTypeEnum.DNA'                     : 'DNA',
+    'enum.SequenceTypeEnum.RNA'                     : 'RNA',
+    'enum.SequenceTypeEnum.PROTEIN'                 : 'Proteína',
+
+    // AlignmentTypeEnum
+    'enum.AlignmentTypeEnum.GLOBAL'                 : 'Global',
+    'enum.AlignmentTypeEnum.LOCAL'                  : 'Local',
+
+    // DatabaseTypeEnum
+    'enum.DatabaseTypeEnum.OLATCG'                : 'OLATCG',
+
+    // INFOS
+
+    'info.analysis.isnt.finished'            : 'O processo está em andamento. Tente de novo quando o status ' + 
+                                                    'para está análise for \'FINSHED\'',
+
+    // ERRORS
+
+    'error.general'                             : 'Um erro ocorreu enquando tentávamos estebelecer conexão com o servidor. ' +
+                                                    'Tente novamente mais tarde, por favor.', 
+    'error.valitation.sequences.format'         : 'Um erro ocorreu ao realizar a validação das sequências, ' + 
+                                                    'verifique se elas estão de acordo com o tipo escolhido', 
+    'error.validation.fillingFields'            : 'Não pode haver campos em branco. Verifique se todos os campos estão preenchidos ' + 
+                                                    'e tente de novo.',      
+    'error.validation.sequenceFile.format'      : 'Erro ao tentar realizar a validação do conteúdo do arquivo de sequências. ' +
+                                                    'Por favor verifique se elas estão de acordo com o tipo escolhido e tente novamente',
+    'error.validation.sequenceFile.type'        : 'O arquivo de sequências precisa ser no formato .txt',
 };
 
 function getMessage (key, ...args) {

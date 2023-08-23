@@ -15,7 +15,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={olatcgTheme}>
-        <BrowserRouter>
+        <BrowserRouter basename="/olatcg">
           <App />
         </BrowserRouter>
       </ThemeProvider>
