@@ -19,7 +19,7 @@ const HomologyChooseSequencesStep = ({form, next}) => {
     const [statusSnackbar, setStatusSanckbar] = useState('error');
     const [msgSnackbar, setMsgSnackbar] = useState('');
     const [isLoading, showLoader] = useState(false);
-    const [sequenceIdPairList, setSequenceIdPairList] = useState([{queryId: 1, sequence: ''}]);
+    const [sequenceIdPairList, setSequenceIdPairList] = useState([{queryId: 1, sequence: ''}, {queryId: 2, sequence: ''}]);
     const [sequenceFormList, setSequenceFormList] = useState(<></>);
 
     useEffect(() => updateSequenceFormList(), []);
