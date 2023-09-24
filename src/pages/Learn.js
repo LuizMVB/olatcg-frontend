@@ -7,11 +7,26 @@ const Learn = () => {
     const selectedItem = useSelector(state => state.selectedItemInContentList);
 
     const contentListItems = [
-        { label: getMessage('learn.contentList.listItem.label.whatIsOlatcg')},
-        { label: getMessage('learn.contentList.listItem.label.whatIsBioinformatics')},
-        { label: getMessage('learn.contentList.listItem.label.theHumanGenomeProject')},
-        { label: getMessage('learn.contentList.listItem.label.nowadays')},
-        { label: getMessage('learn.contentList.listItem.label.keyConcepts')}
+        {
+            label: getMessage('learn.contentList.listItem.label.whatIsOlatcg.title'),
+            text: getMessage('learn.contentList.listItem.label.whatIsOlatcg.text')
+        },
+        {
+            label: getMessage('learn.contentList.listItem.label.whatIsBioinformatics.title'),
+            text: getMessage('learn.contentList.listItem.label.whatIsBioinformatics.text')
+        },
+        {
+            label: getMessage('learn.contentList.listItem.label.theHumanGenomeProject.title'),
+            text: getMessage('learn.contentList.listItem.label.theHumanGenomeProject.text')
+        },
+        {
+            label: getMessage('learn.contentList.listItem.label.nowadays.title'),
+            text: getMessage('learn.contentList.listItem.label.nowadays.text')
+        },
+        {
+            label: getMessage('learn.contentList.listItem.label.keyConcepts.title'),
+            text: getMessage('learn.contentList.listItem.label.keyConcepts.text')
+        }
     ]
 
     return <>
@@ -26,7 +41,14 @@ const Learn = () => {
                 {
                     contentListItems.map((item, index) => {
                         if(selectedItem === index){
-                            return <Typography variant="h3" key={index}>{item.label}</Typography>
+                            return (<>
+                                <Typography variant="h3" key={index}>
+                                    {item.label}
+                                </Typography>
+                                <Typography variant="h6">
+                                    {item.text}
+                                </Typography>
+                            </>)
                         }
                         return null;
                     })

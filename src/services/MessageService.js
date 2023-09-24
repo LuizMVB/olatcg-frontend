@@ -71,12 +71,101 @@ var data_en = {
                                                     'regarding the alignment of these sequences',
 
     /** LEARN */
-    'learn.contentList.label.title'                             : 'Topics',
-    'learn.contentList.listItem.label.whatIsOlatcg'             : 'What Is OLATCG?',
-    'learn.contentList.listItem.label.whatIsBioinformatics'     : 'What Is Bioinformatic?',
-    'learn.contentList.listItem.label.theHumanGenomeProject'    : 'The Human Genome Project',
-    'learn.contentList.listItem.label.nowadays'                 : 'Nowadays',
-    'learn.contentList.listItem.label.keyConcepts'              : 'Key Concepts',
+    'learn.contentList.label.title': 'Topics',
+    'learn.contentList.listItem.label.whatIsOlatcg.title': 'What is OLATCG?',
+    'learn.contentList.listItem.label.whatIsOlatcg.text': 'The increase in research in the' +
+                                                            ' field of Science and the advent of new technologies, as well as the consolidation of ' +
+                                                            'the connection between Science, Technology, and Society that occurred in the second ' +
+                                                            'half of the 20th century, led to the development of new computational technologies ' +
+                                                            'that began to be used in various areas of knowledge, contributing to social changes, ' +
+                                                            'both collective and individual. In this context, Bioinformatics emerged in the 1960s, ' +
+                                                            'a term used to refer to the combination of Computing, Technology, and Molecular ' +
+                                                            'Biology (HAGEN, 2000). The field aimed to break barriers in scientific areas by ' +
+                                                            'developing new approaches that provided a new method of analyzing and identifying ' +
+                                                            'biological data (LESK, 2008). OLATCG is a platform created with the intention of ' +
+                                                            'presenting some Bioinformatics tools and introducing simulations in Basic Education, ' +
+                                                            'especially in the teaching of Biology in high school classes.',
+    'learn.contentList.listItem.label.whatIsBioinformatics.title': 'What is Bioinformatics',
+    'learn.contentList.listItem.label.whatIsBioinformatics.text': 'Bioinformatics can be  '+
+                                                            ' understood as an interdisciplinary field that aims to investigate and develop systems '+
+                                                            'that contribute to the understanding of information flow, from genes to molecular '+
+                                                            'structures (Attwood et al., 2019), and its consequent influence on diseases, health, '+
+                                                            'and environmental studies (Perezleo SOLÓRZANO et al., 2003). It is a field that '+
+                                                            'encompasses research, development, and the use of computer tools for the understanding'+
+                                                            ' of biological systems and processes. It is an emerging area that makes use of '+
+                                                            'Information Technology to distribute, organize, and analyze biological information. It'+
+                                                            ' is an attempt to simplify and solve complex biological problems using computational '+
+                                                            'systems and tools (PRATTA, 2018).',
+    'learn.contentList.listItem.label.theHumanGenomeProject.title': 'The Human Genome Project',
+    'learn.contentList.listItem.label.theHumanGenomeProject.text': 'The Human Genome      '+
+                                                            ' Project (HGP) began in 1990 and, due to its magnitude and complexity at the time, took'+
+                                                            ' more than 10 years to complete. It was also one of the major reasons for the advent of'+
+                                                            ' Bioinformatics. The project was initiated with the aim of determining the entire '+
+                                                            'sequence of base pairs in the genome: not only identifying all its genes but also '+
+                                                            'storing the information in a reliable database that would be publicly accessible, and '+
+                                                            'improving the way data analysis was done (FARAH, 2007). The HGP led to a series of '+
+                                                            'projects involving the sequencing of plants, mammals, invertebrates, fungi, bacteria, '+
+                                                            'viruses, and others (VENTER, 2010).',
+    'learn.contentList.listItem.label.nowadays.title': 'Currently',
+    'learn.contentList.listItem.label.nowadays.text': 'Currently, many species have their '+
+                                                            'genomes sequenced, and this number continues to grow. In this regard, the field of '+
+                                                            'Bioinformatics generates and explores a large volume of data, and databases are used '+
+                                                            'to store this data, such as the Nucleotide Sequence Database (EMBL-Bank) in the UK; '+
+                                                            'the DNA Database of Japan (DDBJ), and GenBank of the National Center for Biotechnology'+
+                                                            ' Information (NCBI) (LESK, 2019). GenBank stores information about nucleotide sequences'+
+                                                            ' of approximately 478,000 formally described species (SAYERS et al., 2021). In 1982, '+
+                                                            'when sequence deposition began in its databases, GenBank had 606 nucleotide sequences '+
+                                                            'and 680,338 bases. Today, it has more than 2.1 billion nucleotide sequences deposited.'+
+                                                            ' Recent updates even include new resources for data related to the SARS-CoV-2 virus '+
+                                                            '(SAYERS et al., 2021). As Silva, Notari & Alba (2020, p.14) point out, "Processed '+
+                                                            'biological data generates more biological data; the pace is frenetic." For these data '+
+                                                            'to be studied and contribute to advances in medical, biotechnological, and '+
+                                                            'pharmaceutical research, Bioinformatics is essential. It is a field directly related '+
+                                                            'to the development of techniques that improve the connection between Computer Science '+
+                                                            'and Biomedical areas, leading to new applications of computational methods in '+
+                                                            'biological problems and in silico experiments, providing effective contributions to '+
+                                                            'the study of disease prevention and treatment (CASANELLA SAINT-BLANCARD & RODRIGUEZ '+
+                                                            'JORGE, 2015). Nowadays, there has been a gradual increase in information from '+
+                                                            'scientific discoveries in all three areas, especially in studies related to Genetics, '+
+                                                            'Molecular Biology, and Biotechnology for the general public. Much of this information '+
+                                                            'comes from Molecular Genetics, a field of Genetics and Molecular Biology that studies '+
+                                                            'the structure, organization, and function of genes (FULTON, 2008; PIERCE, 2012). The '+
+                                                            'data generated by Bioinformatics enable detailed information collection about the '+
+                                                            'genetic code of living organisms, and currently, this happens extremely quickly. For '+
+                                                            'example, the time it takes to analyze a sequence containing about twelve thousand base'+
+                                                            ' pairs, which used to take about a year to decode, can now be done in a minute. The '+
+                                                            'possibilities of studying the genetic material of a living cell and its contribution '+
+                                                            'to the understanding of evolutionary processes are fascinating (DE ARAUJO et al., '+
+                                                            '2008). All these possibilities presented in the study of Bioinformatics open the way '+
+                                                            'today for a greater understanding of the population regarding the mechanisms of action'+
+                                                            ' and dissemination of disease-causing pathogens, for example. The popularization of '+
+                                                            'biological data information in school activities, especially in the field of Genetics,'+
+                                                            ' contributes to the population\'s basic knowledge of this area, helping with '+
+                                                            'understanding, from the molecular structure of DNA to the mechanisms involved in the '+
+                                                            'transmission of hereditary traits.',
+    'learn.contentList.listItem.label.keyConcepts.title': 'Key Concepts',
+    'learn.contentList.listItem.label.keyConcepts.text': 'Algorithm: A logical sequence of instructions necessary to perform a task.'+
+                                                        'Alignment: A method of organizing biological sequences or structures to highlight similar and dissimilar regions. These methods are generally associated with functional or evolutionary inferences.'+
+                                                        'Multiple Alignment: Alignment involving more than two sequences or structures.'+
+                                                        'Simple Alignment: Alignment involving only two sequences or structures.'+
+                                                        'Ancestral: An organism or sequence that gave rise to new organism(s) or sequence(s). In some cases, it can be considered primitive.'+
+                                                        'Neighbor Joining: A quantitative phylogenetic inference method based on genetic distance.'+
+                                                        'Systems Biology: An area of bioinformatics that studies complex molecular systems and how molecules interact with each other.'+
+                                                        'BLAST: Basic Local Alignment Search Tool, used to search for sequences in databases based on their similarity.'+
+                                                        'Clade: A group formed by a common ancestor and all its descendants, a single branch on a phylogenetic tree.'+
+                                                        'Sister Groups: Clades that share a common ancestor.'+
+                                                        'Homology: A qualitative term denoting a common ancestry of a particular sequence.'+
+                                                        'HSP (High-Scoring Segment Pairs): High-scoring segment pairs, regions of similarity between sequences identified by BLAST.'+
+                                                        'Identity: Percentage of similar characters between two sequences (excluding gaps).'+
+                                                        'Indels: Identifies insertions and deletions of characters during the evolutionary process.'+
+                                                        'Gaps: Regions identified by hyphens that represent the insertion/deletion of characters during the evolutionary process.'+
+                                                        'Matches: Regions with identical characters between different sequences.'+
+                                                        'Mismatches: Regions with non-identical characters between different sequences.'+
+                                                        'Systematics: The study of the diversification of living forms and their relationships over time.'+
+                                                        'Taxonomy: A study that seeks to group organisms based on their characteristics and name the groups obtained, classifying them on some scale.'+
+                                                        'Taxon: A group (of any hierarchical level) proposed by taxonomy.'+
+                                                        'Translation: (In silico) translation of an mRNA sequence into its possible corresponding protein sequence.',
+    
 
     /** TUTORIALS */
     'tutorials.contentList.label.title'                         : 'Tutorials',
@@ -254,11 +343,70 @@ var data = {
 
     /** LEARN */
     'learn.contentList.label.title'                             : 'Tópicos',
-    'learn.contentList.listItem.label.whatIsOlatcg'             : 'O que é OLATCG?',
-    'learn.contentList.listItem.label.whatIsBioinformatics'     : 'O que é Bioinformática',
-    'learn.contentList.listItem.label.theHumanGenomeProject'    : 'O Projeto Genoma Humano',
-    'learn.contentList.listItem.label.nowadays'                 : 'Atualmente',
-    'learn.contentList.listItem.label.keyConcepts'              : 'Conceitos-chave',
+    'learn.contentList.listItem.label.whatIsOlatcg.title'             : 'O que é OLATCG?',
+    'learn.contentList.listItem.label.whatIsOlatcg.text'              : 'O aumento no número de pesquisas no desenvolvimento da' +
+                                                                        ' área das Ciências e o advento de novas tecnologias, ' + 
+                                                                        'assim como a consolidação da conexão existente entre ' + 
+                                                                        'Ciência Tecnologia e Sociedade ocorridos na segunda metade ' + 
+                                                                        'do século XX, aludiu ao aprimoramento de novas tecnologias ' + 
+                                                                        'computacionais que começavam a ser usadas em diversas áreas ' + 
+                                                                        'de conhecimento, contribuindo para mudanças sociais, tanto ' + 
+                                                                        'no que tange ao coletivo como ao individual. Nesse contexto ' + 
+                                                                        'desponta, na década de 1960, a Bioinformática, termo utilizado ' + 
+                                                                        'para se referir à combinação entre Computação, Tecnologia e Biologia ' + 
+                                                                        'Molecular (HAGEN, 2000). O campo tinha como objetivo romper ' + 
+                                                                        'barreiras nas áreas científicas mediante o desenvolvimento de ' + 
+                                                                        'novas abordagens que proporcionassem um novo método de realizar ' + 
+                                                                        'análises e identificar dados biológicos (LESK, 2008)\n'+
+                                                                        'O OLATCG é uma plataforma criada com o intuito de apresentar ' + 
+                                                                        'algumas ferramentas de Bioinformática e introduzir simulações ' + 
+                                                                        'na educação Básica, principalmente no ensino de Biologia em ' + 
+                                                                        'turmas de ensino médio.',
+    'learn.contentList.listItem.label.whatIsBioinformatics.title'     : 'O que é Bioinformática',
+    'learn.contentList.listItem.label.whatIsBioinformatics.text'      : 'A Bioinformática pode ser entendida como uma área de saber ' + 
+                                                                        'interdisciplinar que visa investigar e desenvolver sistemas ' + 
+                                                                        'que colaborem com a compreensão do fluxo de informações, ' + 
+                                                                        'desde os genes até estruturas moleculares (Attwood et. al, ' + 
+                                                                        '2019), e sua consequente influência nas enfermidades, saúde ' + 
+                                                                        'e estudos ambientais (Perezleo SOLÓRZANO et al., 2003). É ' + 
+                                                                        'uma área que engloba pesquisa, desenvolvimento e utilização ' + 
+                                                                        'de ferramentas de computador para o conhecimento de sistemas ' + 
+                                                                        'e processos biológicos, além de ser uma área emergente, pois ' + 
+                                                                        'faz uso da Tecnologia da Informação para distribuir, organizar ' + 
+                                                                        'e analisar informações biológicas. É uma tentativa de simplificar ' + 
+                                                                        'e resolver problemas biológicos complexos que lança mão de ' + 
+                                                                        'sistemas e ferramentas de computação (PRATTA, 2018).',
+    'learn.contentList.listItem.label.theHumanGenomeProject.title'    : 'O Projeto Genoma Humano',
+    'learn.contentList.listItem.label.theHumanGenomeProject.text'     : 'O Projeto Genoma Humano (PGH) teve início em 1990 e, devido a sua magnitude e complexidade à época, durou mais de 10 anos para sua conclusão, sendo também um dos grandes motivos para o advento da Bioinformática. O projeto foi iniciado com a finalidade de determinar toda a sequência de bases do genoma: não só fazer a identificação de todos os seus genes como também armazenar as informações em um banco de dados confiável e que possibilitasse acesso ao público, além de aprimorar a forma como essa análise de dados era feita (FARAH, 2007). O PGH deu início a uma série de projetos que envolviam o sequenciamento de plantas, mamíferos, invertebrados, fungos, bactérias, vírus, entre outros (VENTER, 2010).',
+    'learn.contentList.listItem.label.nowadays.title'                 : 'Atualmente',
+    'learn.contentList.listItem.label.nowadays.text'                  : 'Atualmente, muitas espécies já possuem seus genomas sequenciados, e este número continua a crescer. Nesse sentido, a área da Bioinformática produz e explora um grande volume de dados, e para que esses dados sejam armazenados, utilizam-se bancos de dados, como por exemplo: Nucleotide Sequence Database (EMBL-Bank) no Reino Unido; o Banco de Dados de DNA do Japão (DDBJ), e GenBank do Centro Nacional de Informações sobre Biotecnologia (NCBI) (LESK, 2019).'+
+                                                                        'O GenBank armazena informação sobre sequências nucleotídicas de aproximadamente 478.000 espécies formalmente descritas (SAYERS et al, 2021). Em 1982, quando se iniciou o depósito de sequências em suas bases, o GenBank possuía 606 sequências nucleotídicas e 680.338 bases. Hoje já conta com mais de 2,1 bilhões de sequências de nucleotídeos depositadas. Atualizações recentes abarcam inclusive novos recursos para dados relacionados ao vírus SARS-COV2 (SAYERS et al, 2021).'+
+                                                                        'Como apontam Silva, Notari & Alba (2020, p.14) “Dados biológicos processados geram mais dados biológicos, o ritmo é frenético” e para que esses dados sejam estudados e proporcionem os avanços nas pesquisas médicas, biotecnológicas e farmacêuticas, a Bioinformática se faz presente. Sua demarcação acontece como um campo de saber diretamente relacionado ao desenvolvimento de técnicas que aprimorem a relação das Ciências da computação com as áreas Biomédicas; daí o surgimento de novas aplicações de métodos computacionais em problemas biológicos e em experimentações in sílico, contribuições efetivas para o estudo da prevenção e tratamento de doenças (CASANELLA SAINT-BLANCARD &  RODRIGUEZ JORGE, 2015).'+
+                                                                        'Nos dias atuais tem ocorrido um gradativo aumento de informações oriundas de descobertas científicas do meio acadêmico nas três áreas, em especial para estudos relacionados a Genética, Biologia Molecular e Biotecnologia para o público em geral. Muito se deve a investimentos recorrentes em divulgação científica e aos meios de comunicação de massa. Muitas dessas informações advêm da Genética Molecular, um campo da Genética e da Biologia Molecular que estuda a estrutura, organização e função dos genes (FULTON, 2008; PIERCE, 2012).'+
+                                                                        'Os dados gerados pela Bioinformática possibilitam a coleta detalhada de informações sobre o código genético dos seres vivos, sendo que, atualmente, isto se dá de maneira extremamente rápida. Se compararmos, por exemplo, o tempo para a análise de uma sequência contendo cerca de doze mil bases, o que demorava cerca de um ano para ser decodificado, hoje se dá em um minuto. Tornam-se fascinante as possibilidades de estudo do material genético de uma célula viva e sua consequente ajuda na interpretação, inclusive, dos processos evolutivos (DE ARAUJO et al, 2008).'+
+                                                                        'Todas essas possibilidades apresentadas no estudo da Bioinformática abrem caminho hoje para um maior entendimento da população com relação aos mecanismos de ação e disseminação de patógenos causadores de doenças, por exemplo. A popularização dessas informações relativas a dados Biológicos nas atividades escolares, principalmente na área da Genética, contribui para que a população tenha um conhecimento básico desta área, auxiliando a compreensão, desde a estrutura molecular do DNA até os mecanismos envolvidos na transmissão das características hereditárias.',
+    'learn.contentList.listItem.label.keyConcepts.title'              : 'Conceitos-chave',
+    'learn.contentList.listItem.label.keyConcepts.text'               : 'Algoritmo: sequência lógica de instruções necessárias para executar uma tarefa.'+
+                                                                        'Alinhamento: método de organização de sequências ou estruturas biológicas para evidenciar regiões similares e dissimilares. Estes métodos estão geralmente atrelados a inferências funcionais ou evolutivas.'+
+                                                                        'Alinhamento Múltiplo: alinhamento que envolve mais de duas sequências ou estruturas.'+
+                                                                        'Alinhamento Simples: alinhamento que envolve apenas duas sequências ou estruturas.'+
+                                                                        'Ancestral: organismo ou sequência que originou novo(s) organismo(s) ou sequência(s). Em alguns casos pode ser considerado o mesmo que primitivo.'+
+                                                                        'Aproximação dos vizinhos: neighbor joining (NJ), método de inferência filogenética quantitativo baseado em distância genética.'+
+                                                                        'Biologia de sistemas: área da bioinformática que estuda sistemas moleculares complexos e como as moléculas interagem entre si.'+
+                                                                        'BLAST: Basic Local Alignment Search Tool (Ferramenta de Busca por Alinhamento Local Básico), empregado para buscar sequências em bancos de dados com base em sua similaridade.'+
+                                                                        'Clado: grupo formado por um ancestral e todos seus descendentes, um ramo único em uma árvore filogenética.'+
+                                                                        'Grupos irmãos: clados que dividem um ancestral comum.'+
+                                                                        'Homologia: é um termo essencialmente qualitativo que denota uma ancestralidade comum de determinada sequência.'+
+                                                                        'HSP: pares de segmentos de alta pontuação (high-scoring segment pairs), zonas de similaridade entre sequências identificadas pelo BLAST.'+
+                                                                        'Identidade: Porcentagem de caracteres similares entre duas sequências (excluindo-se as lacunas).'+
+                                                                        'Indels: identifica inserções e deleções de caracteres ao longo do processo evolutivo.'+
+                                                                        'Lacunas (ou gaps): regiões identificadas por hifens que representam a inserção/deleção de caracteres ao longo do processo evolutivo.'+
+                                                                        'Matches: regiões que apresentam caracteres idênticos entre diferentes sequências.'+
+                                                                        'Mismatches: regiões que apresentam caracteres não idênticos entre diferentes sequências.'+
+                                                                        'Sistemática: estudo da diversificação das formas vivas e suas relações ao longo do tempo.'+
+                                                                        'Taxonomia: estudo que busca agrupar os organismos com base em suas características e nomear os grupos obtidos, classificandoos em alguma escala.'+
+                                                                        'Taxon: grupo (de qualquer nível hierárquico) proposto pela taxonomia.'+
+                                                                        'Tradução: tradução (in silico) de uma sequência de mRNA em sua possível sequência proteica correspondente.',
 
     /** TUTORIALS */
     'tutorials.contentList.label.title'                         : 'Tutoriais',
