@@ -9,45 +9,48 @@ const Learn = () => {
     const contentListItems = [
         {
             label: getMessage('learn.contentList.listItem.label.whatIsOlatcg.title'),
-            text: getMessage('learn.contentList.listItem.label.whatIsOlatcg.text')
+            text: getMessage('learn.contentList.listItem.label.whatIsOlatcg.text').split("\n")
         },
         {
             label: getMessage('learn.contentList.listItem.label.whatIsBioinformatics.title'),
-            text: getMessage('learn.contentList.listItem.label.whatIsBioinformatics.text')
+            text: getMessage('learn.contentList.listItem.label.whatIsBioinformatics.text').split("\n")
         },
         {
             label: getMessage('learn.contentList.listItem.label.theHumanGenomeProject.title'),
-            text: getMessage('learn.contentList.listItem.label.theHumanGenomeProject.text')
+            text: getMessage('learn.contentList.listItem.label.theHumanGenomeProject.text').split("\n")
         },
         {
             label: getMessage('learn.contentList.listItem.label.nowadays.title'),
-            text: getMessage('learn.contentList.listItem.label.nowadays.text')
+            text: getMessage('learn.contentList.listItem.label.nowadays.text').split("\n")
         },
         {
             label: getMessage('learn.contentList.listItem.label.keyConcepts.title'),
-            text: getMessage('learn.contentList.listItem.label.keyConcepts.text')
+            text: getMessage('learn.contentList.listItem.label.keyConcepts.text').split("\n")
         }
     ]
 
     return <>
-        <Grid sx={{height: '85vh'}} container spacing={0}>
-            <Grid item xs={3} sx={{backgroundColor: 'secondary.light', pb: 4}}>
+        <Grid sx={{ height: '85vh' }} container spacing={0}>
+            <Grid item xs={3} sx={{ backgroundColor: 'secondary.light', pb: 4 }}>
                 <OlatcgContentList
-                    title={getMessage('learn.contentList.label.title')} 
+                    title={getMessage('learn.contentList.label.title')}
                     items={contentListItems}
                 />
             </Grid>
-            <Grid item xs={9} sx={{pl: 4, pt: 4}}>
+            <Grid item xs={9} sx={{ pl: 4, pt: 4 }}>
                 {
                     contentListItems.map((item, index) => {
-                        if(selectedItem === index){
+                        if (selectedItem === index) {
                             return (<>
                                 <Typography variant="h3" key={index}>
                                     {item.label}
                                 </Typography>
-                                <Typography variant="h6">
-                                    {item.text}
-                                </Typography>
+                                {
+                                    item.text.map((p, i) => (
+                                        <Typography variant="h6" key={i}>
+                                            {p}
+                                        </Typography>))
+                                }
                             </>)
                         }
                         return null;
