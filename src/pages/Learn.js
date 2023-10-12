@@ -9,25 +9,34 @@ const Learn = () => {
     const contentListItems = [
         {
             label: getMessage('learn.contentList.listItem.label.whatIsOlatcg.title'),
-            text: getMessage('learn.contentList.listItem.label.whatIsOlatcg.text').split("\n")
+            text: getMessage('learn.contentList.listItem.label.whatIsOlatcg.text')
         },
         {
             label: getMessage('learn.contentList.listItem.label.whatIsBioinformatics.title'),
-            text: getMessage('learn.contentList.listItem.label.whatIsBioinformatics.text').split("\n")
+            text: getMessage('learn.contentList.listItem.label.whatIsBioinformatics.text')
         },
         {
             label: getMessage('learn.contentList.listItem.label.theHumanGenomeProject.title'),
-            text: getMessage('learn.contentList.listItem.label.theHumanGenomeProject.text').split("\n")
+            text: getMessage('learn.contentList.listItem.label.theHumanGenomeProject.text')
         },
         {
             label: getMessage('learn.contentList.listItem.label.nowadays.title'),
-            text: getMessage('learn.contentList.listItem.label.nowadays.text').split("\n")
+            text: getMessage('learn.contentList.listItem.label.nowadays.text')
         },
         {
             label: getMessage('learn.contentList.listItem.label.keyConcepts.title'),
-            text: getMessage('learn.contentList.listItem.label.keyConcepts.text').split("\n")
+            text: getMessage('learn.contentList.listItem.label.keyConcepts.text')
         }
     ]
+
+    
+    const splitTextIntoParagraphs = (text) => {
+        return text.split('\n').map((paragraph, index) => (
+            <Typography variant="h6" key={index} paragraph>
+                {paragraph}
+            </Typography>
+        ));
+    };
 
     return <>
         <Grid sx={{ height: '85vh' }} container spacing={0}>
@@ -45,12 +54,7 @@ const Learn = () => {
                                 <Typography variant="h3" key={index}>
                                     {item.label}
                                 </Typography>
-                                {
-                                    item.text.map((p, i) => (
-                                        <Typography variant="h6" key={i}>
-                                            {p}
-                                        </Typography>))
-                                }
+                                {splitTextIntoParagraphs(item.text)}
                             </>)
                         }
                         return null;
