@@ -74,10 +74,10 @@ const tablemaker = (response)=> {
             id: 'taxonomy',
             label: getMessage('olatcgHomologyTable.label.taxonomy' )
         },
-        {
-            id: 'action',
-            label: getMessage('olatcgHomologyTable.label.action')
-        }
+        // {
+        //     id: 'action',
+        //     label: getMessage('olatcgHomologyTable.label.action')
+        // }
     ]);
 
     setRows(response.alignments.map((homoAnalysis, index) => {
@@ -85,7 +85,7 @@ const tablemaker = (response)=> {
             code: index + homoAnalysis.taxonomy.id,
             alignmentA: <AlertDialogSlide base = {homoAnalysis.alignmentA}/>,
             alignmentB: <AlertDialogSlide base = {homoAnalysis.alignmentB}/>,
-            identityPercentage: homoAnalysis.identityPercentage,
+            identityPercentage: (homoAnalysis.identityPercentage * 100).toString() + '%',
             sequenceA: <AlertDialogSlide base = {homoAnalysis.sequenceA}/>,
             sequenceB: <AlertDialogSlide base = {homoAnalysis.sequenceB}/>,
             taxonomy: homoAnalysis.taxonomy.name,

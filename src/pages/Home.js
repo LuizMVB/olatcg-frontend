@@ -124,8 +124,8 @@ const Home = () => {
                     {getMessage('home.collaboration.description')}
                 </Typography>
                 <Box sx={{'& img': { px: 6 }}}>
-                    <img src={UfzLogo} alt="UFZ's logo" height={200} width={300}></img>
-                    <img src={CefetLogo} alt="CEFET's logo" height={270} width={300}></img>
+                    {/* <img src={UfzLogo} alt="UFZ's logo" height={200} width={300}></img> */}
+                    <img src={CefetLogo} alt="CEFET's logo" height={200} width={300}></img>
                     <img src={FioCruzLogo} alt="FioCruz's logo" height={200} width={300}></img>                    
                 </Box>
             </Box>

@@ -288,7 +288,7 @@ var data = {
                                                     'as correspondências entre ele. Este é um caminho importante para ' +
                                                     'compreender a base das outras ferramentas e como elas funcionam em detalhes.',
     'tools.card.homologySearch.title'           : 'Busca Homóloga',
-    'tools.card.homologySearch.desc'            : 'Subimeta uma lista de sequências contra um banco de dados filogeneticamente anotado ' +
+    'tools.card.homologySearch.desc'            : 'Submeta uma lista de sequências contra um banco de dados filogeneticamente anotado ' +
                                                     'e receba uma análise comparativa das combinações com maior percentual de identidade.',
 
     /** LEARN */
@@ -358,7 +358,7 @@ var data = {
 
     /** ALIGNMENT */
     'alignment.input.label.firstSequence'                        : 'Primeira sequência',
-    'alignment.input.label.secondSequence'                       : 'Segunda seuência',
+    'alignment.input.label.secondSequence'                       : 'Segunda sequência',
     'alignment.button.tooltip.text.align'                        : 'Alinhar',
     'alignment.step0.label'                                      : 'Ajustando configuração',
     'alignment.step1.label'                                      : 'Escolha suas sequências',
