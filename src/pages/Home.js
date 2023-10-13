@@ -40,7 +40,7 @@ const Home = () => {
             imageAlt: 'tools path',
             title: getMessage('home.chooseYourPath.card.tools.title'),
             description: getMessage('home.chooseYourPath.card.tools.desc'),
-            href: '/tools'
+            href: '/tool'
         },
         // {
         //     imageSrc: Settings,
