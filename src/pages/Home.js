@@ -42,13 +42,13 @@ const Home = () => {
             description: getMessage('home.chooseYourPath.card.tools.desc'),
             href: '/tools'
         },
-        {
-            imageSrc: Settings,
-            imageAlt: 'tutorials path',
-            title: getMessage('home.chooseYourPath.card.tutorials.title'),
-            description: getMessage('home.chooseYourPath.card.tutorials.desc'),
-            href: '/tutorials'
-        }
+        // {
+        //     imageSrc: Settings,
+        //     imageAlt: 'tutorials path',
+        //     title: getMessage('home.chooseYourPath.card.tutorials.title'),
+        //     description: getMessage('home.chooseYourPath.card.tutorials.desc'),
+        //     href: '/tutorials'
+        // }
     ];
 
     return <>
