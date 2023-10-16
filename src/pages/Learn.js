@@ -39,14 +39,14 @@ const Learn = () => {
     };
 
     return <>
-        <Grid sx={{ height: '85vh' }} container spacing={0}>
+        <Grid sx={{ height: '100vh' }} container spacing={0}>
             <Grid item xs={3} sx={{ backgroundColor: 'secondary.light', pb: 4 }}>
                 <OlatcgContentList
                     title={getMessage('learn.contentList.label.title')}
                     items={contentListItems}
                 />
             </Grid>
-            <Grid item xs={9} sx={{ pl: 4, pt: 4 }}>
+            <Grid item xs={9} sx={{ p: 4 }}>
                 {
                     contentListItems.map((item, index) => {
                         if (selectedItem === index) {
