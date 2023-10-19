@@ -104,7 +104,7 @@ const tablemaker = (response)=> {
     return <>
         <Box sx={{ px: 4 }}>
             <Paper sx={{ width: '96%', overflow: 'hidden', bgcolor: 'primary.light', margin: 'auto'}}>
-                <TableContainer sx={{ maxHeight: 550 }}>
+                <TableContainer sx={{ maxHeight: '65vh' }}>
                     <Table stickyHeader aria-label="sticky table" >
                         <TableHead>
                             <TableRow>
