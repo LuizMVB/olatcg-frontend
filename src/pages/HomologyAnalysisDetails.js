@@ -1,4 +1,4 @@
-import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { Box, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { blue, green, orange, red } from "@mui/material/colors";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
@@ -102,41 +102,43 @@ const tablemaker = (response)=> {
     
     
     return <>
-        <Paper sx={{ width: '96%', overflow: 'hidden', bgcolor: 'primary.light', margin: 'auto'}}>
-            <TableContainer sx={{ maxHeight: 550 }}>
-                <Table stickyHeader aria-label="sticky table" >
-                    <TableHead>
-                        <TableRow>
-                            {columns.map((column) => (
-                                <TableCell
-                                    key={column.id}
-                                    align={'center'}
-                                    sx={{bgcolor: 'primary.main'}}
-                                >
-                                {column.label}
-                                </TableCell>
-                            ))}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rows.map((row) => {
-                            return (
-                            <TableRow hover role="checkbox" key={row.code}>
-                                {columns.map((column) => {
-                                const value = row[column.id];
-                                return (
-                                    <TableCell key={column.id} align="center" sx={{wordWrap: 'break-word', maxWidth: 150, verticalAlign: 'top'}}>
-                                        {value}
+        <Box sx={{ px: 4 }}>
+            <Paper sx={{ width: '96%', overflow: 'hidden', bgcolor: 'primary.light', margin: 'auto'}}>
+                <TableContainer sx={{ maxHeight: 550 }}>
+                    <Table stickyHeader aria-label="sticky table" >
+                        <TableHead>
+                            <TableRow>
+                                {columns.map((column) => (
+                                    <TableCell
+                                        key={column.id}
+                                        align={'center'}
+                                        sx={{bgcolor: 'primary.main'}}
+                                    >
+                                    {column.label}
                                     </TableCell>
-                                );
-                                })}
+                                ))}
                             </TableRow>
-                            );
-                        })}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </Paper>
+                        </TableHead>
+                        <TableBody>
+                            {rows.map((row) => {
+                                return (
+                                <TableRow hover role="checkbox" key={row.code}>
+                                    {columns.map((column) => {
+                                    const value = row[column.id];
+                                    return (
+                                        <TableCell key={column.id} align="center" sx={{wordWrap: 'break-word', maxWidth: 150, verticalAlign: 'top'}}>
+                                            {value}
+                                        </TableCell>
+                                    );
+                                    })}
+                                </TableRow>
+                                );
+                            })}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Paper>
+        </Box>
         <OlatcgSnackbar
             isOpened={isSnackbarOpened} 
             onClose={() => openSnackbar(false)}
