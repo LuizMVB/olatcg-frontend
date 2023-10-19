@@ -6,7 +6,7 @@ services:
       context: .
     container_name: olatcg-frontend
     ports:
-      - "3030:3000"
+      - "3000:3000"
     volumes:
       - "./:/usr/src/app:delegated"
       - "/usr/src/app/node_modules/"

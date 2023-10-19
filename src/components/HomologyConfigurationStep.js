@@ -69,7 +69,7 @@ const HomologyConfigurationStep = ({next}) => {
                                         key={index} 
                                         value={type.value}
                                     >
-                                        {type.label}
+                                        {type.value}
                                     </MenuItem>
                                 )
                             }

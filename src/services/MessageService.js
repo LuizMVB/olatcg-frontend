@@ -340,7 +340,7 @@ var data = {
     'homology.input.label.databaseType'                 : 'Banco de Dados',
     'homology.followYourResults.label.title'            : 'Veja seus resultados em "Análises"',
     'homology.followYourResults.label.desc'             : 'Isso pode demorar alguns minutos. Acompanhe o status ' +  
-                                                           'acompanhe o staut em "Análises".',
+                                                           'em "Análises".',
     'homology.followYourResults.analysisId'             : 'ID da Análise: {0}',
 
     /** HOMOLOGY TABLE */

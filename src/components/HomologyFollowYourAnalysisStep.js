@@ -34,7 +34,7 @@ const HomologyFollowYourAnalysisStep = ({idAnalysis}) => {
                     </Button>
                     <Button 
                         variant="contained" 
-                        onClick={() => navigateTo("/tool/homology")}
+                        onClick={() => navigateTo("/tool")}
                     >
                         {getMessage('alignment.followAnalysis.button.label.makeAnotherAnalysis')}
                     </Button>
