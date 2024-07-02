@@ -9,7 +9,9 @@ const useRequest = () => {
         onFailure
     ) => {
         let headers = {
-            "Content-Type": "application/json"        
+            "Content-Type": "application/json",
+            "X-Forwarded-Proto": "https",
+            "X-Forwarded-Port": 443,
         };
 
         let config = {

@@ -74,10 +74,10 @@ const tablemaker = (response)=> {
             id: 'taxonomy',
             label: getMessage('olatcgHomologyTable.label.taxonomy' )
         },
-        // {
-        //     id: 'action',
-        //     label: getMessage('olatcgHomologyTable.label.action')
-        // }
+        {
+            id: 'action',
+            label: getMessage('olatcgHomologyTable.label.action')
+        }
     ]);
 
     setRows(response.alignments.map((homoAnalysis, index) => {
@@ -89,9 +89,9 @@ const tablemaker = (response)=> {
             sequenceA: <AlertDialogSlide base = {homoAnalysis.sequenceA}/>,
             sequenceB: <AlertDialogSlide base = {homoAnalysis.sequenceB}/>,
             taxonomy: homoAnalysis.taxonomy.name,
-            action: <Button onClick={() => navigateTo("/analysis/homology/tree/" + homoAnalysis.id)}>
+            action: <Button onClick={() => navigateTo("/analysis/homology/tree/" + idAnalysis)}>
                         {getMessage('common.label.show.tree')}
-                    </Button>
+                    </Button> 
         };
 
     }));
