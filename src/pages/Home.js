@@ -131,7 +131,7 @@ const Home = () => {
                     '& img': { p:4, m:2, objectFit: 'contain'}}}>
 
                     {/* <img src={UfzLogo} alt="UFZ's logo" height={200} width={300}></img> */}
-                    <img src={CefetLogo} alt="CEFET's logo" title="Centro Federal de Educação Tecnológica (CEFET)" height={240} width={240}></img>
+                    <img src={CefetLogo} alt="CEFET's logo" title="Centro Federal de Educa&ccedil;&atilde;o Tecnol&oacute;gica (CEFET)" height={240} width={240}></img>
                     {/*<img src={FioCruzLogo} alt="FioCruz's logo" height={200} /*width={300}></img>*/}
                     <img src={FunOsorioLogo} alt="Funda&ccedil;&atilde;o Osorio's logo" title="Funda&ccedil;&atilde;o Osorio" height={240} width={240}></img>
                  
