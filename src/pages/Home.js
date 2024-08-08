@@ -10,6 +10,7 @@ import OlatcgImageCard from "../components/OlatcgImageCard";
 import CefetLogo from '../static/images/cefet_logo.png';
 import FioCruzLogo from '../static/images/fiocruz_logo.png';
 import UfzLogo from '../static/images/ufz_logo.png';
+import FunOsorioLogo from '../static/images/logofo2024.png';
 
 const Home = () => {
     const jumbotronStyle = {
@@ -123,10 +124,17 @@ const Home = () => {
                 <Typography variant="h5">
                     {getMessage('home.collaboration.description')}
                 </Typography>
-                <Box sx={{'& img': { px: 6 }}}>
+                <Box sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    '& img': { p:4, m:2, objectFit: 'contain'}}}>
+
                     {/* <img src={UfzLogo} alt="UFZ's logo" height={200} width={300}></img> */}
-                    <img src={CefetLogo} alt="CEFET's logo" height={200} width={300}></img>
-                    <img src={FioCruzLogo} alt="FioCruz's logo" height={200} width={300}></img>                    
+                    <img src={CefetLogo} alt="CEFET's logo" title="Centro Federal de Educação Tecnológica (CEFET)" height={240} width={240}></img>
+                    {/*<img src={FioCruzLogo} alt="FioCruz's logo" height={200} /*width={300}></img>*/}
+                    <img src={FunOsorioLogo} alt="Funda&ccedil;&atilde;o Osorio's logo" title="Funda&ccedil;&atilde;o Osorio" height={240} width={240}></img>
+                 
                 </Box>
             </Box>
             <br/>
