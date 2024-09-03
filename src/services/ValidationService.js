@@ -8,7 +8,7 @@ const validateIfFieldsAreFilled = (form) => {
                 validateIfFieldsAreFilled(element);
             });
         }
-        if(!form[key]){
+        if(!form[key] && form[key] != 0){
             throw getMessage('error.validation.fillingFields');
         }
     })
@@ -34,7 +34,9 @@ const validateSequences = (sequenceType, ...sequences) => {
 
 const validateAlignmentForm = (alignmentForm) => {
     validateIfFieldsAreFilled(alignmentForm);
-    validateSequences(alignmentForm.sequenceType, alignmentForm.sequenceA, alignmentForm.sequenceB);
+    validateSequences(alignmentForm.biological_sequences[0].type, alignmentForm.biological_sequences[0].bases);
+    validateSequences(alignmentForm.biological_sequences[1].type, alignmentForm.biological_sequences[1].bases);
+
 }
 
 const validateSequenceContent = content => {
