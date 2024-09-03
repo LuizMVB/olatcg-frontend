@@ -147,13 +147,22 @@ var data_en = {
     'alignment.input.label.firstSequence'                        : 'First Sequence',
     'alignment.input.label.secondSequence'                       : 'Second Sequence',
     'alignment.button.tooltip.text.align'                        : 'Align',
-    'alignment.step0.label'                                      : 'Adjusting configurations',
-    'alignment.step1.label'                                      : 'Choose your sequences',
-    'alignment.step2.label'                                      : 'Follow your results in Analysis section',
+    'alignment.step0.label'                                      : 'Register your analysis',
+    'alignment.step1.label'                                      : 'Adjusting configurations',
+    'alignment.step2.label'                                      : 'Choose your sequences',
+    'alignment.step3.label'                                      : 'Follow your results in Analysis section',
     'alignment.input.label.openPenalty'                          : 'Open Penalty',
     'alignment.input.label.extensionPenalty'                     : 'Extension Penalty',
     'alignment.input.label.sequenceType'                         : 'Sequence Type',
     'alignment.input.label.alignmentType'                        : 'Alignment Type',
+    'alignment.input.label.matchScore'                           : 'Match Score' ,
+    'alignment.input.label.mismatchScore'                        : 'Mismatch Score' ,
+    'alignment.input.label.analysisTitle'                        : 'Analysis Title' ,
+    'alignment.input.label.analysisDescription'                  : 'Analysis Description' ,
+    'alignment.input.label.analysisType'                         : 'Analysis Type' ,
+    'alignment.input.label.originCountry'                        : 'Origin Country' ,
+    'alignment.input.placeholder.analysisTitle'                  : 'Your analysis title...' ,
+    'alignment.input.placeholder.analysisDescription'            : 'Your analysis description...' ,
     'alignment.followAnalysis.title'                             : 'Follow Your Results in Analysis Section',
     'alignment.followAnalysis.desc'                              : 'You can use the analysis section to consult your ' + 
                                                                     'results at any time. Record your identifier and ' + 
@@ -197,11 +206,18 @@ var data_en = {
     'enum.SequenceTypeEnum.PROTEIN'                 : 'Protein',
 
     // AlignmentTypeEnum
-    'enum.AlignmentTypeEnum.GLOBAL'                 : 'Global',
-    'enum.AlignmentTypeEnum.LOCAL'                  : 'Local',
+    'enum.AlignmentTypeEnum.global'                 : 'Global',
+    'enum.AlignmentTypeEnum.local'                  : 'Local',
 
     // DatabaseTypeEnum
     'enum.DatabaseTypeEnum.OLATCG'                : 'OLATCG',
+    
+    // OriginCountryEnum
+    'enum.OriginCountryEnum.brazil'                : 'Brazil',
+
+    // AnalysisDefinitionStep analysisType
+    'analysisType.ALIGNMENT'                      : 'Alignment',
+    'analysisType.HOMOLOGY'                       : 'Homology',
 
     // INFOS
 
@@ -360,13 +376,24 @@ var data = {
     'alignment.input.label.firstSequence'                        : 'Primeira sequência',
     'alignment.input.label.secondSequence'                       : 'Segunda sequência',
     'alignment.button.tooltip.text.align'                        : 'Alinhar',
-    'alignment.step0.label'                                      : 'Ajustando configuração',
-    'alignment.step1.label'                                      : 'Escolha suas sequências',
-    'alignment.step2.label'                                      : 'Veja seus resultados e "Análises"',
+    'alignment.step0.label'                                      : 'Registrando análise', 
+    'alignment.step1.label'                                      : 'Ajustando configuração',
+    'alignment.step2.label'                                      : 'Escolha suas sequências',
+    'alignment.step3.label'                                      : 'Veja seus resultados e "Análises"',
     'alignment.input.label.openPenalty'                          : 'Penalidade de abertura',
     'alignment.input.label.extensionPenalty'                     : 'Penalidade de extensão',
     'alignment.input.label.sequenceType'                         : 'Tipo de sequência',
     'alignment.input.label.alignmentType'                        : 'Tipo de alinhamento',
+
+    'alignment.input.label.matchScore'                           : 'Pontuação de Compatibilidade' ,
+    'alignment.input.label.mismatchScore'                        : 'Pontuação de Incompatibilidade' ,
+    'alignment.input.label.analysisTitle'                        : 'Título da Análise' ,
+    'alignment.input.label.analysisDescription'                  : 'Descrição da Análise' ,
+    'alignment.input.label.analysisType'                         : 'Tipo de Análise' ,
+    'alignment.input.label.originCountry'                        : 'País de Origem' ,
+    'alignment.input.placeholder.analysisTitle'                  : 'Sua análise...' ,
+    'alignment.input.placeholder.analysisDescription'            : 'A descrição de sua análise...' ,
+
     'alignment.followAnalysis.title'                             : 'Acompanhe seus resultados em "Análises"',
     'alignment.followAnalysis.desc'                              : 'Você pode consultar suas análises a qualquer momento. ' + 
                                                                     'Lembre-se do seu identificador e consulte a tabela',
@@ -409,11 +436,18 @@ var data = {
     'enum.SequenceTypeEnum.PROTEIN'                 : 'Proteína',
 
     // AlignmentTypeEnum
-    'enum.AlignmentTypeEnum.GLOBAL'                 : 'Global',
-    'enum.AlignmentTypeEnum.LOCAL'                  : 'Local',
+    'enum.AlignmentTypeEnum.global'                 : 'Global',
+    'enum.AlignmentTypeEnum.local'                  : 'Local',
 
     // DatabaseTypeEnum
     'enum.DatabaseTypeEnum.OLATCG'                : 'OLATCG',
+
+    // OriginCountryEnum
+    'enum.OriginCountryEnum.brazil'                : 'Brasil',
+
+    // AnalysisDefinitionStep analysisType
+    'analysisType.ALIGNMENT'                      : 'Alinhamento',
+    'analysisType.HOMOLOGY'                       : 'Homologia',
 
     // INFOS
 
