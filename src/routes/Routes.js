@@ -14,20 +14,28 @@ const API_ROUTES = {
     ALIGN: API_BASE_PATH + '/analysis/{analysis_id}/alignment/',
 
     //TAXONOMY SEARCH
-    //GET_TAXONOMY_FROM_SEQUENCES: API_BASE_PATH + '/homology/{value}/type',
-    //GET_TAXONOMY_SEARCH_RECORDS: API_BASE_PATH + '/taxonomySearch/search',
-    //GET_TAXONOMY_FROM_SEQUENCE: API_BASE_PATH + '/taxonomySearch/getTaxonomyNameFromSequenceId',
-    //BLASTN: API_BASE_PATH + '/taxonomySearch/getTaxonomyFromSequence',
+    //OLD
+    GET_TAXONOMY_FROM_SEQUENCES: API_BASE_PATH + '/homology/{value}/type',
+    GET_TAXONOMY_SEARCH_RECORDS: API_BASE_PATH + '/taxonomySearch/search',
+    GET_TAXONOMY_FROM_SEQUENCE: API_BASE_PATH + '/taxonomySearch/getTaxonomyNameFromSequenceId',
+    BLASTN: API_BASE_PATH + '/taxonomySearch/getTaxonomyFromSequence',
+
+    //NEW
     HOMOLOGY: API_BASE_PATH + '/analysis/{id}/homology/',
 
     //PHYLOGENY
-    //GET_NEWICK_FROM_TAXONOMY: API_BASE_PATH + '/phylogeny/getNewickFromTaxonomy',
+    //OLD
+    GET_NEWICK_FROM_TAXONOMY: API_BASE_PATH + '/phylogeny/getNewickFromTaxonomy',
+    
+    //NEW
     PHYLOGENETIC_TREE: API_BASE_PATH + '/analysis/{id}/tree/',
 
     //ANALYSIS
     GET_ANALYSIS: API_BASE_PATH + '/analysis/',
     GET_ANALYSIS_BY_ID: API_BASE_PATH + '/analysis/{id}/',
-    //SEARCH_ANALYSIS_BY_TYPE: API_BASE_PATH + '/analysis/{value}/type',
+
+    //OLD
+    SEARCH_ANALYSIS_BY_TYPE: API_BASE_PATH + '/analysis/{value}/type',
 };
 
 
