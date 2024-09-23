@@ -157,6 +157,14 @@ var data_en = {
     'alignment.input.label.alignmentType'                        : 'Alignment Type',
     'alignment.input.label.matchScore'                           : 'Match Score' ,
     'alignment.input.label.mismatchScore'                        : 'Mismatch Score' ,
+
+    'alignment.tooltip.matchScore'                               : 'Value added to the final score for each matching pair of bases between the sequences. Normally a positive value.',
+    'alignment.tooltip.mismatchScore'                            : 'Value added to the final score for each mismatch between the pairs of bases of the input sequences. Normally a negative value.',
+    'alignment.tooltip.openPenalty'                              : 'Value added to the final score when opening a gap. Normally a negative value.',
+    'alignment.tooltip.extensionPenalty'                         : 'Value added to the final score when extending an existing gap. Normally a negative value.',
+    'alignment.tooltip.sequenceType'                             : 'The type of sequence to be aligned. Currently, only DNA is available.',
+    'alignment.tooltip.alignmentType'                            : 'Choose between global and local alignment. Global alignment tries to find a optimal alignment between the whole length of the input sequences. While local alignment tries to find a subsequence from the input sequences with the highest alignment score.',
+
     'alignment.input.label.analysisTitle'                        : 'Analysis Title' ,
     'alignment.input.label.analysisDescription'                  : 'Analysis Description' ,
     'alignment.input.label.analysisType'                         : 'Analysis Type' ,
@@ -179,11 +187,26 @@ var data_en = {
     'olatcgAlignmentTable.label.identityPercentage'     : 'Identity Percentage',
     'olatcgAlignmentTable.label.status'                 : 'Status',
     'olatcgAlignmentTable.label.type'                   : 'Type',
+    'olatcgAlignmentTable.label.target'                 : 'Target Alignment',
+    'olatcgAlignmentTable.label.query'                  : 'Query Alignment',
+    'olatcgAlignmentTable.label.aligned'                : 'Aligned',
 
     /** ALIGNMENT ANALYSIS DETAILS */
 
-    'alignmentAnalsysisDetails.label.sequenceA'         : 'Sequence A',
-    'alignmentAnalsysisDetails.label.sequenceB'         : 'Sequence B',
+    'alignmentAnalysisDetails.label.sequenceA'         : 'Sequence A',
+    'alignmentAnalysisDetails.label.sequenceB'         : 'Sequence B',
+    'alignmentAnalysisDetails.label.alignments'        : 'Alignments',
+    'alignmentAnalysisDetails.label.details'           : 'Details',
+    'alignmentAnalysisDetails.label.description'       : 'Description',
+    'alignmentAnalysisDetails.label.score'             : 'Score',
+    'alignmentAnalysisDetails.label.alignmentType'     : 'Alignment Type',
+    'alignmentAnalysisDetails.label.mode'              : 'Mode',
+    'alignmentAnalysisDetails.label.openGapScore'      : 'Open Gap Score',
+    'alignmentAnalysisDetails.label.extendGapScore'    : 'Extend Gap Score',
+    'alignmentAnalysisDetails.label.matchScore'        : 'Match Score',
+    'alignmentAnalysisDetails.label.mismatchScore'     : 'Mismatch Score',
+    'alignmentAnalysisDetails.label.type'              : 'Analysis Type',
+    'alignmentAnalysisDetails.label.status'            : 'Status',
     
 
     /** OLATCG INPUT FILE */
@@ -197,6 +220,9 @@ var data_en = {
     'alignmentAnalysis.label.id'                : 'ID',
     'alignmentAnalysis.label.status'            : 'Status',
     'alignmentAnalysis.label.action'            : 'Action',
+
+    'alignmentAnalysis.label.title'             : 'Title',
+    'alignmentAnalysis.label.type'              : 'Type',
 
     /** ENUM VALUES */
 
@@ -394,6 +420,13 @@ var data = {
     'alignment.input.placeholder.analysisTitle'                  : 'Sua análise...' ,
     'alignment.input.placeholder.analysisDescription'            : 'A descrição de sua análise...' ,
 
+    'alignment.tooltip.matchScore'                               : 'Valor adicionado na pontuação final para cada par de bases compatível entre as sequências. Comumente um valor positivo.',
+    'alignment.tooltip.mismatchScore'                            : 'Valor adicionado na pontuação final para cada par de bases incompatível entre as sequências. Comumente um valor negativo.',
+    'alignment.tooltip.openPenalty'                              : 'Valor adicionado na pontuação final ao abrir uma lacuna em uma das sequências. Comumente um valor negativo.',
+    'alignment.tooltip.extensionPenalty'                         : 'Valor adicionado na pontuação final ao estender uma lacuna já aberta. Comumente um valor negativo.',
+    'alignment.tooltip.sequenceType'                             : 'O tipo de sequência a ser alinhada. Atualmente a ferramenta trabalha apenas com DNA.',
+    'alignment.tooltip.alignmentType'                            : 'Escolha entre os tipos global e local. O Alinhamento global envolve encontrar o melhor alinhamento através de todo o comprimento das sequências, enquanto o alinhamento local visa encontrar a subsequência entre as sequências que possua a maior pontuação.',
+
     'alignment.followAnalysis.title'                             : 'Acompanhe seus resultados em "Análises"',
     'alignment.followAnalysis.desc'                              : 'Você pode consultar suas análises a qualquer momento. ' + 
                                                                     'Lembre-se do seu identificador e consulte a tabela',
@@ -409,11 +442,26 @@ var data = {
     'olatcgAlignmentTable.label.identityPercentage'     : 'Percentual de identidade',
     'olatcgAlignmentTable.label.status'                 : 'Status',
     'olatcgAlignmentTable.label.type'                   : 'Tipo',
+    'olatcgAlignmentTable.label.target'                 : 'Alinhamento Alvo',
+    'olatcgAlignmentTable.label.query'                  : 'Alinhamento de Consulta',
+    'olatcgAlignmentTable.label.aligned'                : 'Alinhado',
 
     /** ALIGNMENT ANALYSIS DETAILS */
 
-    'alignmentAnalsysisDetails.label.sequenceA'         : 'Sequência A',
-    'alignmentAnalsysisDetails.label.sequenceB'         : 'Sequência B',
+    'alignmentAnalysisDetails.label.sequenceA'         : 'Sequência A',
+    'alignmentAnalysisDetails.label.sequenceB'         : 'Sequência B',
+    'alignmentAnalysisDetails.label.alignments'        : 'Alinhamentos',
+    'alignmentAnalysisDetails.label.details'           : 'Detalhes',
+    'alignmentAnalysisDetails.label.description'       : 'Descrição',
+    'alignmentAnalysisDetails.label.score'             : 'Pontuação',
+    'alignmentAnalysisDetails.label.alignmentType'     : 'Tipo de Alinhamento',
+    'alignmentAnalysisDetails.label.mode'              : 'Modo',
+    'alignmentAnalysisDetails.label.openGapScore'      : 'Penalidade de Abertura',
+    'alignmentAnalysisDetails.label.extendGapScore'    : 'Penalidade de Extensão',
+    'alignmentAnalysisDetails.label.matchScore'        : 'Pontuação de Compatibilidade',
+    'alignmentAnalysisDetails.label.mismatchScore'     : 'Pontuação de Incompatibilidade',
+    'alignmentAnalysisDetails.label.type'              : 'Tipo de Análise',
+    'alignmentAnalysisDetails.label.status'            : 'Status',
     
 
     /** OLATCG INPUT FILE */
@@ -427,6 +475,8 @@ var data = {
     'alignmentAnalysis.label.id'                : 'ID',
     'alignmentAnalysis.label.status'            : 'Status',
     'alignmentAnalysis.label.action'            : 'Ação',
+    'alignmentAnalysis.label.title'             : 'Título',
+    'alignmentAnalysis.label.type'              : 'Tipo',
 
     /** ENUM VALUES */
 
