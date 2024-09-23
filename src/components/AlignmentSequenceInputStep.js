@@ -11,7 +11,7 @@ import { OlatcgStep } from "./OlatcgStep";
 import OriginCountryEnum from "../infra/enums/OriginCountryEnum";
 
 class AlignmentRequest{
-    constructor({form, countryA, countryB}) {
+    constructor({form, sequenceA, sequenceB, countryA, countryB}) {
         this.mode = form.alignmentType;
         this.match_score = form.matchScore;
         this.mismatch_score = form.mismatchScore;
@@ -21,13 +21,13 @@ class AlignmentRequest{
         this.biological_sequences = [
             {
                 type: form.sequenceType,
-                bases: form.sequenceA,
+                bases: sequenceA,
                 country_origin: countryA,
                 external_database_id: 'NC_0001',
             },
             {
                 type: form.sequenceType,
-                bases: form.sequenceB,
+                bases: sequenceB,
                 country_origin: countryB,
                 external_database_id: 'NC_0002',
             },
@@ -54,17 +54,13 @@ const AlignmentSequenceInputStep = ({form, next}) => {
     const [statusSnackbar, setStatusSanckbar] = useState('error');
     const [msgSnackbar, setMsgSnackbar] = useState('');
     const [isLoading, showLoader] = useState(false);
+    const [sequenceA, setSequenceA] = useState('');
+    const [sequenceB, setSequenceB] = useState('');
     const [originCountryA, setOriginCountryA] = useState('brazil');
     const [originCountryB, setOriginCountryB] = useState('brazil');
 
 
     const originCountrys = OriginCountryEnum.getSelectStructure();
-
-
-    useEffect(() => {
-        form.sequenceA = '';
-        form.sequenceB = '';
-    }, [form])
 
     const showSnackbar = (msg, status) => {
         setMsgSnackbar(msg);
@@ -109,7 +105,7 @@ const AlignmentSequenceInputStep = ({form, next}) => {
     const makeAlignmentRequest = async (form, countryA, countryB) => {
         
         const analysisRequest = new AnalysisRequest({form});
-        const alignmentRequest = new AlignmentRequest({form, countryA, countryB});
+        const alignmentRequest = new AlignmentRequest({form, sequenceA, sequenceB, countryA, countryB});
         
         try{
             ValidationService.validateAlignmentForm(alignmentRequest);
@@ -152,10 +148,10 @@ const AlignmentSequenceInputStep = ({form, next}) => {
                             </Typography>
                             <TextField
                                 name="sequenceA"
-                                defaultValue={form.sequenceA ? form.sequenceA : ''}
+                                defaultValue={sequenceA ? sequenceA : ''}
                                 rows={10}
                                 sx={{width: '100%'}}
-                                onChange={(event) => form.sequenceA = event.target.value}
+                                onChange={(event) => setSequenceA(event.target.value)}
                                 multiline
                                 focused
                             />
@@ -191,7 +187,7 @@ const AlignmentSequenceInputStep = ({form, next}) => {
                             onMouseMove={() => setColorAlignIcon("primary")}
                             onMouseLeave={() => setColorAlignIcon()}
                         >
-                            <IconButton onClick={() => makeAlignmentRequest(form, originCountryA, originCountryB)}>
+                            <IconButton disabled={sequenceA.length < 1 || sequenceB.length < 1} onClick={() => makeAlignmentRequest(form, originCountryA, originCountryB)}>
                                 <Science sx={{ fontSize: 50 }} color={colorAlignIcon} />
                             </IconButton>
                         </Tooltip>
@@ -210,10 +206,10 @@ const AlignmentSequenceInputStep = ({form, next}) => {
                             </Typography>
                             <TextField
                                 name="sequenceB"
-                                defaultValue={form.sequenceB ? form.sequenceB : ''}
+                                defaultValue={sequenceB ? sequenceB : ''}
                                 rows={10}
                                 sx={{width: '100%'}}
-                                onChange={(event) => form.sequenceB = event.target.value}
+                                onChange={(event) => setSequenceB(event.target.value)}
                                 multiline
                                 focused
                             />

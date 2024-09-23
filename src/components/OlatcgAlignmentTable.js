@@ -15,26 +15,28 @@ const OlatcgAlignmentTable = ({idAnalysis}) => {
     const [statusSnackbar, setStatusSanckbar] = useState('error');
     const [msgSnackbar, setMsgSnackbar] = useState('');
 
-    const onSuccessGetAlignmentByIdAnalysis = (data) => {
+    const formatAlignedResponse = (algnStr) => {
+        if (algnStr == '[]'){
+            return ' --- ';
+        }
+
+        let formatStr = algnStr.replace(/\n\n/, '/').replace(/\n/g,',').replace(/[\[\]]+/g, '').replace(/\s{2,}/g, " ").replace(/(\d+)\s/g, "$1 - ");
+
+        return formatStr
+    }
+
+    const onSuccessGetAlignmentByIdAnalysis = (obj) => {
         setColumns([{
-            id: 'sequenceA',
-            label: getMessage('olatcgAlignmentTable.label.sequenceA')
+            id: 'alignmentTarget',
+            label: getMessage('olatcgAlignmentTable.label.target')
         },
         {
-            id: 'sequenceB',
-            label: getMessage('olatcgAlignmentTable.label.sequenceB')
+            id: 'alignmentQuery',
+            label: getMessage('olatcgAlignmentTable.label.query')
         },
         {
-            id: 'alignmentA',
-            label: getMessage('olatcgAlignmentTable.label.alignmentA')
-        },
-        {
-            id: 'alignmentB',
-            label: getMessage('olatcgAlignmentTable.label.alignmentB')
-        },
-        {
-            id: 'identityPercentage',
-            label: getMessage('olatcgAlignmentTable.label.identityPercentage')
+            id: 'aligned',
+            label: getMessage('olatcgAlignmentTable.label.aligned')
         },
         {
             id: 'status',
@@ -45,16 +47,14 @@ const OlatcgAlignmentTable = ({idAnalysis}) => {
             label: getMessage('olatcgAlignmentTable.label.type')
         }]);
 
-        setRows(data.alignments.map((aln, index) => {
+        setRows(obj.data.biopython_bio_align_pairwise_aligner_input.outputs.map((aln, index) => {
             return { 
                 code: index,
-                sequenceA: aln.sequenceA,
-                sequenceB: aln.sequenceB,
-                alignmentA: aln.alignmentA,
-                alignmentB: aln.alignmentB,
-                identityPercentage: aln.identityPercentage,
-                status: data.status,
-                type: data.type,
+                alignmentTarget: aln.target.toUpperCase(),
+                alignmentQuery: aln.query.toUpperCase(),
+                aligned: formatAlignedResponse(aln.aligned),
+                status: obj.data.status,
+                type: obj.data.type,
             };
         }));
         showLoader(false);
@@ -86,10 +86,10 @@ const OlatcgAlignmentTable = ({idAnalysis}) => {
 
     return <>
         <Paper sx={{ width: '100%', overflow: 'hidden', bgcolor: 'primary.light' }}>
-            <Typography component="div" variant="h4" sx={{backgroundColor: 'primary.dark', p: 1}}>
+            <Typography component="div" variant="h4" sx={{backgroundColor: 'primary.dark', p: 1, color: 'primary.contrastText'}}>
                 {getMessage('alignment.followAnalysis.preview', idAnalysis)}
             </Typography>
-            <TableContainer sx={{ maxHeight: 240 }}>
+            <TableContainer sx={{ maxHeight: 360 }}>
                 <Table stickyHeader aria-label="sticky table" >
                     <TableHead>
                         <TableRow>
@@ -97,7 +97,7 @@ const OlatcgAlignmentTable = ({idAnalysis}) => {
                                 <TableCell
                                     key={column.id}
                                     align={'center'}
-                                    sx={{bgcolor: 'primary.main'}}
+                                    sx={{bgcolor: 'primary.main', color: 'primary.contrastText'}}
                                 >
                                 {column.label}
                                 </TableCell>

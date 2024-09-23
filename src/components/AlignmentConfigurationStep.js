@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { OlatcgStep } from "./OlatcgStep";
-import { Box, MenuItem, Select, Slider, Stack, TextField, Typography } from "@mui/material";
+import { Box, MenuItem, Select, Slider, Stack, Typography, Tooltip } from "@mui/material";
+import HelpIcon from '@mui/icons-material/Help';
 import { getMessage } from "../services/MessageService";
 import SequenceTypeEnum from "../infra/enums/SequenceTypeEnum";
 import AlignmentTypeEnum from "../infra/enums/AlignmentTypeEnum";
@@ -38,6 +39,15 @@ const AlignmentConfigurationStep = ({form, next}) => {
                     <Box sx={{width: 400, textAlign: 'center'}}>
                         <Typography gutterBottom>
                             {getMessage('alignment.input.label.openPenalty')}
+                            <Tooltip title={getMessage('alignment.tooltip.openPenalty')} placement='top' arrow>
+                                <HelpIcon sx={{verticalAlign: 'middle',
+                                    fontSize:'inherit',
+                                    marginLeft: 0.6,
+                                    color:'primary.main',
+                                    '&:hover':{
+                                        color: 'primary.light'
+                                    }}}/>
+                            </Tooltip>
                         </Typography>
                         <Slider 
                             id="openPenalty"
@@ -54,6 +64,15 @@ const AlignmentConfigurationStep = ({form, next}) => {
                     <Box sx={{width: 400, textAlign: 'center'}}>
                         <Typography gutterBottom>
                             {getMessage('alignment.input.label.extensionPenalty')}
+                            <Tooltip title={getMessage('alignment.tooltip.extensionPenalty')} placement='top' arrow>
+                                <HelpIcon sx={{verticalAlign: 'middle',
+                                    fontSize:'inherit',
+                                    marginLeft: 0.6,
+                                    color:'primary.main',
+                                    '&:hover':{
+                                        color: 'primary.light'
+                                    }}}/>
+                            </Tooltip>
                         </Typography>
                         <Slider 
                             id="extensionPenalty"
@@ -70,6 +89,15 @@ const AlignmentConfigurationStep = ({form, next}) => {
                     <Box sx={{width: 200, textAlign: 'center'}}>
                         <Typography gutterBottom>
                             {getMessage('alignment.input.label.sequenceType')}
+                            <Tooltip title={getMessage('alignment.tooltip.sequenceType')} placement='top' arrow>
+                                <HelpIcon sx={{verticalAlign: 'middle',
+                                    fontSize:'inherit',
+                                    marginLeft: 0.6,
+                                    color:'primary.main',
+                                    '&:hover':{
+                                        color: 'primary.light'
+                                    }}}/>
+                            </Tooltip>
                         </Typography>
                         <Select
                             id="sequenceType"
@@ -98,6 +126,15 @@ const AlignmentConfigurationStep = ({form, next}) => {
                         <Box sx={{width: 400, textAlign: 'center'}}>
                             <Typography gutterBottom>
                                 {getMessage('alignment.input.label.matchScore')}
+                                <Tooltip title={getMessage('alignment.tooltip.matchScore')} placement='top' arrow>
+                                    <HelpIcon sx={{verticalAlign: 'middle',
+                                        fontSize:'inherit',
+                                        marginLeft: 0.6,
+                                        color:'primary.main',
+                                        '&:hover':{
+                                            color: 'primary.light'
+                                        }}}/>
+                                </Tooltip>
                             </Typography>
                             <Slider 
                                 id="matchScore"
@@ -114,6 +151,15 @@ const AlignmentConfigurationStep = ({form, next}) => {
                         <Box sx={{width: 400, textAlign: 'center'}}>
                             <Typography gutterBottom>
                                 {getMessage('alignment.input.label.mismatchScore')}
+                                <Tooltip title={getMessage('alignment.tooltip.mismatchScore')} placement='top' arrow>
+                                    <HelpIcon sx={{verticalAlign: 'middle',
+                                        fontSize:'inherit',
+                                        marginLeft: 0.6,
+                                        color:'primary.main',
+                                        '&:hover':{
+                                            color: 'primary.light'
+                                        }}}/>
+                                </Tooltip>
                             </Typography>
                             <Slider 
                                 id="mismatchScore"
@@ -130,6 +176,15 @@ const AlignmentConfigurationStep = ({form, next}) => {
                         <Box sx={{width: 200, textAlign: 'center'}}>
                             <Typography gutterBottom>
                                 {getMessage('alignment.input.label.alignmentType')}
+                                <Tooltip title={getMessage('alignment.tooltip.alignmentType')} placement='top' arrow>
+                                    <HelpIcon sx={{verticalAlign: 'middle',
+                                        fontSize:'inherit',
+                                        marginLeft: 0.6,
+                                        color:'primary.main',
+                                        '&:hover':{
+                                            color: 'primary.light'
+                                        }}}/>
+                                </Tooltip>
                             </Typography>
                             <Select
                                 id="PI_ROUTES.ALIGN"

@@ -10,12 +10,14 @@ const AnalysisDefinitionStep = ({anType, next}) => {
     const [analysisType, setAnalysisType] = useState(anType);
 
     const maxTitleLength = 20;
+    const maxDescriptionLength = 100;
     
     return <>
     {!isNextShowed ? 
         <OlatcgStep 
             onClickNext={() => showNext(true)}
             stepPosition={0}
+            isNextDisabled={analysisTitle.length < 1 || analysisDescription.length < 1 || analysisTitle.length > maxTitleLength || analysisDescription.length > maxDescriptionLength}
         >
             <Stack
                 direction="column"
@@ -51,6 +53,13 @@ const AnalysisDefinitionStep = ({anType, next}) => {
                         name='analysisDescription'
                         id='analysisDescription'
                         placeholder={getMessage('alignment.input.placeholder.analysisDescription')}
+                        error={analysisDescription.length>maxDescriptionLength}
+                        InputProps={{
+                            endAdornment:(<InputAdornment position='end'
+                                sx={{marginTop: 'auto'}}>
+                                {maxDescriptionLength - analysisDescription.length}
+                                </InputAdornment>)
+                        }}
                         sx={{width: '100%'}}
                         onChange={(event) => setAnalysisDescription(event.target.value)}
                         rows={6}
