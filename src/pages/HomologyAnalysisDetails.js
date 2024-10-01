@@ -1,4 +1,4 @@
-import { Box, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { Box, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { blue, green, orange, red } from "@mui/material/colors";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
@@ -8,7 +8,6 @@ import useRequest from "../hooks/useRequest";
 import { API_ROUTES } from "../routes/Routes";
 import { getMessage } from "../services/MessageService";
 import AlertDialogSlide from "../components/OlatcgAlertDialogSlide";
-
 
 const HomologyAnalysisDetails = () => {
     let { idAnalysis } = useParams();
@@ -20,6 +19,8 @@ const HomologyAnalysisDetails = () => {
     const [statusSnackbar, setStatusSanckbar] = useState('error');
     const [msgSnackbar, setMsgSnackbar] = useState('');
     const navigateTo = useNavigate();
+    const [analysisName, setAnalysisName] = useState('');
+
 
     const showSnackbar = (msg, status) => {
         setMsgSnackbar(msg);
@@ -40,70 +41,84 @@ const HomologyAnalysisDetails = () => {
         makeRequest(url, 'GET', null, tablemaker, onFailureGetAlignmentByIdAnalysis);
     }, [idAnalysis]);
 
-const tablemaker = (response)=> {
-    if(response.status == 'STARTED') {
+const tablemaker = (obj)=> {
+    /*if(obj.data.status == 'STARTED') {
         showSnackbar(getMessage('info.analysis.isnt.finished'), 'info');
         setTimeout(() => {
             showLoader(false);
             navigateTo('/analysis/homology');
         }, 5000);
         return;
+    }*/
+
+    setAnalysisName(obj.data.title);
+
+    if(obj.data.taxonomies){
+        setColumns([
+            {
+                id: 'title',
+                label: getMessage( 'alignmentAnalysis.label.title' )
+            },
+            {
+                id: 'alignmentA',
+                label: getMessage('olatcgHomologyTable.label.alignmentA' )
+            },
+            {
+                id: 'alignmentB',
+                label: getMessage('olatcgHomologyTable.label.alignmentB')
+            },
+            {
+                id: 'taxonomy',
+                label: getMessage('olatcgHomologyTable.label.taxonomy' )
+            },
+            // {
+            //     id: 'action',
+            //     label: getMessage('olatcgHomologyTable.label.action')
+            // }
+        ]);
+
+        setRows(obj.data.taxonomies.map((homoAnalysis, index) => {
+            return {
+                code: index + homoAnalysis.id,
+                title: homoAnalysis.title,
+                alignmentA: <AlertDialogSlide base = {homoAnalysis.alignments[0].biological_sequences[0].bases}/>,
+                alignmentB: <AlertDialogSlide base = {homoAnalysis.alignments[0].biological_sequences[1].bases}/>,
+                taxonomy: homoAnalysis.lineage/*,
+                action: <Button onClick={() => navigateTo("/analysis/homology/tree/" + homoAnalysis.id)}>
+                            {getMessage('common.label.show.tree')}
+                        </Button>*/
+            };
+
+        }));
+    } else {
+        setColumns([
+            {
+                id: 'type',
+                label: getMessage('alignmentAnalysis.label.type')
+            },
+            {
+                id: 'status',
+                label: getMessage('alignmentAnalysis.label.status')
+            },
+        ]);
+
+        setRows([{
+            type: obj.data.type,
+            status: obj.data.status           
+        }]);
+
     }
-
-    setColumns([{
-            id: 'alignmentA',
-            label: getMessage('olatcgHomologyTable.label.alignmentA' )
-        },
-        {
-            id: 'alignmentB',
-            label: getMessage('olatcgHomologyTable.label.alignmentB')
-        },
-        {
-            id: 'identityPercentage',
-            label: getMessage('olatcgHomologyTable.label.identityPercentage'  ),
-        },
-        {
-            id: 'sequenceA',
-            label: getMessage('olatcgHomologyTable.label.sequenceA' )
-        },
-        {
-            id: 'sequenceB',
-            label: getMessage('olatcgHomologyTable.label.sequenceB' )
-        },
-        {
-            id: 'taxonomy',
-            label: getMessage('olatcgHomologyTable.label.taxonomy' )
-        },
-        // {
-        //     id: 'action',
-        //     label: getMessage('olatcgHomologyTable.label.action')
-        // }
-    ]);
-
-    setRows(response.alignments.map((homoAnalysis, index) => {
-        return {
-            code: index + homoAnalysis.taxonomy.id,
-            alignmentA: <AlertDialogSlide base = {homoAnalysis.alignmentA}/>,
-            alignmentB: <AlertDialogSlide base = {homoAnalysis.alignmentB}/>,
-            identityPercentage: (homoAnalysis.identityPercentage * 100).toString() + '%',
-            sequenceA: <AlertDialogSlide base = {homoAnalysis.sequenceA}/>,
-            sequenceB: <AlertDialogSlide base = {homoAnalysis.sequenceB}/>,
-            taxonomy: homoAnalysis.taxonomy.name,
-            action: <Button onClick={() => navigateTo("/analysis/homology/tree/" + homoAnalysis.id)}>
-                        {getMessage('common.label.show.tree')}
-                    </Button>
-        };
-
-    }));
 
     showLoader(false);
 
 }
     
-    
     return <>
         <Box sx={{ px: 4 }}>
             <Paper sx={{ width: '96%', overflow: 'hidden', bgcolor: 'primary.light', margin: 'auto'}}>
+                <Typography component="div" variant="h4" sx={{backgroundColor: 'primary.dark', color: 'primary.contrastText', textAlign: 'center'}}>
+                    ID {idAnalysis} - {analysisName}
+                </Typography>
                 <TableContainer sx={{ maxHeight: '65vh' }}>
                     <Table stickyHeader aria-label="sticky table" >
                         <TableHead>
@@ -112,7 +127,9 @@ const tablemaker = (response)=> {
                                     <TableCell
                                         key={column.id}
                                         align={'center'}
-                                        sx={{bgcolor: 'primary.main'}}
+                                        sx={{bgcolor: 'primary.main',
+                                            color: 'primary.contrastText'
+                                        }}
                                     >
                                     {column.label}
                                     </TableCell>
