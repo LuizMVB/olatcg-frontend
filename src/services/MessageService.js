@@ -130,6 +130,9 @@ var data_en = {
                                                            'update status of your analysis in the analysis section.',
     'homology.followYourResults.analysisId'             : 'Analysis ID: {0}',
 
+    'homology.tooltip.database'                         : 'Which database to be used during homology. Currently, only OLATCG is available.',
+    'homology.tooltip.evalue'                           : 'Expect value. It is an exponentially decreasing function which measures the quality of the alignment of sequences. Lower values are better.',
+
     /** HOMOLOGY TABLE */
     'olatcgHomologyTable.label.IdAnalysis'              : 'ID Analysis',
     'olatcgHomologyTable.label.status'                  : 'Status',
@@ -236,7 +239,7 @@ var data_en = {
     'enum.AlignmentTypeEnum.local'                  : 'Local',
 
     // DatabaseTypeEnum
-    'enum.DatabaseTypeEnum.OLATCG'                : 'OLATCG',
+    'enum.DatabaseTypeEnum.default'                : 'OLATCG',
     
     // OriginCountryEnum
     'enum.OriginCountryEnum.brazil'                : 'Brazil',
@@ -384,6 +387,10 @@ var data = {
     'homology.followYourResults.label.desc'             : 'Isso pode demorar alguns minutos. Acompanhe o status ' +  
                                                            'em "Análises".',
     'homology.followYourResults.analysisId'             : 'ID da Análise: {0}',
+    
+    'homology.tooltip.database'                         : 'Qual o banco de dados a ser utilizado durante a homologia. Atualmente, apenas OLATCG está disponível.',
+    'homology.tooltip.evalue'                           : 'Expect value (Valor esperado). Este é uma função exponencialmente decrescente, utilizada para medir a qualidade do alinhamento de sequências. Valores menores são melhores.',
+
 
     /** HOMOLOGY TABLE */
     'olatcgHomologyTable.label.IdAnalysis'              : 'ID da Análise',
@@ -490,7 +497,7 @@ var data = {
     'enum.AlignmentTypeEnum.local'                  : 'Local',
 
     // DatabaseTypeEnum
-    'enum.DatabaseTypeEnum.OLATCG'                : 'OLATCG',
+    'enum.DatabaseTypeEnum.default'                : 'OLATCG',
 
     // OriginCountryEnum
     'enum.OriginCountryEnum.brazil'                : 'Brasil',
