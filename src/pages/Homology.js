@@ -6,13 +6,15 @@ import { Step, StepLabel, Stepper } from "@mui/material";
 import { useSelector } from "react-redux";
 import { selectors } from "../redux/constants/selectors";
 import { HomologyChooseSequencesStep } from "../components/HomologyChooseSequencesStep";
+import { AnalysisDefinitionStep } from "../components/AnalysisDefinitionStep";
 
 const Homology = () => {
 
     const labels = [
         getMessage('alignment.step0.label'), 
         getMessage('alignment.step1.label'), 
-        getMessage('alignment.step2.label')
+        getMessage('alignment.step2.label'),
+        getMessage('alignment.step3.label')
     ];
 
     const stepActualPosition = useSelector(selectors.getStepActualPosition);
@@ -26,9 +28,10 @@ const Homology = () => {
             )}
         </Stepper>
 
-        <HomologyConfigurationStep next={form => 
-            <HomologyChooseSequencesStep form={form} next={idAnalysis => 
-                <HomologyFollowYourAnalysisStep idAnalysis={idAnalysis}/>} />}/>
+        <AnalysisDefinitionStep anType={'HOMOLOGY'} next={form =>
+            <HomologyConfigurationStep form={form} next={form => 
+                <HomologyChooseSequencesStep form={form} next={idAnalysis => 
+                    <HomologyFollowYourAnalysisStep idAnalysis={idAnalysis}/>} />}/>}/>
     </>
 }
 
