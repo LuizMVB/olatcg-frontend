@@ -67,7 +67,7 @@ const HomologyConfigurationStep = ({form, next}) => {
                     <Grid item xs={6}>
                         <Box sx={{width: 320, textAlign: 'center', mr:'auto'}}>
                             <Typography gutterBottom>
-                                {'TEMP: E-Valor'}
+                                {getMessage('homology.input.label.evalue')}
                                 <Tooltip title={getMessage('homology.tooltip.evalue')} placement='top' arrow>
                                     <HelpIcon sx={{verticalAlign: 'middle',
                                         fontSize:'inherit',

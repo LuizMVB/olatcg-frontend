@@ -125,6 +125,7 @@ var data_en = {
     'homology.input.label.sequence'                     : 'Sequence',
     'homology.button.label.makeAnalysis'                : 'Make Analysis',
     'homology.input.label.databaseType'                 : 'Database Type',
+    'homology.input.label.evalue'                       : 'E-Value',
     'homology.followYourResults.label.title'            : 'Follow your result in Analysis Section',
     'homology.followYourResults.label.desc'             : 'This can take a few minutes. Follow the ' +  
                                                            'update status of your analysis in the analysis section.',
@@ -386,6 +387,7 @@ var data = {
     'homology.input.label.sequence'                     : 'Sequência',
     'homology.button.label.makeAnalysis'                : 'Fazer análise',
     'homology.input.label.databaseType'                 : 'Banco de Dados',
+    'homology.input.label.evalue'                       : 'E-Valor',
     'homology.followYourResults.label.title'            : 'Veja seus resultados em "Análises"',
     'homology.followYourResults.label.desc'             : 'Isso pode demorar alguns minutos. Acompanhe o status ' +  
                                                            'em "Análises".',
