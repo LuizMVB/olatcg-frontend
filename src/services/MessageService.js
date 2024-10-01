@@ -132,6 +132,9 @@ var data_en = {
 
     'homology.tooltip.database'                         : 'Which database to be used during homology. Currently, only OLATCG is available.',
     'homology.tooltip.evalue'                           : 'Expect value. It is an exponentially decreasing function which measures the quality of the alignment of sequences. Lower values are better.',
+    'homology.chooseSequencesStep.sequenceNumber'       : 'Sequence No.',
+    'homology.chooseSequencesStep.sequencePlaceholder'  : 'Your sequence...',
+    'homology.chooseSequencesStep.namePlaceholder'      : 'The title of your sequence...',
 
     /** HOMOLOGY TABLE */
     'olatcgHomologyTable.label.IdAnalysis'              : 'ID Analysis',
@@ -390,7 +393,9 @@ var data = {
     
     'homology.tooltip.database'                         : 'Qual o banco de dados a ser utilizado durante a homologia. Atualmente, apenas OLATCG está disponível.',
     'homology.tooltip.evalue'                           : 'Expect value (Valor esperado). Este é uma função exponencialmente decrescente, utilizada para medir a qualidade do alinhamento de sequências. Valores menores são melhores.',
-
+    'homology.chooseSequencesStep.sequenceNumber'       : 'Sequência N°',
+    'homology.chooseSequencesStep.sequencePlaceholder'  : 'Insira aqui sua sequência...',
+    'homology.chooseSequencesStep.namePlaceholder'      : 'Insira o nome de sua sequência...',
 
     /** HOMOLOGY TABLE */
     'olatcgHomologyTable.label.IdAnalysis'              : 'ID da Análise',

@@ -155,7 +155,7 @@ const HomologyChooseSequencesStep = ({form, next}) => {
                 <Grid container spacing={0} sx={{marginTop:2, marginBottom:2}}>
                     <Grid item xs={12}>
                         <Typography variant='body2' sx={{marginLeft:1, color:'primary.main'}}>
-                            {'TEMP: Sequência N°'+(index+1)}
+                            {getMessage('homology.chooseSequencesStep.sequenceNumber') + (index+1)}
                         </Typography>
                     </Grid>
                     <Grid item xs={10}>
@@ -163,7 +163,7 @@ const HomologyChooseSequencesStep = ({form, next}) => {
                             hiddenlabel
                             name={'sequenceTitle' + index}
                             key={index}
-                            placeholder={'TEMP: Nomeie sua sequência...'}
+                            placeholder={getMessage('homology.chooseSequencesStep.namePlaceholder')}
                             fullWidth={true}
                             InputProps={{
                                 style:{
@@ -216,7 +216,7 @@ const HomologyChooseSequencesStep = ({form, next}) => {
                             hiddenlabel
                             name={'sequence' + index}
                             key={index}
-                            placeholder={'TEMP: Insira sua sequência...'}
+                            placeholder={getMessage('homology.chooseSequencesStep.sequencePlaceholder')}
                             fullWidth={true}
                             InputProps={{
                                 style:{
