@@ -38,6 +38,7 @@ const AlignmentAnalysis = () => {
                     {id: 'title', label: getMessage('alignmentAnalysis.label.title')},
                     {id: 'status', label: getMessage('alignmentAnalysis.label.status')},
                     {id: 'type', label: getMessage('alignmentAnalysis.label.type')},
+                    {id: 'description', label: getMessage('alignmentAnalysisDetails.label.description')},
                     {id: 'action', label: getMessage('alignmentAnalysis.label.action')}]);
         setRows(obj.data.map((alnAnalysis, index) => {
             return {
@@ -46,6 +47,7 @@ const AlignmentAnalysis = () => {
                 title: alnAnalysis.title,
                 status: alnAnalysis.status,
                 type: alnAnalysis.type,
+                description: alnAnalysis.description,
                 action: <Button onClick={() => navigateTo("/analysis/alignment/" + alnAnalysis.id)}>
                     {getMessage('common.label.details')}
                 </Button>
@@ -66,17 +68,16 @@ const AlignmentAnalysis = () => {
     const onComponentMount = () => {
         showLoader(true);
 
-        let url = API_ROUTES.ANALYSIS_FROM_EXPERIMENT_ID;
-        url = url.replace('{experiment_id}', 1);
+        let url = API_ROUTES.GET_ANALYSIS_BY_TYPE;
+        url = url.replace('{analysis_type}', 'ALIGNMENT');
 
         makeRequest(url, 'GET', null, onSuccessGetAlignmentAnalysis, onFailureGetAlignmentAnalysis);
     }
 
     const handlePaginationChange = (e, page) => {
         showLoader(true);
-        //setSelectedPage(page);
-        let url = API_ROUTES.ANALYSIS_FROM_EXPERIMENT_ID;
-        url = url.replace('{experiment_id}', 1) + '?page=' + (page) /*+ '&pageSize=15&sort=DESC'*/;
+        let url = API_ROUTES.GET_ANALYSIS_BY_TYPE;
+        url = url.replace('{analysis_type}', 'ALIGNMENT') + '?page=' + (page);
 
         makeRequest(url, 'GET', null, onSuccessGetAlignmentAnalysis, onFailureGetAlignmentAnalysis);
     }
