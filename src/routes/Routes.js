@@ -33,6 +33,7 @@ const API_ROUTES = {
     //ANALYSIS
     GET_ANALYSIS: API_BASE_PATH + '/analysis/',
     GET_ANALYSIS_BY_ID: API_BASE_PATH + '/analysis/{id}/',
+    GET_ANALYSIS_BY_TYPE: API_BASE_PATH + '/analysis/?filter[type]={analysis_type}',
 
     //OLD
     SEARCH_ANALYSIS_BY_TYPE: API_BASE_PATH + '/analysis/{value}/type',
