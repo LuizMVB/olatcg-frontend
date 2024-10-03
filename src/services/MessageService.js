@@ -125,10 +125,17 @@ var data_en = {
     'homology.input.label.sequence'                     : 'Sequence',
     'homology.button.label.makeAnalysis'                : 'Make Analysis',
     'homology.input.label.databaseType'                 : 'Database Type',
+    'homology.input.label.evalue'                       : 'E-Value',
     'homology.followYourResults.label.title'            : 'Follow your result in Analysis Section',
     'homology.followYourResults.label.desc'             : 'This can take a few minutes. Follow the ' +  
                                                            'update status of your analysis in the analysis section.',
     'homology.followYourResults.analysisId'             : 'Analysis ID: {0}',
+
+    'homology.tooltip.database'                         : 'Which database to be used during homology. Currently, only OLATCG is available.',
+    'homology.tooltip.evalue'                           : 'Expect value. It is an exponentially decreasing function which measures the quality of the alignment of sequences. Lower values are better.',
+    'homology.chooseSequencesStep.sequenceNumber'       : 'Sequence No.',
+    'homology.chooseSequencesStep.sequencePlaceholder'  : 'Your sequence...',
+    'homology.chooseSequencesStep.namePlaceholder'      : 'The title of your sequence...',
 
     /** HOMOLOGY TABLE */
     'olatcgHomologyTable.label.IdAnalysis'              : 'ID Analysis',
@@ -142,18 +149,37 @@ var data_en = {
     'olatcgHomologyTable.label.taxonomy'                : 'Taxonomy',
     'olatcgHomologyTable.label.action'                  : 'Action',
 
+    'homologyTable.error'                               : 'An unexpected error has occurred. This analysis is currently unavailable.',
+
 
     /** ALIGNMENT */
     'alignment.input.label.firstSequence'                        : 'First Sequence',
     'alignment.input.label.secondSequence'                       : 'Second Sequence',
     'alignment.button.tooltip.text.align'                        : 'Align',
-    'alignment.step0.label'                                      : 'Adjusting configurations',
-    'alignment.step1.label'                                      : 'Choose your sequences',
-    'alignment.step2.label'                                      : 'Follow your results in Analysis section',
+    'alignment.step0.label'                                      : 'Register your analysis',
+    'alignment.step1.label'                                      : 'Adjusting configurations',
+    'alignment.step2.label'                                      : 'Choose your sequences',
+    'alignment.step3.label'                                      : 'Follow your results in Analysis section',
     'alignment.input.label.openPenalty'                          : 'Open Penalty',
     'alignment.input.label.extensionPenalty'                     : 'Extension Penalty',
     'alignment.input.label.sequenceType'                         : 'Sequence Type',
     'alignment.input.label.alignmentType'                        : 'Alignment Type',
+    'alignment.input.label.matchScore'                           : 'Match Score' ,
+    'alignment.input.label.mismatchScore'                        : 'Mismatch Score' ,
+
+    'alignment.tooltip.matchScore'                               : 'Value added to the final score for each matching pair of bases between the sequences. Normally a positive value.',
+    'alignment.tooltip.mismatchScore'                            : 'Value added to the final score for each mismatch between the pairs of bases of the input sequences. Normally a negative value.',
+    'alignment.tooltip.openPenalty'                              : 'Value added to the final score when opening a gap. Normally a negative value.',
+    'alignment.tooltip.extensionPenalty'                         : 'Value added to the final score when extending an existing gap. Normally a negative value.',
+    'alignment.tooltip.sequenceType'                             : 'The type of sequence to be aligned. Currently, only DNA is available.',
+    'alignment.tooltip.alignmentType'                            : 'Choose between global and local alignment. Global alignment tries to find a optimal alignment between the whole length of the input sequences. While local alignment tries to find a subsequence from the input sequences with the highest alignment score.',
+
+    'alignment.input.label.analysisTitle'                        : 'Analysis Title' ,
+    'alignment.input.label.analysisDescription'                  : 'Analysis Description' ,
+    'alignment.input.label.analysisType'                         : 'Analysis Type' ,
+    'alignment.input.label.originCountry'                        : 'Origin Country' ,
+    'alignment.input.placeholder.analysisTitle'                  : 'Your analysis title...' ,
+    'alignment.input.placeholder.analysisDescription'            : 'Your analysis description...' ,
     'alignment.followAnalysis.title'                             : 'Follow Your Results in Analysis Section',
     'alignment.followAnalysis.desc'                              : 'You can use the analysis section to consult your ' + 
                                                                     'results at any time. Record your identifier and ' + 
@@ -170,11 +196,26 @@ var data_en = {
     'olatcgAlignmentTable.label.identityPercentage'     : 'Identity Percentage',
     'olatcgAlignmentTable.label.status'                 : 'Status',
     'olatcgAlignmentTable.label.type'                   : 'Type',
+    'olatcgAlignmentTable.label.target'                 : 'Target Alignment',
+    'olatcgAlignmentTable.label.query'                  : 'Query Alignment',
+    'olatcgAlignmentTable.label.aligned'                : 'Aligned',
 
     /** ALIGNMENT ANALYSIS DETAILS */
 
-    'alignmentAnalsysisDetails.label.sequenceA'         : 'Sequence A',
-    'alignmentAnalsysisDetails.label.sequenceB'         : 'Sequence B',
+    'alignmentAnalysisDetails.label.sequenceA'         : 'Sequence A',
+    'alignmentAnalysisDetails.label.sequenceB'         : 'Sequence B',
+    'alignmentAnalysisDetails.label.alignments'        : 'Alignments',
+    'alignmentAnalysisDetails.label.details'           : 'Details',
+    'alignmentAnalysisDetails.label.description'       : 'Description',
+    'alignmentAnalysisDetails.label.score'             : 'Score',
+    'alignmentAnalysisDetails.label.alignmentType'     : 'Alignment Type',
+    'alignmentAnalysisDetails.label.mode'              : 'Mode',
+    'alignmentAnalysisDetails.label.openGapScore'      : 'Open Gap Score',
+    'alignmentAnalysisDetails.label.extendGapScore'    : 'Extend Gap Score',
+    'alignmentAnalysisDetails.label.matchScore'        : 'Match Score',
+    'alignmentAnalysisDetails.label.mismatchScore'     : 'Mismatch Score',
+    'alignmentAnalysisDetails.label.type'              : 'Analysis Type',
+    'alignmentAnalysisDetails.label.status'            : 'Status',
     
 
     /** OLATCG INPUT FILE */
@@ -189,6 +230,9 @@ var data_en = {
     'alignmentAnalysis.label.status'            : 'Status',
     'alignmentAnalysis.label.action'            : 'Action',
 
+    'alignmentAnalysis.label.title'             : 'Title',
+    'alignmentAnalysis.label.type'              : 'Type',
+
     /** ENUM VALUES */
 
     // SequenceTypeEnum
@@ -197,11 +241,18 @@ var data_en = {
     'enum.SequenceTypeEnum.PROTEIN'                 : 'Protein',
 
     // AlignmentTypeEnum
-    'enum.AlignmentTypeEnum.GLOBAL'                 : 'Global',
-    'enum.AlignmentTypeEnum.LOCAL'                  : 'Local',
+    'enum.AlignmentTypeEnum.global'                 : 'Global',
+    'enum.AlignmentTypeEnum.local'                  : 'Local',
 
     // DatabaseTypeEnum
-    'enum.DatabaseTypeEnum.OLATCG'                : 'OLATCG',
+    'enum.DatabaseTypeEnum.default'                : 'OLATCG',
+    
+    // OriginCountryEnum
+    'enum.OriginCountryEnum.brazil'                : 'Brazil',
+
+    // AnalysisDefinitionStep analysisType
+    'analysisType.ALIGNMENT'                      : 'Alignment',
+    'analysisType.HOMOLOGY'                       : 'Homology',
 
     // INFOS
 
@@ -338,10 +389,17 @@ var data = {
     'homology.input.label.sequence'                     : 'Sequência',
     'homology.button.label.makeAnalysis'                : 'Fazer análise',
     'homology.input.label.databaseType'                 : 'Banco de Dados',
+    'homology.input.label.evalue'                       : 'E-Valor',
     'homology.followYourResults.label.title'            : 'Veja seus resultados em "Análises"',
     'homology.followYourResults.label.desc'             : 'Isso pode demorar alguns minutos. Acompanhe o status ' +  
                                                            'em "Análises".',
     'homology.followYourResults.analysisId'             : 'ID da Análise: {0}',
+    
+    'homology.tooltip.database'                         : 'Qual o banco de dados a ser utilizado durante a homologia. Atualmente, apenas OLATCG está disponível.',
+    'homology.tooltip.evalue'                           : 'Expect value (Valor esperado). Este é uma função exponencialmente decrescente, utilizada para medir a qualidade do alinhamento de sequências. Valores menores são melhores.',
+    'homology.chooseSequencesStep.sequenceNumber'       : 'Sequência N°',
+    'homology.chooseSequencesStep.sequencePlaceholder'  : 'Insira aqui sua sequência...',
+    'homology.chooseSequencesStep.namePlaceholder'      : 'Insira o nome de sua sequência...',
 
     /** HOMOLOGY TABLE */
     'olatcgHomologyTable.label.IdAnalysis'              : 'ID da Análise',
@@ -355,18 +413,38 @@ var data = {
     'olatcgHomologyTable.label.taxonomy'                : 'Taxonomia',
     'olatcgHomologyTable.label.action'                  : 'Ação',
 
+    'homologyTable.error'                               : 'Um erro inesperado aconteceu. Esta análise se encontra atualmente indisponível',
+
 
     /** ALIGNMENT */
     'alignment.input.label.firstSequence'                        : 'Primeira sequência',
     'alignment.input.label.secondSequence'                       : 'Segunda sequência',
     'alignment.button.tooltip.text.align'                        : 'Alinhar',
-    'alignment.step0.label'                                      : 'Ajustando configuração',
-    'alignment.step1.label'                                      : 'Escolha suas sequências',
-    'alignment.step2.label'                                      : 'Veja seus resultados e "Análises"',
+    'alignment.step0.label'                                      : 'Registrando análise', 
+    'alignment.step1.label'                                      : 'Ajustando configuração',
+    'alignment.step2.label'                                      : 'Escolha suas sequências',
+    'alignment.step3.label'                                      : 'Veja seus resultados e "Análises"',
     'alignment.input.label.openPenalty'                          : 'Penalidade de abertura',
     'alignment.input.label.extensionPenalty'                     : 'Penalidade de extensão',
     'alignment.input.label.sequenceType'                         : 'Tipo de sequência',
     'alignment.input.label.alignmentType'                        : 'Tipo de alinhamento',
+
+    'alignment.input.label.matchScore'                           : 'Pontuação de Compatibilidade' ,
+    'alignment.input.label.mismatchScore'                        : 'Pontuação de Incompatibilidade' ,
+    'alignment.input.label.analysisTitle'                        : 'Título da Análise' ,
+    'alignment.input.label.analysisDescription'                  : 'Descrição da Análise' ,
+    'alignment.input.label.analysisType'                         : 'Tipo de Análise' ,
+    'alignment.input.label.originCountry'                        : 'País de Origem' ,
+    'alignment.input.placeholder.analysisTitle'                  : 'Sua análise...' ,
+    'alignment.input.placeholder.analysisDescription'            : 'A descrição de sua análise...' ,
+
+    'alignment.tooltip.matchScore'                               : 'Valor adicionado na pontuação final para cada par de bases compatível entre as sequências. Comumente um valor positivo.',
+    'alignment.tooltip.mismatchScore'                            : 'Valor adicionado na pontuação final para cada par de bases incompatível entre as sequências. Comumente um valor negativo.',
+    'alignment.tooltip.openPenalty'                              : 'Valor adicionado na pontuação final ao abrir uma lacuna em uma das sequências. Comumente um valor negativo.',
+    'alignment.tooltip.extensionPenalty'                         : 'Valor adicionado na pontuação final ao estender uma lacuna já aberta. Comumente um valor negativo.',
+    'alignment.tooltip.sequenceType'                             : 'O tipo de sequência a ser alinhada. Atualmente a ferramenta trabalha apenas com DNA.',
+    'alignment.tooltip.alignmentType'                            : 'Escolha entre os tipos global e local. O Alinhamento global envolve encontrar o melhor alinhamento através de todo o comprimento das sequências, enquanto o alinhamento local visa encontrar a subsequência entre as sequências que possua a maior pontuação.',
+
     'alignment.followAnalysis.title'                             : 'Acompanhe seus resultados em "Análises"',
     'alignment.followAnalysis.desc'                              : 'Você pode consultar suas análises a qualquer momento. ' + 
                                                                     'Lembre-se do seu identificador e consulte a tabela',
@@ -382,11 +460,26 @@ var data = {
     'olatcgAlignmentTable.label.identityPercentage'     : 'Percentual de identidade',
     'olatcgAlignmentTable.label.status'                 : 'Status',
     'olatcgAlignmentTable.label.type'                   : 'Tipo',
+    'olatcgAlignmentTable.label.target'                 : 'Alinhamento Alvo',
+    'olatcgAlignmentTable.label.query'                  : 'Alinhamento de Consulta',
+    'olatcgAlignmentTable.label.aligned'                : 'Alinhado',
 
     /** ALIGNMENT ANALYSIS DETAILS */
 
-    'alignmentAnalsysisDetails.label.sequenceA'         : 'Sequência A',
-    'alignmentAnalsysisDetails.label.sequenceB'         : 'Sequência B',
+    'alignmentAnalysisDetails.label.sequenceA'         : 'Sequência A',
+    'alignmentAnalysisDetails.label.sequenceB'         : 'Sequência B',
+    'alignmentAnalysisDetails.label.alignments'        : 'Alinhamentos',
+    'alignmentAnalysisDetails.label.details'           : 'Detalhes',
+    'alignmentAnalysisDetails.label.description'       : 'Descrição',
+    'alignmentAnalysisDetails.label.score'             : 'Pontuação',
+    'alignmentAnalysisDetails.label.alignmentType'     : 'Tipo de Alinhamento',
+    'alignmentAnalysisDetails.label.mode'              : 'Modo',
+    'alignmentAnalysisDetails.label.openGapScore'      : 'Penalidade de Abertura',
+    'alignmentAnalysisDetails.label.extendGapScore'    : 'Penalidade de Extensão',
+    'alignmentAnalysisDetails.label.matchScore'        : 'Pontuação de Compatibilidade',
+    'alignmentAnalysisDetails.label.mismatchScore'     : 'Pontuação de Incompatibilidade',
+    'alignmentAnalysisDetails.label.type'              : 'Tipo de Análise',
+    'alignmentAnalysisDetails.label.status'            : 'Status',
     
 
     /** OLATCG INPUT FILE */
@@ -400,6 +493,8 @@ var data = {
     'alignmentAnalysis.label.id'                : 'ID',
     'alignmentAnalysis.label.status'            : 'Status',
     'alignmentAnalysis.label.action'            : 'Ação',
+    'alignmentAnalysis.label.title'             : 'Título',
+    'alignmentAnalysis.label.type'              : 'Tipo',
 
     /** ENUM VALUES */
 
@@ -409,11 +504,18 @@ var data = {
     'enum.SequenceTypeEnum.PROTEIN'                 : 'Proteína',
 
     // AlignmentTypeEnum
-    'enum.AlignmentTypeEnum.GLOBAL'                 : 'Global',
-    'enum.AlignmentTypeEnum.LOCAL'                  : 'Local',
+    'enum.AlignmentTypeEnum.global'                 : 'Global',
+    'enum.AlignmentTypeEnum.local'                  : 'Local',
 
     // DatabaseTypeEnum
-    'enum.DatabaseTypeEnum.OLATCG'                : 'OLATCG',
+    'enum.DatabaseTypeEnum.default'                : 'OLATCG',
+
+    // OriginCountryEnum
+    'enum.OriginCountryEnum.brazil'                : 'Brasil',
+
+    // AnalysisDefinitionStep analysisType
+    'analysisType.ALIGNMENT'                      : 'Alinhamento',
+    'analysisType.HOMOLOGY'                       : 'Homologia',
 
     // INFOS
 

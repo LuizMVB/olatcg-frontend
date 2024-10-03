@@ -29,7 +29,7 @@ const useRequest = () => {
                     onFailure?.(resJson);
                     return;
                 }
-                onSuccess?.(resJson.data, resJson.paginationAndSort);
+                onSuccess?.(resJson);
             }).catch(() => {
                 onFailure?.({
                     error: 'CANT_CONNECT_TO_API',

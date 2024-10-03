@@ -29,26 +29,32 @@ const HomologyAnalysis = () => {
         openSnackbar(true);
     }
 
-    const onSuccessGetAnalysis = (response, paginationAndSort) => {
-        if (response.length === 0){
-            setInfo(true);
+    const onSuccessGetAnalysis = (obj) => {
+        if (obj.data.length === 0){
+            setInfo(true)
         } 
+
         setColumns([{id: 'id', label: getMessage('alignmentAnalysis.label.id')},
+                    {id: 'title', label: getMessage('alignmentAnalysis.label.title')},
                     {id: 'status', label: getMessage('alignmentAnalysis.label.status')},
+                    {id: 'type', label: getMessage('alignmentAnalysis.label.type')},
+                    {id: 'description', label: getMessage('alignmentAnalysisDetails.label.description')},
                     {id: 'action', label: getMessage('alignmentAnalysis.label.action')}]);
 
-        setRows(response.map((alnAnalysis, index) => {
+        setRows(obj.data.map((homAnalysis, index) => {
             return {
                 code: index,
-                id: alnAnalysis.id,
-                status: alnAnalysis.status,
-                action: <Button onClick={() => navigateTo(location.pathname + '/' + alnAnalysis.id)}>
+                id: homAnalysis.id,
+                title: homAnalysis.title,
+                status: homAnalysis.status,
+                type: homAnalysis.type,
+                description: homAnalysis.description,
+                action: <Button onClick={() => navigateTo(location.pathname + '/' + homAnalysis.id)}>
                     {getMessage('common.label.details')}
                 </Button>
             };
         }));
-        setSelectedPage(paginationAndSort.pageNumber);
-        setTotalPages(paginationAndSort.totalPages);
+        setTotalPages(Math.ceil(obj.meta.total_pages/15));
         showLoader(false);
     }
 
@@ -57,25 +63,26 @@ const HomologyAnalysis = () => {
         showLoader(false);
     }
 
+    const onComponentMount = () => {
+        showLoader(true);
+
+        let url = API_ROUTES.GET_ANALYSIS_BY_TYPE;
+        url = url.replace('{analysis_type}', 'HOMOLOGY');
+
+        makeRequest(url, 'GET', null, onSuccessGetAnalysis, onFailureGetAlignmentAnalysis);
+    }
+
     const handlePaginationChange = (e, page) => {
         showLoader(true);
 
-        setSelectedPage(page);
-        let url = API_ROUTES.SEARCH_ANALYSIS_BY_TYPE;
-        url = url.replace('{value}', 'HOMOLOGY') + '?pageNumber=' + (page - 1) + '&pageSize=15&sort=DESC';
+        let url = API_ROUTES.GET_ANALYSIS_BY_TYPE;
+        url = url.replace('{analysis_type}', 'HOMOLOGY') + '&page=' + (page);
 
         makeRequest(url, 'GET', null, onSuccessGetAnalysis, onFailureGetAlignmentAnalysis);
     }
 
     useEffect(() => {
-        showLoader(true);
-
-        let url = API_ROUTES.SEARCH_ANALYSIS_BY_TYPE;
-        url = url.replace('{value}', 'HOMOLOGY');
-
-        makeRequest(url, 'GET', null, onSuccessGetAnalysis, onFailureGetAlignmentAnalysis);
-
-        // eslint-disable-next-line
+        onComponentMount();
     }, []);
     
    
@@ -92,7 +99,7 @@ const HomologyAnalysis = () => {
                                         <TableCell
                                             key={column.id}
                                             align={'center'}
-                                            sx={{bgcolor: 'primary.main'}}
+                                            sx={{bgcolor: 'primary.main', color: 'primary.contrastText'}}
                                         >
                                             {column.label}
                                         </TableCell>

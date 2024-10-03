@@ -16,7 +16,6 @@ const OlatcgHomologyTable = ({idAnalysis}) => {
     const [msgSnackbar, setMsgSnackbar] = useState('');
 
     const onSuccessGetAlignmentByIdAnalysis = (response) => {
-        let values = Object.values(response)
         setColumns([{
             id: 'status',
             label: getMessage('olatcgHomologyTable.label.status')
@@ -25,13 +24,10 @@ const OlatcgHomologyTable = ({idAnalysis}) => {
             id: 'type',
             label: getMessage('olatcgHomologyTable.label.type')
         }]); 
-        setRows(values.map((index) => {
-            return { 
-                code: index,
-                status: values[1],
-                type: values[2],
-            };
-        }));
+        setRows([{
+            status: response.data.status,
+            type: response.data.type
+        }]);
         showLoader(false);
         
     }
@@ -64,7 +60,7 @@ const OlatcgHomologyTable = ({idAnalysis}) => {
 
     return <>
         <Paper sx={{ width: '100%', overflow: 'hidden', bgcolor: 'primary.light' }}>
-            <Typography component="div" variant="h4" sx={{backgroundColor: 'primary.dark', p: 1}}>
+            <Typography component="div" variant="h4" sx={{backgroundColor: 'primary.dark', p: 1, color: 'primary.contrastText'}}>
                 {getMessage('alignment.followAnalysis.preview', idAnalysis)}
             </Typography>
             <TableContainer sx={{ maxHeight: 120 }}>
@@ -91,7 +87,7 @@ const OlatcgHomologyTable = ({idAnalysis}) => {
                                 const value = row[column.id];
                                 return (
                                     
-                                    <TableCell key={column.id} align="center" sx={{wordWrap: 'break-word', maxWidth: 70, verticalAlign: 'top'}}>
+                                    <TableCell key={column.id} align="center" sx={{wordWrap: 'break-word', fontSize:'1.2rem', maxWidth: 70, verticalAlign: 'top'}}>
                                         {value}
                                     </TableCell>
                                 );

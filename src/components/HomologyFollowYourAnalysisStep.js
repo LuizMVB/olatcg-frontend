@@ -8,7 +8,7 @@ const HomologyFollowYourAnalysisStep = ({idAnalysis}) => {
     const navigateTo = useNavigate();
 
     return <>
-       <OlatcgStep stepPosition={2} isNextDisabled={true}>
+       <OlatcgStep stepPosition={3} isNextDisabled={true}>
             <Box sx={{textAlign: 'center'}}>
                 <Typography variant="h4">
                     {getMessage('homology.followYourResults.label.title')}

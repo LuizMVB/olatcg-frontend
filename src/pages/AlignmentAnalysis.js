@@ -30,18 +30,24 @@ const AlignmentAnalysis = () => {
         openSnackbar(true);
     }
 
-    const onSuccessGetAlignmentAnalysis = (data, paginationAndSort) => {
-        if (data.length === 0){
+    const onSuccessGetAlignmentAnalysis = (obj) => {
+        if (obj.data.length === 0){
             setInfo(true)
         } 
         setColumns([{id: 'id', label: getMessage('alignmentAnalysis.label.id')},
+                    {id: 'title', label: getMessage('alignmentAnalysis.label.title')},
                     {id: 'status', label: getMessage('alignmentAnalysis.label.status')},
+                    {id: 'type', label: getMessage('alignmentAnalysis.label.type')},
+                    {id: 'description', label: getMessage('alignmentAnalysisDetails.label.description')},
                     {id: 'action', label: getMessage('alignmentAnalysis.label.action')}]);
-        setRows(data.map((alnAnalysis, index) => {
+        setRows(obj.data.map((alnAnalysis, index) => {
             return {
                 code: index,
                 id: alnAnalysis.id,
+                title: alnAnalysis.title,
                 status: alnAnalysis.status,
+                type: alnAnalysis.type,
+                description: alnAnalysis.description,
                 action: <Button onClick={() => navigateTo("/analysis/alignment/" + alnAnalysis.id)}>
                     {getMessage('common.label.details')}
                 </Button>
@@ -49,8 +55,8 @@ const AlignmentAnalysis = () => {
             };
         }));
 
-        setSelectedPage(paginationAndSort.pageNumber);
-        setTotalPages(paginationAndSort.totalPages);
+        //setSelectedPage(paginationAndSort.pageNumber);
+        setTotalPages(Math.ceil(obj.meta.total_pages/15));
         showLoader(false);
     }
   
@@ -62,17 +68,16 @@ const AlignmentAnalysis = () => {
     const onComponentMount = () => {
         showLoader(true);
 
-        let url = API_ROUTES.SEARCH_ANALYSIS_BY_TYPE;
-        url = url.replace('{value}', 'ALIGNMENT');
+        let url = API_ROUTES.GET_ANALYSIS_BY_TYPE;
+        url = url.replace('{analysis_type}', 'ALIGNMENT');
 
         makeRequest(url, 'GET', null, onSuccessGetAlignmentAnalysis, onFailureGetAlignmentAnalysis);
     }
 
     const handlePaginationChange = (e, page) => {
         showLoader(true);
-        setSelectedPage(page);
-        let url = API_ROUTES.SEARCH_ANALYSIS_BY_TYPE;
-        url = url.replace('{value}', 'ALIGNMENT') + '?pageNumber=' + (page - 1) + '&pageSize=15&sort=DESC';
+        let url = API_ROUTES.GET_ANALYSIS_BY_TYPE;
+        url = url.replace('{analysis_type}', 'ALIGNMENT') + '&page=' + (page);
 
         makeRequest(url, 'GET', null, onSuccessGetAlignmentAnalysis, onFailureGetAlignmentAnalysis);
     }
@@ -98,7 +103,7 @@ const AlignmentAnalysis = () => {
                                         
                                             key={column.id}
                                             align={'center'}
-                                            sx={{bgcolor: 'primary.main'}}
+                                            sx={{bgcolor: 'primary.main', color: 'primary.contrastText'}}
                                         >
                                             {column.label}
                                         </TableCell>

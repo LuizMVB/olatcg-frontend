@@ -1,3 +1,4 @@
+import { AnalysisDefinitionStep } from "../components/AnalysisDefinitionStep";
 import { AlignmentSequenceInputStep } from "../components/AlignmentSequenceInputStep";
 import { AlignmentConfigurationStep } from "../components/AlignmentConfigurationStep";
 import { AlignmentFollowYourAnalysisStep } from "../components/AlignmentFollowYourAnalysisStep";
@@ -10,8 +11,9 @@ const Alignment = () => {
 
     const labels = [
         getMessage('alignment.step0.label'), 
-        getMessage('alignment.step1.label'), 
-        getMessage('alignment.step2.label')
+        getMessage('alignment.step1.label'),
+        getMessage('alignment.step2.label'), 
+        getMessage('alignment.step3.label')
     ];
     
     const stepActualPosition = useSelector(selectors.getStepActualPosition);
@@ -25,9 +27,10 @@ const Alignment = () => {
             )}
         </Stepper>
 
-        <AlignmentConfigurationStep next={form =>
-            <AlignmentSequenceInputStep form={form} next={idAnalysis =>
-                <AlignmentFollowYourAnalysisStep idAnalysis={idAnalysis} />}/>}/>
+        <AnalysisDefinitionStep anType={'ALIGNMENT'} next={form =>
+            <AlignmentConfigurationStep form={form} next={form =>
+                <AlignmentSequenceInputStep form={form} next={idAnalysis =>
+                    <AlignmentFollowYourAnalysisStep idAnalysis={idAnalysis}/>}/>}/>}/>
     </>
 }
 

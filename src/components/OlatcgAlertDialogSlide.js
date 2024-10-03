@@ -10,6 +10,7 @@ import Slide from '@mui/material/Slide';
 
 
 
+
 const Transition = React.forwardRef(function Transition(props, ref) {                               
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -30,7 +31,7 @@ function AlertDialogSlide (props) {
       <Button sx={{width:'75%', maxHeight: 50, margin: 'auto'}} variant="outlined" onClick={handleClickOpen}>
       {props.base.substring(0,10)+ "..."} 
       </Button>
-      <Dialog sx={{width:'25%', overflowWrap:'break-word', maxHeight: 500, margin: 'auto'}}
+      <Dialog sx={{maxWidth:'60vw', overflowWrap:'break-word', maxHeight: 500, margin: 'auto'}}
         open={open}
         TransitionComponent={Transition}
         keepMounted
