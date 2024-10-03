@@ -77,7 +77,7 @@ const AlignmentAnalysis = () => {
     const handlePaginationChange = (e, page) => {
         showLoader(true);
         let url = API_ROUTES.GET_ANALYSIS_BY_TYPE;
-        url = url.replace('{analysis_type}', 'ALIGNMENT') + '?page=' + (page);
+        url = url.replace('{analysis_type}', 'ALIGNMENT') + '&page=' + (page);
 
         makeRequest(url, 'GET', null, onSuccessGetAlignmentAnalysis, onFailureGetAlignmentAnalysis);
     }

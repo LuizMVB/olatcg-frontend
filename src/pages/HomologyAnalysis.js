@@ -76,7 +76,7 @@ const HomologyAnalysis = () => {
         showLoader(true);
 
         let url = API_ROUTES.GET_ANALYSIS_BY_TYPE;
-        url = url.replace('{analysis_type}', 'HOMOLOGY') + '?page=' + (page);
+        url = url.replace('{analysis_type}', 'HOMOLOGY') + '&page=' + (page);
 
         makeRequest(url, 'GET', null, onSuccessGetAnalysis, onFailureGetAlignmentAnalysis);
     }
