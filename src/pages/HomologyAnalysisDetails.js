@@ -1,4 +1,4 @@
-import { Box, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Box, Modal, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { blue, green, orange, red } from "@mui/material/colors";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
@@ -20,7 +20,7 @@ const HomologyAnalysisDetails = () => {
     const [msgSnackbar, setMsgSnackbar] = useState('');
     const navigateTo = useNavigate();
     const [analysisName, setAnalysisName] = useState('');
-
+    const [isAnalysisAvailable, setIsAnalysisAvailable] = useState(true);
 
     const showSnackbar = (msg, status) => {
         setMsgSnackbar(msg);
@@ -54,6 +54,8 @@ const tablemaker = (obj)=> {
     setAnalysisName(obj.data.title);
 
     if(obj.data.taxonomies){
+        setIsAnalysisAvailable(true)
+
         setColumns([
             {
                 id: 'title',
@@ -91,6 +93,8 @@ const tablemaker = (obj)=> {
 
         }));
     } else {
+        setIsAnalysisAvailable(false)
+
         setColumns([
             {
                 id: 'type',
@@ -114,11 +118,30 @@ const tablemaker = (obj)=> {
 }
     
     return <>
-        <Box sx={{ px: 4 }}>
-            <Paper sx={{ width: '96%', overflow: 'hidden', bgcolor: 'primary.light', margin: 'auto'}}>
+        <Box sx={{ px: 4, my: 'auto'}}>
+            <Paper sx={{ width: isAnalysisAvailable ? '96%' : '60%', overflow: 'hidden', bgcolor: 'primary.light', margin: 'auto'}}>
                 <Typography component="div" variant="h4" sx={{backgroundColor: 'primary.dark', color: 'primary.contrastText', textAlign: 'center'}}>
                     ID {idAnalysis} - {analysisName}
                 </Typography>
+                {!isAnalysisAvailable && (
+                    <Box 
+                        sx={{height:'2.4rem',
+                            border:2,
+                            bgcolor: '#c90000',
+                            borderRadius:'0.6rem',
+                            textAlign:'center',
+                            verticalAlign:'center', 
+                            position:'absolute',
+                            bottom:'2.4rem', 
+                            width:'60%', 
+                            borderColor:'#feefef'
+                            }}
+                        >
+                        <Typography variant='body1' sx={{my:'auto', fontStyle:'italic', color:'primary.contrastText'}}>
+                            {getMessage('homologyTable.error')}
+                        </Typography>
+                    </Box>
+                )}
                 <TableContainer sx={{ maxHeight: '65vh' }}>
                     <Table stickyHeader aria-label="sticky table" >
                         <TableHead>
@@ -143,7 +166,7 @@ const tablemaker = (obj)=> {
                                     {columns.map((column) => {
                                     const value = row[column.id];
                                     return (
-                                        <TableCell key={column.id} align="center" sx={{wordWrap: 'break-word', maxWidth: 150, verticalAlign: 'top'}}>
+                                        <TableCell key={column.id} align="center" sx={{wordWrap: 'break-word', bgcolor: 'primary.light', maxWidth: 150, verticalAlign: 'top'}}>
                                             {value}
                                         </TableCell>
                                     );

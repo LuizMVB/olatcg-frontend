@@ -149,6 +149,8 @@ var data_en = {
     'olatcgHomologyTable.label.taxonomy'                : 'Taxonomy',
     'olatcgHomologyTable.label.action'                  : 'Action',
 
+    'homologyTable.error'                               : 'An unexpected error has occurred. This analysis is currently unavailable.',
+
 
     /** ALIGNMENT */
     'alignment.input.label.firstSequence'                        : 'First Sequence',
@@ -410,6 +412,8 @@ var data = {
     'olatcgHomologyTable.label.sequenceB'               : 'Sequência B',
     'olatcgHomologyTable.label.taxonomy'                : 'Taxonomia',
     'olatcgHomologyTable.label.action'                  : 'Ação',
+
+    'homologyTable.error'                               : 'Um erro inesperado aconteceu. Esta análise se encontra atualmente indisponível',
 
 
     /** ALIGNMENT */
