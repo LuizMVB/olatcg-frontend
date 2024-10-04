@@ -1,5 +1,4 @@
-import { Box, Modal, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
-import { blue, green, orange, red } from "@mui/material/colors";
+import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import OlatcgLoader from "../components/OlatcgLoader";
@@ -127,7 +126,7 @@ const tablemaker = (obj)=> {
                     <Box 
                         sx={{height:'2.4rem',
                             border:2,
-                            bgcolor: '#c90000',
+                            bgcolor: '#c9345555',
                             borderRadius:'0.6rem',
                             textAlign:'center',
                             verticalAlign:'center', 

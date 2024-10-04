@@ -1,12 +1,11 @@
-version: '3.8'
-
 services:
-  olatcg-frontend:
+  app:
     build:
       context: .
     container_name: olatcg-frontend
     ports:
       - "3000:3000"
+    restart: unless-stopped
     volumes:
       - "./:/usr/src/app:delegated"
       - "/usr/src/app/node_modules/"

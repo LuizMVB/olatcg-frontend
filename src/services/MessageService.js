@@ -413,7 +413,7 @@ var data = {
     'olatcgHomologyTable.label.taxonomy'                : 'Taxonomia',
     'olatcgHomologyTable.label.action'                  : 'Ação',
 
-    'homologyTable.error'                               : 'Um erro inesperado aconteceu. Esta análise se encontra atualmente indisponível',
+    'homologyTable.error'                               : 'Nenhuma sequência foi encontrada na base que correspondesse às suas entradas',
 
 
     /** ALIGNMENT */
