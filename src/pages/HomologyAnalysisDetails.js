@@ -1,4 +1,4 @@
-import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Box, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import OlatcgLoader from "../components/OlatcgLoader";
@@ -40,81 +40,81 @@ const HomologyAnalysisDetails = () => {
         makeRequest(url, 'GET', null, tablemaker, onFailureGetAlignmentByIdAnalysis);
     }, [idAnalysis]);
 
-const tablemaker = (obj)=> {
-    /*if(obj.data.status == 'STARTED') {
-        showSnackbar(getMessage('info.analysis.isnt.finished'), 'info');
-        setTimeout(() => {
-            showLoader(false);
-            navigateTo('/analysis/homology');
-        }, 5000);
-        return;
-    }*/
-
-    setAnalysisName(obj.data.title);
-
-    if(obj.data.taxonomies){
-        setIsAnalysisAvailable(true)
-
-        setColumns([
-            {
-                id: 'title',
-                label: getMessage( 'alignmentAnalysis.label.title' )
-            },
-            {
-                id: 'alignmentA',
-                label: getMessage('olatcgHomologyTable.label.alignmentA' )
-            },
-            {
-                id: 'alignmentB',
-                label: getMessage('olatcgHomologyTable.label.alignmentB')
-            },
-            {
-                id: 'taxonomy',
-                label: getMessage('olatcgHomologyTable.label.taxonomy' )
-            },
-            // {
-            //     id: 'action',
-            //     label: getMessage('olatcgHomologyTable.label.action')
-            // }
-        ]);
-
-        setRows(obj.data.taxonomies.map((homoAnalysis, index) => {
-            return {
-                code: index + homoAnalysis.id,
-                title: homoAnalysis.title,
-                alignmentA: <AlertDialogSlide base = {homoAnalysis.alignments[0].biological_sequences[0].bases}/>,
-                alignmentB: <AlertDialogSlide base = {homoAnalysis.alignments[0].biological_sequences[1].bases}/>,
-                taxonomy: homoAnalysis.lineage/*,
-                action: <Button onClick={() => navigateTo("/analysis/homology/tree/" + homoAnalysis.id)}>
-                            {getMessage('common.label.show.tree')}
-                        </Button>*/
-            };
-
-        }));
-    } else {
-        setIsAnalysisAvailable(false)
-
-        setColumns([
-            {
-                id: 'type',
-                label: getMessage('alignmentAnalysis.label.type')
-            },
-            {
-                id: 'status',
-                label: getMessage('alignmentAnalysis.label.status')
-            },
-        ]);
-
-        setRows([{
-            type: obj.data.type,
-            status: obj.data.status           
-        }]);
-
+    const tablemaker = (obj)=> {
+        /*if(obj.data.status == 'STARTED') {
+            showSnackbar(getMessage('info.analysis.isnt.finished'), 'info');
+            setTimeout(() => {
+                showLoader(false);
+                navigateTo('/analysis/homology');
+            }, 5000);
+            return;
+        }*/
+    
+        setAnalysisName(obj.data.title);
+    
+        if(obj.data.taxonomies){
+            setIsAnalysisAvailable(true)
+    
+            setColumns([
+                {
+                    id: 'title',
+                    label: getMessage( 'alignmentAnalysis.label.title' )
+                },
+                {
+                    id: 'alignmentA',
+                    label: getMessage('olatcgHomologyTable.label.alignmentA' )
+                },
+                {
+                    id: 'alignmentB',
+                    label: getMessage('olatcgHomologyTable.label.alignmentB')
+                },
+                {
+                    id: 'taxonomy',
+                    label: getMessage('olatcgHomologyTable.label.taxonomy' )
+                },
+                {
+                     id: 'action',
+                     label: getMessage('olatcgHomologyTable.label.action')
+                }
+            ]);
+    
+            setRows(obj.data.taxonomies.map((homoAnalysis, index) => {
+                return {
+                    code: index + homoAnalysis.id,
+                    title: homoAnalysis.title,
+                    alignmentA: <AlertDialogSlide base = {homoAnalysis.alignments[0].biological_sequences[0].bases}/>,
+                    alignmentB: <AlertDialogSlide base = {homoAnalysis.alignments[0].biological_sequences[1].bases}/>,
+                    taxonomy: homoAnalysis.lineage,
+                    action: <Button onClick={() => navigateTo("/analysis/homology/tree/" + homoAnalysis.id)}>
+                                {getMessage('common.label.show.tree')}
+                            </Button>
+                };
+    
+            }));
+        } else {
+            setIsAnalysisAvailable(false)
+    
+            setColumns([
+                {
+                    id: 'type',
+                    label: getMessage('alignmentAnalysis.label.type')
+                },
+                {
+                    id: 'status',
+                    label: getMessage('alignmentAnalysis.label.status')
+                },
+            ]);
+    
+            setRows([{
+                type: obj.data.type,
+                status: obj.data.status           
+            }]);
+    
+        }
+    
+        showLoader(false);
+    
     }
-
-    showLoader(false);
-
-}
     
     return <>
         <Box sx={{ px: 4, my: 'auto'}}>
