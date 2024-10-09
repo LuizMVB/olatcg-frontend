@@ -151,6 +151,9 @@ var data_en = {
 
     'homologyTable.error'                               : 'An unexpected error has occurred. This analysis is currently unavailable.',
 
+    /* PHYLOGENETIC TREE */
+    'phyloTree.label.return'                         : 'Return to analysis',
+
 
     /** ALIGNMENT */
     'alignment.input.label.firstSequence'                        : 'First Sequence',
@@ -414,6 +417,9 @@ var data = {
     'olatcgHomologyTable.label.action'                  : 'Ação',
 
     'homologyTable.error'                               : 'Nenhuma sequência foi encontrada na base que correspondesse às suas entradas',
+
+    /* PHYLOGENETIC TREE */
+    'phyloTree.label.return'                         : 'Retornar a análise',
 
 
     /** ALIGNMENT */
