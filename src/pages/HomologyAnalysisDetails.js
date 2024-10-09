@@ -1,4 +1,5 @@
 import { Box, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import ParkIcon from '@mui/icons-material/Park';
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import OlatcgLoader from "../components/OlatcgLoader";
@@ -7,6 +8,13 @@ import useRequest from "../hooks/useRequest";
 import { API_ROUTES } from "../routes/Routes";
 import { getMessage } from "../services/MessageService";
 import AlertDialogSlide from "../components/OlatcgAlertDialogSlide";
+
+class PhyloTreeRequest{
+    constructor({title, description}){
+        this.title = title;
+        this.description = description;
+    }
+}
 
 const HomologyAnalysisDetails = () => {
     let { idAnalysis } = useParams();
@@ -20,12 +28,14 @@ const HomologyAnalysisDetails = () => {
     const navigateTo = useNavigate();
     const [analysisName, setAnalysisName] = useState('');
     const [isAnalysisAvailable, setIsAnalysisAvailable] = useState(true);
+    const [phyloTreeBody, setPhyloTreeBody] = useState(new PhyloTreeRequest({title:'',description:''}))
 
     const showSnackbar = (msg, status) => {
         setMsgSnackbar(msg);
         setStatusSanckbar(status);
         openSnackbar(true);
     }
+
     const onFailureGetAlignmentByIdAnalysis = (error) => {
         showSnackbar(getMessage(error.errorDescription), 'error');
         showLoader(false);
@@ -54,6 +64,8 @@ const HomologyAnalysisDetails = () => {
     
         if(obj.data.taxonomies){
             setIsAnalysisAvailable(true)
+
+            setPhyloTreeBody(new PhyloTreeRequest({title:obj.data.title, description:obj.data.description}))
     
             setColumns([
                 {
@@ -72,10 +84,6 @@ const HomologyAnalysisDetails = () => {
                     id: 'taxonomy',
                     label: getMessage('olatcgHomologyTable.label.taxonomy' )
                 },
-                {
-                     id: 'action',
-                     label: getMessage('olatcgHomologyTable.label.action')
-                }
             ]);
     
             setRows(obj.data.taxonomies.map((homoAnalysis, index) => {
@@ -84,10 +92,7 @@ const HomologyAnalysisDetails = () => {
                     title: homoAnalysis.title,
                     alignmentA: <AlertDialogSlide base = {homoAnalysis.alignments[0].biological_sequences[0].bases}/>,
                     alignmentB: <AlertDialogSlide base = {homoAnalysis.alignments[0].biological_sequences[1].bases}/>,
-                    taxonomy: homoAnalysis.lineage,
-                    action: <Button onClick={() => navigateTo("/analysis/homology/tree/" + homoAnalysis.id)}>
-                                {getMessage('common.label.show.tree')}
-                            </Button>
+                    taxonomy: homoAnalysis.lineage
                 };
     
             }));
@@ -116,9 +121,42 @@ const HomologyAnalysisDetails = () => {
     
     }
     
+    //Solucao temporaria
+    const onSuccessPostPhyloTree = (obj) =>{
+        if(obj.analysis_id != undefined){
+            console.log('SUCESSO! ARVORE CRIADA!\n', obj)
+        
+            showLoader(false);
+            navigateTo("/analysis/homology/tree/" + obj.analysis_id)
+        } else {
+            console.log('Falha, arvore ja existe:\n', obj.error)
+            navigateTo("/analysis/homology/tree/" + 17)
+        }
+    }
+
+    const onFailurePostPhyloTree = (error) =>{
+        showSnackbar(error.errorDescription, 'error');
+        showLoader(false);
+    }
+
+    const makePhyloTreeRequest = () =>{
+        showLoader(true);
+
+        let url = API_ROUTES.PHYLOGENETIC_TREE;
+        url = url.replace('{id}', idAnalysis);
+
+        makeRequest(url, 'POST', phyloTreeBody, onSuccessPostPhyloTree, onFailurePostPhyloTree);
+
+    }
+
+    const handlePhyloTree = () =>{
+        makePhyloTreeRequest()
+
+    }
+    
     return <>
         <Box sx={{ px: 4, my: 'auto'}}>
-            <Paper sx={{ width: isAnalysisAvailable ? '96%' : '60%', overflow: 'hidden', bgcolor: 'primary.light', margin: 'auto'}}>
+            <Paper sx={{ width: isAnalysisAvailable ? '90%' : '60%', overflow: 'hidden', bgcolor: 'primary.light', margin: 'auto'}}>
                 <Typography component="div" variant="h4" sx={{backgroundColor: 'primary.dark', color: 'primary.contrastText', textAlign: 'center'}}>
                     ID {idAnalysis} - {analysisName}
                 </Typography>
@@ -141,7 +179,7 @@ const HomologyAnalysisDetails = () => {
                         </Typography>
                     </Box>
                 )}
-                <TableContainer sx={{ maxHeight: '65vh' }}>
+                <TableContainer sx={{ maxHeight: '60vh', overflowY: 'auto' }}>
                     <Table stickyHeader aria-label="sticky table" >
                         <TableHead>
                             <TableRow>
@@ -176,6 +214,12 @@ const HomologyAnalysisDetails = () => {
                         </TableBody>
                     </Table>
                 </TableContainer>
+                {isAnalysisAvailable && (
+                    <Button startIcon={<ParkIcon/>} sx={{width:'100%', color: 'primary.contrastText', backgroundColor:'primary.dark', borderTopRightRadius: 0, borderTopLeftRadius: 0}} onClick={() => handlePhyloTree()/*() => navigateTo("/analysis/homology/tree/" + 17)*/}>
+                        {getMessage('common.label.show.tree')}
+                    </Button>
+                    )
+                }
             </Paper>
         </Box>
         <OlatcgSnackbar
