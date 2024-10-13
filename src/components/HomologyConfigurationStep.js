@@ -13,12 +13,12 @@ const HomologyConfigurationStep = ({form, next}) => {
     const [openPenalty, setOpenPenalty] = useState(0);
     const [extensionPenalty, setExtensionPenalty] = useState(0);
     const [penalty, setPenalty] = useState(0);
-    const [eValue, setEValue] = useState(0.0);
-    const [databaseType, setDatabaseType] = useState('default');
-    const [sequenceType, setSequenceType] = useState('DNA');
+    const [eValue, setEValue] = useState(0.001);
+    //const [databaseType, setDatabaseType] = useState('default');
+    //const [sequenceType, setSequenceType] = useState('DNA');
 
-    const databaseTypes = DatabaseTypeEnum.getSelectStructure();
-    const sequenceTypes = SequenceTypeEnum.getSelectStructure();
+    //const databaseTypes = DatabaseTypeEnum.getSelectStructure();
+    //const sequenceTypes = SequenceTypeEnum.getSelectStructure();
 
     //REMOVER APÓS ATUALIZAR MessageService.js
     const longDescription = 'TEMP: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
@@ -35,10 +35,9 @@ const HomologyConfigurationStep = ({form, next}) => {
                     sx={{width:'80%',
                         alignItems:"center",
                         justifyContent:"center",
-                        mx:'auto'}}
-                    spacing={2}>
+                        mx:'auto'}}>
                     <Grid item xs={6}>
-                        <Box sx={{width: 320, textAlign: 'center', ml:'auto'}}>
+                        <Box sx={{width: 320, textAlign: 'center', my:2, ml:'auto', mr:2}}>
                             <Typography gutterBottom>
                                 {getMessage('alignment.input.label.openPenalty')}
                                 <Tooltip title={getMessage('alignment.tooltip.openPenalty')} placement='top' arrow>
@@ -65,7 +64,7 @@ const HomologyConfigurationStep = ({form, next}) => {
                         </Box>
                     </Grid>
                     <Grid item xs={6}>
-                        <Box sx={{width: 320, textAlign: 'center', mr:'auto'}}>
+                        <Box sx={{width: 320, textAlign: 'center', my:2, ml:2, mr:'auto'}}>
                             <Typography gutterBottom>
                                 {getMessage('homology.input.label.evalue')}
                                 <Tooltip title={getMessage('homology.tooltip.evalue')} placement='top' arrow>
@@ -101,7 +100,7 @@ const HomologyConfigurationStep = ({form, next}) => {
                         </Box>
                     </Grid>
                     <Grid item xs={6}>
-                        <Box sx={{width: 320, textAlign: 'center', ml:'auto'}}>
+                        <Box sx={{width: 320, textAlign: 'center', my:2, ml:'auto', mr:2}}>
                             <Typography gutterBottom>
                                 {getMessage('alignment.input.label.extensionPenalty')}
                                 <Tooltip title={getMessage('alignment.tooltip.extensionPenalty')} placement='top' arrow>
@@ -128,41 +127,7 @@ const HomologyConfigurationStep = ({form, next}) => {
                         </Box>
                     </Grid>
                     <Grid item xs={6}>
-                        <Box sx={{width: 320, textAlign: 'center', mr:'auto'}}>
-                            <Typography gutterBottom>
-                                {getMessage('alignment.input.label.sequenceType')}
-                                <Tooltip title={getMessage('alignment.tooltip.sequenceType')} placement='top' arrow>
-                                    <HelpIcon sx={{verticalAlign: 'middle',
-                                        fontSize:'inherit',
-                                        marginLeft: 0.6,
-                                        color:'primary.main',
-                                        '&:hover':{
-                                            color: 'primary.light'
-                                        }}}/>
-                                </Tooltip>
-                            </Typography>
-                            <Select
-                                id="sequenceType"
-                                name="sequenceType"
-                                value={sequenceType}
-                                sx={{width: '75%', height:'2.4rem', textAlign:'left'}}
-                                onChange={event => setSequenceType(event.target.value)}
-                            >
-                                {
-                                    sequenceTypes.map((type, index) =>
-                                        <MenuItem 
-                                            key={index} 
-                                            value={type.value}
-                                        >
-                                            {type.label}
-                                        </MenuItem>
-                                    )
-                                }
-                            </Select>
-                        </Box>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Box sx={{width: 320, textAlign: 'center', ml:'auto'}}>
+                        <Box sx={{width: 320, textAlign: 'center', my:2, ml:2, mr:'auto'}}>
                             <Typography gutterBottom>
                                 {'TEMP: Penalty'}
                                 <Tooltip title={longDescription /*getMessage('alignment.tooltip.matchScore')*/} placement='top' arrow>
@@ -188,40 +153,6 @@ const HomologyConfigurationStep = ({form, next}) => {
                             />
                         </Box>
                     </Grid>
-                    <Grid item xs={6}>
-                        <Box sx={{width: 320, textAlign: 'center', mr:'auto'}}>
-                            <Typography gutterBottom>
-                                {getMessage('homology.input.label.databaseType')}
-                                <Tooltip title={getMessage('homology.tooltip.database')} placement='top' arrow>
-                                    <HelpIcon sx={{verticalAlign: 'middle',
-                                        fontSize:'inherit',
-                                        marginLeft: 0.6,
-                                        color:'primary.main',
-                                        '&:hover':{
-                                            color: 'primary.light'
-                                        }}}/>
-                                </Tooltip>
-                            </Typography>
-                            <Select
-                                id="databaseType"
-                                name="databaseType"
-                                value={databaseType}
-                                sx={{width: '75%', height:'2.4rem', textAlign:'left'}}
-                                onChange={event => setDatabaseType(event.target.value)}
-                            >
-                                {
-                                    databaseTypes.map((type, index) =>
-                                        <MenuItem 
-                                            key={index} 
-                                            value={type.value}
-                                        >
-                                            {type.label}
-                                        </MenuItem>
-                                    )
-                                }
-                            </Select>
-                        </Box>
-                    </Grid>
                 </Grid>
             </OlatcgStep> 
         : next({
@@ -230,10 +161,10 @@ const HomologyConfigurationStep = ({form, next}) => {
             analysisType: form.analysisType,
             openPenalty: openPenalty,
             extensionPenalty: extensionPenalty,
-            databaseType: databaseType,
+            //databaseType: databaseType,
             eValue: eValue,
             penalty: penalty,
-            sequenceType: sequenceType
+            //sequenceType: sequenceType
         })}
     </>
 }
