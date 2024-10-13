@@ -26,7 +26,6 @@ const OlatcgAlignmentTable = ({idAnalysis}) => {
     }
 
     const onSuccessGetAlignmentByIdAnalysis = (obj) => {
-        console.log(obj)
         setColumns([{
             id: 'alignmentA',
             label: getMessage('olatcgHomologyTable.label.alignmentA')

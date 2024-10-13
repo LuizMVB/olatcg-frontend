@@ -8,10 +8,10 @@ import ValidationService from "../services/ValidationService";
 import OlatcgLoader from "./OlatcgLoader";
 import OlatcgSnackbar from "./OlatcgSnackbar";
 import { OlatcgStep } from "./OlatcgStep";
-import OriginCountryEnum from "../infra/enums/OriginCountryEnum";
+//import OriginCountryEnum from "../infra/enums/OriginCountryEnum";
 
 class AlignmentRequest{
-    constructor({form, sequenceA, sequenceB, countryA, countryB}) {
+    constructor({form, sequenceA, sequenceB}) {
         this.mode = form.alignmentType;
         this.match_score = form.matchScore;
         this.mismatch_score = form.mismatchScore;
@@ -20,15 +20,15 @@ class AlignmentRequest{
 
         this.biological_sequences = [
             {
-                type: form.sequenceType,
+                type: 'DNA',
                 bases: sequenceA,
-                country_origin: countryA,
+                //country_origin: countryA,
                 external_database_id: 'NC_0001',
             },
             {
-                type: form.sequenceType,
+                type: 'DNA',
                 bases: sequenceB,
-                country_origin: countryB,
+                //country_origin: countryB,
                 external_database_id: 'NC_0002',
             },
         ]
@@ -56,11 +56,11 @@ const AlignmentSequenceInputStep = ({form, next}) => {
     const [isLoading, showLoader] = useState(false);
     const [sequenceA, setSequenceA] = useState('');
     const [sequenceB, setSequenceB] = useState('');
-    const [originCountryA, setOriginCountryA] = useState('brazil');
-    const [originCountryB, setOriginCountryB] = useState('brazil');
+    //const [originCountryA, setOriginCountryA] = useState('brazil');
+    //const [originCountryB, setOriginCountryB] = useState('brazil');
 
 
-    const originCountrys = OriginCountryEnum.getSelectStructure();
+    //const originCountrys = OriginCountryEnum.getSelectStructure();
 
     const showSnackbar = (msg, status) => {
         setMsgSnackbar(msg);
@@ -102,11 +102,10 @@ const AlignmentSequenceInputStep = ({form, next}) => {
         }
     }
 
-    const makeAlignmentRequest = async (form, countryA, countryB) => {
+    const makeAlignmentRequest = async (form) => {
         
         const analysisRequest = new AnalysisRequest({form});
-        const alignmentRequest = new AlignmentRequest({form, sequenceA, sequenceB, countryA, countryB});
-        
+        const alignmentRequest = new AlignmentRequest({form, sequenceA, sequenceB});        
         try{
             ValidationService.validateAlignmentForm(alignmentRequest);
             showLoader(true);
@@ -155,29 +154,6 @@ const AlignmentSequenceInputStep = ({form, next}) => {
                                 multiline
                                 focused
                             />
-
-                            <Box sx={{width:'40%', justifyContent:'center', textAlign:'center'}}>
-                                <Typography gutterBottom>
-                                    {getMessage('alignment.input.label.originCountry')}
-                                </Typography>
-                                <Select
-                                    id="originCountryA"
-                                    name="originCountryA"
-                                    value={originCountryA}
-                                    onChange={event => setOriginCountryA(event.target.value)}
-                                >
-                                    {
-                                        originCountrys.map((type, index) =>
-                                            <MenuItem
-                                                key={index} 
-                                                value={type.value}
-                                            >
-                                                {type.label}
-                                            </MenuItem>
-                                        )
-                                    }
-                                </Select>
-                            </Box>
                         </Stack>
                     </Grid>
                     <Grid item xs={2} sx={{textAlign: 'center'}}>
@@ -187,7 +163,7 @@ const AlignmentSequenceInputStep = ({form, next}) => {
                             onMouseMove={() => setColorAlignIcon("primary")}
                             onMouseLeave={() => setColorAlignIcon()}
                         >
-                            <IconButton disabled={sequenceA.length < 1 || sequenceB.length < 1} onClick={() => makeAlignmentRequest(form, originCountryA, originCountryB)}>
+                            <IconButton disabled={sequenceA.length < 1 || sequenceB.length < 1} onClick={() => makeAlignmentRequest(form)}>
                                 <Science sx={{ fontSize: 50 }} color={colorAlignIcon} />
                             </IconButton>
                         </Tooltip>
@@ -213,29 +189,6 @@ const AlignmentSequenceInputStep = ({form, next}) => {
                                 multiline
                                 focused
                             />
-
-                            <Box sx={{width:'40%', justifyContent:'center', textAlign:'center'}}>
-                                <Typography gutterBottom>
-                                {getMessage('alignment.input.label.originCountry')}
-                                </Typography>
-                                <Select
-                                    id="originCountryB"
-                                    name="originCountryB"
-                                    value={originCountryB}
-                                    onChange={event => setOriginCountryB(event.target.value)}
-                                >
-                                    {
-                                        originCountrys.map((type, index) =>
-                                            <MenuItem
-                                                key={index} 
-                                                value={type.value}
-                                            >
-                                                {type.label}
-                                            </MenuItem>
-                                        )
-                                    }
-                                </Select>
-                            </Box>
                         </Stack>
                     </Grid>
                 </Grid>
