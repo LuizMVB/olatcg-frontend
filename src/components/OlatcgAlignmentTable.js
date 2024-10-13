@@ -26,37 +26,37 @@ const OlatcgAlignmentTable = ({idAnalysis}) => {
     }
 
     const onSuccessGetAlignmentByIdAnalysis = (obj) => {
+        console.log(obj)
         setColumns([{
-            id: 'alignmentTarget',
-            label: getMessage('olatcgAlignmentTable.label.target')
+            id: 'alignmentA',
+            label: getMessage('olatcgHomologyTable.label.alignmentA')
         },
         {
-            id: 'alignmentQuery',
-            label: getMessage('olatcgAlignmentTable.label.query')
+            id: 'alignmentB',
+            label: getMessage('olatcgHomologyTable.label.alignmentB')
         },
-        {
+        /*{
             id: 'aligned',
             label: getMessage('olatcgAlignmentTable.label.aligned')
+        },*/
+        {
+            id: 'type',
+            label: getMessage('olatcgAlignmentTable.label.type')
         },
         {
             id: 'status',
             label: getMessage('olatcgAlignmentTable.label.status')
-        },
-        {
-            id: 'type',
-            label: getMessage('olatcgAlignmentTable.label.type')
-        }]);
+        }
+    ]);
 
-        setRows(obj.data.biopython_bio_align_pairwise_aligner_input.outputs.map((aln, index) => {
-            return { 
-                code: index,
-                alignmentTarget: aln.target.toUpperCase(),
-                alignmentQuery: aln.query.toUpperCase(),
-                aligned: formatAlignedResponse(aln.aligned),
-                status: obj.data.status,
+        setRows([
+                {alignmentA: obj.data.alignments[0].biological_sequences[0].bases.toUpperCase(),//aln.target.toUpperCase(),
+                alignmentB: obj.data.alignments[0].biological_sequences[1].bases.toUpperCase(),//aln.query.toUpperCase(),
+                //aligned: formatAlignedResponse(aln.aligned),
                 type: obj.data.type,
-            };
-        }));
+                status: obj.data.status,
+            }
+        ]);
         showLoader(false);
     }
 
@@ -69,11 +69,11 @@ const OlatcgAlignmentTable = ({idAnalysis}) => {
     const onFailureGetAlignmentByIdAnalysis = (error) => {
         setMsgSnackbar(error.errorDescription);
         showSnackbar(error.errorDescription, 'error');
-        showLoader(true);
+        /*showLoader(true);
         setTimeout(() => {
             document.location.reload();
             showLoader(false);
-        }, 5000);
+        }, 5000);*/
     }
 
     useEffect(() => {
