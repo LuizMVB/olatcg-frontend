@@ -29,6 +29,46 @@ const HomologyAnalysis = () => {
         openSnackbar(true);
     }
 
+    const analysisActionButton = (status, id) =>{
+        if (status == 'EXECUTION_SUCCEEDED'){
+            return <Button onClick={() => navigateTo(location.pathname + '/' + id)}>
+                        {getMessage('common.label.details')}
+                    </Button>
+        } else if (status == 'WAITING_FOR_EXECUTION' || status == 'IN_EXECUTION'){
+            return <Button disabled>
+                        {'TEMP: EM AGUARDO'}
+                    </Button>
+        } else {
+            return <Button sx={{color:'error.main'}} disabled>
+                        {'TEMP: INDISPONÍVEL'}
+                   </Button>
+        }
+    }
+
+    const colorStatus = (status) =>{
+        if (status == 'EXECUTION_SUCCEEDED'){
+            return 'success.main'
+        } else if (status == 'IN_EXECUTION'){
+            return 'warning.main'
+        } else if (status == 'WAITING_FOR_EXECUTION') {
+            return '#000000'
+        } else {
+            return 'error.main'
+        }
+    }
+
+    const backgroundColorStatus = (status) =>{
+        if (status == 'EXECUTION_SUCCEEDED'){
+            return 'success.light'
+        } else if (status == 'IN_EXECUTION'){
+            return 'warning.light'
+        } else if (status == 'WAITING_FOR_EXECUTION') {
+            return 'primary.light'
+        } else {
+            return 'error.light'
+        }
+    }
+
     const onSuccessGetAnalysis = (obj) => {
         if (obj.data.length === 0){
             setInfo(true)
@@ -36,9 +76,9 @@ const HomologyAnalysis = () => {
 
         setColumns([{id: 'id', label: getMessage('alignmentAnalysis.label.id')},
                     {id: 'title', label: getMessage('alignmentAnalysis.label.title')},
-                    {id: 'status', label: getMessage('alignmentAnalysis.label.status')},
-                    {id: 'type', label: getMessage('alignmentAnalysis.label.type')},
                     {id: 'description', label: getMessage('alignmentAnalysisDetails.label.description')},
+                    {id: 'type', label: getMessage('alignmentAnalysis.label.type')},
+                    {id: 'status', label: getMessage('alignmentAnalysis.label.status')},
                     {id: 'action', label: getMessage('alignmentAnalysis.label.action')}]);
 
         setRows(obj.data.map((homAnalysis, index) => {
@@ -46,12 +86,10 @@ const HomologyAnalysis = () => {
                 code: index,
                 id: homAnalysis.id,
                 title: homAnalysis.title,
-                status: homAnalysis.status,
-                type: homAnalysis.type,
                 description: homAnalysis.description,
-                action: <Button onClick={() => navigateTo(location.pathname + '/' + homAnalysis.id)}>
-                    {getMessage('common.label.details')}
-                </Button>
+                type: homAnalysis.type,
+                status: homAnalysis.status,
+                action: analysisActionButton(homAnalysis.status, homAnalysis.id)
             };
         }));
         setTotalPages(Math.ceil(obj.meta.total_pages/15));
@@ -67,7 +105,7 @@ const HomologyAnalysis = () => {
         showLoader(true);
 
         let url = API_ROUTES.GET_ANALYSIS_BY_TYPE;
-        url = url.replace('{analysis_type}', 'HOMOLOGY');
+        url = url.replace('{analysis_type}', 'HOMOLOGY') + '&ordering=-id';
 
         makeRequest(url, 'GET', null, onSuccessGetAnalysis, onFailureGetAlignmentAnalysis);
     }
@@ -76,7 +114,7 @@ const HomologyAnalysis = () => {
         showLoader(true);
 
         let url = API_ROUTES.GET_ANALYSIS_BY_TYPE;
-        url = url.replace('{analysis_type}', 'HOMOLOGY') + '&page=' + (page);
+        url = url.replace('{analysis_type}', 'HOMOLOGY') + '&ordering=-id' + '&page=' + (page);
 
         makeRequest(url, 'GET', null, onSuccessGetAnalysis, onFailureGetAlignmentAnalysis);
     }
@@ -112,18 +150,42 @@ const HomologyAnalysis = () => {
                                     <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                                         {columns.map((column) => {
                                         const value = row[column.id];
-                                        return (
-                                            <TableCell 
-                                                key={column.id} 
-                                                align="center" 
-                                                sx={{ 
-                                                        maxWidth: 150, 
-                                                        verticalAlign: 'center'
-                                                    }}
+                                        if (column.id == 'status'){
+                                            return (
+                                                <TableCell 
+                                                    key={column.id} 
+                                                    align="center" 
+                                                    sx={{ 
+                                                            maxWidth: 150, 
+                                                            verticalAlign: 'center',
+                                                            fontWeight: 'bold',
+                                                            color: colorStatus(value),
+                                                            backgroundColor: backgroundColorStatus(value),
+                                                            whiteSpace: 'pre-wrap',
+                                                            wordBreak: 'break-word'
+                                                        }}
                                             >
                                                 {value}
                                             </TableCell>
-                                        );})}
+                                            );
+                                        } else {
+                                            return (
+                                                <TableCell 
+                                                    key={column.id} 
+                                                    align="center" 
+                                                    sx={{ 
+                                                            maxWidth: 150, 
+                                                            verticalAlign: 'center',
+                                                            backgroundColor: backgroundColorStatus(row['status']),
+                                                            whiteSpace: 'pre-wrap',
+                                                            wordBreak: 'break-word'
+                                                        }}
+                                                >
+                                                    {value}
+                                                </TableCell>
+                                            );
+                                        }
+                                    })}
                                     </TableRow>
                                     );
                                 })}
