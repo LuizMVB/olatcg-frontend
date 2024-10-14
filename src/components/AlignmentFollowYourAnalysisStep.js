@@ -29,12 +29,6 @@ const AlignmentFollowYourAnalysisStep = ({idAnalysis}) => {
                 >
                     <Button 
                         variant="contained" 
-                        onClick={() => navigateTo("/analysis/alignment/" + idAnalysis)}
-                    >
-                        {getMessage('alignment.followAnalysis.button.label.goToAnalysis')}
-                    </Button>
-                    <Button 
-                        variant="contained" 
                         onClick={() => navigateTo("/tool")}
                     >
                         {getMessage('alignment.followAnalysis.button.label.makeAnotherAnalysis')}
