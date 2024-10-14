@@ -36,12 +36,12 @@ const HomologyAnalysis = () => {
                     </Button>
         } else if (status == 'WAITING_FOR_EXECUTION' || status == 'IN_EXECUTION'){
             return <Button disabled>
-                        {'TEMP: EM AGUARDO'}
+                        {getMessage('common.label.wait')}
                     </Button>
         } else {
             return <Button sx={{color:'error.main'}} disabled>
-                        {'TEMP: INDISPONÍVEL'}
-                   </Button>
+                        {getMessage('common.label.unavailable')}
+                    </Button>
         }
     }
 

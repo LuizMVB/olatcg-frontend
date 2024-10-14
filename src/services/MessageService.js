@@ -9,6 +9,8 @@ var data_en = {
     'common.label.homology'     : 'Homology',
     'common.label.alignment'    : 'Alignment',
     'common.label.details'      : 'Details',
+    'common.label.wait'         : 'On hold',
+    'common.label.unavailable'  : 'Unavailable',
     'common.label.show.tree'    : 'Show Tree',
     'common.asterisk'           : '*',
 
@@ -286,6 +288,8 @@ var data = {
     'common.label.homology'     : 'Homologia',
     'common.label.alignment'    : 'Alinhamento',
     'common.label.details'      : 'Detalhes',
+    'common.label.wait'         : 'Em espera',
+    'common.label.unavailable'  : 'Indisponível',
     'common.label.show.tree'    : 'Mostrar árvore',
     'common.asterisk'           : '*',
 
