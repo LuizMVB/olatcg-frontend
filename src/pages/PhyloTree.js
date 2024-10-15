@@ -10,10 +10,6 @@ import OlatcgLoader from "../components/OlatcgLoader";
 import OlatcgSnackbar from "../components/OlatcgSnackbar";
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 
-const exampleNewick = '(Vaca:0.69395,(Gibão:0.36079,(Orangotango:0.33636,(Gorila:0.17147,(Chimpanzé:1.19268,Humano:0.11927):0.08386):0.06124):0.15057):0.54939, Rato:1.21460);';
-//const exampleNewick = '(query_1:0.164874736,(query_2:0.0,query_3:0.0):0.164874736);';
-
-
 const PhyloTree = () => {
   let treeId = useParams();
   const [makeRequest] = useRequest();
@@ -38,13 +34,20 @@ const PhyloTree = () => {
     showLoader(false);
 }
 
+const regNewick = (newick) =>{
+  
+  let regNewick = newick.replace(/(\d+\.\d+)/g, (val) => {
+    return (parseFloat(val) + 0.00001).toString();
+  });
+
+  return regNewick
+}
+
 const onSuccessGetPhyloTree = (obj) => {
 
   setIdAnalysis(obj.data.generated_from_analysis);
   setAnalysisName(obj.data.title)
-  //setNewickTree(obj.data.nwk)
-  setNewickTree('(Vaca:0.69395,(Gibão:0.36079,(Orangotango:0.33636,(Gorila:0.17147,(Chimpanzé:1.19268,Humano:0.11927):0.08386):0.06124):0.15057):0.54939, Rato:1.21460);')
-
+  setNewickTree(regNewick(obj.data.fasttree_inputs[0].outputs[0].file_content));
 
   showLoader(false);
 }
@@ -58,15 +61,14 @@ useEffect(() => {
   makeRequest(url, 'GET', null, onSuccessGetPhyloTree, onFailureGetPhyloTree);
 }, [treeId]);
 
-
     return ( <>
           <Box sx={{ px: 4, my: 'auto'}}>
             <Paper sx={{ maxWidth:'90%', /*overflow: 'hidden',*/ bgcolor: 'primary.light', margin: 'auto'}}>
               <Typography component="div" variant="h4" sx={{backgroundColor: 'primary.dark', borderTopRightRadius: '4px', borderTopLeftRadius: '4px', color: 'primary.contrastText', textAlign: 'center'}}>
                 ID {idAnalysis} - {analysisName}
               </Typography>
-              {newickTree && (
-                 <OlatcgPhyloTree newick={exampleNewick} />
+              {newickTree != '' && (
+                 <OlatcgPhyloTree newick={newickTree} />
                 )
                 }
               <Button startIcon={<ContentPasteIcon/>} sx={{width:'100%', color: 'primary.contrastText', backgroundColor:'primary.dark', borderTopRightRadius: 0, borderTopLeftRadius: 0}} onClick={() => idAnalysis !=0 && navigateTo("/analysis/homology/" + idAnalysis)}>

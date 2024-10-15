@@ -1,5 +1,4 @@
 import { Box, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
-import ParkIcon from '@mui/icons-material/Park';
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import OlatcgLoader from "../components/OlatcgLoader";
@@ -8,6 +7,7 @@ import useRequest from "../hooks/useRequest";
 import { API_ROUTES } from "../routes/Routes";
 import { getMessage } from "../services/MessageService";
 import AlertDialogSlide from "../components/OlatcgAlertDialogSlide";
+import OlatcgPhylogeneticTreeModal from "../components/OlatcgPhylogeneticTreeModal";
 
 class PhyloTreeRequest{
     constructor({title, description}){
@@ -120,39 +120,7 @@ const HomologyAnalysisDetails = () => {
         showLoader(false);
     
     }
-    
-    //Solucao temporaria
-    const onSuccessPostPhyloTree = (obj) =>{
-        if(obj.analysis_id != undefined){
-            console.log('SUCESSO! ARVORE CRIADA!\n', obj)
-        
-            showLoader(false);
-            navigateTo("/analysis/homology/tree/" + obj.analysis_id)
-        } else {
-            console.log('Falha, arvore ja existe:\n', obj.error)
-            navigateTo("/analysis/homology/tree/" + 17)
-        }
-    }
 
-    const onFailurePostPhyloTree = (error) =>{
-        showSnackbar(error.errorDescription, 'error');
-        showLoader(false);
-    }
-
-    const makePhyloTreeRequest = () =>{
-        showLoader(true);
-
-        let url = API_ROUTES.PHYLOGENETIC_TREE;
-        url = url.replace('{id}', idAnalysis);
-
-        makeRequest(url, 'POST', phyloTreeBody, onSuccessPostPhyloTree, onFailurePostPhyloTree);
-
-    }
-
-    const handlePhyloTree = () =>{
-        makePhyloTreeRequest()
-
-    }
     
     return <>
         <Box sx={{ px: 4, my: 'auto'}}>
@@ -215,13 +183,12 @@ const HomologyAnalysisDetails = () => {
                     </Table>
                 </TableContainer>
                 {isAnalysisAvailable && (
-                    <Button startIcon={<ParkIcon/>} sx={{width:'100%', color: 'primary.contrastText', backgroundColor:'primary.dark', borderTopRightRadius: 0, borderTopLeftRadius: 0}} onClick={() => handlePhyloTree()/*() => navigateTo("/analysis/homology/tree/" + 17)*/}>
-                        {getMessage('common.label.show.tree')}
-                    </Button>
+                    <OlatcgPhylogeneticTreeModal phyloTreeBody={phyloTreeBody} sx={{justifyContent:'center', alignItems:'center'}}/>
                     )
                 }
             </Paper>
         </Box>
+        
         <OlatcgSnackbar
             isOpened={isSnackbarOpened} 
             onClose={() => openSnackbar(false)}

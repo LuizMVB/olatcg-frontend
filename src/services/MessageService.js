@@ -154,7 +154,16 @@ var data_en = {
     'homologyTable.error'                               : 'An unexpected error has occurred. This analysis is currently unavailable.',
 
     /* PHYLOGENETIC TREE */
-    'phyloTree.label.return'                         : 'Return to analysis',
+    'phyloTree.label.tree'                              : 'Phylogenetic Tree',
+    'phyloTree.label.return'                            : 'Return to analysis',
+    'phyloTree.label.availableTree'                     : 'Phylogenetic Tree Available',
+    'phyloTree.modal.accessBelow'                       : 'Click on the button below to access your tree',
+
+    /* PHYLOGENETIC TREE ANALYSIS*/
+    'phyloTreeAnalysis.label.origin'                    : 'Origin ID',
+
+
+
 
 
     /** ALIGNMENT */
@@ -423,7 +432,14 @@ var data = {
     'homologyTable.error'                               : 'Nenhuma sequência foi encontrada na base que correspondesse às suas entradas',
 
     /* PHYLOGENETIC TREE */
-    'phyloTree.label.return'                         : 'Retornar a análise',
+    'phyloTree.label.tree'                              : 'Árvore Filogenética',
+    'phyloTree.label.return'                            : 'Retornar a análise',
+    'phyloTree.label.availableTree'                     : 'Árvore Filogenética Disponível',
+    'phyloTree.modal.accessBelow'                       : 'Clique abaixo para acessar a sua árvore',
+
+    
+    /* PHYLOGENETIC TREE ANALYSIS*/
+    'phyloTreeAnalysis.label.origin'                    : 'ID de Origem',
 
 
     /** ALIGNMENT */
