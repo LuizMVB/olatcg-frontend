@@ -8,6 +8,7 @@ import Homology from '../pages/Homology';
 import { Analysis } from '../pages/Analysis';
 import { HomologyAnalysis } from '../pages/HomologyAnalysis';
 import { AlignmentAnalysis } from '../pages/AlignmentAnalysis';
+import { PhylogeneticTreeAnalysis } from '../pages/PhylogeneticTreeAnalysis';
 import { AlignmentAnalysisDetails } from '../pages/AlignmentAnalysisDetails';
 import { HomologyAnalysisDetails } from '../pages/HomologyAnalysisDetails';
 import PhyloTree from '../pages/PhyloTree';
@@ -29,6 +30,9 @@ export default function AppRoutes(){
                 <Route path="homology" element={<HomologyAnalysis />} >
                     <Route path='tree/:idAnalysis'element={<PhyloTree />}/>
                     <Route path=":idAnalysis" element={<HomologyAnalysisDetails />} />
+                </Route>
+                <Route path="phylogeneticTree" element={<PhylogeneticTreeAnalysis/>}>
+                    <Route path=':idAnalysis'element={<PhyloTree />}/>
                 </Route>
             </Route>
             <Route path="*" element={<Navigate to="home" />} />
