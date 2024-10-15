@@ -14,8 +14,8 @@ const HomologyConfigurationStep = ({form, next}) => {
     const [extensionPenalty, setExtensionPenalty] = useState(0);
     const [penalty, setPenalty] = useState(0);
     const [eValue, setEValue] = useState(0.001);
-    //const [databaseType, setDatabaseType] = useState('default');
-    //const [sequenceType, setSequenceType] = useState('DNA');
+    const [databaseType, setDatabaseType] = useState('default');
+    const [sequenceType, setSequenceType] = useState('DNA');
 
     //const databaseTypes = DatabaseTypeEnum.getSelectStructure();
     //const sequenceTypes = SequenceTypeEnum.getSelectStructure();
@@ -161,10 +161,10 @@ const HomologyConfigurationStep = ({form, next}) => {
             analysisType: form.analysisType,
             openPenalty: openPenalty,
             extensionPenalty: extensionPenalty,
-            //databaseType: databaseType,
+            databaseType: databaseType,
             eValue: eValue,
             penalty: penalty,
-            //sequenceType: sequenceType
+            sequenceType: sequenceType
         })}
     </>
 }
