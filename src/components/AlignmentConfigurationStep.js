@@ -13,10 +13,10 @@ const AlignmentConfigurationStep = ({form, next}) => {
     const [extensionPenalty, setExtensionPenalty] = useState(0);
     const [matchScore, setMatchScore] = useState(0);
     const [mismatchScore, setMismatchScore] = useState(0);
-    const [sequenceType, setSequenceType] = useState('DNA');
+    //const [sequenceType, setSequenceType] = useState('DNA');
     const [alignmentType, setAlignmentType] = useState('global');
     
-    const sequenceTypes = SequenceTypeEnum.getSelectStructure();
+    //const sequenceTypes = SequenceTypeEnum.getSelectStructure();
     const alignmentTypes = AlignmentTypeEnum.getSelectStructure();
 
     return <>
@@ -86,37 +86,6 @@ const AlignmentConfigurationStep = ({form, next}) => {
                             onChange={event => setExtensionPenalty(event.target.value)}
                         />
                     </Box>
-                    <Box sx={{width: 200, textAlign: 'center'}}>
-                        <Typography gutterBottom>
-                            {getMessage('alignment.input.label.sequenceType')}
-                            <Tooltip title={getMessage('alignment.tooltip.sequenceType')} placement='top' arrow>
-                                <HelpIcon sx={{verticalAlign: 'middle',
-                                    fontSize:'inherit',
-                                    marginLeft: 0.6,
-                                    color:'primary.main',
-                                    '&:hover':{
-                                        color: 'primary.light'
-                                    }}}/>
-                            </Tooltip>
-                        </Typography>
-                        <Select
-                            id="sequenceType"
-                            name="sequenceType"
-                            value={sequenceType}
-                            onChange={event => setSequenceType(event.target.value)}
-                        >
-                            {
-                                sequenceTypes.map((type, index) =>
-                                    <MenuItem 
-                                        key={index} 
-                                        value={type.value}
-                                    >
-                                        {type.label}
-                                    </MenuItem>
-                                )
-                            }
-                        </Select>
-                    </Box>
                     </Stack>
                     <Stack
                         direction="column"
@@ -173,7 +142,9 @@ const AlignmentConfigurationStep = ({form, next}) => {
                                 onChange={event => setMismatchScore(event.target.value)}
                             />
                         </Box>
-                        <Box sx={{width: 200, textAlign: 'center'}}>
+                    </Stack>
+                </Stack>
+                <Box sx={{width: 200, mt:2, mx:'auto', textAlign: 'center'}}>
                             <Typography gutterBottom>
                                 {getMessage('alignment.input.label.alignmentType')}
                                 <Tooltip title={getMessage('alignment.tooltip.alignmentType')} placement='top' arrow>
@@ -204,8 +175,6 @@ const AlignmentConfigurationStep = ({form, next}) => {
                                 }
                             </Select>
                         </Box>
-                    </Stack>
-                </Stack>
             </OlatcgStep> 
         : next({
             analysisTitle: form.analysisTitle,
@@ -215,7 +184,6 @@ const AlignmentConfigurationStep = ({form, next}) => {
             extensionPenalty: extensionPenalty,
             matchScore: matchScore,
             mismatchScore: mismatchScore,
-            sequenceType: sequenceType,
             alignmentType: alignmentType
         })}
     </>

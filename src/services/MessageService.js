@@ -9,6 +9,8 @@ var data_en = {
     'common.label.homology'     : 'Homology',
     'common.label.alignment'    : 'Alignment',
     'common.label.details'      : 'Details',
+    'common.label.wait'         : 'On hold',
+    'common.label.unavailable'  : 'Unavailable',
     'common.label.show.tree'    : 'Show Tree',
     'common.asterisk'           : '*',
 
@@ -151,6 +153,18 @@ var data_en = {
 
     'homologyTable.error'                               : 'An unexpected error has occurred. This analysis is currently unavailable.',
 
+    /* PHYLOGENETIC TREE */
+    'phyloTree.label.tree'                              : 'Phylogenetic Tree',
+    'phyloTree.label.return'                            : 'Return to analysis',
+    'phyloTree.label.availableTree'                     : 'Phylogenetic Tree Available',
+    'phyloTree.modal.accessBelow'                       : 'Click on the button below to access your tree',
+
+    /* PHYLOGENETIC TREE ANALYSIS*/
+    'phyloTreeAnalysis.label.origin'                    : 'Origin ID',
+
+
+
+
 
     /** ALIGNMENT */
     'alignment.input.label.firstSequence'                        : 'First Sequence',
@@ -283,6 +297,8 @@ var data = {
     'common.label.homology'     : 'Homologia',
     'common.label.alignment'    : 'Alinhamento',
     'common.label.details'      : 'Detalhes',
+    'common.label.wait'         : 'Em espera',
+    'common.label.unavailable'  : 'Indisponível',
     'common.label.show.tree'    : 'Mostrar árvore',
     'common.asterisk'           : '*',
 
@@ -414,6 +430,16 @@ var data = {
     'olatcgHomologyTable.label.action'                  : 'Ação',
 
     'homologyTable.error'                               : 'Nenhuma sequência foi encontrada na base que correspondesse às suas entradas',
+
+    /* PHYLOGENETIC TREE */
+    'phyloTree.label.tree'                              : 'Árvore Filogenética',
+    'phyloTree.label.return'                            : 'Retornar a análise',
+    'phyloTree.label.availableTree'                     : 'Árvore Filogenética Disponível',
+    'phyloTree.modal.accessBelow'                       : 'Clique abaixo para acessar a sua árvore',
+
+    
+    /* PHYLOGENETIC TREE ANALYSIS*/
+    'phyloTreeAnalysis.label.origin'                    : 'ID de Origem',
 
 
     /** ALIGNMENT */

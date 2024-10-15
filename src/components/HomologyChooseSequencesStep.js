@@ -9,9 +9,9 @@ import ValidationService from "../services/ValidationService";
 import OlatcgLoader from "./OlatcgLoader";
 import OlatcgSnackbar from "./OlatcgSnackbar";
 import { OlatcgStep } from "./OlatcgStep";
-import OriginCountryEnum from "../infra/enums/OriginCountryEnum";
+//import OriginCountryEnum from "../infra/enums/OriginCountryEnum";
 
-const originCountrys = OriginCountryEnum.getSelectStructure();
+//const originCountrys = OriginCountryEnum.getSelectStructure();
 
 class AnalysisRequest{
     constructor({form}){
@@ -33,7 +33,7 @@ class HomologyRequest{
         this.biological_sequences = sequenceForm.map(seq => (
             {
                 bases: seq.sequence,
-                country_origin: seq.originCountry,
+                //country_origin: seq.originCountry,
                 external_database_id: 'default',
                 title: seq.sequenceName
             }
@@ -58,12 +58,12 @@ const HomologyChooseSequencesStep = ({form, next}) => {
     const [sequenceForm, setSequenceForm] = useState([
         {
             sequenceName: '',
-            originCountry: originCountrys[0].value,
+            //originCountry: originCountrys[0].value,
             sequence: '',
         },
         {
             sequenceName: '',
-            originCountry: originCountrys[0].value,
+            //originCountry: originCountrys[0].value,
             sequence: '',
         },
     ])
@@ -143,7 +143,7 @@ const HomologyChooseSequencesStep = ({form, next}) => {
     const addSequence = () => {
         sequenceForm.push({            
             sequenceName: '',
-            originCountry: originCountrys[0].value,
+            //originCountry: originCountrys[0].value,
             sequence: ''
         })
         updateSequenceFormList();
@@ -158,7 +158,7 @@ const HomologyChooseSequencesStep = ({form, next}) => {
                             {getMessage('homology.chooseSequencesStep.sequenceNumber') + (index+1)}
                         </Typography>
                     </Grid>
-                    <Grid item xs={10}>
+                    <Grid item xs={12}>
                         <TextField
                             hiddenlabel
                             name={'sequenceTitle' + index}
@@ -170,7 +170,7 @@ const HomologyChooseSequencesStep = ({form, next}) => {
                                     height: '2.4rem',
                                     fontSize: '0.8rem',
                                     borderTopLeftRadius: 8,
-                                    borderTopRightRadius: 0,
+                                    borderTopRightRadius: 8,
                                     borderBottomLeftRadius: 0,
                                     borderBottomRightRadius: 0,
                                     borderBottom:'none'
@@ -179,37 +179,6 @@ const HomologyChooseSequencesStep = ({form, next}) => {
                             onChange={(event) => seq.sequenceName = event.target.value}
                             required
                         />
-                    </Grid>
-                    <Grid item xs={2}>
-                        <Select
-                            hiddenlabel
-                            name={'originCountry' + index}
-                            key={index}
-                            onChange={(event) => seq.originCountry = event.target.value}
-                            fullWidth={true}
-                            sx={{
-                                height: '2.4rem',
-                                fontSize: '0.8rem',
-                                borderTopLeftRadius:0,
-                                borderTopRightRadius: 8,
-                                borderBottomLeftRadius: 0,
-                                borderBottomRightRadius: 0,
-                                borderBottom:'none'
-                            }}
-                            defaultValue={originCountrys[0].value}
-                            required
-                        >
-                            {
-                                originCountrys.map((type, index) =>
-                                    <MenuItem 
-                                        key={index} 
-                                        value={type.value}
-                                    >
-                                        {type.label}
-                                    </MenuItem>
-                                )
-                            }
-                        </Select>
                     </Grid>
                     <Grid item xs={12}>
                         <TextField

@@ -68,22 +68,6 @@ const AnalysisDefinitionStep = ({anType, next}) => {
                         focused
                     />
                 </Box>
-                <Box sx={{width: 400, textAlign: 'center'}}>
-                    <Typography gutterBottom>
-                        {getMessage('alignment.input.label.analysisType')}
-                    </Typography>
-                    <FormControl disabled>
-                        <Select
-                            name="analysisType"
-                            id="analysisType"
-                            value={analysisType}
-                            //onChange={}
-                        >
-                            <MenuItem value={'ALIGNMENT'}>{getMessage('analysisType.ALIGNMENT')}</MenuItem>
-                            <MenuItem value={'HOMOLOGY'}>{getMessage('analysisType.HOMOLOGY')}</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Box>
             </Stack>
         
         </OlatcgStep>

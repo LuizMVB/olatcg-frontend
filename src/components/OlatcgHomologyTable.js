@@ -16,17 +16,29 @@ const OlatcgHomologyTable = ({idAnalysis}) => {
     const [msgSnackbar, setMsgSnackbar] = useState('');
 
     const onSuccessGetAlignmentByIdAnalysis = (response) => {
-        setColumns([{
+        setColumns([
+            {
+                id: 'title',
+                label: getMessage('alignmentAnalysis.label.title')
+            },
+            {
+                id: 'description',
+                label: getMessage('alignmentAnalysisDetails.label.description')
+            },
+            {
+                id: 'type',
+                label: getMessage('olatcgHomologyTable.label.type')
+            },
+            {
             id: 'status',
             label: getMessage('olatcgHomologyTable.label.status')
-        },
-        {
-            id: 'type',
-            label: getMessage('olatcgHomologyTable.label.type')
-        }]); 
+        }
+        ]); 
         setRows([{
-            status: response.data.status,
-            type: response.data.type
+            title: response.data.title,
+            description: response.data.description,
+            type: response.data.type,
+            status: response.data.status
         }]);
         showLoader(false);
         
@@ -71,7 +83,7 @@ const OlatcgHomologyTable = ({idAnalysis}) => {
                                 <TableCell
                                     key={column.id}
                                     align={'center'}
-                                    sx={{bgcolor: 'primary.main'}}
+                                    sx={{bgcolor: 'primary.main', color: 'primary.contrastText'}}
                                 >
                                 {column.label}
                                 </TableCell>
@@ -87,7 +99,7 @@ const OlatcgHomologyTable = ({idAnalysis}) => {
                                 const value = row[column.id];
                                 return (
                                     
-                                    <TableCell key={column.id} align="center" sx={{wordWrap: 'break-word', fontSize:'1.2rem', maxWidth: 70, verticalAlign: 'top'}}>
+                                    <TableCell key={column.id} align="center" sx={{wordWrap: 'break-word', fontSize:'1rem', maxWidth: 70, verticalAlign: 'top'}}>
                                         {value}
                                     </TableCell>
                                 );

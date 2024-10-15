@@ -7,7 +7,7 @@ import { getMessage } from "../services/MessageService";
 const Analysis = () => {
     const navigateTo = useNavigate();
     const location = useLocation();
-    const [value, setValue] = useState(location.pathname.includes('/analysis/homology') ? 'HOMOLOGY' : 'ALIGNMENT');
+    const [value, setValue] = useState('ALIGNMENT');
 
     const onComponentMount = () => {
         if(location.pathname === '/analysis'){
@@ -15,8 +15,19 @@ const Analysis = () => {
         }
     }
 
+    const handleLabel = () =>{
+        if(location.pathname.includes('/analysis/alignment')){
+            setValue('ALIGNMENT');
+        } else if (location.pathname.includes('/analysis/homology')){
+            setValue('HOMOLOGY');
+        } else if (location.pathname.includes('/analysis/phylogeneticTree')){
+            setValue('TAXONOMY_TREE');
+        }
+    }
+
     useEffect(() => {
         onComponentMount();
+        handleLabel();
     }, [location, navigateTo])
 
     return <>
@@ -36,13 +47,19 @@ const Analysis = () => {
                     label={getMessage('common.label.alignment')} 
                     value="ALIGNMENT" 
                     onClick={() => navigateTo('/analysis/alignment')} 
-                    sx={{fontSize: 25}}
+                    sx={{fontSize: 25, maxWidth:'15%'}}
                 />
                 <Tab 
                     label={getMessage('common.label.homology')} 
                     value="HOMOLOGY" 
                     onClick={() => navigateTo('/analysis/homology')}
-                    sx={{fontSize: 25}}
+                    sx={{fontSize: 25, maxWidth:'15%'}}
+                />
+                <Tab 
+                    label={getMessage('phyloTree.label.tree')} 
+                    value="TAXONOMY_TREE" 
+                    onClick={() => navigateTo('/analysis/phylogeneticTree')}
+                    sx={{fontSize: 25, maxWidth:'15%'}}
                 />
             </Tabs>
         </Box>

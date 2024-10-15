@@ -1,14 +1,14 @@
 import { Box, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Pagination } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import OlatcgLoader from "../components/OlatcgLoader";
 import OlatcgSnackbar from "../components/OlatcgSnackbar";
 import useRequest from "../hooks/useRequest";
 import { API_ROUTES } from "../routes/Routes";
 import { getMessage } from "../services/MessageService";
 import OlatcgNodata from "../components/OlatcgNoData";
+import OlatcgLoader from "../components/OlatcgLoader";
 
-const HomologyAnalysis = () => {
+const PhylogeneticTreeAnalysis = () => {
 
     const location = useLocation();
     const navigateTo = useNavigate();
@@ -20,8 +20,9 @@ const HomologyAnalysis = () => {
     const [statusSnackbar, setStatusSanckbar] = useState('error');
     const [msgSnackbar, setMsgSnackbar] = useState('');
     const [info, setInfo] = useState(false);
-    const [selectedPage, setSelectedPage] = useState(0);
+    //const [selectedPage, setSelectedPage] = useState(0);
     const [totalPages, setTotalPages] = useState();
+    
 
     const showSnackbar = (msg, status) => {
         setMsgSnackbar(msg);
@@ -41,7 +42,7 @@ const HomologyAnalysis = () => {
         } else {
             return <Button sx={{color:'error.main'}} disabled>
                         {getMessage('common.label.unavailable')}
-                    </Button>
+                   </Button>
         }
     }
 
@@ -69,34 +70,37 @@ const HomologyAnalysis = () => {
         }
     }
 
-    const onSuccessGetAnalysis = (obj) => {
+    const onSuccessGetPhylogeneticTreeAnalysis = (obj) => {
         if (obj.data.length === 0){
             setInfo(true)
         } 
-
         setColumns([{id: 'id', label: getMessage('alignmentAnalysis.label.id')},
+                    {id: 'origin', label: getMessage('phyloTreeAnalysis.label.origin')},
                     {id: 'title', label: getMessage('alignmentAnalysis.label.title')},
                     {id: 'description', label: getMessage('alignmentAnalysisDetails.label.description')},
                     {id: 'type', label: getMessage('alignmentAnalysis.label.type')},
                     {id: 'status', label: getMessage('alignmentAnalysis.label.status')},
                     {id: 'action', label: getMessage('alignmentAnalysis.label.action')}]);
-
-        setRows(obj.data.map((homAnalysis, index) => {
+        setRows(obj.data.map((phyAnalysis, index) => {
             return {
                 code: index,
-                id: homAnalysis.id,
-                title: homAnalysis.title,
-                description: homAnalysis.description,
-                type: homAnalysis.type,
-                status: homAnalysis.status,
-                action: analysisActionButton(homAnalysis.status, homAnalysis.id)
+                id: phyAnalysis.id,
+                origin: phyAnalysis.generated_from_analysis,
+                title: phyAnalysis.title,
+                description: phyAnalysis.description,
+                type: phyAnalysis.type,
+                status: phyAnalysis.status,
+                action: analysisActionButton(phyAnalysis.status, phyAnalysis.id)
+                
             };
         }));
+
+        //setSelectedPage(paginationAndSort.pageNumber);
         setTotalPages(Math.ceil(obj.meta.total_pages/15));
         showLoader(false);
     }
-
-    const onFailureGetAlignmentAnalysis = (error) => {
+  
+    const onFailureGetPhylogeneticTreeAnalysis = (error) => {
         showSnackbar(getMessage(error.errorDescription), 'error');
         showLoader(false);
     }
@@ -105,36 +109,38 @@ const HomologyAnalysis = () => {
         showLoader(true);
 
         let url = API_ROUTES.GET_ANALYSIS_BY_TYPE;
-        url = url.replace('{analysis_type}', 'HOMOLOGY') + '&ordering=-id';
+        url = url.replace('{analysis_type}', 'TAXONOMY_TREE') + '&ordering=-id';
 
-        makeRequest(url, 'GET', null, onSuccessGetAnalysis, onFailureGetAlignmentAnalysis);
+        makeRequest(url, 'GET', null, onSuccessGetPhylogeneticTreeAnalysis, onFailureGetPhylogeneticTreeAnalysis);
     }
 
     const handlePaginationChange = (e, page) => {
         showLoader(true);
-
         let url = API_ROUTES.GET_ANALYSIS_BY_TYPE;
-        url = url.replace('{analysis_type}', 'HOMOLOGY') + '&ordering=-id' + '&page=' + (page);
+        url = url.replace('{analysis_type}', 'TAXONOMY_TREE')  + '&ordering=-id'+ '&page=' + (page);
 
-        makeRequest(url, 'GET', null, onSuccessGetAnalysis, onFailureGetAlignmentAnalysis);
+        makeRequest(url, 'GET', null, onSuccessGetPhylogeneticTreeAnalysis, onFailureGetPhylogeneticTreeAnalysis);
     }
 
     useEffect(() => {
         onComponentMount();
     }, []);
-    
-   
 
-    if(location.pathname === '/analysis/homology'){
-        return <>
+    if(location.pathname === '/analysis/phylogeneticTree'){
+        
+        return <> 
+         
             <Box sx={{px: 4, pb: 8}}>{info ? <OlatcgNodata />: 
                 <Paper sx={{ width: '100%', overflow: 'hidden', bgcolor: 'primary.light' }}>
                     <TableContainer sx={{ maxHeight: '60vh' }}>
                         <Table stickyHeader aria-label="sticky table" >
+                        
                             <TableHead>
                                 <TableRow>
+                                    
                                     {columns.map((column) => (
                                         <TableCell
+                                        
                                             key={column.id}
                                             align={'center'}
                                             sx={{bgcolor: 'primary.main', color: 'primary.contrastText'}}
@@ -214,4 +220,4 @@ const HomologyAnalysis = () => {
     return <Outlet />
 };
 
-export { HomologyAnalysis };
+export { PhylogeneticTreeAnalysis };

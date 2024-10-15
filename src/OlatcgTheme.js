@@ -18,13 +18,15 @@ const mainTheme = createTheme({
             main: '#c90000',
         },
         warning: { 
-            main: '#d7d11a'
+            main: '#d7d11a',
+            light: '#f7f5be',
         },
         info: {
             main: '#4fc3f7'
         },
         success: {
-            main: '#388e3c'
+            main: '#388e3c',
+            light: '#acdeae',
         }
     },
 });

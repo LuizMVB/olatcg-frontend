@@ -1,4 +1,4 @@
-import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Box, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import OlatcgLoader from "../components/OlatcgLoader";
@@ -7,6 +7,14 @@ import useRequest from "../hooks/useRequest";
 import { API_ROUTES } from "../routes/Routes";
 import { getMessage } from "../services/MessageService";
 import AlertDialogSlide from "../components/OlatcgAlertDialogSlide";
+import OlatcgPhylogeneticTreeModal from "../components/OlatcgPhylogeneticTreeModal";
+
+class PhyloTreeRequest{
+    constructor({title, description}){
+        this.title = title;
+        this.description = description;
+    }
+}
 
 const HomologyAnalysisDetails = () => {
     let { idAnalysis } = useParams();
@@ -20,12 +28,14 @@ const HomologyAnalysisDetails = () => {
     const navigateTo = useNavigate();
     const [analysisName, setAnalysisName] = useState('');
     const [isAnalysisAvailable, setIsAnalysisAvailable] = useState(true);
+    const [phyloTreeBody, setPhyloTreeBody] = useState(new PhyloTreeRequest({title:'',description:''}))
 
     const showSnackbar = (msg, status) => {
         setMsgSnackbar(msg);
         setStatusSanckbar(status);
         openSnackbar(true);
     }
+
     const onFailureGetAlignmentByIdAnalysis = (error) => {
         showSnackbar(getMessage(error.errorDescription), 'error');
         showLoader(false);
@@ -40,85 +50,81 @@ const HomologyAnalysisDetails = () => {
         makeRequest(url, 'GET', null, tablemaker, onFailureGetAlignmentByIdAnalysis);
     }, [idAnalysis]);
 
-const tablemaker = (obj)=> {
-    /*if(obj.data.status == 'STARTED') {
-        showSnackbar(getMessage('info.analysis.isnt.finished'), 'info');
-        setTimeout(() => {
-            showLoader(false);
-            navigateTo('/analysis/homology');
-        }, 5000);
-        return;
-    }*/
+    const tablemaker = (obj)=> {
+        /*if(obj.data.status == 'STARTED') {
+            showSnackbar(getMessage('info.analysis.isnt.finished'), 'info');
+            setTimeout(() => {
+                showLoader(false);
+                navigateTo('/analysis/homology');
+            }, 5000);
+            return;
+        }*/
+    
+        setAnalysisName(obj.data.title);
+    
+        if(obj.data.taxonomies){
+            setIsAnalysisAvailable(true)
 
-    setAnalysisName(obj.data.title);
-
-    if(obj.data.taxonomies){
-        setIsAnalysisAvailable(true)
-
-        setColumns([
-            {
-                id: 'title',
-                label: getMessage( 'alignmentAnalysis.label.title' )
-            },
-            {
-                id: 'alignmentA',
-                label: getMessage('olatcgHomologyTable.label.alignmentA' )
-            },
-            {
-                id: 'alignmentB',
-                label: getMessage('olatcgHomologyTable.label.alignmentB')
-            },
-            {
-                id: 'taxonomy',
-                label: getMessage('olatcgHomologyTable.label.taxonomy' )
-            },
-            // {
-            //     id: 'action',
-            //     label: getMessage('olatcgHomologyTable.label.action')
-            // }
-        ]);
-
-        setRows(obj.data.taxonomies.map((homoAnalysis, index) => {
-            return {
-                code: index + homoAnalysis.id,
-                title: homoAnalysis.title,
-                alignmentA: <AlertDialogSlide base = {homoAnalysis.alignments[0].biological_sequences[0].bases}/>,
-                alignmentB: <AlertDialogSlide base = {homoAnalysis.alignments[0].biological_sequences[1].bases}/>,
-                taxonomy: homoAnalysis.lineage/*,
-                action: <Button onClick={() => navigateTo("/analysis/homology/tree/" + homoAnalysis.id)}>
-                            {getMessage('common.label.show.tree')}
-                        </Button>*/
-            };
-
-        }));
-    } else {
-        setIsAnalysisAvailable(false)
-
-        setColumns([
-            {
-                id: 'type',
-                label: getMessage('alignmentAnalysis.label.type')
-            },
-            {
-                id: 'status',
-                label: getMessage('alignmentAnalysis.label.status')
-            },
-        ]);
-
-        setRows([{
-            type: obj.data.type,
-            status: obj.data.status           
-        }]);
-
+            setPhyloTreeBody(new PhyloTreeRequest({title:obj.data.title, description:obj.data.description}))
+    
+            setColumns([
+                {
+                    id: 'title',
+                    label: getMessage( 'alignmentAnalysis.label.title' )
+                },
+                {
+                    id: 'alignmentA',
+                    label: getMessage('olatcgHomologyTable.label.alignmentA' )
+                },
+                {
+                    id: 'alignmentB',
+                    label: getMessage('olatcgHomologyTable.label.alignmentB')
+                },
+                {
+                    id: 'taxonomy',
+                    label: getMessage('olatcgHomologyTable.label.taxonomy' )
+                },
+            ]);
+    
+            setRows(obj.data.taxonomies.map((homoAnalysis, index) => {
+                return {
+                    code: index + homoAnalysis.id,
+                    title: homoAnalysis.title,
+                    alignmentA: <AlertDialogSlide base = {homoAnalysis.alignments[0].biological_sequences[0].bases}/>,
+                    alignmentB: <AlertDialogSlide base = {homoAnalysis.alignments[0].biological_sequences[1].bases}/>,
+                    taxonomy: homoAnalysis.lineage
+                };
+    
+            }));
+        } else {
+            setIsAnalysisAvailable(false)
+    
+            setColumns([
+                {
+                    id: 'type',
+                    label: getMessage('alignmentAnalysis.label.type')
+                },
+                {
+                    id: 'status',
+                    label: getMessage('alignmentAnalysis.label.status')
+                },
+            ]);
+    
+            setRows([{
+                type: obj.data.type,
+                status: obj.data.status           
+            }]);
+    
+        }
+    
+        showLoader(false);
+    
     }
 
-    showLoader(false);
-
-}
     
     return <>
         <Box sx={{ px: 4, my: 'auto'}}>
-            <Paper sx={{ width: isAnalysisAvailable ? '96%' : '60%', overflow: 'hidden', bgcolor: 'primary.light', margin: 'auto'}}>
+            <Paper sx={{ width: isAnalysisAvailable ? '90%' : '60%', overflow: 'hidden', bgcolor: 'primary.light', margin: 'auto'}}>
                 <Typography component="div" variant="h4" sx={{backgroundColor: 'primary.dark', color: 'primary.contrastText', textAlign: 'center'}}>
                     ID {idAnalysis} - {analysisName}
                 </Typography>
@@ -141,7 +147,7 @@ const tablemaker = (obj)=> {
                         </Typography>
                     </Box>
                 )}
-                <TableContainer sx={{ maxHeight: '65vh' }}>
+                <TableContainer sx={{ maxHeight: '60vh', overflowY: 'auto' }}>
                     <Table stickyHeader aria-label="sticky table" >
                         <TableHead>
                             <TableRow>
@@ -176,8 +182,13 @@ const tablemaker = (obj)=> {
                         </TableBody>
                     </Table>
                 </TableContainer>
+                {isAnalysisAvailable && (
+                    <OlatcgPhylogeneticTreeModal phyloTreeBody={phyloTreeBody} sx={{justifyContent:'center', alignItems:'center'}}/>
+                    )
+                }
             </Paper>
         </Box>
+        
         <OlatcgSnackbar
             isOpened={isSnackbarOpened} 
             onClose={() => openSnackbar(false)}
