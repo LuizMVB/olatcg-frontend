@@ -18,11 +18,7 @@ const HomologyConfigurationStep = ({form, next}) => {
     const [sequenceType, setSequenceType] = useState('DNA');
 
     //const databaseTypes = DatabaseTypeEnum.getSelectStructure();
-    //const sequenceTypes = SequenceTypeEnum.getSelectStructure();
-
-    //REMOVER APÓS ATUALIZAR MessageService.js
-    const longDescription = 'TEMP: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-    
+    //const sequenceTypes = SequenceTypeEnum.getSelectStructure();    
 
     return <>
         {!isNextShowed ? 
@@ -129,8 +125,8 @@ const HomologyConfigurationStep = ({form, next}) => {
                     <Grid item xs={6}>
                         <Box sx={{width: 320, textAlign: 'center', my:2, ml:2, mr:'auto'}}>
                             <Typography gutterBottom>
-                                {'TEMP: Penalty'}
-                                <Tooltip title={longDescription /*getMessage('alignment.tooltip.matchScore')*/} placement='top' arrow>
+                                {getMessage('homology.input.label.penalty')}
+                                <Tooltip title={getMessage('homology.tooltip.penalty')} placement='top' arrow>
                                     <HelpIcon sx={{verticalAlign: 'middle',
                                         fontSize:'inherit',
                                         marginLeft: 0.6,
@@ -144,11 +140,12 @@ const HomologyConfigurationStep = ({form, next}) => {
                                 id="penalty"
                                 name="penalty"
                                 value={penalty}
-                                min={-20}
+                                min={-5}
                                 max={0}
                                 sx={{width: '75%'}}
                                 aria-label="Default" 
                                 valueLabelDisplay="auto" 
+                                marks
                                 onChange={event => setPenalty(event.target.value)}
                             />
                         </Box>
