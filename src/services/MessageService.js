@@ -128,6 +128,7 @@ var data_en = {
     'homology.button.label.makeAnalysis'                : 'Make Analysis',
     'homology.input.label.databaseType'                 : 'Database Type',
     'homology.input.label.evalue'                       : 'E-Value',
+    'homology.input.label.penalty'                      : 'Penalty',
     'homology.followYourResults.label.title'            : 'Follow your result in Analysis Section',
     'homology.followYourResults.label.desc'             : 'This can take a few minutes. Follow the ' +  
                                                            'update status of your analysis in the analysis section.',
@@ -135,6 +136,7 @@ var data_en = {
 
     'homology.tooltip.database'                         : 'Which database to be used during homology. Currently, only OLATCG is available.',
     'homology.tooltip.evalue'                           : 'Expect value. It is an exponentially decreasing function which measures the quality of the alignment of sequences. Lower values are better.',
+    'homology.tooltip.penalty'                          : 'Value of the penalty applied by BLASTN',
     'homology.chooseSequencesStep.sequenceNumber'       : 'Sequence No.',
     'homology.chooseSequencesStep.sequencePlaceholder'  : 'Your sequence...',
     'homology.chooseSequencesStep.namePlaceholder'      : 'The title of your sequence...',
@@ -406,6 +408,7 @@ var data = {
     'homology.button.label.makeAnalysis'                : 'Fazer análise',
     'homology.input.label.databaseType'                 : 'Banco de Dados',
     'homology.input.label.evalue'                       : 'E-Valor',
+    'homology.input.label.penalty'                      : 'Penalidade',
     'homology.followYourResults.label.title'            : 'Veja seus resultados em "Análises"',
     'homology.followYourResults.label.desc'             : 'Isso pode demorar alguns minutos. Acompanhe o status ' +  
                                                            'em "Análises".',
@@ -413,6 +416,7 @@ var data = {
     
     'homology.tooltip.database'                         : 'Qual o banco de dados a ser utilizado durante a homologia. Atualmente, apenas OLATCG está disponível.',
     'homology.tooltip.evalue'                           : 'Expect value (Valor esperado). Este é uma função exponencialmente decrescente, utilizada para medir a qualidade do alinhamento de sequências. Valores menores são melhores.',
+    'homology.tooltip.penalty'                          : 'Parâmetro de definição do peso de penalidade do BLASTN',
     'homology.chooseSequencesStep.sequenceNumber'       : 'Sequência N°',
     'homology.chooseSequencesStep.sequencePlaceholder'  : 'Insira aqui sua sequência...',
     'homology.chooseSequencesStep.namePlaceholder'      : 'Insira o nome de sua sequência...',
