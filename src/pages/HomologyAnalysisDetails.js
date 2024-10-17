@@ -70,15 +70,15 @@ const HomologyAnalysisDetails = () => {
             setColumns([
                 {
                     id: 'sequenceName',
-                    label: getMessage( 'alignmentAnalysis.label.sequence.name' )
+                    label: getMessage('olatcgHomologyTable.label.sequenceName')
                 },
                 {
                     id: 'taxonomySequenceId',
-                    label: getMessage( 'alignmentAnalysis.label.taxonomy.sequence.id' )
+                    label: getMessage('olatcgHomologyTable.label.taxonomySequenceId')
                 },
                 {
                     id: 'alignmentA',
-                    label: getMessage('olatcgHomologyTable.label.alignmentA' )
+                    label: getMessage('olatcgHomologyTable.label.alignmentA')
                 },
                 {
                     id: 'alignmentB',

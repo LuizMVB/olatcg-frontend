@@ -145,6 +145,8 @@ var data_en = {
     'olatcgHomologyTable.label.IdAnalysis'              : 'ID Analysis',
     'olatcgHomologyTable.label.status'                  : 'Status',
     'olatcgHomologyTable.label.type'                    : 'Type',
+    'olatcgHomologyTable.label.sequenceName'            : 'Sequence Name',
+    'olatcgHomologyTable.label.taxonomySequenceId'      : 'Seq External ID|Tax External ID',
     'olatcgHomologyTable.label.alignmentA'              : 'Alignment A',
     'olatcgHomologyTable.label.alignmentB'              : 'Alignment B',
     'olatcgHomologyTable.label.identityPercentage'      : 'Identity Percentage',
@@ -242,13 +244,12 @@ var data_en = {
     'steper.button.label.previous'                  : 'Previous Step',
 
     /** ALIGNMENT ANALYSIS */
-    'alignmentAnalysis.label.sequence.name'                 : 'Nome da Sequência',
-    'alignmentAnalysis.label.taxonomy.sequence.id'          : 'ID Externo Sequência NCBI|ID Externo Taxonomia',
-    'alignmentAnalysis.label.status'                        : 'Status',
-    'alignmentAnalysis.label.action'                        : 'Action',
+    'alignmentAnalysis.label.id'                : 'ID',
+    'alignmentAnalysis.label.status'            : 'Status',
+    'alignmentAnalysis.label.action'            : 'Action',
 
-    'alignmentAnalysis.label.title'                         : 'Title',
-    'alignmentAnalysis.label.type'                          : 'Type',
+    'alignmentAnalysis.label.title'             : 'Title',
+    'alignmentAnalysis.label.type'              : 'Type',
 
     /** ENUM VALUES */
 
@@ -445,6 +446,8 @@ var data = {
     'olatcgHomologyTable.label.IdAnalysis'              : 'ID da Análise',
     'olatcgHomologyTable.label.status'                  : 'Status',
     'olatcgHomologyTable.label.type'                    : 'Tipo',
+    'olatcgHomologyTable.label.sequenceName'            : 'Nome da Sequência',
+    'olatcgHomologyTable.label.taxonomySequenceId'      : 'ID Externo da Seq|ID Externo da Tax',
     'olatcgHomologyTable.label.alignmentA'              : 'Alinhamento A',
     'olatcgHomologyTable.label.alignmentB'              : 'Alinhamento B',
     'olatcgHomologyTable.label.identityPercentage'      : 'Percentual de Identidade',
