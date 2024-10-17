@@ -8,6 +8,10 @@ const Learn = () => {
 
     const contentListItems = [
         {
+            label: getMessage('learn.contentList.listItem.label.didatic.ep.title'),
+            text: getMessage('learn.contentList.listItem.label.didatic.ep.text')
+        },
+        {
             label: getMessage('learn.contentList.listItem.label.whatIsOlatcg.title'),
             text: getMessage('learn.contentList.listItem.label.whatIsOlatcg.text')
         },
@@ -28,15 +32,23 @@ const Learn = () => {
             text: getMessage('learn.contentList.listItem.label.keyConcepts.text')
         }
     ]
-
     
     const splitTextIntoParagraphs = (text) => {
-        return text.split('\n').map((paragraph, index) => (
-            <Typography variant="h6" key={index} paragraph>
-                {paragraph}
-            </Typography>
-        ));
+        // Regex to match URLs
+        const urlRegex = /(\bhttps?:\/\/[^\s]+)/g;
+    
+        return text.split('\n').map((paragraph, index) => {
+            // Replace URLs with anchor tags
+            const updatedParagraph = paragraph.replace(urlRegex, (url) => {
+                return `<a href="${url}" target="_blank">${url}</a>`;
+            });
+    
+            return (
+                <Typography variant="h6" key={index} paragraph dangerouslySetInnerHTML={{ __html: updatedParagraph }} />
+            );
+        });
     };
+    
 
     return <>
         <Grid sx={{ height: '100vh' }} container spacing={0}>

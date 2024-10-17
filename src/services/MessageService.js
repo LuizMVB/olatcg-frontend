@@ -398,8 +398,27 @@ var data = {
                                                                         Taxonomia: estudo que busca agrupar os organismos com base em suas características e nomear os grupos obtidos, classificandoos em alguma escala.
                                                                         Taxon: grupo (de qualquer nível hierárquico) proposto pela taxonomia.
                                                                         Tradução: tradução (in silico) de uma sequência de mRNA em sua possível sequência proteica correspondente.`,
+    'learn.contentList.listItem.label.didatic.ep.title'                : '🧬 Episódio Didático',
+    'learn.contentList.listItem.label.didatic.ep.text'                 : `Links arquivos:
+                                                                            Apresentação (slides)
+                                                                            https://cefetrjbr-my.sharepoint.com/:b:/g/personal/04120362663_cefet-rj_br/EXBFDgZmSidCkBfYkjxCjdEBpSFGcw10-glNz1ql5EdMOw?e=fY2HSx
 
-    /** TUTORIALS */
+                                                                            SequênciasAntes
+                                                                            https://cefetrjbr-my.sharepoint.com/:t:/g/personal/04120362663_cefet-rj_br/EaQPRoWT049IvwPFWtTw4c4BRixdkyIFjteuDo_7JIivLQ?e=JKmWi3
+
+                                                                            SequênciasDepois-Cenário1
+                                                                            https://cefetrjbr-my.sharepoint.com/:t:/g/personal/04120362663_cefet-rj_br/EXX70HcBaPVOitfPGrTDiFMBZSruo0_ip2NplNHRJeCqIg?e=HOrdOz
+
+                                                                            SequênciasDepois-Cenário2
+                                                                            https://cefetrjbr-my.sharepoint.com/:t:/g/personal/04120362663_cefet-rj_br/EXTbj_PvGLxKsF3tV66AbHMBP7cfeLC0GvzOBPrfgmPbYA?e=XE6OB7
+
+                                                                            SequênciasDepois-Cenário3
+                                                                            https://cefetrjbr-my.sharepoint.com/:b:/g/personal/04120362663_cefet-rj_br/EXBFDgZmSidCkBfYkjxCjdEBpSFGcw10-glNz1ql5EdMOw?e=CaPfsw
+
+                                                                            Avaliação
+                                                                            https://forms.office.com/r/DCzRKDiMFD`,
+    
+                                                                        /** TUTORIALS */
     'tutorials.contentList.label.title'                         : 'Tutoriais',
     'tutorials.contentList.listItem.label.tutorials'            : 'Como usar o OLATCG',
 
