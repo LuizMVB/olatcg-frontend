@@ -242,12 +242,13 @@ var data_en = {
     'steper.button.label.previous'                  : 'Previous Step',
 
     /** ALIGNMENT ANALYSIS */
-    'alignmentAnalysis.label.id'                : 'ID',
-    'alignmentAnalysis.label.status'            : 'Status',
-    'alignmentAnalysis.label.action'            : 'Action',
+    'alignmentAnalysis.label.sequence.name'                 : 'Nome da Sequência',
+    'alignmentAnalysis.label.taxonomy.sequence.id'          : 'ID Externo Sequência NCBI|ID Externo Taxonomia',
+    'alignmentAnalysis.label.status'                        : 'Status',
+    'alignmentAnalysis.label.action'                        : 'Action',
 
-    'alignmentAnalysis.label.title'             : 'Title',
-    'alignmentAnalysis.label.type'              : 'Type',
+    'alignmentAnalysis.label.title'                         : 'Title',
+    'alignmentAnalysis.label.type'                          : 'Type',
 
     /** ENUM VALUES */
 

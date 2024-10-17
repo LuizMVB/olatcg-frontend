@@ -69,8 +69,12 @@ const HomologyAnalysisDetails = () => {
     
             setColumns([
                 {
-                    id: 'title',
-                    label: getMessage( 'alignmentAnalysis.label.title' )
+                    id: 'sequenceName',
+                    label: getMessage( 'alignmentAnalysis.label.sequence.name' )
+                },
+                {
+                    id: 'taxonomySequenceId',
+                    label: getMessage( 'alignmentAnalysis.label.taxonomy.sequence.id' )
                 },
                 {
                     id: 'alignmentA',
@@ -89,7 +93,8 @@ const HomologyAnalysisDetails = () => {
             setRows(obj.data.taxonomies.map((homoAnalysis, index) => {
                 return {
                     code: index + homoAnalysis.id,
-                    title: homoAnalysis.title,
+                    sequenceName: homoAnalysis.alignments[0].biological_sequences[0].external_sequence_id,
+                    taxonomySequenceId: homoAnalysis.title,
                     alignmentA: <AlertDialogSlide base = {homoAnalysis.alignments[0].biological_sequences[0].bases}/>,
                     alignmentB: <AlertDialogSlide base = {homoAnalysis.alignments[0].biological_sequences[1].bases}/>,
                     taxonomy: homoAnalysis.lineage
