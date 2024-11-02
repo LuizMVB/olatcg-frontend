@@ -38,14 +38,21 @@ const TableBodyCell = ({ index, color, value, fontColor='black' }) => (<TableCel
 const TableDetailsBodyCell = ({color, value, cellSize=1, fontColor='black'}) => (<TableCell
     align="center"
     sx={{
-        minWidth: '25%',
+        width:'25%',
         verticalAlign: 'center',
         bgcolor: color,
-        color: fontColor
     }}
     colSpan={cellSize}
 >
-    {value}
+    <Box sx={{
+        display: 'block',
+        maxHeight:'12vh',
+        overflowY:'auto',
+        color: fontColor,
+        lineBreak: 'anywhere',
+        whiteSpace: 'pre-wrap'}}>
+        {value}
+    </Box>
 </TableCell>);
 
 const AlignmentAnalysisDetails = () => {
