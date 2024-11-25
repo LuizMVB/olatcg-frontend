@@ -17,9 +17,6 @@ const HomologyConfigurationStep = ({form, next}) => {
     const [databaseType, setDatabaseType] = useState('default');
     const [sequenceType, setSequenceType] = useState('DNA');
 
-    //const databaseTypes = DatabaseTypeEnum.getSelectStructure();
-    //const sequenceTypes = SequenceTypeEnum.getSelectStructure();    
-
     return <>
         {!isNextShowed ? 
             <OlatcgStep 
@@ -33,7 +30,7 @@ const HomologyConfigurationStep = ({form, next}) => {
                         justifyContent:"center",
                         mx:'auto'}}>
                     <Grid item xs={12}>
-                        <Box sx={{width: '80%' /*320*/, textAlign: 'center', my:2, /*ml:2,*/ mx:'auto'}}>
+                        <Box sx={{width: '80%', textAlign: 'center', my:2, mx:'auto'}}>
                             <Typography variant='h5' gutterBottom>
                                 {getMessage('homology.input.label.evalue')}
                                 <Tooltip title={getMessage('homology.tooltip.evalue')} placement='top' arrow>

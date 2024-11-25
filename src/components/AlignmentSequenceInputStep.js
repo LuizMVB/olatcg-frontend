@@ -8,7 +8,6 @@ import ValidationService from "../services/ValidationService";
 import OlatcgLoader from "./OlatcgLoader";
 import OlatcgSnackbar from "./OlatcgSnackbar";
 import { OlatcgStep } from "./OlatcgStep";
-//import OriginCountryEnum from "../infra/enums/OriginCountryEnum";
 
 class AlignmentRequest{
     constructor({form, sequenceA, sequenceB}) {
@@ -22,13 +21,11 @@ class AlignmentRequest{
             {
                 type: 'DNA',
                 bases: sequenceA,
-                //country_origin: countryA,
                 external_database_id: 'NC_0001',
             },
             {
                 type: 'DNA',
                 bases: sequenceB,
-                //country_origin: countryB,
                 external_database_id: 'NC_0002',
             },
         ]
@@ -56,11 +53,7 @@ const AlignmentSequenceInputStep = ({form, next}) => {
     const [isLoading, showLoader] = useState(false);
     const [sequenceA, setSequenceA] = useState('');
     const [sequenceB, setSequenceB] = useState('');
-    //const [originCountryA, setOriginCountryA] = useState('brazil');
-    //const [originCountryB, setOriginCountryB] = useState('brazil');
 
-
-    //const originCountrys = OriginCountryEnum.getSelectStructure();
 
     const showSnackbar = (msg, status) => {
         setMsgSnackbar(msg);

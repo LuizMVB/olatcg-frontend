@@ -34,10 +34,6 @@ const OlatcgAlignmentTable = ({idAnalysis}) => {
             id: 'alignmentB',
             label: getMessage('olatcgHomologyTable.label.alignmentB')
         },
-        /*{
-            id: 'aligned',
-            label: getMessage('olatcgAlignmentTable.label.aligned')
-        },*/
         {
             id: 'type',
             label: getMessage('olatcgAlignmentTable.label.type')
@@ -51,7 +47,6 @@ const OlatcgAlignmentTable = ({idAnalysis}) => {
         setRows([
                 {alignmentA: obj.data.alignments[0].biological_sequences[0].bases.toUpperCase(),//aln.target.toUpperCase(),
                 alignmentB: obj.data.alignments[0].biological_sequences[1].bases.toUpperCase(),//aln.query.toUpperCase(),
-                //aligned: formatAlignedResponse(aln.aligned),
                 type: obj.data.type,
                 status: obj.data.status,
             }
@@ -68,11 +63,11 @@ const OlatcgAlignmentTable = ({idAnalysis}) => {
     const onFailureGetAlignmentByIdAnalysis = (error) => {
         setMsgSnackbar(error.errorDescription);
         showSnackbar(error.errorDescription, 'error');
-        /*showLoader(true);
+        showLoader(true);
         setTimeout(() => {
             document.location.reload();
             showLoader(false);
-        }, 5000);*/
+        }, 5000);
     }
 
     useEffect(() => {

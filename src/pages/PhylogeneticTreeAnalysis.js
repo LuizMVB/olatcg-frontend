@@ -20,7 +20,6 @@ const PhylogeneticTreeAnalysis = () => {
     const [statusSnackbar, setStatusSanckbar] = useState('error');
     const [msgSnackbar, setMsgSnackbar] = useState('');
     const [info, setInfo] = useState(false);
-    //const [selectedPage, setSelectedPage] = useState(0);
     const [totalPages, setTotalPages] = useState();
     
 
@@ -95,7 +94,6 @@ const PhylogeneticTreeAnalysis = () => {
             };
         }));
 
-        //setSelectedPage(paginationAndSort.pageNumber);
         setTotalPages(Math.ceil(obj.meta.total_pages/15));
         showLoader(false);
     }

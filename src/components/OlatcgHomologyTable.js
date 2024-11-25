@@ -67,7 +67,6 @@ const OlatcgHomologyTable = ({idAnalysis}) => {
         url = url.replace('{id}', idAnalysis);
 
         makeRequest(url, 'GET', null, onSuccessGetAlignmentByIdAnalysis, onFailureGetAlignmentByIdAnalysis);
-        // eslint-disable-next-line
     }, [idAnalysis]);
 
     return <>

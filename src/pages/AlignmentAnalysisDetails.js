@@ -80,8 +80,7 @@ const AlignmentAnalysisDetails = () => {
             matchScore: 0,
             mismatchScore: 0,
             openGapScore: 0,
-            extendGapScore: 0/*,
-            biopythonOutputs: []*/
+            extendGapScore: 0
     })
     
 
@@ -145,8 +144,7 @@ const AlignmentAnalysisDetails = () => {
             matchScore: obj.data.biopython_bio_align_pairwise_aligner_input.match_score,
             mismatchScore: obj.data.biopython_bio_align_pairwise_aligner_input.mismatch_score,
             openGapScore: obj.data.biopython_bio_align_pairwise_aligner_input.open_gap_score,
-            extendGapScore: obj.data.biopython_bio_align_pairwise_aligner_input.extend_gap_score/*,
-            biopythonOutputs: obj.data.biopython_bio_align_pairwise_aligner_input.outputs*/
+            extendGapScore: obj.data.biopython_bio_align_pairwise_aligner_input.extend_gap_score
         });
 
         setRowAlnA(arrAlnA);
@@ -190,7 +188,6 @@ const AlignmentAnalysisDetails = () => {
         url = url.replace('{id}', idAnalysis);
 
         makeRequest(url, 'GET', null, onSuccessGetAlignmentByIdAnalysis, onFailureGetAlignmentByIdAnalysis);
-        // eslint-disable-next-line
     }, []);
 
     return <>
@@ -204,7 +201,6 @@ const AlignmentAnalysisDetails = () => {
                         <Table stickyHeader aria-label="sticky table" >
                             <TableHead>
                                 <TableRow>
-                                    {/*getTableHeadRow(rowAlnA, rowAlnB)*/}
                                     <TableHeadCell value={getMessage('alignmentAnalysisDetails.label.alignments')} index={1} color="primary.main" cellSize={Math.max(rowAlnA.length,rowAlnB.length)}/>
                                 </TableRow>
                             </TableHead>
