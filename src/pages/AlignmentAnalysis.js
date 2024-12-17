@@ -93,7 +93,6 @@ const AlignmentAnalysis = () => {
             };
         }));
 
-        //setSelectedPage(paginationAndSort.pageNumber);
         setTotalPages(Math.ceil(obj.meta.total_pages/15));
         showLoader(false);
     }

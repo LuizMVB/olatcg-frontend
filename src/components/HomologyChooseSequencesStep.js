@@ -9,9 +9,6 @@ import ValidationService from "../services/ValidationService";
 import OlatcgLoader from "./OlatcgLoader";
 import OlatcgSnackbar from "./OlatcgSnackbar";
 import { OlatcgStep } from "./OlatcgStep";
-//import OriginCountryEnum from "../infra/enums/OriginCountryEnum";
-
-//const originCountrys = OriginCountryEnum.getSelectStructure();
 
 class AnalysisRequest{
     constructor({form}){
@@ -33,7 +30,6 @@ class HomologyRequest{
         this.biological_sequences = sequenceForm.map(seq => (
             {
                 bases: seq.sequence,
-                //country_origin: seq.originCountry,
                 external_database_id: 'default',
                 title: seq.sequenceName
             }
@@ -58,12 +54,10 @@ const HomologyChooseSequencesStep = ({form, next}) => {
     const [sequenceForm, setSequenceForm] = useState([
         {
             sequenceName: '',
-            //originCountry: originCountrys[0].value,
             sequence: '',
         },
         {
             sequenceName: '',
-            //originCountry: originCountrys[0].value,
             sequence: '',
         },
     ])
@@ -143,7 +137,6 @@ const HomologyChooseSequencesStep = ({form, next}) => {
     const addSequence = () => {
         sequenceForm.push({            
             sequenceName: '',
-            //originCountry: originCountrys[0].value,
             sequence: ''
         })
         updateSequenceFormList();

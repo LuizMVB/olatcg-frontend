@@ -13,10 +13,8 @@ const AlignmentConfigurationStep = ({form, next}) => {
     const [extensionPenalty, setExtensionPenalty] = useState(0);
     const [matchScore, setMatchScore] = useState(0);
     const [mismatchScore, setMismatchScore] = useState(0);
-    //const [sequenceType, setSequenceType] = useState('DNA');
     const [alignmentType, setAlignmentType] = useState('global');
     
-    //const sequenceTypes = SequenceTypeEnum.getSelectStructure();
     const alignmentTypes = AlignmentTypeEnum.getSelectStructure();
 
     return <>

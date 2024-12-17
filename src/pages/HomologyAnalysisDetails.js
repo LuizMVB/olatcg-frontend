@@ -51,15 +51,6 @@ const HomologyAnalysisDetails = () => {
     }, [idAnalysis]);
 
     const tablemaker = (obj)=> {
-        /*if(obj.data.status == 'STARTED') {
-            showSnackbar(getMessage('info.analysis.isnt.finished'), 'info');
-            setTimeout(() => {
-                showLoader(false);
-                navigateTo('/analysis/homology');
-            }, 5000);
-            return;
-        }*/
-    
         setAnalysisName(obj.data.title);
     
         if(obj.data.taxonomies){

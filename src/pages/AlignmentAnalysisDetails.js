@@ -38,14 +38,21 @@ const TableBodyCell = ({ index, color, value, fontColor='black' }) => (<TableCel
 const TableDetailsBodyCell = ({color, value, cellSize=1, fontColor='black'}) => (<TableCell
     align="center"
     sx={{
-        minWidth: '25%',
+        width:'25%',
         verticalAlign: 'center',
         bgcolor: color,
-        color: fontColor
     }}
     colSpan={cellSize}
 >
-    {value}
+    <Box sx={{
+        display: 'block',
+        maxHeight:'12vh',
+        overflowY:'auto',
+        color: fontColor,
+        lineBreak: 'anywhere',
+        whiteSpace: 'pre-wrap'}}>
+        {value}
+    </Box>
 </TableCell>);
 
 const AlignmentAnalysisDetails = () => {
@@ -73,8 +80,7 @@ const AlignmentAnalysisDetails = () => {
             matchScore: 0,
             mismatchScore: 0,
             openGapScore: 0,
-            extendGapScore: 0/*,
-            biopythonOutputs: []*/
+            extendGapScore: 0
     })
     
 
@@ -138,8 +144,7 @@ const AlignmentAnalysisDetails = () => {
             matchScore: obj.data.biopython_bio_align_pairwise_aligner_input.match_score,
             mismatchScore: obj.data.biopython_bio_align_pairwise_aligner_input.mismatch_score,
             openGapScore: obj.data.biopython_bio_align_pairwise_aligner_input.open_gap_score,
-            extendGapScore: obj.data.biopython_bio_align_pairwise_aligner_input.extend_gap_score/*,
-            biopythonOutputs: obj.data.biopython_bio_align_pairwise_aligner_input.outputs*/
+            extendGapScore: obj.data.biopython_bio_align_pairwise_aligner_input.extend_gap_score
         });
 
         setRowAlnA(arrAlnA);
@@ -183,7 +188,6 @@ const AlignmentAnalysisDetails = () => {
         url = url.replace('{id}', idAnalysis);
 
         makeRequest(url, 'GET', null, onSuccessGetAlignmentByIdAnalysis, onFailureGetAlignmentByIdAnalysis);
-        // eslint-disable-next-line
     }, []);
 
     return <>
@@ -197,7 +201,6 @@ const AlignmentAnalysisDetails = () => {
                         <Table stickyHeader aria-label="sticky table" >
                             <TableHead>
                                 <TableRow>
-                                    {/*getTableHeadRow(rowAlnA, rowAlnB)*/}
                                     <TableHeadCell value={getMessage('alignmentAnalysisDetails.label.alignments')} index={1} color="primary.main" cellSize={Math.max(rowAlnA.length,rowAlnB.length)}/>
                                 </TableRow>
                             </TableHead>

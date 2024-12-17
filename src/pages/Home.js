@@ -42,13 +42,6 @@ const Home = () => {
             description: getMessage('home.chooseYourPath.card.tools.desc'),
             href: '/tool'
         },
-        // {
-        //     imageSrc: Settings,
-        //     imageAlt: 'tutorials path',
-        //     title: getMessage('home.chooseYourPath.card.tutorials.title'),
-        //     description: getMessage('home.chooseYourPath.card.tutorials.desc'),
-        //     href: '/tutorials'
-        // }
     ];
 
     return <>
@@ -124,7 +117,6 @@ const Home = () => {
                     {getMessage('home.collaboration.description')}
                 </Typography>
                 <Box sx={{'& img': { px: 6 }}}>
-                    {/* <img src={UfzLogo} alt="UFZ's logo" height={200} width={300}></img> */}
                     <img src={CefetLogo} alt="CEFET's logo" height={200} width={300}></img>
                     <img src={FioCruzLogo} alt="FioCruz's logo" height={200} width={300}></img>                    
                 </Box>

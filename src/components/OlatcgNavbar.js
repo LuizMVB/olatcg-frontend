@@ -23,10 +23,6 @@ const OlatcgNavbar = () => {
             path: '/learn',
             nameRef: 'appBar.navItems.learn'
         },
-        // {
-        //     path: '/tutorials',
-        //     nameRef: 'appBar.navItems.tutorials'
-        // }
     ];
 
     return <>
