@@ -165,6 +165,7 @@ var data_en = {
 
     /* PHYLOGENETIC TREE ANALYSIS*/
     'phyloTreeAnalysis.label.origin'                    : 'Origin ID',
+    'phyloTreeAnalysis.tooltip'                         : 'You can use your scroll wheel to zoom in and out on the tree, or click and drag to position your view on the canvas.',
 
 
 
@@ -467,6 +468,7 @@ var data = {
     
     /* PHYLOGENETIC TREE ANALYSIS*/
     'phyloTreeAnalysis.label.origin'                    : 'ID de Origem',
+    'phyloTreeAnalysis.tooltip'                         : 'Você pode usar a roda de rolagem do mouse para aumentar ou diminuir o zoom na árvore filogenética. Também é possível clicar e arrastar para posicionar sua visão na tela.',
 
 
     /** ALIGNMENT */
