@@ -11,6 +11,7 @@ import { AlignmentAnalysis } from '../pages/AlignmentAnalysis';
 import { PhylogeneticTreeAnalysis } from '../pages/PhylogeneticTreeAnalysis';
 import { AlignmentAnalysisDetails } from '../pages/AlignmentAnalysisDetails';
 import { HomologyAnalysisDetails } from '../pages/HomologyAnalysisDetails';
+import { ExperimentAnalysis } from '../pages/ExperimentAnalysis';
 import PhyloTree from '../pages/PhyloTree';
 
 export default function AppRoutes(){
@@ -34,6 +35,7 @@ export default function AppRoutes(){
                 <Route path="phylogeneticTree" element={<PhylogeneticTreeAnalysis/>}>
                     <Route path=':idAnalysis'element={<PhyloTree />}/>
                 </Route>
+                <Route path="experiments" element={<ExperimentAnalysis/>}/>
             </Route>
             <Route path="*" element={<Navigate to="home" />} />
         </Routes>

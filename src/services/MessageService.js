@@ -123,6 +123,11 @@ var data_en = {
     'tutorials.contentList.label.title'                         : 'Tutorials',
     'tutorials.contentList.listItem.label.tutorials'            : 'How to Use OLATCG',
 
+    /** EXPERIMENT */
+
+    'experiment.button.label.viewMore'                  : 'View More',
+
+
     /** HOMOLOGY */
     'homology.input.label.sequence'                     : 'Sequence',
     'homology.button.label.makeAnalysis'                : 'Make Analysis',
@@ -424,6 +429,10 @@ var data = {
                                                                         /** TUTORIALS */
     'tutorials.contentList.label.title'                         : 'Tutoriais',
     'tutorials.contentList.listItem.label.tutorials'            : 'Como usar o OLATCG',
+
+    /** EXPERIMENT */
+
+    'experiment.button.label.viewMore'                  : 'Ver Mais',
 
     /** HOMOLOGY */
     'homology.input.label.sequence'                     : 'Sequência',
