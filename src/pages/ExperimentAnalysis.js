@@ -8,6 +8,9 @@ import { API_ROUTES } from "../routes/Routes";
 import { getMessage } from "../services/MessageService";
 import OlatcgNodata from "../components/OlatcgNoData";
 import OlatcgLoader from "../components/OlatcgLoader";
+import AnalysisWorkflowModal from "../components/AnalysisWorkflowModal";
+import LanOutlinedIcon from '@mui/icons-material/LanOutlined';
+
 
 
 const ExperimentAnalysis = () => {
@@ -36,10 +39,29 @@ const ExperimentAnalysis = () => {
         openSnackbar(true);
     }
 
-   const analysisActionButton = (status, id, analysisType) =>{
+    const DisabledWorkflowButton = () => (<Button
+        startIcon={<LanOutlinedIcon/>}
+        variant='contained'
+        sx={{display:'flex',
+            width:'1.8rem',
+            height:'1.4rem',
+            minWidth:0,
+            p:0,
+            color:'primary.contrastText',
+            backgroundColor:'primary',
+            borderRadius: '0.2rem',
+            textAlign:'center',
+            "& .MuiButton-startIcon": {
+                m:'auto',
+            }
+        }}
+            disabled
+    />)
+
+    const analysisActionButton = (analysis) =>{
     let analysisNavigator = '';
 
-    switch(analysisType){
+    switch(analysis.type){
         case 'ALIGNMENT':
             analysisNavigator = 'alignment';
             break;
@@ -53,18 +75,43 @@ const ExperimentAnalysis = () => {
             analysisNavigator = 'err'
     }
 
-        if (status == 'EXECUTION_SUCCEEDED'){
-            return <Button onClick={() => navigateTo('/analysis/'+ analysisNavigator + '/' + id)}>
-                        {getMessage('common.label.details')}
-                    </Button>
-        } else if (status == 'WAITING_FOR_EXECUTION' || status == 'IN_EXECUTION'){
-            return <Button disabled>
-                        {getMessage('common.label.wait')}
-                    </Button>
+        if (analysis.status == 'EXECUTION_SUCCEEDED'){
+            return <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+                        <Button onClick={() => navigateTo('/analysis/'+ analysisNavigator + '/' + analysis.id)}>
+                            {getMessage('common.label.details')}
+                        </Button>
+                        {analysis.generated_from_analysis === null ? 
+                            <DisabledWorkflowButton/>
+                            : <AnalysisWorkflowModal baseAnalysis={analysis}/>}
+                    </div>
+        } else if (analysis.status == 'WAITING_FOR_EXECUTION' || analysis.status == 'IN_EXECUTION'){
+            return <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+                        <Button disabled>
+                            {getMessage('common.label.wait')}
+                        </Button>
+                        <DisabledWorkflowButton/>
+                    </div>
         } else {
-            return <Button sx={{color:'error.main'}} disabled>
-                        {getMessage('common.label.unavailable')}
-                   </Button>
+            return <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+                        <Button disabled>
+                            {getMessage('common.label.unavailable')}
+                        </Button>
+                        <DisabledWorkflowButton/>
+                    </div>
+        }
+    }
+
+    const getAnalysisType = (analysisType) => {
+    
+        switch(analysisType){
+            case 'ALIGNMENT':
+                return getMessage('common.label.alignment')
+            case 'HOMOLOGY':
+                return getMessage('common.label.homology')
+            case 'TAXONOMY_TREE':
+                return getMessage('phyloTree.label.tree');
+            default:
+                return
         }
     }
 
@@ -130,9 +177,9 @@ const ExperimentAnalysis = () => {
                 id: analysis.id,
                 title: analysis.title,
                 description: analysis.description,
-                type: analysis.type,
+                type: getAnalysisType(analysis.type),
                 status: analysis.status,
-                action: analysisActionButton(analysis.status, analysis.id, analysis.type)
+                action: analysisActionButton(analysis)
                 
             };
         }))

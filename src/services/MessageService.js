@@ -8,8 +8,10 @@ var data_en = {
     'common.label.success'      : 'Operation performed successfully',
     'common.label.homology'     : 'Homology',
     'common.label.alignment'    : 'Alignment',
+    'common.label.experiments'  : 'Experiments',
     'common.label.details'      : 'Details',
     'common.label.wait'         : 'On hold',
+    'common.label.workflow'     : 'Workflow',
     'common.label.unavailable'  : 'Unavailable',
     'common.label.show.tree'    : 'Show Tree',
     'common.asterisk'           : '*',
@@ -126,6 +128,8 @@ var data_en = {
     /** EXPERIMENT */
 
     'experiment.button.label.viewMore'                  : 'View More',
+    'experiment.tooltip.label.relatedAnalysis'          : 'See related analyzes',
+
 
 
     /** HOMOLOGY */
@@ -306,8 +310,10 @@ var data = {
     'common.label.success'      : 'Operação realizada com sucesso!',
     'common.label.homology'     : 'Homologia',
     'common.label.alignment'    : 'Alinhamento',
+    'common.label.experiments'  : 'Experimentos',
     'common.label.details'      : 'Detalhes',
     'common.label.wait'         : 'Em espera',
+    'common.label.workflow'     : 'Fluxo de trabalho',
     'common.label.unavailable'  : 'Indisponível',
     'common.label.show.tree'    : 'Mostrar árvore',
     'common.asterisk'           : '*',
@@ -432,7 +438,8 @@ var data = {
 
     /** EXPERIMENT */
 
-    'experiment.button.label.viewMore'                  : 'Ver Mais',
+    'experiment.button.label.viewMore'                  : 'Ver mais',
+    'experiment.tooltip.label.relatedAnalysis'          : 'Ver análises relacionadas',
 
     /** HOMOLOGY */
     'homology.input.label.sequence'                     : 'Sequência',
