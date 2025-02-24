@@ -1,6 +1,6 @@
 import { Box, Button, Card, CardActionArea, CardContent, CircularProgress, Divider, Modal, Paper, Tooltip, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useRequest from "../hooks/useRequest";
 import { API_ROUTES } from "../routes/Routes";
 import { getMessage } from "../services/MessageService";
@@ -30,11 +30,6 @@ const AnalysisWorkflowModal = ({ baseAnalysis }) =>{
         setParentAnalysis(obj.data)
         showLoader(false);
         setOpen(true)
-        console.log("VVV PARENT VVV")
-        console.log(parentAnalysis)
-        console.log(parentAnalysis.id)
-        console.log(obj)
-
     }
 
     const onFailureSingleAnalysisRequest = (error) =>{
