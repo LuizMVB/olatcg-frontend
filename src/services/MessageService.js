@@ -199,8 +199,8 @@ var data_en = {
     'alignment.input.placeholder.analysisTitle'                  : 'Your analysis title...' ,
     'alignment.input.placeholder.analysisDescription'            : 'Your analysis description...' ,
     'alignment.followAnalysis.title'                             : 'Follow Your Results in Analysis Section',
-    'alignment.followAnalysis.desc'                              : 'You can use the analysis section to consult your ' + 
-                                                                    'results at any time. Record your identifier and ' + 
+    'alignment.followAnalysis.desc'                              : 'You can use the analysis section to consult ' + 
+                                                                    'your results at any time. Record your identifier and ' + 
                                                                     'consult the table',
     'alignment.followAnalysis.preview'                           : 'Preview - ID {0}',
     'alignment.followAnalysis.button.label.goToAnalysis'         : 'Go to this Analysis',
