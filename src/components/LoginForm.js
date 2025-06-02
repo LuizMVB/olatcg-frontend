@@ -100,7 +100,8 @@ const LoginForm = () => {
                             backgroundColor: 'primary.light',
                         },
                         alignSelf: 'center'
-                    }}>{getMessage('login.button.content')}</Button>
+                    }}
+                    disabled={messageEmail!=="" || messagePassword!==""}>{getMessage('login.button.content')}</Button>
             </Box>
         </Stack>        
     );

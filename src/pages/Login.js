@@ -27,6 +27,7 @@ const Login = () => {
             minHeight: '500px',
             minWidth: '400px',
             mt: '40px',
+            mb: '40px',
             boxShadow: 4,
             p: '5px',
         }}>
