@@ -1,9 +1,7 @@
 import {React, useState, sx} from 'react';
-import { Box, Typography, Button, TextField, InputLabel, Icon } from "@mui/material";
+import { Box, Typography, Button, TextField, InputLabel } from "@mui/material";
 import { getMessage } from "../services/MessageService";
-import { BorderAll } from '@mui/icons-material';
-import TaskAltIcon from '@mui/icons-material/TaskAlt';
-import CancelIcon from '@mui/icons-material/Cancel';
+
 
 
 function RegisterForm() {
@@ -19,6 +17,7 @@ const [userEmail, setUserEmail] = useState()
 const isEmail = () => /^[A-Z0-9._+-]+@[A-Z0-9-]+\.[A-Z]{2,4}$/i.test(userEmail);
 const [messageEmail, setMessageEmail] = useState("")
 const [messagePassword, setMessagePassword] = useState("")
+const [messageConfirm, setMessageConfirm] = useState("")
 
 const validaEmail = () => {
         
@@ -54,7 +53,6 @@ const validaEmail = () => {
   const [specialValidated, setSpecialValidated] = useState(false);
   const [lengthValidated, setLengthValidated] = useState(false);
   const [likeOthersValidated, setLikeOthersValidated] = useState(false);
-  const [confirmValidated, setConfirmValidated] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   
 //"Mapeia" o que é digitado, através da função RegExp e o qua é determinado nela 
@@ -62,7 +60,7 @@ const validaEmail = () => {
   const lower = RegExp('(?=.*[a-z])');
   const upper = RegExp('(?=.*[A-Z])');
   const number = RegExp('(?=.*[0-9])');
-  const special = RegExp('(?=.*[!@#$%¨&*()\/<>:;~^|-])');
+  const special = RegExp('(?=.*[!@#$%¨&*()\/<>:;~?´`^|-])');
   const length = RegExp('.{8,}');
 
   //validando lowercase
@@ -111,9 +109,17 @@ if (
     setLikeOthersValidated(true);
   } 
 
-//confirmação de senha
-  setConfirmValidated(confirmPassword === password);
 };
+
+
+const validaConfirmacao = () => {
+  if (confirmPassword!==password){
+    setMessageConfirm(getMessage('register.label.password.confirm.error'));
+  }
+  else{
+    setMessageConfirm("");
+  }
+}
 
   //declaração das informações do formulário, para posteriormente enviar
   const [name, setName] = useState("")
@@ -130,54 +136,58 @@ return (
     >
 
       {/*Preenchimento de nome. Não é possível confirmar o formulário sem preenchê-lo */}
-        <Box>
-          {/*Label: Nome */}
-         <InputLabel htmlFor="name" sx={{
-            marginRight: 33}}>
-            {getMessage('register.label.name')}
-         </InputLabel>
-         {/*Campo de input - com a biblioteca MUI */}
-         <TextField
-          sx={{
-          width: 320,
-          borderRadius: 3,
-          alignSelf: 'center',
-          marginBottom: 3
-          }}
-            type="text"
-            placeholder="Digite seu nome"
-            onChange={(e) => setName(e.target.value)}
-          required
-          />
-        </Box>
+        <Box  alignSelf={'center'} display={"flex"} gap={1} flexDirection={"row"}>
+            <Box flexDirection={"row"}>
+            {/*Label: Nome */}
+          <InputLabel htmlFor="name" sx={{
+              marginRight: 33}}>
+              {getMessage('register.label.name')}
+          </InputLabel>
+          {/*Campo de input - com a biblioteca MUI */}
+          <TextField
+            sx={{
+            width: 320,
+            borderRadius: 3,
+            alignSelf: 'center',
+            marginBottom: 3
+            }}
+              type="text"
+              placeholder="Digite seu nome"
+              onChange={(e) => setName(e.target.value)}
+            required
+            />
+          </Box>
 
-         {/*Preenchimento de instituição. Não é possível confirmar o formulário sem preenchê-la */}
-        <Box>
-          {/*Label: Instituição */}
-         <InputLabel htmlFor="institution" sx={{
-            marginRight: 30}}>
-            {getMessage('register.label.institution')}
-         </InputLabel>
-         {/*Campo de input - com a biblioteca MUI */}
-         <TextField
-          sx={{
-          width: 320,
-          borderRadius: 3,
-          alignSelf: 'center',
-          marginBottom: 3
-          }}
-            type="text"
-            placeholder="Digite sua instituição"
-            onChange={(e) => setInstitution(e.target.value)}
-          required
-          />
+          {/*Preenchimento de instituição. Não é possível confirmar o formulário sem preenchê-la */}
+          <Box flexDirection={"row"}>
+              {/*Label: Instituição */}
+            <InputLabel htmlFor="institution" sx={{
+                marginRight: 30}}>
+                {getMessage('register.label.institution')}
+            </InputLabel>
+            {/*Campo de input - com a biblioteca MUI */}
+            <TextField
+              sx={{
+              width: 320,
+              borderRadius: 3,
+              alignSelf: 'center',
+              marginBottom: 3
+              }}
+                type="text"
+                placeholder="Digite sua instituição"
+                onChange={(e) => setInstitution(e.target.value)}
+              required
+              />
+          </Box>
+
         </Box>
+        
 
       {/*Preenchimento do email. Caso ele esteja vazio, aparecerá uma mensagem de erro. Também aparecerá se ele não estiver de acordo com um email (sem @ e .) */}
         <Box> 
           {/*Label: Email */}
         <InputLabel htmlFor = "userEmail" sx={{
-            marginRight: 33}}>
+            marginRight: 75}}>
             {getMessage('register.label.email')}
         </InputLabel>
         {/*Campo de input - com a biblioteca MUI */}
@@ -185,7 +195,9 @@ return (
           sx={{
           width: 320,
           borderRadius: 3,
-          alignSelf: 'center',
+          alignSelf: 'left',
+          marginRight: 42,
+          marginBottom: 3
           
           }}
             name = "email"
@@ -201,100 +213,83 @@ return (
         </Box>
 
         {/*Preenchimento de senha. Não é possível confirmar o formulário sem preenchê-la. Ela possui um sistema de validação */}
-        <Box>
-          {/*Label: Senha */}
-          <InputLabel sx={{
-            marginRight: 33}}>
-            {getMessage('register.label.password')}
-          </InputLabel>
-          {/*Campo de input - com a biblioteca MUI */}
-          <TextField
-          sx={{
-          width: 320,
-          borderRadius: 3,
-          alignSelf: 'center',
-          marginBottom: 3
-          }}
-            name = "password"
-            type={type}
-            placeholder="Digite sua senha"
-            onChange={(e) => [setPassword(e.target.value), handleChange(e.target.value) ]}
-            onBlur={validaSenha}
-            required
-            helperText = {messagePassword}
-            error = {messagePassword !== ""}
-            />
-            
+        <Box alignSelf={'center'} display={"flex"} gap={1} flexDirection={"row"}>
+          <Box flexDirection={'collumn'}>
+                <Box>
+                  {/*Label: Senha */}
+                  <InputLabel sx={{
+                    marginRight: 33}}>
+                    {getMessage('register.label.password')}
+                  </InputLabel>
+                  {/*Campo de input - com a biblioteca MUI */}
+                  <TextField
+                  sx={{
+                  width: 320,
+                  borderRadius: 3,
+                  alignSelf: 'left',
+                  marginBottom: 3
+                  }}
+                    name = "password"
+                    type={type}
+                    placeholder="Digite sua senha"
+                    onChange={(e) => [setPassword(e.target.value), handleChange(e.target.value) ]}
+                    onBlur={validaSenha}
+                    required
+                    helperText = {messagePassword}
+                    error = {messagePassword !== ""}
+                    />
+                    
+                </Box>
+
+                {/*Campo de verificação de senha */}
+
+                <Box width={200} marginLeft={3} marginBottom={4}  textAlign={'left'}>
+                  {/*Irá validar se a senha possui 8 ou mais caracteres */}
+                  <Typography variant='body2' sx={{color:lengthValidated ? 'green' : 'red'}}>
+                    {getMessage('register.validation.one')}
+                        
+                  </Typography>
+                  {/*Irá validar se a senha possui os requisitos pedidos */}
+          
+                    <Box>
+                      {/*Senha precisa de ao menos uma letra maiúscula */}
+                      <Typography sx={{color: upperValidated ? 'green' : 'red'}} fontSize={13}>
+                        {getMessage('register.validation.uppercase')}
+                          
+                      </Typography>
+                      {/*Senha precisa de ao menos uma letra minúscula */}
+                      <Typography sx={{color:lowerValidated ? 'green' : 'red'}} fontSize={13} >
+                        {getMessage('register.validation.lowercase')}
+                        
+                      </Typography>
+                      {/*Senha precisa de ao menos um número */}
+                      <Typography sx={{color:numberValidated ? 'green' : 'red'}} fontSize={13}>
+                        {getMessage('register.validation.number')}
+                        
+                      </Typography>
+                      {/*Senha precisa de ao menos um caracter especial */}
+                      <Typography sx={{color:specialValidated ? 'green' : 'red'}} fontSize={13} >
+                        {getMessage('register.validation.specialcarac')}
+                        
+                      </Typography>
+                      {/*Senha precisa ser diferente do nome ou email */}
+                      <Typography sx={{color:likeOthersValidated ? 'green' : 'red'}} fontSize={13} >
+                        {getMessage('register.validation.three')}
+                        
+                      </Typography>
+                  </Box>
+
+                </Box>
           </Box>
+          
           <Box>
 
-          {/*Campo de verificação de senha */}
-
-        <Box marginLeft={15} marginBottom={4}  textAlign={'justify'}>
-          {/*Irá validar se a senha possui 8 ou mais caracteres */}
-          <Typography variant='body2' sx={{color:lengthValidated ? 'green' : 'red'}}>
-            {getMessage('register.validation.one')}
-                  {lengthValidated ? (
-                    <TaskAltIcon fontSize="x-small" />
-                  ) : (
-                    <CancelIcon fontSize="x-x-small" />
-                  )}
-          </Typography>
-          {/*Irá validar se a senha possui 3 dos 4 requisitos pedidos */}
-          <Typography variant='body2'>
-            {getMessage('register.validation.two')}
-            <Box>
-              {/*Senha precisa de ao menos uma letra maiúscula */}
-              <Typography sx={{color: upperValidated ? 'green' : 'red'}} fontSize={13}>
-                {getMessage('register.validation.uppercase')}
-                  {upperValidated ? (
-                    <TaskAltIcon fontSize="x-small" />
-                  ) : (
-                    <CancelIcon fontSize="x-small" />
-                  )}
-              </Typography>
-              {/*Senha precisa de ao menos uma letra minúscula */}
-              <Typography sx={{color:lowerValidated ? 'green' : 'red'}} fontSize={13} >
-                {getMessage('register.validation.lowercase')}
-                {lowerValidated ? (
-                    <TaskAltIcon fontSize="x-small" />
-                  ) : (
-                    <CancelIcon fontSize="x-small" />
-                  )}
-              </Typography>
-              {/*Senha precisa de ao menos um número */}
-              <Typography sx={{color:numberValidated ? 'green' : 'red'}} fontSize={13}>
-                {getMessage('register.validation.number')}
-                {numberValidated ? (
-                    <TaskAltIcon fontSize="x-small" />
-                  ) : (
-                    <CancelIcon fontSize="x-small" />
-                  )}
-              </Typography>
-              {/*Senha precisa de ao menos um caracter especial */}
-              <Typography sx={{color:specialValidated ? 'green' : 'red'}} fontSize={13} >
-                {getMessage('register.validation.specialcarac')}
-                {specialValidated ? (
-                    <TaskAltIcon fontSize="x-small" />
-                  ) : (
-                    <CancelIcon fontSize="x-small" />
-                  )}
-              </Typography>
-              {/*Senha precisa ser diferente do nome ou email */}
-              <Typography sx={{color:likeOthersValidated ? 'green' : 'red'}} fontSize={13} >
-                {getMessage('register.validation.three')}
-                {likeOthersValidated ? (
-                    <TaskAltIcon fontSize="x-small" />
-                  ) : (
-                    <CancelIcon fontSize="x-small" />
-                  )}
-              </Typography>
- 
-          </Box>
+       
             {/*Confirmação de senha */}
-          <Box>
+          <Box flexDirection={"row"}>
+            <Box>
             <InputLabel sx={{
-              marginRight: 30, marginTop: 3}}>
+              marginRight: 21}}>
               {getMessage('register.label.password.confirm')}
             </InputLabel>
             {/*Input */}
@@ -303,30 +298,41 @@ return (
               width: 320,
               borderRadius: 3,
               alignSelf: 'center',
-              marginBottom: 3
               }}
+                onblur={validaConfirmacao}
                 type="password"
                 value={confirmPassword}
                 placeholder="Confirme sua senha"
+                error = {confirmPassword !== password}
+                helperText = {messageConfirm}
                 onChange={(e) => {setConfirmPassword(e.target.value); handleChange(password,e.target.value);}}/>
-                {confirmValidated ? (
-                  <TaskAltIcon color='green' fontSize="x-small" />
-                ) : (
-                  <CancelIcon color='red' fontSize="x-small" />
-                )}
-
+                
+            </Box>
+            <Box marginTop={3} marginLeft={3} textAlign={'left'}>
+                <Typography sx={{color:(confirmPassword==password) ? 'green' : 'red'}} variant="body2">
+                    {getMessage('register.label.confirm.requirement')}
+                </Typography>
+                <Typography sx={{color:(confirmPassword==password) ? 'green' : 'red'}} fontSize={13}>
+                    {getMessage('register.label.confirm.requirement.two')}
+                </Typography>
+                <Typography sx={{color:(confirmPassword==password) ? 'green' : 'red'}} fontSize={13}>
+                    {getMessage('register.label.confirm.requirement.three')}
+                </Typography>
+            </Box>
           </Box>
-          </Typography>
           
 
+        
+          
         </Box>
           
         </Box>
+
         <Button
         disabled={
             !(
-              (lowerValidated || upperValidated) && (numberValidated || specialValidated) && (lowerValidated || numberValidated)
-               && lengthValidated && likeOthersValidated && confirmValidated
+              lowerValidated && upperValidated && numberValidated && specialValidated && lowerValidated && numberValidated
+               && lengthValidated && likeOthersValidated  && (confirmPassword === password)
             )
           } 
           sx={{width: 310, 

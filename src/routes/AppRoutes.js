@@ -21,7 +21,7 @@ export default function AppRoutes(){
             <Route path="home" element={<Home />} />
             <Route path="learn" element={<Learn />} />
             <Route path="tutorials" element={<Tutorials />} /> 
-            <Route path="register" element={<Register />}/>
+            <Route path="register" element={<Register />} />
             <Route path="tool" element={<Tools />}>
            
                 <Route path="alignment" element={<Alignment />} />

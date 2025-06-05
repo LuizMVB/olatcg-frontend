@@ -308,7 +308,6 @@ var data_en = {
                                                     'if they match the choosen type and try again',
     'error.validation.sequenceFile.type'        : 'The sequence file must be of type .txt',
 };
-
 var data = {
 
     /* COMMON */
@@ -605,13 +604,15 @@ var data = {
     'register.label.email.error.message'     : 'Entre com um e-mail válido',
     'register.label.password'                : 'Senha:',
     'register.label.password.confirm'        : 'Confirme sua senha:',
+    'register.label.confirm.requirement'     : 'A confirmação de senha confere',
+    'register.label.confirm.requirement.two' : '- É preciso ter os mesmos caracteres',
+    'register.label.confirm.requirement.three' : '- Cheque a senha para confirmar o cadastro',
     'register.label.password.error'          : 'A senha está vazia. Entre novamente.',
     'register.validation.one'                : 'Mínimo de 8 caracteres',
-    'register.validation.two'                : 'Ao menos 3 de 4 recursos:',
     'register.validation.uppercase'          : '- Ao menos uma letra maiúscula',
     'register.validation.lowercase'          : '- Ao menos uma letra minúscula',
     'register.validation.number'             : '- Ao menos um número',
-    'register.validation.specialcarac'       : '- Ao menos um caractere especial',
+    'register.validation.specialcarac'       : '- Ao menos um caractere especial (Ex:!@#$%¨&*():~?´`^)',
     'register.validation.three'              : 'Diferente do nome ou e-mail',
 
 

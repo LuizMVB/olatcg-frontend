@@ -1,5 +1,4 @@
 import React from 'react';
-import Logo from '../static/images/logo.png';
 import {Stack} from "@mui/system";
 import { Box, Paper, Typography } from "@mui/material";
 import { getMessage } from "../services/MessageService";
@@ -10,13 +9,10 @@ const Register = () => {
     <Stack>
         <Box 
         sx={{ display: 'flex',
-              width: 550,
-              height: 1030,
+              width: 900,
+              height: 750,
               borderRadius: 3,
               bgcolor: '#fff',
-              '&:hover': {
-                bgcolor: '#EBFAF4',
-              },
               marginTop: 10,
               marginBottom: 10,
               paddingTop: 10,
@@ -29,10 +25,6 @@ const Register = () => {
                {getMessage('register.title')} 
             </Typography>
             <RegisterForm />
-            <Box sx={{alignSelf:'center'}}>
-               <img height={50} width={50} src={Logo} alt="Logo olATCG" /> 
-           </Box>
-            
         </Box>
         
     </Stack>
