@@ -1,5 +1,4 @@
-import Logo from '../static/images/logo.png';
-import {Box, Stack, Typography, Button} from '@mui/material';
+import {Box, Stack, Typography, Link} from '@mui/material';
 import { getMessage } from '../services/MessageService';
 import LoginForm from '../components/LoginForm';
 import { useNavigate } from 'react-router-dom';
@@ -45,21 +44,18 @@ const Login = () => {
             <LoginForm />
 
             {/* link to the ‘/register’ page */}
-            <Button onClick={() => {navigateTo('/register')}}  variant="text" size="small" 
+            <Link underline='hover' component='button' onClick={() => {navigateTo('/register')}}
             sx={{
                 cursor: 'pointer', 
                 m: 5, 
+                fontWeight: 'bold',
                 '&:hover': {
                     cursor: 'pointer',
-                    color: 'primary.light'
             }}}>
-                <Typography variant='h6' component='div'>
+                <Typography variant='p' component='p'>
                     {getMessage('login.user.not.registered')}
                 </Typography>
-            </Button>
-            <Box sx={{mb: 5}}>
-                 <img src={Logo} alt="olATCG's logo" width={90} height={90} />
-            </Box>    
+            </Link>    
         </Box>
     </Stack>
     );    
