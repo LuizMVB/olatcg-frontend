@@ -196,7 +196,7 @@ return (
           width: 320,
           borderRadius: 3,
           alignSelf: 'left',
-          marginRight: 42,
+          marginRight: 41,
           marginBottom: 3
           
           }}
@@ -308,17 +308,7 @@ return (
                 onChange={(e) => {setConfirmPassword(e.target.value); handleChange(password,e.target.value);}}/>
                 
             </Box>
-            <Box marginTop={3} marginLeft={3} textAlign={'left'}>
-                <Typography sx={{color:(confirmPassword==password) ? 'green' : 'red'}} variant="body2">
-                    {getMessage('register.label.confirm.requirement')}
-                </Typography>
-                <Typography sx={{color:(confirmPassword==password) ? 'green' : 'red'}} fontSize={13}>
-                    {getMessage('register.label.confirm.requirement.two')}
-                </Typography>
-                <Typography sx={{color:(confirmPassword==password) ? 'green' : 'red'}} fontSize={13}>
-                    {getMessage('register.label.confirm.requirement.three')}
-                </Typography>
-            </Box>
+            
           </Box>
           
 
