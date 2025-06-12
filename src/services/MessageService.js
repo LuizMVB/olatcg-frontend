@@ -123,6 +123,23 @@ var data_en = {
     'tutorials.contentList.label.title'                         : 'Tutorials',
     'tutorials.contentList.listItem.label.tutorials'            : 'How to Use OLATCG',
 
+    /**ANALYSIS FILTER FIELDS*/
+    'analysisField.title'                      : 'Search your analysis or you experiment based on the filter below',
+    'analysisField.label.experiment.id'        : 'Experiment ID',
+    'analysisField.label.experiment.title'     : 'Experiment Title',
+    'analysisField.label.analysis.id'          : 'Analysis ID',
+    'analysisField.label.analysis.title'       : 'Analysis Title',
+    'analysisField.label.type'                 : 'Type',
+    'analysisField.label.type.alignment'       : 'ALIGNMENT',
+    'analysisField.label.type.homology'        : 'HOMOLOGY',
+    'analysisField.label.type.phyloTree'       : 'PHYLOGENETIC TREE',
+    'analysisField.label.status'               : 'Status',
+    'analysisField.label.status.success'       : 'Execution succeded',
+    'analysisField.label.status.waiting'       : 'Waiting for execution',
+    'analysisField.label.status.executing'     : 'In execution',
+    'analysisField.label.status.error'         : 'Error in execution',
+    'analysisField.label.submit'               : 'Search',
+
     /** HOMOLOGY */
     'homology.input.label.sequence'                     : 'Sequence',
     'homology.button.label.makeAnalysis'                : 'Make Analysis',
@@ -305,6 +322,7 @@ var data = {
     'common.label.unavailable'  : 'Indisponível',
     'common.label.show.tree'    : 'Mostrar árvore',
     'common.asterisk'           : '*',
+    
 
     /* APPBAR */
 
@@ -420,9 +438,29 @@ var data = {
                                                                             Avaliação
                                                                             https://forms.office.com/r/DCzRKDiMFD`,
     
-                                                                        /** TUTORIALS */
+    
+    /** TUTORIALS */
     'tutorials.contentList.label.title'                         : 'Tutoriais',
     'tutorials.contentList.listItem.label.tutorials'            : 'Como usar o OLATCG',
+
+     /**ANALYSIS FILTER FIELDS*/
+    'analysisField.title'                      : 'Pesquise sua análise ou seu experimento baseado nos filtros abaixo',
+    'analysisField.label.experiment.id'        : 'ID do experimento',
+    'analysisField.label.experiment.title'     : 'Título do experimento',
+    'analysisField.label.analysis.id'          : 'ID da análise',
+    'analysisField.label.analysis.title'       : 'Título da análise',
+    'analysisField.label.type'                 : 'Tipo',
+    'analysisField.label.type.alignment'       : 'Alinhamento',
+    'analysisField.label.type.homology'        : 'Homologia',
+    'analysisField.label.type.phyloTree'       : 'Árvore filogenética',
+    'analysisField.label.status'               : 'Status',
+    'analysisField.label.status.success'       : 'Execução sucedida',
+    'analysisField.label.status.waiting'       : 'Esperando para executar',
+    'analysisField.label.status.executing'     : 'Em execução',
+    'analysisField.label.status.error'         : 'Erro na execução',
+    'analysisField.label.submit'               : 'Pesquisar',
+
+
 
     /** HOMOLOGY */
     'homology.input.label.sequence'                     : 'Sequência',
