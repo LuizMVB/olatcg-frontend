@@ -277,6 +277,15 @@ var data_en = {
     'info.analysis.isnt.finished'            : 'The proccess still running. Try again when the status of this ' +
                                                     'analysis changes to \'FINSHED\'',
 
+    //EXPERIMENT
+
+    'experiment.title'                       : 'Insert the title of your experiment',
+    'experiment.description'                 : 'Insert the description of your experiment',
+    'experiment.error'                       : 'Invalid field!',
+    'experiment.button'                      : 'Create experiment',
+    'experiment.success.message'             : 'Experiment created successfully',
+    'experiment.error.message'               : 'Network error or server down.',
+
     // ERRORS
 
     'error.general'                             : 'An error occurred while trying to establish the connection. ' +
@@ -574,6 +583,14 @@ var data = {
 
     'info.analysis.isnt.finished'            : 'O processo está em andamento. Tente de novo quando o status ' + 
                                                     'para está análise for \'FINSHED\'',
+    
+    //EXPERIMENT
+    'experiment.title'                       : 'Insira o título do seu experimento',
+    'experiment.description'                 : 'Insira a descrição do seu experimento',
+    'experiment.error'                       : 'Campo inválido!',
+    'experiment.button'                      : 'Criar experimento',
+    'experiment.success.message'             : 'Experimento criado com sucesso!',
+    'experiment.error.message'               : 'Erro de rede ou servidor fora do ar.',
 
     // ERRORS
 
