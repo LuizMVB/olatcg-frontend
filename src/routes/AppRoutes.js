@@ -5,7 +5,6 @@ import Learn from '../pages/Learn';
 import Tools from '../pages/Tools';
 import Tutorials from '../pages/Tutorials';
 import Homology from '../pages/Homology';
-import Register from '../pages/Register';
 import Experiment from '../pages/Experiment';
 import { Analysis } from '../pages/Analysis';
 import { HomologyAnalysis } from '../pages/HomologyAnalysis';
@@ -21,7 +20,6 @@ export default function AppRoutes(){
             <Route path="home" element={<Home />} />
             <Route path="learn" element={<Learn />} />
             <Route path="tutorials" element={<Tutorials />} /> 
-            <Route path="register" element={<Register />} />
             <Route path="tool" element={<Tools />}>
            
                 <Route path="alignment" element={<Alignment />} />

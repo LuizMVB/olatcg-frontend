@@ -25,7 +25,7 @@ const ExperimentForm = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Token 983b98f522c9faad02555820fe24108e0b101985",
+          "Authorization": "Token 36c579d012f36c874da0f1f97de19266e72cfc91",
         },
         body: JSON.stringify({
           title: experimentTitle,
