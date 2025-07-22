@@ -1,9 +1,11 @@
 import { Button, FormControl, InputLabel, Menu, MenuItem, OutlinedInput, Stack, Typography } from "@mui/material";
 import { TextField, Select} from "@mui/material";
-import { Box, maxHeight, width} from "@mui/system";
+import { Box, maxHeight, width } from "@mui/system";
 import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { getMessage } from "../services/MessageService";
+import { AnalysisTable } from "../components/AnalysisTable";
+import { LocalAtmRounded } from "@mui/icons-material";
 
 const Analysis = () => {
     const navigateTo = useNavigate();
@@ -17,44 +19,75 @@ const Analysis = () => {
     const [analysisType, setAnalysisType] = useState([]);
     const [analysisStatus, setAnalysisStatus] = useState([]);
 
-    const handleAnalysisType = (event) => {
-        setAnalysisType(event.target.value);
-    };
+    const [activeFilters, setActiveFilters] = useState({});
 
-    const handleAnalysisStatus = (event) => {
-        setAnalysisStatus(event.target.value);
-    };
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log('enviado');
-        console.log(experimentId, experimentTitle);
-        console.log(analysisId, analysisTitle);
-        console.log(analysisType);
-        console.log(analysisStatus);
-    }
-
-
+    /*
     const onComponentMount = () => {
-        if(location.pathname === '/analysis'){
-            navigateTo('/analysis/alignment');
-        }
-    }
-
-    const handleLabel = () =>{
-        if(location.pathname.includes('/analysis/alignment')){
-            setValue('ALIGNMENT');
-        } else if (location.pathname.includes('/analysis/homology')){
-            setValue('HOMOLOGY');
-        } else if (location.pathname.includes('/analysis/phylogeneticTree')){
-            setValue('TAXONOMY_TREE');
+        if(location.pathname !== '/analysis'){
+            navigateTo('/analysis');
         }
     }
 
     useEffect(() => {
         onComponentMount();
-        handleLabel();
-    }, [location, navigateTo])
+    }, [location, navigateTo]);  */
+
+    const handleAnalysisType = (e) => {
+        setAnalysisType(e.target.value);
+    }
+   
+
+    const handleAnalysisStatus = (e) => {
+        setAnalysisStatus(e.target.value);
+    }
+
+    const handleSubmit = (event) => { 
+        event.preventDefault();
+        
+        const filters = {
+            experiment_id: experimentId,
+            experiment_title: experimentTitle,
+            analysis_id: analysisId,
+            analysis_title: analysisTitle,
+            analysis_type: analysisType,
+            analysis_status: analysisStatus
+        };
+
+        setActiveFilters(filters);
+    }
+
+    const handleReset = () => {
+
+        const filters = {
+           experiment_id: 0,
+            experiment_title: '',
+            analysis_id: 0,
+            analysis_title: '',
+            analysis_type: [],
+            analysis_status: [] 
+        };
+
+        setExperimentId(0);
+        setExperimentTitle('');
+        setAnalysisId(0);
+        setAnalysisTitle('');
+        setAnalysisStatus([]);
+        setAnalysisType([]);
+        
+        setActiveFilters(filters);
+    }
+
+    const itemHeight = 48;
+    const itemPaddingTop = 8;
+    const MenuProps = {
+        PaperProps: {
+            style: {
+                maxHeight: itemHeight * 4.5 + itemPaddingTop,
+                width: 200,
+            },
+        },
+    };
+
 
     return <>
         <Box sx={{
@@ -92,44 +125,57 @@ const Analysis = () => {
                     <TextField label={getMessage('analysisField.label.analysis.title')} id="analysisTitle" name="analysisTitle" 
                     type="text" onChange={(e) => {setAnalysisTitle(e.target.value)}} />
                 </Box>
-                <Box sx={{display:'flex', flexDirection:'column', mx: 2, minWidth: 120 }}>
+                <Box sx={{display:'flex', flexDirection:'column', mx: 2, width: 275 }}>
                     <FormControl>
                         <InputLabel id="type">{getMessage('analysisField.label.type')}</InputLabel>
-                        <Select labelId="type" id="type" value={analysisType} label={getMessage('analysisField.label.type')} onChange={handleAnalysisType} multiple sx={{mb: 2}}>
-                            <MenuItem value={'ALIGNMENT'}>{getMessage('analysisField.label.type.alignment')}</MenuItem>
-                            <MenuItem value={'HOMOLOGY'}>{getMessage('analysisField.label.type.homology')}</MenuItem>
+                        <Select labelId="type" id="type" value={analysisType} label={getMessage('analysisField.label.type')} 
+                        onChange={handleAnalysisType} multiple sx={{mb: 2}} MenuProps={MenuProps}>
+                            <MenuItem value={'PAIRWISE__ALIGNMENT'}>{getMessage('analysisField.label.type.alignment')}</MenuItem>
+                            <MenuItem value={'HOMOLOGY_SEARCH'}>{getMessage('analysisField.label.type.homology')}</MenuItem>
                             <MenuItem value={'TAXONOMY_TREE'}>{getMessage('analysisField.label.type.phyloTree')}</MenuItem>
                         </Select>
                     </FormControl>
                     
                     <FormControl>
                         <InputLabel id="status">{getMessage('analysisField.label.status')}</InputLabel>
-                        <Select labelId="status" id="status" value={analysisStatus} label={getMessage('analysisField.label.status')} onChange={handleAnalysisStatus} multiple>
-                            <MenuItem value={'EXECUTION_SUCCEEDED'}>{getMessage('analysisField.label.status.success')}</MenuItem>
+                        <Select labelId="status" id="status" value={analysisStatus} label={getMessage('analysisField.label.status')} 
+                        onChange={handleAnalysisStatus} multiple MenuProps={MenuProps}>
+                            <MenuItem value={'SUCCEEDED'}>{getMessage('analysisField.label.status.success')}</MenuItem>
                             <MenuItem value={'IN_EXECUTION'}>{getMessage('analysisField.label.status.executing')}</MenuItem>
                             <MenuItem value={'WAITING_FOR_EXECUTION'}>{getMessage('analysisField.label.status.waiting')}</MenuItem>
-                            <MenuItem value={'ERROR_IN_EXECUTION'}>{getMessage('analysisField.label.status.error')}</MenuItem>
+                            <MenuItem value={'EXECUTION_FAILED'}>{getMessage('analysisField.label.status.error')}</MenuItem>
                         </Select>
                     </FormControl>
                     
                 </Box>
-                <Button type="submit" size="large" sx={{
-                    mx: 5,
-                    alignSelf: 'center',
-                    backgroundColor: 'primary.main',
-                    color: 'primary.contrastText',
-                    '&:hover':{
-                        cursor: 'pointer'
-                    }
-                }} >
-                    {getMessage('analysisField.label.submit')}
-                </Button>
+                <Box sx={{display:'flex', flexDirection:'column', mx: 2}} >
+                    <Button type="submit" size="large" sx={{
+                        mb: 3,
+                        mt: 1, 
+                        alignSelf: 'center',
+                        backgroundColor: 'primary.main',
+                        color: 'primary.contrastText',
+                        '&:hover':{
+                            cursor: 'pointer'
+                        }
+                    }} >
+                        {getMessage('analysisField.label.submit')}
+                    </Button>
+                    <Button type="reset" size="large" onClick={handleReset} sx={{
+                        alignSelf: 'center',
+                        backgroundColor: 'primary.main',
+                        color: 'primary.contrastText',
+                        '&:hover':{
+                            cursor: 'pointer'
+                        },
+                    }}>
+                        {getMessage('analysisField.label.reset')}
+                    </Button>
+                </Box>               
             </Box>
         </Box>
-        <br/>
-        <Outlet />
-        
-        
+        <br/> 
+        <AnalysisTable filters={activeFilters}  />
     </>
 };
 

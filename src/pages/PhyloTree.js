@@ -9,6 +9,7 @@ import { getMessage } from "../services/MessageService";
 import OlatcgLoader from "../components/OlatcgLoader";
 import OlatcgSnackbar from "../components/OlatcgSnackbar";
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
+import { type } from '@testing-library/user-event/dist/type';
 
 const PhyloTree = () => {
   let treeId = useParams();
@@ -62,7 +63,7 @@ useEffect(() => {
 }, [treeId]);
 
     return ( <>
-          <Box sx={{ px: 4, my: 'auto'}}>
+          <Box sx={{ px: 4, my: 'auto', mt: 10}}>
             <Paper sx={{ maxWidth:'90%', /*overflow: 'hidden',*/ bgcolor: 'primary.light', margin: 'auto'}}>
               <Typography component="div" variant="h4" sx={{backgroundColor: 'primary.dark', borderTopRightRadius: '4px', borderTopLeftRadius: '4px', color: 'primary.contrastText', textAlign: 'center'}}>
                 ID {idAnalysis} - {analysisName}
@@ -71,7 +72,7 @@ useEffect(() => {
                  <OlatcgPhyloTree newick={newickTree} />
                 )
                 }
-              <Button startIcon={<ContentPasteIcon/>} sx={{width:'100%', color: 'primary.contrastText', backgroundColor:'primary.dark', borderTopRightRadius: 0, borderTopLeftRadius: 0}} onClick={() => idAnalysis !=0 && navigateTo("/analysis/homology/" + idAnalysis)}>
+              <Button startIcon={<ContentPasteIcon/>} sx={{width:'100%', color: 'primary.contrastText', backgroundColor:'primary.dark', borderTopRightRadius: 0, borderTopLeftRadius: 0}} onClick={() => idAnalysis !=0 && navigateTo(`/analysis/${idAnalysis}`, {state: {type: 'HOMOLOGY'}})}>
                 {getMessage('phyloTree.label.return')}
               </Button>
             </Paper>

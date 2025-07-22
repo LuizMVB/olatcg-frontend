@@ -139,6 +139,22 @@ var data_en = {
     'analysisField.label.status.executing'     : 'In execution',
     'analysisField.label.status.error'         : 'Error in execution',
     'analysisField.label.submit'               : 'Search',
+    'analysisField.label.reset'                : 'Reset',
+
+    /**ANALYSIS TABLE - ALL TYPES */
+    'olatcgAnalysisTable.label.idAnalysis'              : 'Analysis ID',
+    'olatcgAnalysisTable.label.titleAnalysis'           : 'Analysis title',
+    'olatcgAnalysisTable.label.idExperiment'            : 'Experiment ID',
+    'olatcgAnalysisTable.label.titleExperiment'         : 'Experiment title',
+    'olatcgAnalysisTable.label.description'             : 'Description',
+    'olatcgAnalysisTable.label.type'                    : 'Type',
+    'olatcgAnalysisTable.label.status'                  : 'Status',
+    'olatcgAnalysisTable.label.action'                  : 'Action',
+
+    /**EXPERIMENT TABLE  */
+    'olatcgExperimentTable.label.idExperiment'            : 'ID Experiment',
+    'olatcgExperimentTable.label.titleExperiment'         : 'Title',
+    'olatcgExperimentTable.label.description'             : 'Description',
 
     /** HOMOLOGY */
     'homology.input.label.sequence'                     : 'Sequence',
@@ -459,7 +475,22 @@ var data = {
     'analysisField.label.status.executing'     : 'Em execução',
     'analysisField.label.status.error'         : 'Erro na execução',
     'analysisField.label.submit'               : 'Pesquisar',
+    'analysisField.label.reset'                : 'Limpar',
 
+    /**ANALYSIS TABLE - ALL TYPES */
+    'olatcgAnalysisTable.label.idAnalysis'              : 'ID da Análise',
+    'olatcgAnalysisTable.label.titleAnalysis'           : 'Título da Análise',
+    'olatcgAnalysisTable.label.idExperiment'            : 'ID do Experimento',
+    'olatcgAnalysisTable.label.titleExperiment'         : 'Título do Experimento',
+    'olatcgAnalysisTable.label.description'             : 'Descrição',
+    'olatcgAnalysisTable.label.type'                    : 'Tipo',
+    'olatcgAnalysisTable.label.status'                  : 'Status',
+    'olatcgAnalysisTable.label.action'                  : 'Ação',
+
+    /**EXPERIMENT TABLE  */
+    'olatcgExperimentTable.label.idExperiment'            : 'ID do Experimento',
+    'olatcgExperimentTable.label.titleExperiment'         : 'Título',
+    'olatcgExperimentTable.label.description'             : 'Descrição',
 
 
     /** HOMOLOGY */

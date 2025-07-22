@@ -191,7 +191,7 @@ const AlignmentAnalysisDetails = () => {
     }, []);
 
     return <>
-        <Box sx={{ px: 4 }}>
+        <Box sx={{ px: 4, mt: 10 }}>
             <Paper sx={{ width: '100%', overflow: 'hidden', bgcolor: 'primary.light' }}>
                 <Typography component="div" variant="h4" sx={{backgroundColor: 'primary.dark', color: 'primary.contrastText', textAlign: 'center'}}>
                     ID {idAnalysis} - {analysisName}

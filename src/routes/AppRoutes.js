@@ -12,6 +12,7 @@ import { PhylogeneticTreeAnalysis } from '../pages/PhylogeneticTreeAnalysis';
 import { AlignmentAnalysisDetails } from '../pages/AlignmentAnalysisDetails';
 import { HomologyAnalysisDetails } from '../pages/HomologyAnalysisDetails';
 import PhyloTree from '../pages/PhyloTree';
+import {AnalysisDetailsRouter} from './AnalysisDetailsRouter.js';
 
 export default function AppRoutes(){
     return (
@@ -23,18 +24,8 @@ export default function AppRoutes(){
                 <Route path="alignment" element={<Alignment />} />
                 <Route path="homology" element={<Homology />} />
             </Route>
-            <Route path="analysis" element={<Analysis />}>
-                <Route path="alignment" element={<AlignmentAnalysis />}>
-                    <Route path=":idAnalysis" element={<AlignmentAnalysisDetails/>} />
-                </Route>
-                <Route path="homology" element={<HomologyAnalysis />} >
-                    <Route path='tree/:idAnalysis'element={<PhyloTree />}/>
-                    <Route path=":idAnalysis" element={<HomologyAnalysisDetails />} />
-                </Route>
-                <Route path="phylogeneticTree" element={<PhylogeneticTreeAnalysis/>}>
-                    <Route path=':idAnalysis'element={<PhyloTree />}/>
-                </Route>
-            </Route>
+            <Route path="analysis" element={<Analysis />} />
+            <Route path="/analysis/:idAnalysis" element={<AnalysisDetailsRouter/> }/>
             <Route path="*" element={<Navigate to="home" />} />
         </Routes>
     );

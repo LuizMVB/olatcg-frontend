@@ -119,7 +119,7 @@ const HomologyAnalysisDetails = () => {
 
     
     return <>
-        <Box sx={{ px: 4, my: 'auto'}}>
+        <Box sx={{ px: 4, my: 'auto', mt: 10}}>
             <Paper sx={{ width: isAnalysisAvailable ? '90%' : '60%', overflow: 'hidden', bgcolor: 'primary.light', margin: 'auto'}}>
                 <Typography component="div" variant="h4" sx={{backgroundColor: 'primary.dark', color: 'primary.contrastText', textAlign: 'center'}}>
                     ID {idAnalysis} - {analysisName}
