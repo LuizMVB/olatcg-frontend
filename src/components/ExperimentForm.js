@@ -1,6 +1,5 @@
 import {React, useState, sx} from 'react';
 import { Box, Typography, Button, TextField, InputLabel, InputAdornment, Alert} from "@mui/material";
-import {API_ROUTES} from '../routes/Routes';
 import { getMessage } from "../services/MessageService";
 
 const ExperimentForm = () => {
@@ -18,6 +17,7 @@ const ExperimentForm = () => {
     e.preventDefault();
     setSuccessMessage(null);
     setErrorMessage(null);
+
     {/*Autorização com o token */}
   
     try {
@@ -25,7 +25,7 @@ const ExperimentForm = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Token 36c579d012f36c874da0f1f97de19266e72cfc91",
+          "Authorization": "Token 05e34cf1c2c5c13803e50d80ba3044bc13daff53",
         },
         body: JSON.stringify({
           title: experimentTitle,
@@ -42,10 +42,12 @@ const ExperimentForm = () => {
           `Erro ao criar experimento: ${errorData.message || response.statusText}`
         );
       }
-    } catch (error) {
+    } 
+    catch (error) {
       setErrorMessage(getMessage('experiment.error.message'));
     }
   };
+
    {/*Formulário de criação de experimento */}
     return <>
     <form onSubmit={handleSubmit}>
