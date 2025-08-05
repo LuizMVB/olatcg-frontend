@@ -5,6 +5,7 @@ import Learn from '../pages/Learn';
 import Tools from '../pages/Tools';
 import Tutorials from '../pages/Tutorials';
 import Homology from '../pages/Homology';
+import User from '../pages/User';
 import { Analysis } from '../pages/Analysis';
 import { HomologyAnalysis } from '../pages/HomologyAnalysis';
 import { AlignmentAnalysis } from '../pages/AlignmentAnalysis';
@@ -34,7 +35,9 @@ export default function AppRoutes(){
                 <Route path="phylogeneticTree" element={<PhylogeneticTreeAnalysis/>}>
                     <Route path=':idAnalysis'element={<PhyloTree />}/>
                 </Route>
+                
             </Route>
+            <Route path="user" element={<User />} />
             <Route path="*" element={<Navigate to="home" />} />
         </Routes>
     );
