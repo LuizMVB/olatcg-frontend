@@ -1,6 +1,6 @@
 import {useState, sx} from 'react';
 import {Link} from 'react-router-dom'
-import { Box, Typography, Button, TextField, InputLabel, InputAdornment, Alert} from "@mui/material";
+import { Box, Typography, Button, TextField, InputLabel, InputAdornment, Alert, IconButton} from "@mui/material";
 import {API_ROUTES} from '../routes/Routes';
 import { getMessage } from "../services/MessageService";
 import * as React from 'react';
@@ -20,6 +20,8 @@ import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import MailIcon from '@mui/icons-material/Mail';
 import user from './user.png';
 import { Padding } from '@mui/icons-material';
+import OlatcgNavbar from '../components/OlatcgNavbar';
+
 const User = () => {
 
   const [open, setOpen] = React.useState(false);
@@ -91,7 +93,18 @@ const User = () => {
 
   return (
     <div>
-      <Button onClick={toggleDrawer(true)}><AccountCircleIcon /></Button>
+      <IconButton
+        onClick={toggleDrawer(true)}
+        sx={{
+          position: 'fixed',
+          top: 10,
+          left: 16,
+          zIndex: 1200,
+          color: 'white',
+          marginLeft: 10
+         
+        }}
+       ><AccountCircleIcon /></IconButton>
       <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
       </Drawer>
