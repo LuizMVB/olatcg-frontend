@@ -123,6 +123,50 @@ var data_en = {
     'tutorials.contentList.label.title'                         : 'Tutorials',
     'tutorials.contentList.listItem.label.tutorials'            : 'How to Use OLATCG',
 
+    /**ANALYSIS FILTER FIELDS*/
+    'analysisField.title'                      : 'Search your analysis or your experiment based on the filter below',
+    'analysisField.label.experiment.id'        : 'Experiment ID',
+    'analysisField.label.experiment.title'     : 'Experiment Title',
+    'analysisField.label.analysis.id'          : 'Analysis ID',
+    'analysisField.label.analysis.title'       : 'Analysis Title',
+    'analysisField.label.type'                 : 'Type',
+    'analysisField.label.type.alignment'       : 'ALIGNMENT',
+    'analysisField.label.type.homology'        : 'HOMOLOGY',
+    'analysisField.label.type.phyloTree'       : 'PHYLOGENETIC TREE',
+    'analysisField.label.status'               : 'Status',
+    'analysisField.label.status.success'       : 'Execution succeded',
+    'analysisField.label.status.waiting'       : 'Waiting for execution',
+    'analysisField.label.status.executing'     : 'In execution',
+    'analysisField.label.status.error'         : 'Error in execution',
+    'analysisField.label.submit'               : 'Search',
+    'analysisField.label.reset'                : 'Reset',
+
+    /**ANALYSIS TABLE - ALL TYPES */
+    'olatcgAnalysisTable.label.idAnalysis'              : 'Analysis ID',
+    'olatcgAnalysisTable.label.titleAnalysis'           : 'Analysis title',
+    'olatcgAnalysisTable.label.idExperiment'            : 'Experiment ID',
+    'olatcgAnalysisTable.label.titleExperiment'         : 'Experiment title',
+    'olatcgAnalysisTable.label.description'             : 'Description',
+    'olatcgAnalysisTable.label.type'                    : 'Type',
+    'olatcgAnalysisTable.label.status'                  : 'Status',
+    'olatcgAnalysisTable.label.action'                  : 'Action',
+
+    /**EXPERIMENT FILTER FIELDS */
+    'experimentField.title'                             : 'Search your experiment based on the filter below',
+    'experimentField.label.id'                          : 'Experiment ID',
+    'experimentField.label.title'                       : 'Experiment title',
+    'experimentField.label.submit'                      : 'Search',
+    'experimentField.label.reset'                       : 'Reset', 
+
+    /**EXPERIMENT TABLE  */
+    'olatcgExperimentTable.label.idExperiment'          : 'ID Experiment',
+    'olatcgExperimentTable.label.titleExperiment'       : 'Title',
+    'olatcgExperimentTable.label.description'           : 'Description',
+    'olatcgExperimentTable.label.actions'               : 'Actions',
+    'olatcgExperimentTable.actions.visualize'           : 'Visualize',
+    'olatcgExperimentTable.actions.edit'                : 'Edit',
+    'olatcgExperimentTable.actions.delete'              : 'Delete',
+
     /** HOMOLOGY */
     'homology.input.label.sequence'                     : 'Sequence',
     'homology.button.label.makeAnalysis'                : 'Make Analysis',
@@ -305,6 +349,7 @@ var data = {
     'common.label.unavailable'  : 'Indisponível',
     'common.label.show.tree'    : 'Mostrar árvore',
     'common.asterisk'           : '*',
+    
 
     /* APPBAR */
 
@@ -420,9 +465,55 @@ var data = {
                                                                             Avaliação
                                                                             https://forms.office.com/r/DCzRKDiMFD`,
     
-                                                                        /** TUTORIALS */
+    
+    /** TUTORIALS */
     'tutorials.contentList.label.title'                         : 'Tutoriais',
     'tutorials.contentList.listItem.label.tutorials'            : 'Como usar o OLATCG',
+
+     /**ANALYSIS FILTER FIELDS*/
+    'analysisField.title'                      : 'Pesquise sua análise ou seu experimento baseado nos filtros abaixo',
+    'analysisField.label.experiment.id'        : 'ID do experimento',
+    'analysisField.label.experiment.title'     : 'Título do experimento',
+    'analysisField.label.analysis.id'          : 'ID da análise',
+    'analysisField.label.analysis.title'       : 'Título da análise',
+    'analysisField.label.type'                 : 'Tipo',
+    'analysisField.label.type.alignment'       : 'Alinhamento',
+    'analysisField.label.type.homology'        : 'Homologia',
+    'analysisField.label.type.phyloTree'       : 'Árvore filogenética',
+    'analysisField.label.status'               : 'Status',
+    'analysisField.label.status.success'       : 'Execução sucedida',
+    'analysisField.label.status.waiting'       : 'Esperando para executar',
+    'analysisField.label.status.executing'     : 'Em execução',
+    'analysisField.label.status.error'         : 'Erro na execução',
+    'analysisField.label.submit'               : 'Pesquisar',
+    'analysisField.label.reset'                : 'Limpar',
+
+    /**ANALYSIS TABLE - ALL TYPES */
+    'olatcgAnalysisTable.label.idAnalysis'              : 'ID da Análise',
+    'olatcgAnalysisTable.label.titleAnalysis'           : 'Título da Análise',
+    'olatcgAnalysisTable.label.idExperiment'            : 'ID do Experimento',
+    'olatcgAnalysisTable.label.titleExperiment'         : 'Título do Experimento',
+    'olatcgAnalysisTable.label.description'             : 'Descrição',
+    'olatcgAnalysisTable.label.type'                    : 'Tipo',
+    'olatcgAnalysisTable.label.status'                  : 'Status',
+    'olatcgAnalysisTable.label.action'                  : 'Ação',
+    'olatcgExperimentTable.actions.visualize'           : 'Visualizar',
+    'olatcgExperimentTable.actions.edit'                : 'Editar',
+    'olatcgExperimentTable.actions.delete'              : 'Excluir',
+
+    /**EXPERIMENT FILTER FIELDS */
+    'experimentField.title'                             : 'Pesquise seu experimento baseado nos filtros abaixo',
+    'experimentField.label.id'                          : 'ID do experimento',
+    'experimentField.label.title'                       : 'Título do experimento',
+    'experimentField.label.submit'                      : 'Pesquisar',
+    'experimentField.label.reset'                       : 'Limpar', 
+
+    /**EXPERIMENT TABLE  */
+    'olatcgExperimentTable.label.idExperiment'            : 'ID do Experimento',
+    'olatcgExperimentTable.label.titleExperiment'         : 'Título',
+    'olatcgExperimentTable.label.description'             : 'Descrição',
+    'olatcgExperimentTable.label.actions'                 : 'Ações',
+
 
     /** HOMOLOGY */
     'homology.input.label.sequence'                     : 'Sequência',

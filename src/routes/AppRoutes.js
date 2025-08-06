@@ -12,6 +12,7 @@ import { PhylogeneticTreeAnalysis } from '../pages/PhylogeneticTreeAnalysis';
 import { AlignmentAnalysisDetails } from '../pages/AlignmentAnalysisDetails';
 import { HomologyAnalysisDetails } from '../pages/HomologyAnalysisDetails';
 import PhyloTree from '../pages/PhyloTree';
+import { Experiment } from '../pages/Experiment.js';
 
 export default function AppRoutes(){
     return (
@@ -19,6 +20,7 @@ export default function AppRoutes(){
             <Route path="home" element={<Home />} />
             <Route path="learn" element={<Learn />} />
             <Route path="tutorials" element={<Tutorials />} />
+            <Route path="experiment" element={<Experiment />} />
             <Route path="tool" element={<Tools />}>
                 <Route path="alignment" element={<Alignment />} />
                 <Route path="homology" element={<Homology />} />
