@@ -124,7 +124,7 @@ var data_en = {
     'tutorials.contentList.listItem.label.tutorials'            : 'How to Use OLATCG',
 
     /**ANALYSIS FILTER FIELDS*/
-    'analysisField.title'                      : 'Search your analysis or you experiment based on the filter below',
+    'analysisField.title'                      : 'Search your analysis or your experiment based on the filter below',
     'analysisField.label.experiment.id'        : 'Experiment ID',
     'analysisField.label.experiment.title'     : 'Experiment Title',
     'analysisField.label.analysis.id'          : 'Analysis ID',
@@ -151,10 +151,21 @@ var data_en = {
     'olatcgAnalysisTable.label.status'                  : 'Status',
     'olatcgAnalysisTable.label.action'                  : 'Action',
 
+    /**EXPERIMENT FILTER FIELDS */
+    'experimentField.title'                             : 'Search your experiment based on the filter below',
+    'experimentField.label.id'                          : 'Experiment ID',
+    'experimentField.label.title'                       : 'Experiment title',
+    'experimentField.label.submit'                      : 'Search',
+    'experimentField.label.reset'                       : 'Reset', 
+
     /**EXPERIMENT TABLE  */
-    'olatcgExperimentTable.label.idExperiment'            : 'ID Experiment',
-    'olatcgExperimentTable.label.titleExperiment'         : 'Title',
-    'olatcgExperimentTable.label.description'             : 'Description',
+    'olatcgExperimentTable.label.idExperiment'          : 'ID Experiment',
+    'olatcgExperimentTable.label.titleExperiment'       : 'Title',
+    'olatcgExperimentTable.label.description'           : 'Description',
+    'olatcgExperimentTable.label.actions'               : 'Actions',
+    'olatcgExperimentTable.actions.visualize'           : 'Visualize',
+    'olatcgExperimentTable.actions.edit'                : 'Edit',
+    'olatcgExperimentTable.actions.delete'              : 'Delete',
 
     /** HOMOLOGY */
     'homology.input.label.sequence'                     : 'Sequence',
@@ -486,11 +497,22 @@ var data = {
     'olatcgAnalysisTable.label.type'                    : 'Tipo',
     'olatcgAnalysisTable.label.status'                  : 'Status',
     'olatcgAnalysisTable.label.action'                  : 'Ação',
+    'olatcgExperimentTable.actions.visualize'           : 'Visualizar',
+    'olatcgExperimentTable.actions.edit'                : 'Editar',
+    'olatcgExperimentTable.actions.delete'              : 'Excluir',
+
+    /**EXPERIMENT FILTER FIELDS */
+    'experimentField.title'                             : 'Pesquise seu experimento baseado nos filtros abaixo',
+    'experimentField.label.id'                          : 'ID do experimento',
+    'experimentField.label.title'                       : 'Título do experimento',
+    'experimentField.label.submit'                      : 'Pesquisar',
+    'experimentField.label.reset'                       : 'Limpar', 
 
     /**EXPERIMENT TABLE  */
     'olatcgExperimentTable.label.idExperiment'            : 'ID do Experimento',
     'olatcgExperimentTable.label.titleExperiment'         : 'Título',
     'olatcgExperimentTable.label.description'             : 'Descrição',
+    'olatcgExperimentTable.label.actions'                 : 'Ações',
 
 
     /** HOMOLOGY */

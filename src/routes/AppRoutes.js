@@ -13,6 +13,7 @@ import { AlignmentAnalysisDetails } from '../pages/AlignmentAnalysisDetails';
 import { HomologyAnalysisDetails } from '../pages/HomologyAnalysisDetails';
 import PhyloTree from '../pages/PhyloTree';
 import {AnalysisDetailsRouter} from './AnalysisDetailsRouter.js';
+import { Experiment } from '../pages/Experiment.js';
 
 export default function AppRoutes(){
     return (
@@ -27,6 +28,7 @@ export default function AppRoutes(){
             <Route path="analysis" element={<Analysis />} />
             <Route path="/analysis/:idAnalysis" element={<AnalysisDetailsRouter/> }/>
             <Route path="*" element={<Navigate to="home" />} />
+            <Route path="experiment" element={<Experiment />} />
         </Routes>
     );
 }

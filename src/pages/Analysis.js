@@ -130,7 +130,7 @@ const Analysis = () => {
                         <InputLabel id="type">{getMessage('analysisField.label.type')}</InputLabel>
                         <Select labelId="type" id="type" value={analysisType} label={getMessage('analysisField.label.type')} 
                         onChange={handleAnalysisType} multiple sx={{mb: 2}} MenuProps={MenuProps}>
-                            <MenuItem value={'PAIRWISE__ALIGNMENT'}>{getMessage('analysisField.label.type.alignment')}</MenuItem>
+                            <MenuItem value={'PAIRWISE_ALIGNMENT'}>{getMessage('analysisField.label.type.alignment')}</MenuItem>
                             <MenuItem value={'HOMOLOGY_SEARCH'}>{getMessage('analysisField.label.type.homology')}</MenuItem>
                             <MenuItem value={'TAXONOMY_TREE'}>{getMessage('analysisField.label.type.phyloTree')}</MenuItem>
                         </Select>
@@ -142,7 +142,7 @@ const Analysis = () => {
                         onChange={handleAnalysisStatus} multiple MenuProps={MenuProps}>
                             <MenuItem value={'SUCCEEDED'}>{getMessage('analysisField.label.status.success')}</MenuItem>
                             <MenuItem value={'IN_EXECUTION'}>{getMessage('analysisField.label.status.executing')}</MenuItem>
-                            <MenuItem value={'WAITING_FOR_EXECUTION'}>{getMessage('analysisField.label.status.waiting')}</MenuItem>
+                            <MenuItem value={'WAITING'}>{getMessage('analysisField.label.status.waiting')}</MenuItem>
                             <MenuItem value={'EXECUTION_FAILED'}>{getMessage('analysisField.label.status.error')}</MenuItem>
                         </Select>
                     </FormControl>

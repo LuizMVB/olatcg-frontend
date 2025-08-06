@@ -33,86 +33,106 @@ const AnalysisTable = ({filters}) => {
         setStatusSnackBar(status);
         openSnackBar(true);
     }
+
+    const token = 'e818fa447cf7e74e60855449dee35dcb9efac42f';
     
     useEffect(() => {
-        const onComponentMount = () => {
+        const onComponentMount = async () => {
             showLoader(true);
 
-            const token = '71d2d6378189409c33b3d804faadc0554a250b0b';
-            
-            let urlExperiment = API_ROUTES.GET_EXPERIMENT;
-
+            let url = API_ROUTES.GET_EXPERIMENT;
             if (filters.experiment_id || filters.experiment_title) {
-                
+            
                 if (filters.experiment_id!==0 && filters.experiment_id !== undefined) {
-                    urlExperiment += '&id__in=' + filters.experiment_id;
+                    url += '&id__in=' + filters.experiment_id;
                 }
                 if (filters.experiment_title!=='' && filters.experiment_title !== undefined) {
-                    urlExperiment += '&title__icontains=' + filters.experiment_title;
+                    url += '&title__icontains=' + filters.experiment_title;
                 }
             }
-            
-            console.log(urlExperiment);
 
-            makeRequest(
-                urlExperiment, 
-                'GET', 
-                {
+            try {
+                const response = await fetch(url, {
+                    method: "GET",
                     headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Token ${token}`,
+                        "Content-Type": "application/json",
+                        "Authorization": `Token ${token}`
                     },
-                }, 
-                onSuccessGetExperiments, 
-                onFailureGetExperiments );
-        };
+                });
+
+                if(response.ok) {
+                    const data = await response.json();
+                    onSuccessGetExperiments(data);
+                } else {
+                    const errorData = await response.json();
+                    onFailureGetExperiments(errorData);
+                }
+            }
+            catch(error) {
+                onFailureGetExperiments(error);
+            }
+        }
 
         onComponentMount();
     }, [filters]);    
 
     const onSuccessGetExperiments = (response) => {
+        const experimentList = response.results;
 
-        const token = '71d2d6378189409c33b3d804faadc0554a250b0b';
+        setExperiments(experimentList);
 
-        setExperiments(response);
-        response.forEach(experiment => {
+        experimentList.forEach(experiment => {
+
+            const getAnalysis = async () => {
+                showLoader(true);
+                let url;
+                url = API_ROUTES.ANALYSIS_FROM_EXPERIMENT_ID;
+                url = url.replace('{experiment_id}', experiment.id) + '?ordering=-id';
+
+                if(filters.analysis_id){ 
+                    url += '&id__in=' + filters.analysis_id;
+                }
+                if(filters.analysis_title){
+                    url += '&title__icontains=' + filters.analysis_title;
+                }
+                if(filters.analysis_type?.length > 0){
+                    url += '&type__in=' + filters.analysis_type.join(',');
+                }
+                if(filters.analysis_status?.length > 0){
+                    url += '&status__in=' + filters.analysis_status.join(',');
+                }
+
+                console.log(url);
+
+                try {
+                    const response = await fetch(url, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Token ${token}`
+                        },
+                    });
+
+                    if(response.ok) {
+                        const data = await response.json();
+                        onSuccessGetAnalysis(data);
+                    } else {
+                        const errorData = await response.json();
+                        onFailureGetAnalysis(errorData);
+                    }
+                }
+                catch(error) {
+                    onFailureGetAnalysis(error);
+                }                
+            }
             
-            showLoader(true);
-            let url;
-            url = API_ROUTES.ANALYSIS_FROM_EXPERIMENT_ID;
-            url = url.replace('{experiment_id}', experiment.id) + '?ordering=-id';
-
-            if(filters.analysis_id){ 
-                url += '&id__in=' + filters.analysis_id;
-            }
-            if(filters.analysis_title){
-                url += '&title__icontains=' + filters.analysis_title;
-            }
-            if(filters.analysis_type?.length > 0){
-                url += '&type__in=' + filters.analysis_type.join(',');
-            }
-            if(filters.analysis_status?.length > 0){
-                url += '&status__in=' + filters.analysis_status.join(',');
-            }
-
-            makeRequest(
-                url, 
-                'GET', 
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Token ${token}`,
-                    },
-                }, 
-                onSuccessGetAnalysis, 
-                onFailureGetAnalysis );
+            getAnalysis();
         })
     }
 
     const onFailureGetExperiments = (error) => {
         showSnackbar(getMessage(error.errorDescription), 'error');
         showLoader(false);
-        console.log(error);
     }
 
     
@@ -168,21 +188,21 @@ const AnalysisTable = ({filters}) => {
     }
 
     const onSuccessGetAnalysis = (obj) => {
-        if (obj.data.length === 0) {
+        if (obj.results.length === 0) {
             setInfo(true);
+        } else {
+            setInfo(false);
         }
 
-        setColumns([{id: 'experiment', label: getMessage('olatcgAnalysisTable.label.idExperiment')},
-                    {id: 'id', label: getMessage('olatcgAnalysisTable.label.idAnalysis')},
+        setColumns([{id: 'id', label: getMessage('olatcgAnalysisTable.label.idAnalysis')},
                     {id: 'title', label: getMessage('olatcgAnalysisTable.label.titleAnalysis')},
                     {id: 'description', label: getMessage('olatcgAnalysisTable.label.description')},
                     {id: 'type', label: getMessage('olatcgAnalysisTable.label.type')},
                     {id: 'status', label: getMessage('olatcgAnalysisTable.label.status')},
                     {id: 'action', label: getMessage('olatcgAnalysisTable.label.action')}]);
-        setRows(obj.data.map((analysis, index) => {
+        setRows(obj.results.map((analysis, index) => {
             return {
                 code: index, 
-                experiment: analysis.experiment,
                 id: analysis.id,
                 title: analysis.title,
                 description: analysis.description,
@@ -192,7 +212,7 @@ const AnalysisTable = ({filters}) => {
             };
         }));
 
-        setTotalPages(Math.ceil(obj.meta.total_pages/15));
+        setTotalPages(Math.ceil(obj.count/15));
         showLoader(false);
     }
 
@@ -200,14 +220,14 @@ const AnalysisTable = ({filters}) => {
         showSnackbar(getMessage(error.errorDescription), 'error');
         showLoader(false);
     }
-
+    /*
     const handlePaginationChange = (e, page) => {
         showLoader(true);
         let url = API_ROUTES.GET_ANALYSIS;
         url += '?ordering=-id' + '&page=' + (page);
 
         makeRequest(url, 'GET', null, onSuccessGetAnalysis, onFailureGetAnalysis);
-    }
+    } */
 
     return <>
         <Box sx={{px: 4, pb: 8}}> {info ? <OlatcgNodata />:
@@ -277,7 +297,7 @@ const AnalysisTable = ({filters}) => {
                 </TableContainer>
             </Paper> }
             <Box display="flex" justifyContent="center" mt={2}>
-                <Pagination count={totalPages} color="primary" onChange={handlePaginationChange} />
+                <Pagination count={totalPages} color="primary" /*onChange={handlePaginationChange} */ />
             </Box>
         </Box>
         <OlatcgSnackbar isOpened={isSnackBarOpened} onClose={() => openSnackBar(false)} status={statusSnackBar} msg={msgSnackBar} />
