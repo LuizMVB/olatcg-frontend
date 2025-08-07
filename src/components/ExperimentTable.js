@@ -34,7 +34,7 @@ const ExperimentTable = ({filters}) => {
         openSnackbar(true);
     }
 
-    const token = 'a8e212b5b7f0b2fb0565472b998b48086f86768a';
+    const token = 'e5df0d688c50678a02a851068eb7b0dec9a51b4b';
 
     useEffect (() => {
 

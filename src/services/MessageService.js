@@ -152,7 +152,8 @@ var data_en = {
     'olatcgAnalysisTable.label.action'                  : 'Action',
 
     /**EXPERIMENT FILTER FIELDS */
-    'experimentField.title'                             : 'Search your experiment based on the filter below',
+    'experimentField.title'                             : 'Visualize your experiments',
+    'experimentField.subtitle'                          : 'Search your experiment based on the filter below',
     'experimentField.label.id'                          : 'Experiment ID',
     'experimentField.label.title'                       : 'Experiment title',
     'experimentField.label.submit'                      : 'Search',
@@ -502,7 +503,8 @@ var data = {
     'olatcgExperimentTable.actions.delete'              : 'Excluir',
 
     /**EXPERIMENT FILTER FIELDS */
-    'experimentField.title'                             : 'Pesquise seu experimento baseado nos filtros abaixo',
+    'experimentField.title'                             : 'Visualize seus experimentos',
+    'experimentField.subtitle'                          : 'Pesquise seu experimento com base nos filtros abaixo',
     'experimentField.label.id'                          : 'ID do experimento',
     'experimentField.label.title'                       : 'Título do experimento',
     'experimentField.label.submit'                      : 'Pesquisar',

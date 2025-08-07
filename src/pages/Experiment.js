@@ -51,6 +51,12 @@ const Experiment = () => {
             }}>
                 {getMessage('experimentField.title')}
             </Typography>
+            <Typography variant="h6" component="h6" sx={{
+                color: 'primary.main',
+                mt: 1
+            }}>
+                {getMessage('experimentField.subtitle')}
+            </Typography>
             <Divider orientation="horizontal" variant="middle" sx={{
                 my: 4, 
                 width: '30%',
