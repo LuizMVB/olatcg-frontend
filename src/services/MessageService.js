@@ -287,6 +287,25 @@ var data_en = {
 
     'info.analysis.isnt.finished'            : 'The proccess still running. Try again when the status of this ' +
                                                     'analysis changes to \'FINSHED\'',
+    //REGISTER
+                
+    'register.title'                         : 'Sign up to OLATCG',
+    'register.button'                        : 'Sign up',
+    'register.label.name'                    : 'Name:',
+    'register.label.institution'             : 'Institution:',
+    'register.label.email'                   : 'E-mail:',
+    'register.label.email.empty.message'     : 'The email is empty. Try again',
+    'register.label.email.error.message'     : 'Enter with a valid e-mail',
+    'register.label.password'                : 'Password:',
+    'register.label.password.confirmation'   : 'Confirm your password:',
+    'register.label.password.error'          : 'Your password is empty. Try again.',
+    'register.validation.one'                : 'Minimum of 8 characters',
+    'register.validation.two'                : 'At least 3 of the 4 requirements',
+    'register.validation.uppercase'          : '- At least one uppercase letter',
+    'register.validation.lowercase'          : '- At least one lowercase letter',
+    'register.validation.number'             : '- At least one number',
+    'register.validation.specialcarac'       : '- At least one special character',
+    'register.validation.three'              : 'Diferent from the name or email.',
 
     // ERRORS
 
@@ -300,7 +319,6 @@ var data_en = {
                                                     'if they match the choosen type and try again',
     'error.validation.sequenceFile.type'        : 'The sequence file must be of type .txt',
 };
-
 var data = {
 
     /* COMMON */
@@ -595,6 +613,29 @@ var data = {
 
     'info.analysis.isnt.finished'            : 'O processo está em andamento. Tente de novo quando o status ' + 
                                                     'para está análise for \'FINSHED\'',
+    
+    //REGISTER
+
+    'register.title'                         : 'Cadastre-se no OLATCG',
+    'register.button'                        : 'Cadastrar',
+    'register.label.name'                    : 'Nome:',
+    'register.label.institution'             : 'Instituição:',
+    'register.label.email'                   : 'E-mail:',
+    'register.label.email.empty.message'     : 'O e-mail está vazio. Entre novamente',
+    'register.label.email.error.message'     : 'Entre com um e-mail válido',
+    'register.label.password'                : 'Senha:',
+    'register.label.password.confirm'        : 'Confirme sua senha:',
+    'register.label.confirm.requirement'     : 'A confirmação de senha confere',
+    'register.label.confirm.requirement.two' : '- É preciso ter os mesmos caracteres',
+    'register.label.confirm.requirement.three' : '- Cheque a senha para confirmar o cadastro',
+    'register.label.password.error'          : 'A senha está vazia. Entre novamente.',
+    'register.validation.one'                : 'Mínimo de 8 caracteres',
+    'register.validation.uppercase'          : '- Ao menos uma letra maiúscula',
+    'register.validation.lowercase'          : '- Ao menos uma letra minúscula',
+    'register.validation.number'             : '- Ao menos um número',
+    'register.validation.specialcarac'       : '- Ao menos um caractere especial (Ex:!@#$%¨&*():~?´`^)',
+    'register.validation.three'              : 'Diferente do nome ou e-mail',
+
 
     // ERRORS
 
