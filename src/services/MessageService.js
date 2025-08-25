@@ -307,6 +307,15 @@ var data_en = {
     'register.validation.specialcarac'       : '- At least one special character',
     'register.validation.three'              : 'Diferent from the name or email.',
 
+    //EXPERIMENT
+
+    'experiment.title'                       : 'Insert the title of your experiment',
+    'experiment.description'                 : 'Insert the description of your experiment',
+    'experiment.error'                       : 'Invalid field!',
+    'experiment.button'                      : 'Create experiment',
+    'experiment.success.message'             : 'Experiment created successfully',
+    'experiment.error.message'               : 'Network error or server down.',
+
     // ERRORS
 
     'error.general'                             : 'An error occurred while trying to establish the connection. ' +
@@ -614,6 +623,14 @@ var data = {
     'info.analysis.isnt.finished'            : 'O processo está em andamento. Tente de novo quando o status ' + 
                                                     'para está análise for \'FINSHED\'',
     
+    //EXPERIMENT
+    'experiment.title'                       : 'Insira o título do seu experimento',
+    'experiment.description'                 : 'Insira a descrição do seu experimento',
+    'experiment.error'                       : 'Campo inválido!',
+    'experiment.button'                      : 'Criar experimento',
+    'experiment.success.message'             : 'Experimento criado com sucesso!',
+    'experiment.error.message'               : 'Erro de rede ou servidor fora do ar.',
+
     //REGISTER
 
     'register.title'                         : 'Cadastre-se no OLATCG',
