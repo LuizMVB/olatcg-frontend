@@ -15,15 +15,16 @@ import { AlignmentAnalysisDetails } from '../pages/AlignmentAnalysisDetails';
 import { HomologyAnalysisDetails } from '../pages/HomologyAnalysisDetails';
 import Register from '../pages/Register';
 import PhyloTree from '../pages/PhyloTree';
+import { Experiment } from '../pages/Experiment.js';
 import Login from '../pages/Login';
-import Register from '../pages/Register';
 
 export default function AppRoutes(){
     return (
         <Routes>
             <Route path="home" element={<Home />} />
             <Route path="learn" element={<Learn />} />
-            <Route path="tutorials" element={<Tutorials />} /> 
+            <Route path="tutorials" element={<Tutorials />} />
+            <Route path="experiment" element={<Experiment />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="tool" element={<Tools />}>
