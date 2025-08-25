@@ -59,6 +59,17 @@ var data_en = {
     'home.collaboration.title'                  : 'Collaboration',
     'home.collaboration.description'            : 'OLATCG is a collaborative project between',
 
+    /**LOGIN */
+    'login.title'                               :  'Log into OLATCG',
+    'login.button.content'                      :  'Login',
+    'login.user.not.registered'                 :  'New to OLATCG? Register here',
+    'login.label.email'                         :  'Email',
+    'login.label.password'                      :  'Password',
+    'login.email.error.message'                 :  'Invalid email',
+    'login.email.empty'                         :  'Enter your email address',
+    'login.password.empty'                      :  'Enter your password',
+
+    
     /** TOOLS */
     'tools.title'                               : 'Tools',
     'tools.card.alignment.title'                : 'Alignment',
@@ -350,6 +361,16 @@ var data = {
 
     'home.collaboration.title'                  : 'Colaboração',
     'home.collaboration.description'            : 'OLATCG é uma colaboração entre',
+
+    /**LOGIN */
+    'login.title'                               :  'Entre no OLATCG',
+    'login.button.content'                      :  'Login',
+    'login.user.not.registered'                 :  'Novo no OLATCG? Cadastre-se',
+    'login.label.email'                         :  'Email',
+    'login.label.password'                      :  'Senha',
+    'login.email.error.message'                 :  'Email inválido',
+    'login.email.empty'                         :  'Preencha o email',
+    'login.password.empty'                      :  'Preencha a senha',
 
     /** TOOLS */
     'tools.title'                               : 'Ferramentas',

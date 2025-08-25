@@ -12,6 +12,8 @@ import { PhylogeneticTreeAnalysis } from '../pages/PhylogeneticTreeAnalysis';
 import { AlignmentAnalysisDetails } from '../pages/AlignmentAnalysisDetails';
 import { HomologyAnalysisDetails } from '../pages/HomologyAnalysisDetails';
 import PhyloTree from '../pages/PhyloTree';
+import Login from '../pages/Login';
+import Register from '../pages/Register';
 
 export default function AppRoutes(){
     return (
@@ -19,6 +21,8 @@ export default function AppRoutes(){
             <Route path="home" element={<Home />} />
             <Route path="learn" element={<Learn />} />
             <Route path="tutorials" element={<Tutorials />} />
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
             <Route path="tool" element={<Tools />}>
                 <Route path="alignment" element={<Alignment />} />
                 <Route path="homology" element={<Homology />} />
