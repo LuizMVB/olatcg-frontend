@@ -5,7 +5,6 @@ import Learn from '../pages/Learn';
 import Tools from '../pages/Tools';
 import Tutorials from '../pages/Tutorials';
 import Homology from '../pages/Homology';
-import Experiment from '../pages/Experiment';
 
 import { Analysis } from '../pages/Analysis';
 import { HomologyAnalysis } from '../pages/HomologyAnalysis';
