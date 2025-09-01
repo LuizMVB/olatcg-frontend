@@ -5,13 +5,10 @@ import { getMessage } from "../services/MessageService";
 
 
 function RegisterForm() {
-  //Envio das informações do formulário
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log( name, institution, userEmail, password );
   }
-
-// Código de validação de e-mail (linhas 16-40)
 
 const [userEmail, setUserEmail] = useState()
 const isEmail = () => /^[A-Z0-9._+-]+@[A-Z0-9-]+\.[A-Z]{2,4}$/i.test(userEmail);
@@ -21,14 +18,12 @@ const [messageConfirm, setMessageConfirm] = useState("")
 
 const validaEmail = () => {
         
-        //Verifica se o e-mail existe 
         if(userEmail === "") {
             setMessageEmail(getMessage('register.label.email.empty.message'));
           } else{
             setMessageEmail("");
           }
 
-          //Verifica o formato do e=mail
         if(isEmail(userEmail) && !/[._+-]/.test(userEmail[0])) {
                 setMessageEmail("");
         } 
@@ -38,7 +33,6 @@ const validaEmail = () => {
    
     }
 
-  //Código de validação de senha (linhas 42-112)
   const validaSenha = () => {
     if(password === "") {
             setMessagePassword(getMessage('register.label.password.error'));
@@ -55,7 +49,7 @@ const validaEmail = () => {
   const [likeOthersValidated, setLikeOthersValidated] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   
-//"Mapeia" o que é digitado, através da função RegExp e o qua é determinado nela 
+
   const handleChange=(password, confirmPassword) => {
   const lower = RegExp('(?=.*[a-z])');
   const upper = RegExp('(?=.*[A-Z])');
@@ -63,35 +57,35 @@ const validaEmail = () => {
   const special = RegExp('(?=.*[!@#$%¨&*()\/<>:;~?´`^|-])');
   const length = RegExp('.{8,}');
 
-  //validando lowercase
+  
   if(lower.test(password)){
     setLowerValidated(true);
   }
   else{
     setLowerValidated(false);
   }
-  //validando uppercase
+  
     if(upper.test(password)){
     setUpperValidated(true);
   }
   else{
     setUpperValidated(false);
   }
-  // validando número
+  
    if(number.test(password)){
     setNumberValidated(true);
   }
   else{
     setNumberValidated(false);
   }
-  // validando caractere especial
+
     if(special.test(password)){
     setSpecialValidated(true);
   }
   else{
     setSpecialValidated(false);
   }
-  //validando tamanho da senha
+
    if(length.test(password)){
     setLengthValidated(true);
   }
@@ -99,7 +93,6 @@ const validaEmail = () => {
     setLengthValidated(false);
   }
 
-//checando se a senha é igual ao nome ou ao e-mail
 if (
     password.toLowerCase() === name?.toLowerCase() ||
     password.toLowerCase() === email?.toLowerCase()
@@ -121,13 +114,13 @@ const validaConfirmacao = () => {
   }
 }
 
-  //declaração das informações do formulário, para posteriormente enviar
+ 
   const [name, setName] = useState("")
   const [institution, setInstitution] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 return (
-    //Caixa que envolve todos os campos de formulário
+
     <Box
       component="form"
       autoComplete='off'
@@ -135,15 +128,15 @@ return (
       sx={{ display: "flex", flexDirection: "column", gap: 2 }}
     >
 
-      {/*Preenchimento de nome. Não é possível confirmar o formulário sem preenchê-lo */}
+
         <Box  alignSelf={'center'} display={"flex"} gap={1} flexDirection={"row"}>
             <Box flexDirection={"row"}>
-            {/*Label: Nome */}
+            
           <InputLabel htmlFor="name" sx={{
               marginRight: 33}}>
               {getMessage('register.label.name')}
           </InputLabel>
-          {/*Campo de input - com a biblioteca MUI */}
+
           <TextField
             sx={{
             width: 320,
@@ -158,14 +151,12 @@ return (
             />
           </Box>
 
-          {/*Preenchimento de instituição. Não é possível confirmar o formulário sem preenchê-la */}
+
           <Box flexDirection={"row"}>
-              {/*Label: Instituição */}
             <InputLabel htmlFor="institution" sx={{
                 marginRight: 30}}>
                 {getMessage('register.label.institution')}
             </InputLabel>
-            {/*Campo de input - com a biblioteca MUI */}
             <TextField
               sx={{
               width: 320,
@@ -183,14 +174,14 @@ return (
         </Box>
         
 
-      {/*Preenchimento do email. Caso ele esteja vazio, aparecerá uma mensagem de erro. Também aparecerá se ele não estiver de acordo com um email (sem @ e .) */}
+      
         <Box> 
-          {/*Label: Email */}
+
         <InputLabel htmlFor = "userEmail" sx={{
             marginRight: 75}}>
             {getMessage('register.label.email')}
         </InputLabel>
-        {/*Campo de input - com a biblioteca MUI */}
+
           <TextField
           sx={{
           width: 320,
@@ -212,16 +203,15 @@ return (
           
         </Box>
 
-        {/*Preenchimento de senha. Não é possível confirmar o formulário sem preenchê-la. Ela possui um sistema de validação */}
         <Box alignSelf={'center'} display={"flex"} gap={1} flexDirection={"row"}>
           <Box flexDirection={'collumn'}>
                 <Box>
-                  {/*Label: Senha */}
+                
                   <InputLabel sx={{
                     marginRight: 33}}>
                     {getMessage('register.label.password')}
                   </InputLabel>
-                  {/*Campo de input - com a biblioteca MUI */}
+            
                   <TextField
                   sx={{
                   width: 320,
@@ -241,38 +231,35 @@ return (
                     
                 </Box>
 
-                {/*Campo de verificação de senha */}
-
                 <Box width={200} marginLeft={3} marginBottom={4}  textAlign={'left'}>
-                  {/*Irá validar se a senha possui 8 ou mais caracteres */}
                   <Typography variant='body2' sx={{color:lengthValidated ? 'green' : 'red'}}>
                     {getMessage('register.validation.one')}
                         
                   </Typography>
-                  {/*Irá validar se a senha possui os requisitos pedidos */}
+
           
                     <Box>
-                      {/*Senha precisa de ao menos uma letra maiúscula */}
+
                       <Typography sx={{color: upperValidated ? 'green' : 'red'}} fontSize={13}>
                         {getMessage('register.validation.uppercase')}
                           
                       </Typography>
-                      {/*Senha precisa de ao menos uma letra minúscula */}
+
                       <Typography sx={{color:lowerValidated ? 'green' : 'red'}} fontSize={13} >
                         {getMessage('register.validation.lowercase')}
                         
                       </Typography>
-                      {/*Senha precisa de ao menos um número */}
+
                       <Typography sx={{color:numberValidated ? 'green' : 'red'}} fontSize={13}>
                         {getMessage('register.validation.number')}
                         
                       </Typography>
-                      {/*Senha precisa de ao menos um caracter especial */}
+             
                       <Typography sx={{color:specialValidated ? 'green' : 'red'}} fontSize={13} >
                         {getMessage('register.validation.specialcarac')}
                         
                       </Typography>
-                      {/*Senha precisa ser diferente do nome ou email */}
+             
                       <Typography sx={{color:likeOthersValidated ? 'green' : 'red'}} fontSize={13} >
                         {getMessage('register.validation.three')}
                         
@@ -285,14 +272,14 @@ return (
           <Box>
 
        
-            {/*Confirmação de senha */}
+
           <Box flexDirection={"row"}>
             <Box>
             <InputLabel sx={{
               marginRight: 21}}>
               {getMessage('register.label.password.confirm')}
             </InputLabel>
-            {/*Input */}
+
             <TextField
               sx={{
               width: 320,

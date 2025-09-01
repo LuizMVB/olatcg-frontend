@@ -556,7 +556,7 @@ var data = {
     'experimentField.label.id'                          : 'ID do experimento',
     'experimentField.label.title'                       : 'Título do experimento',
     'experimentField.label.submit'                      : 'Pesquisar',
-    'experimentField.label.reset'                       : 'Limpar', 
+    'experimentField.label.reset'                       : 'Limpar',
 
     /**EXPERIMENT TABLE  */
     'olatcgExperimentTable.label.idExperiment'            : 'ID do Experimento',
