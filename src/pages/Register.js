@@ -28,7 +28,6 @@ const Register = () => {
         </Box>
         
     </Stack>
-    
     </>
 }
 

@@ -17,8 +17,6 @@ const ExperimentForm = () => {
     e.preventDefault();
     setSuccessMessage(null);
     setErrorMessage(null);
-
-    {/*Autorização com o token */}
   
     try {
       const response = await fetch(url, {
@@ -33,7 +31,6 @@ const ExperimentForm = () => {
         }),
       });
 
-      {/*Mensagens de sucesso ou erro */}
       if (response.ok) {
         setSuccessMessage(getMessage('experiment.success.message'));
       } else {
@@ -48,10 +45,9 @@ const ExperimentForm = () => {
     }
   };
 
-   {/*Formulário de criação de experimento */}
     return <>
     <form onSubmit={handleSubmit}>
-    {/*Título do experimento */}
+
         <Box
     sx={{
         justifyContent: "center",
@@ -73,7 +69,7 @@ const ExperimentForm = () => {
         onChange={(event) => setExperimentTitle(event.target.value)}>
         </TextField>
     </Box>
-    {/*Descrição do experimento */}
+
     <Box
     sx={{
         justifyContent: "center",
@@ -99,14 +95,13 @@ const ExperimentForm = () => {
         </TextField>
         
     </Box>
-     {/*  Mensagem de sucesso (aparição na tela)*/}
+
       {successMessage && (
         <Box marginTop={1}>
           <Alert  variant="outlined" severity="success">{successMessage}</Alert>
         </Box>
       )}
 
-      {/* Mensagem de erro (aparição na tela)*/}
       {errorMessage && (
         <Box marginTop={1}>
           <Alert variant="outlined" severity="error">{errorMessage}</Alert>

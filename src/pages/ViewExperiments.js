@@ -5,7 +5,7 @@ import { getMessage } from "../services/MessageService";
 import { ExperimentTable } from "../components/ExperimentTable";
 
 
-const Experiment = () => {
+const ViewExperiments = () => {
 
     const [experimentId, setExperimentId] = useState(0);
     const [experimentTitle, setExperimentTitle] = useState('');
@@ -115,4 +115,4 @@ const Experiment = () => {
     </>
 };
 
-export {Experiment};
+export {ViewExperiments};

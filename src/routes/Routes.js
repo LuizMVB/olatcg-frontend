@@ -1,7 +1,6 @@
 var BASE_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
 
 //var API_BASE_PATH = BASE_URL + '/v1/api';
-var API_BASE_PATH = 'https://spica.eic.cefet-rj.br/v3/olatcg-backend';
 var API_BASE_PATH = BASE_URL + '/v3/olatcg-backend'; 
 
 //BACKEND ROUTES

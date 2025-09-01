@@ -351,6 +351,8 @@ var data_en = {
     'register.validation.number'             : '- At least one number',
     'register.validation.specialcarac'       : '- At least one special character',
     'register.validation.three'              : 'Diferent from the name or email.',
+    'register.success.message'               : 'User created with success',
+    'register.error.message'                 : 'Error creating user. Try again',
 
     //EXPERIMENT
 
@@ -745,6 +747,8 @@ var data = {
     'register.validation.number'             : '- Ao menos um número',
     'register.validation.specialcarac'       : '- Ao menos um caractere especial (Ex:!@#$%¨&*():~?´`^)',
     'register.validation.three'              : 'Diferente do nome ou e-mail',
+    'register.success.message'               : 'Usuário criado com sucesso',
+    'register.error.message'                 : 'Erro ao criar usuário. Tente novamente',
 
 
     // ERRORS
