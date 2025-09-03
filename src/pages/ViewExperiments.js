@@ -44,7 +44,6 @@ const ViewExperiments = () => {
             justifyContent: 'space-between',
             textAlign: 'left',
         }}>
-            {/* Title */}
             <Typography variant="h4" component="h4" sx={{
                 color: 'primary.main',
                 fontWeight: 'bold'
@@ -64,21 +63,17 @@ const ViewExperiments = () => {
                 borderColor: '#cfd8dc'
             }} flexItem />
 
-            {/* Form */}
             <Box component="form" sx={{display:'flex', flexDirection:'column'}} onSubmit={handleSubmit} >
                 <Box sx={{display:'flex', flexDirection:'row', mb: 2}}>
 
-                    {/* Experiment ID filter field */}
                     <TextField label={getMessage('experimentField.label.id')} id="experimentID" name="experimentID" 
                     type="number" sx={{mr: 5, width: '15%'}} onChange={(e) => {setExperimentId(e.target.value)}}/>
                     
-                    {/* Experiment title filter field */}
                     <TextField label={getMessage('experimentField.label.title')} id="experimentTitle" name="experimentName" 
                     type="text" sx={{width: '15%'}} onChange={(e) => {setExperimentTitle(e.target.value)}} />
                 </Box>
                 <Box sx={{display:'flex', flexDirection:'row', mt: 3}}>
 
-                    {/* Submit button */}
                     <Button type="submit" size="large" sx={{
                         mr: 2,
                         alignSelf: 'center',
@@ -91,7 +86,6 @@ const ViewExperiments = () => {
                         {getMessage('experimentField.label.submit')}
                     </Button>
 
-                    {/* Reset button */}
                     <Button type="reset" size="large" onClick={handleReset} sx={{
                         alignSelf: 'center',
                         backgroundColor: 'primary.main',

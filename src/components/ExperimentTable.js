@@ -41,7 +41,7 @@ const ExperimentTable = ({filters}) => {
         const onComponentMount = async () => {
             showLoader(true);
 
-            let url = API_ROUTES.GET_EXPERIMENT;
+            let url = API_ROUTES.GET_EXPERIMENT + '?ordering=-id';
             if (filters.experiment_id || filters.experiment_title) {
 
                 if (filters.experiment_id!==0 && filters.experiment_id !== undefined) {

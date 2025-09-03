@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Box, Typography, Button, TextField, InputLabel, Alert, IconButton, Collapse} from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import { getMessage } from "../services/MessageService";
-
+import { API_ROUTES } from '../routes/Routes';
 
 
 function RegisterForm() {
@@ -15,6 +15,7 @@ function RegisterForm() {
     console.log(name, institution, email, password);
 
     let url = 'http://localhost:8000/v3/olatcg-backend/auth/register/';
+    //let url = API_ROUTES.CREATE_USER;
 
     try {
       const response = await fetch (url, {
@@ -31,10 +32,8 @@ function RegisterForm() {
       const data = await response.json();
 
       if (!response.ok) {
-        console.error("Erro na requisição:", data);
-        setErrorMessage(getMessage('register.error.message'));
+        setErrorMessage(getMessage('register.error.message').replace('{error}', data.username));
       } else {
-        console.log("Usuário criado com sucesso");
         setSuccessMessage(getMessage('register.success.message'));
       }
     } 

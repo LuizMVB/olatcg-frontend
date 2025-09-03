@@ -6,6 +6,7 @@ import Tools from '../pages/Tools';
 import Tutorials from '../pages/Tutorials';
 import Homology from '../pages/Homology';
 import { ViewExperiments } from '../pages/ViewExperiments';
+import CreateExperiment from '../pages/CreateExperiment';
 
 import { Analysis } from '../pages/Analysis';
 import { HomologyAnalysis } from '../pages/HomologyAnalysis';
@@ -30,6 +31,7 @@ export default function AppRoutes(){
                 <Route path="homology" element={<Homology />} />
             </Route>
             <Route path="view-experiments" element={<ViewExperiments />} />
+            <Route path="create-experiment" element={<CreateExperiment />} />
             <Route path="analysis" element={<Analysis />}>
                 <Route path="alignment" element={<AlignmentAnalysis />}>
                     <Route path=":idAnalysis" element={<AlignmentAnalysisDetails/>} />
