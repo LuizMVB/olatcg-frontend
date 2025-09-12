@@ -21,7 +21,7 @@ const Register = () => {
               boxShadow: 3,
               flexDirection: 'column'
             }}>
-            <Typography variant='h4' color="#1A7A69" marginBottom={5}>
+            <Typography variant='h4' color="#1A7A69" marginBottom={10}>
                {getMessage('register.title')} 
             </Typography>
             <RegisterForm />

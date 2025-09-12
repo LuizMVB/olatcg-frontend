@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Box, Typography, Button, TextField, InputLabel, Alert, IconButton, Collapse} from "@mui/material";
+import { Snackbar, Box, Typography, Button, TextField, InputLabel, Alert, IconButton, Collapse} from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import { getMessage } from "../services/MessageService";
 import { API_ROUTES } from '../routes/Routes';
+import { useNavigate } from  'react-router';
 
 
 function RegisterForm() {
@@ -14,8 +15,7 @@ function RegisterForm() {
     e.preventDefault();
     console.log(name, institution, email, password);
 
-    let url = 'http://localhost:8000/v3/olatcg-backend/auth/register/';
-    //let url = API_ROUTES.CREATE_USER;
+    let url = API_ROUTES.CREATE_USER;
 
     try {
       const response = await fetch (url, {
@@ -25,6 +25,7 @@ function RegisterForm() {
         },
         body: JSON.stringify({
           username: email,
+          email: email,
           password: password,
         }),
       });
@@ -32,14 +33,13 @@ function RegisterForm() {
       const data = await response.json();
 
       if (!response.ok) {
-        setErrorMessage(getMessage('register.error.message').replace('{error}', data.username));
+        onFailureRegisterUser(data);
       } else {
-        setSuccessMessage(getMessage('register.success.message'));
+        onSuccessRegisterUser();
       }
     } 
     catch (error) {
-      console.error(error);
-      setErrorMessage(getMessage('register.error.message'));
+      onFailureRegisterUser();
     }
   }
 
@@ -156,36 +156,69 @@ function RegisterForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [openSuccessAlert, setOpenSuccessAlert] = useState(true);
-  const [openErrorAlert, setOpenErrorAlert] = useState(true);
+
+  const [openSuccessAlert, setOpenSuccessAlert] = useState(false);
+  const [openErrorAlert, setOpenErrorAlert] = useState(false);
+  const navigateTo = useNavigate();
+
+  const onSuccessRegisterUser = () => {
+    setSuccessMessage(getMessage('register.success.message'));
+    setOpenSuccessAlert(true);
+  }
+  const handleSuccessAlertClose = (e, reason) => {
+    if (reason == 'clickaway') {
+      return;
+    }
+    setOpenSuccessAlert(false);
+    navigateTo("/login");
+  }
+
+  const onFailureRegisterUser = (data) => {
+    setErrorMessage(getMessage('register.error.message').replace('{error}', data.username));
+    setOpenErrorAlert(true);
+  }
 
   return (
     <>
     {successMessage && (
-      <Box margin={1.5}>
-        <Collapse in={openSuccessAlert}>
-          <Alert severity="success" variant='filled' action={
-            <IconButton aria-label='close' color='inherit' size='small' onClick={()=> {setOpenSuccessAlert(false)}}>
-              <CloseIcon fontSize='inherit' />
-            </IconButton>
-          }>
-            {successMessage}
-          </Alert>
-        </Collapse>
+      <Box>
+        <Snackbar 
+        open={openSuccessAlert} 
+        autoHideDuration={2000}
+        onClose={() => handleSuccessAlertClose()}
+        anchorOrigin={{vertical: 'top', horizontal:'center'}}
+        sx={{marginTop: '65px'}}
+        >
+          <Collapse in={openSuccessAlert}>
+            <Alert severity="success" variant='filled' action={
+              <IconButton aria-label='close' color='inherit' size='small' onClick={()=> {handleSuccessAlertClose()}}>
+                <CloseIcon fontSize='inherit' />
+              </IconButton>
+            }>
+              {successMessage}
+            </Alert>
+          </Collapse>
+        </Snackbar>
       </Box>
     )}
         
     {errorMessage && (
-      <Box margin={1.5}>
-        <Collapse in={openErrorAlert}>
-          <Alert severity="error" variant='filled' action={
-            <IconButton aria-label='close' color='inherit' size='small' onClick={()=> {setOpenErrorAlert(false)}}>
-              <CloseIcon fontSize='inherit' />
-            </IconButton>
-          }>
-            {errorMessage}
-          </Alert>
-        </Collapse>
+      <Box>
+        <Snackbar
+        open={openErrorAlert} 
+        onClose={() => setOpenErrorAlert(false)}
+        anchorOrigin={{vertical: 'top', horizontal:'center'}}
+        sx={{marginTop: '65px'}}>
+          <Collapse in={openErrorAlert}>
+            <Alert severity="error" variant='filled' action={
+              <IconButton aria-label='close' color='inherit' size='small' onClick={()=> {setOpenErrorAlert(false)}}>
+                <CloseIcon fontSize='inherit' />
+              </IconButton>
+            }>
+              {errorMessage}
+            </Alert>
+          </Collapse>
+        </Snackbar>
       </Box>
     )}
     <Box
