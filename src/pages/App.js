@@ -4,11 +4,14 @@ import { Stack } from "@mui/system";
 import OlatcgNavbar from "../components/OlatcgNavbar";
 import AppRoutes from "../routes/AppRoutes";
 import { getMessage } from "../services/MessageService";
+import AuthProvider from "../provider/AuthProvider";
 
 const App = () => {
   return <>
     <OlatcgNavbar />
-    <AppRoutes />
+    <AuthProvider>
+      <AppRoutes />
+    </AuthProvider>
     <Stack
       direction="row"
       alignItems="center"

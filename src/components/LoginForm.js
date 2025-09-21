@@ -3,16 +3,20 @@ import { getMessage } from "../services/MessageService";
 import {TextField } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../provider/AuthProvider";
 
 const LoginForm = () => {
 
+    const { setToken } = useAuth();
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    let url =  'http://localhost:8000/v3/olatcg-backend/auth/login';
+    
 
     const handleSubmit = async (e) => {
+        let url =  'http://localhost:8000/v3/olatcg-backend/auth/login/';
         e.preventDefault();
-                try {
+                
+            try {
                 const response = await fetch(url, {
                     method: 'POST',
                     headers: {
@@ -24,27 +28,35 @@ const LoginForm = () => {
                     })
                 });
 
-                if (!response.ok) {
-                    throw new Error('Error!');
-                }
-
                 const data = await response.json();
 
                 const token = data.token;
 
              
                 const expiresAt = new Date().getTime() + (1800* 1000); 
+                //better visualization of the expires
+                const expiresAtFormatted = new Date(expiresAt).toLocaleString();
+
                 sessionStorage.setItem('auth', JSON.stringify({
                     token: token,
-                    expiresAt: expiresAt
+                    expiresAt:  expiresAtFormatted
                 }));
 
+                setToken(token);
+                //check in the dev tools
                 console.log('Success!');
+                
+                //redirect 
+                navigate("/home");
+
             } catch (error) {
                 console.error('Error in login:', error);
             }
 
-        }
+
+            };
+
+        
        
     const [userEmail, setUserEmail] = useState("");
     const [password, setPassword]  = useState("");

@@ -15,30 +15,36 @@ import Register from '../pages/Register';
 import PhyloTree from '../pages/PhyloTree';
 import { Experiment } from '../pages/Experiment.js';
 import Login from '../pages/Login';
+import ProtectedRoute from './ProtectedRoute.js';
 
 export default function AppRoutes(){
     return (
         <Routes>
+            {/*Public pages */}
             <Route path="home" element={<Home />} />
-            <Route path="learn" element={<Learn />} />
-            <Route path="tutorials" element={<Tutorials />} />
-            <Route path="experiment" element={<Experiment />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
-            <Route path="tool" element={<Tools />}>
-                <Route path="alignment" element={<Alignment />} />
-                <Route path="homology" element={<Homology />} />
-            </Route>
-            <Route path="analysis" element={<Analysis />}>
-                <Route path="alignment" element={<AlignmentAnalysis />}>
-                    <Route path=":idAnalysis" element={<AlignmentAnalysisDetails/>} />
+            {/*Protected elements */}
+            <Route element={<ProtectedRoute />}>
+                <Route path="learn" element={<Learn />} />
+                <Route path="tutorials" element={<Tutorials />} />
+                <Route path="experiment" element={<Experiment />} />
+            
+                <Route path="tool" element={<Tools />}>
+                    <Route path="alignment" element={<Alignment />} />
+                    <Route path="homology" element={<Homology />} />
                 </Route>
-                <Route path="homology" element={<HomologyAnalysis />} >
-                    <Route path='tree/:idAnalysis'element={<PhyloTree />}/>
-                    <Route path=":idAnalysis" element={<HomologyAnalysisDetails />} />
-                </Route>
-                <Route path="phylogeneticTree" element={<PhylogeneticTreeAnalysis/>}>
-                    <Route path=':idAnalysis'element={<PhyloTree />}/>
+                <Route path="analysis" element={<Analysis />}>
+                    <Route path="alignment" element={<AlignmentAnalysis />}>
+                        <Route path=":idAnalysis" element={<AlignmentAnalysisDetails/>} />
+                    </Route>
+                    <Route path="homology" element={<HomologyAnalysis />} >
+                        <Route path='tree/:idAnalysis'element={<PhyloTree />}/>
+                        <Route path=":idAnalysis" element={<HomologyAnalysisDetails />} />
+                    </Route>
+                    <Route path="phylogeneticTree" element={<PhylogeneticTreeAnalysis/>}>
+                        <Route path=':idAnalysis'element={<PhyloTree />}/>
+                    </Route>
                 </Route>
             </Route>
             <Route path="*" element={<Navigate to="home" />} />
