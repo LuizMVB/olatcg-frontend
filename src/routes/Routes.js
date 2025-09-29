@@ -1,7 +1,7 @@
 var BASE_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
 
 //var API_BASE_PATH = BASE_URL + '/v1/api';
-var API_BASE_PATH = 'https://spica.eic.cefet-rj.br/v3/olatcg-backend';
+//var API_BASE_PATH = 'https://spica.eic.cefet-rj.br/v3/olatcg-backend';
 var API_BASE_PATH = BASE_URL + '/v3/olatcg-backend'; 
 
 //BACKEND ROUTES
@@ -12,6 +12,9 @@ const API_ROUTES = {
     ANALYSIS_FROM_EXPERIMENT_ID: API_BASE_PATH + '/experiment/{experiment_id}/analysis/',
     GET_EXPERIMENT: API_BASE_PATH + '/experiment/?ordering=-id',
     GET_EXPERIMENT_BY_ID: API_BASE_PATH + '/experiment/{experiment_id}/',
+
+    //NEW
+    ANALYSIS_LIST: API_BASE_PATH + '/experiment/1/analysis/?type__in={analysis_type}',
 
     //ALIGNMENT
     ALIGN: API_BASE_PATH + '/analysis/{analysis_id}/alignment/',

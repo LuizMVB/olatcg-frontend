@@ -31,15 +31,15 @@ export default function AppRoutes(){
                 <Route path="homology" element={<Homology />} />
             </Route>
             <Route path="experiment" element={<Experiment />} />
-            <Route path="analysis" element={<Analysis />}>
-                <Route path="alignment" element={<AlignmentAnalysis />}>
+            <Route path="analysis" element={<AlignmentAnalysis/>}>
+                <Route path="alignment">
                     <Route path=":idAnalysis" element={<AlignmentAnalysisDetails/>} />
                 </Route>
-                <Route path="homology" element={<HomologyAnalysis />} >
+                <Route path="homology">
                     <Route path='tree/:idAnalysis'element={<PhyloTree />}/>
                     <Route path=":idAnalysis" element={<HomologyAnalysisDetails />} />
                 </Route>
-                <Route path="phylogeneticTree" element={<PhylogeneticTreeAnalysis/>}>
+                <Route path="phylogeneticTree">
                     <Route path=':idAnalysis'element={<PhyloTree />}/>
                 </Route>
             </Route>
