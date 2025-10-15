@@ -403,7 +403,7 @@ var data = {
     'learn.contentList.listItem.label.didatic.ep.title'                : '🧬 Episódio Didático',
     'learn.contentList.listItem.label.didatic.ep.text'                 : `Links arquivos:
                                                                             Apresentação (slides)
-                                                                            https://cefetrjbr-my.sharepoint.com/personal/04120362663_cefet-rj_br/_layouts/15/onedrive.aspx?id=%2Fpersonal%2F04120362663%5Fcefet%2Drj%5Fbr%2FDocuments%2FCefet%2FExtens%C3%A3o%2FSEPEX2025%2FOLTCG%5FBioinfo%5FSEPEX%5F2025%20%2D%20Alunos%2Epdf&parent=%2Fpersonal%2F04120362663%5Fcefet%2Drj%5Fbr%2FDocuments%2FCefet%2FExtens%C3%A3o%2FSEPEX2025&ga=1
+                                                                            https://drive.google.com/file/d/1jM3N-hbVk6zn-WPIRK9HqP2NqcQ0KaKW/view?usp=sharing
 
                                                                             SequênciasAntes
                                                                             https://cefetrjbr-my.sharepoint.com/:t:/g/personal/04120362663_cefet-rj_br/EaQPRoWT049IvwPFWtTw4c4BRixdkyIFjteuDo_7JIivLQ?e=JKmWi3
