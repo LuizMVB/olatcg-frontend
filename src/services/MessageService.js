@@ -403,7 +403,7 @@ var data = {
     'learn.contentList.listItem.label.didatic.ep.title'                : '🧬 Episódio Didático',
     'learn.contentList.listItem.label.didatic.ep.text'                 : `Links arquivos:
                                                                             Apresentação (slides)
-                                                                            https://cefetrjbr-my.sharepoint.com/:b:/g/personal/04120362663_cefet-rj_br/EXBFDgZmSidCkBfYkjxCjdEBpSFGcw10-glNz1ql5EdMOw?e=fY2HSx
+                                                                            https://cefetrjbr-my.sharepoint.com/personal/04120362663_cefet-rj_br/_layouts/15/onedrive.aspx?id=%2Fpersonal%2F04120362663%5Fcefet%2Drj%5Fbr%2FDocuments%2FCefet%2FExtens%C3%A3o%2FSEPEX2025%2FOLTCG%5FBioinfo%5FSEPEX%5F2025%20%2D%20Alunos%2Epdf&parent=%2Fpersonal%2F04120362663%5Fcefet%2Drj%5Fbr%2FDocuments%2FCefet%2FExtens%C3%A3o%2FSEPEX2025&ga=1
 
                                                                             SequênciasAntes
                                                                             https://cefetrjbr-my.sharepoint.com/:t:/g/personal/04120362663_cefet-rj_br/EaQPRoWT049IvwPFWtTw4c4BRixdkyIFjteuDo_7JIivLQ?e=JKmWi3
@@ -418,7 +418,7 @@ var data = {
                                                                             https://cefetrjbr-my.sharepoint.com/:b:/g/personal/04120362663_cefet-rj_br/EXBFDgZmSidCkBfYkjxCjdEBpSFGcw10-glNz1ql5EdMOw?e=CaPfsw
 
                                                                             Avaliação
-                                                                            https://forms.office.com/r/DCzRKDiMFD`,
+                                                                            https://forms.office.com/r/yTUKzQ0qT4`,
     
                                                                         /** TUTORIALS */
     'tutorials.contentList.label.title'                         : 'Tutoriais',
